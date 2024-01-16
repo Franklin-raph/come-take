@@ -2,46 +2,10 @@ import { CiHeart } from "react-icons/ci";
 import { BsCart3 } from "react-icons/bs";
 import { IoMdStar } from "react-icons/io";
 
-import OwlCarousel from 'react-owl-carousel';  
-import 'owl.carousel/dist/assets/owl.carousel.css';  
-import 'owl.carousel/dist/assets/owl.theme.default.css';
-
-const TrendingProducts = ({trendingProductsArray}) => {
-
-    const options = {
-        margin: 40,
-        responsiveClass: true,
-        nav: true,
-        dots: true,
-        autoplay: true,
-        navText: true,
-        navText: ["<", ">"],
-        smartSpeed: 1000,
-        loop:true,
-        responsive: {
-            0: {
-                items: 1,
-            },
-            400: {
-                items: 1,
-            },
-            600: {
-                items: 2,
-            },
-            700: {
-                items: 3,
-            },
-            1000: {
-                items: 4,
-    
-            }
-        },
-    };
-
-
+const NewlyListedProducts = ({newlyListedProductsArray}) => {
   return (
-    <OwlCarousel {...options} >
-        {trendingProductsArray && trendingProductsArray.map(product => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        {newlyListedProductsArray && newlyListedProductsArray.map(product => (
             <div class="product-card">
             <div class="badge"><CiHeart /></div>
             <div class="product-tumb">
@@ -72,8 +36,8 @@ const TrendingProducts = ({trendingProductsArray}) => {
             </div>
         </div>
         ))}
-    </OwlCarousel>
+    </div>
   )
 }
 
-export default TrendingProducts
+export default NewlyListedProducts

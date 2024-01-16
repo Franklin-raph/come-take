@@ -24,6 +24,9 @@ import fridge from "../../assets/fridge.png"
 import gym from "../../assets/gym.png"
 import stove from "../../assets/stove.png"
 import { GoArrowRight } from "react-icons/go";
+import NewlyListedProducts from "../../components/newly-listed-products/NewlyListedProducts";
+import FairlyUsedProducts from "../../components/fairly-used-products/FairlyUsedProducts";
+import BrandNewProducts from "../../components/brand-new-products/BrandNewProducts";
 
 
 const Home = () => {
@@ -92,7 +95,7 @@ const Home = () => {
   const recommendedProductsArray = [
     {
       img:gym,
-      productName:`Gymning Track"`,
+      productName:`Gymning Track`,
       price:20005000,
       oldPrice: 1500000,
       discountText:"Save #1,000 Now!",
@@ -103,7 +106,7 @@ const Home = () => {
       productName:`Electric Cooker`,
       price:45500,
       oldPrice: 38000,
-      discountText:"Save #1,000 Now!",
+      discountText:"Save #950 Now!",
       discountPercent:"8%"
     },
     {
@@ -111,7 +114,7 @@ const Home = () => {
       productName:`Tripod Stand`,
       price:250000,
       oldPrice: 180000,
-      discountText:"Save #1,000 Now!",
+      discountText:"Save #1,500 Now!",
       discountPercent:"10%"
     },
     {
@@ -119,7 +122,7 @@ const Home = () => {
       productName:`Macbook Pro 13"`,
       price:700000,
       oldPrice: 630000,
-      discountText:"Save #1,000 Now!",
+      discountText:"Save #5,000 Now!",
       discountPercent:"8.5%"
     },
     {
@@ -127,7 +130,7 @@ const Home = () => {
       productName:`Gymning Track"`,
       price:20005000,
       oldPrice: 1500000,
-      discountText:"Save #1,000 Now!",
+      discountText:"Save #400 Now!",
       discountPercent:"20%"
     },
     {
@@ -153,6 +156,207 @@ const Home = () => {
       oldPrice: 630000,
       discountText:"Save #1,000 Now!",
       discountPercent:"8.5%"
+    }
+  ]
+
+  const newlyListedProductsArray = [
+    {
+      img:laptopImage,
+      productName:`Macbook Pro 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:bagImage,
+      productName:`Hand Bag`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:shoeImage,
+      productName:`Nike Sneakers`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:phoneImage,
+      productName:`Iphone 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:laptopImage,
+      productName:`Macbook Pro 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:bagImage,
+      productName:`Hand Bag`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:shoeImage,
+      productName:`Nike Sneakers`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:phoneImage,
+      productName:`Iphone 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    }
+  ]
+
+  const fairlyUsedProductsArray = [
+    {
+      img:laptopImage,
+      productName:`Macbook Pro 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:bagImage,
+      productName:`Hand Bag`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:shoeImage,
+      productName:`Nike Sneakers`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:phoneImage,
+      productName:`Iphone 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:laptopImage,
+      productName:`Macbook Pro 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:bagImage,
+      productName:`Hand Bag`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:shoeImage,
+      productName:`Nike Sneakers`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:phoneImage,
+      productName:`Iphone 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    }
+  ]
+
+  const brandNewProductsArray = [
+    {
+      img:laptopImage,
+      productName:`Macbook Pro 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:bagImage,
+      productName:`Hand Bag`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:shoeImage,
+      productName:`Nike Sneakers`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:phoneImage,
+      productName:`Iphone 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:laptopImage,
+      productName:`Macbook Pro 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:bagImage,
+      productName:`Hand Bag`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:shoeImage,
+      productName:`Nike Sneakers`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
+    },
+    {
+      img:phoneImage,
+      productName:`Iphone 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
     }
   ]
 
@@ -207,32 +411,19 @@ const Home = () => {
             <button className="bg-secondary-color mt-5 px-8 py-3 rounded-[7px]">Shop Now</button>
           </div>
         </div>
-
-        {/* <Swiper
-        slidesPerView={4}
-        spaceBetween={30}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
-      >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-      </Swiper> */}
+        <div className="px-12 py-8">
+          <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Newly Listed Products</h1>
+          <NewlyListedProducts newlyListedProductsArray={newlyListedProductsArray}/>
+        </div>
+        <div className="px-12 py-8">
+          <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Fairly Used Products</h1>
+          <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
+        </div>
+        <div className="px-12 py-8">
+          <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Brand New Products</h1>
+          <BrandNewProducts brandNewProductsArray={brandNewProductsArray}/>
+        </div>
+        
     </div>
   )
 }
