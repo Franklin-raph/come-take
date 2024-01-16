@@ -19,6 +19,10 @@ import laptopImage from "../../assets/laptop.png"
 import bagImage from "../../assets/bag.png"
 import shoeImage from "../../assets/shoe.png"
 import phoneImage from "../../assets/iphone.png"
+import tripodStand from "../../assets/tripod-stand.png"
+import fridge from "../../assets/fridge.png"
+import gym from "../../assets/gym.png"
+import stove from "../../assets/stove.png"
 import { GoArrowRight } from "react-icons/go";
 
 
@@ -60,24 +64,24 @@ const Home = () => {
       reviews:"35 Reviews"
     },
     {
-      img:laptopImage,
-      productName:`Macbook Pro 13"`,
+      img:bagImage,
+      productName:`Hand Bag`,
       price:"#2m",
       description:"256.8 core GPU, 8GB",
       rating:5,
       reviews:"35 Reviews"
     },
     {
-      img:laptopImage,
-      productName:`Macbook Pro 13"`,
+      img:shoeImage,
+      productName:`Nike Sneakers`,
       price:"#2m",
       description:"256.8 core GPU, 8GB",
       rating:5,
       reviews:"35 Reviews"
     },
     {
-      img:laptopImage,
-      productName:`Macbook Pro 13"`,
+      img:phoneImage,
+      productName:`Iphone 13"`,
       price:"#2m",
       description:"256.8 core GPU, 8GB",
       rating:5,
@@ -87,31 +91,31 @@ const Home = () => {
 
   const recommendedProductsArray = [
     {
-      img:laptopImage,
-      productName:`Macbook Pro 13"`,
+      img:gym,
+      productName:`Gymning Track"`,
       price:20005000,
       oldPrice: 1500000,
       discountText:"Save #1,000 Now!",
       discountPercent:"20%"
     },
     {
-      img:phoneImage,
-      productName:`Macbook Pro 13"`,
+      img:stove,
+      productName:`Electric Cooker`,
       price:45500,
       oldPrice: 38000,
       discountText:"Save #1,000 Now!",
       discountPercent:"8%"
     },
     {
-      img:shoeImage,
-      productName:`Macbook Pro 13"`,
+      img:tripodStand,
+      productName:`Tripod Stand`,
       price:250000,
       oldPrice: 180000,
       discountText:"Save #1,000 Now!",
       discountPercent:"10%"
     },
     {
-      img:bagImage,
+      img:fridge,
       productName:`Macbook Pro 13"`,
       price:700000,
       oldPrice: 630000,
@@ -119,31 +123,31 @@ const Home = () => {
       discountPercent:"8.5%"
     },
     {
-      img:laptopImage,
-      productName:`Macbook Pro 13"`,
+      img:gym,
+      productName:`Gymning Track"`,
       price:20005000,
       oldPrice: 1500000,
       discountText:"Save #1,000 Now!",
       discountPercent:"20%"
     },
     {
-      img:phoneImage,
-      productName:`Macbook Pro 13"`,
+      img:stove,
+      productName:`Electric Cooker`,
       price:45500,
       oldPrice: 38000,
       discountText:"Save #1,000 Now!",
       discountPercent:"8%"
     },
     {
-      img:shoeImage,
-      productName:`Macbook Pro 13"`,
+      img:tripodStand,
+      productName:`Tripod Stand`,
       price:250000,
       oldPrice: 180000,
       discountText:"Save #1,000 Now!",
       discountPercent:"10%"
     },
     {
-      img:bagImage,
+      img:fridge,
       productName:`Macbook Pro 13"`,
       price:700000,
       oldPrice: 630000,
@@ -190,7 +194,7 @@ const Home = () => {
           <TopCategories categoryArray={categoryArray} />
         </div>
         <div className="px-12 py-8">
-          <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Shop Our Top Categories</h1>
+          <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Trending Products</h1>
           <TrendingProducts trendingProductsArray={trendingProductsArray}/>
         </div>
         <div className="px-12 py-8">
