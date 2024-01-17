@@ -18,7 +18,8 @@ export default function App() {
   return (
     <>
       <HashRouter>
-       {loggedIn &&  <AuthenticatedNavbar />}
+      <AuthenticatedNavbar />
+       {/* {loggedIn &&  <AuthenticatedNavbar />} */}
        {/* {!loggedIn && <UnAuthenticatedNavabar /> } */}
         <Routes>
           <Route path="/" element={<Home />}/>
