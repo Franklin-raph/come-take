@@ -7,6 +7,10 @@ import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import SearchComponent from '../search-component/SearchComponent';
 
 const AuthenticatedNavbar = () => {
+
+    const user = localStorage.getItem("user")
+
+
     useEffect(() => {
         // const 
     },[])
@@ -17,7 +21,7 @@ const AuthenticatedNavbar = () => {
 
   return (
     <>
-        <navbar className='flex items-start justify-between py-7 px-12 bg-primary-color text-white text-[15px]'>
+        <navbar className='flex items-start justify-between py-7 px-12 bg-primary-color text-white text-[15px] relative z-[99]'>
             <div className='flex items-start justify-between gap-8'>
                 <Link to="/">Logo</Link>
                 <ul className='flex items-center gap-8'>
@@ -52,7 +56,7 @@ const AuthenticatedNavbar = () => {
                 </li>
             </div>
         </navbar>
-        <SearchComponent />
+        {/* <SearchComponent /> */}
     </>
   )
 }
