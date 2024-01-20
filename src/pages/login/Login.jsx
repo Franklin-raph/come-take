@@ -4,6 +4,8 @@ import { FcGoogle } from "react-icons/fc";
 import SignInuserImg from "../../assets/Sign in user img.png"
 import { useEffect } from "react";
 import { IoMailOutline } from "react-icons/io5";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const Login = ({setLoggedIn}) => {
 
@@ -47,7 +49,7 @@ const Login = ({setLoggedIn}) => {
                             </div>
                             <div className="mt-8">
                                 <div className="flex justify-between items-center">
-                                    <div className="text-sm font-bold text-gray-700 tracking-wide">
+                                    <div className="text-sm text-gray-700 tracking-wide">
                                         Password
                                     </div>
                                 </div>
@@ -82,6 +84,7 @@ const Login = ({setLoggedIn}) => {
               <img src={SignInuserImg} alt="" className="w-full object-contain"/>
             </div>
         </div>
+        <ToastContainer />
     </div>
   )
 }

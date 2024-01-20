@@ -6,14 +6,18 @@ import { Link, useNavigate } from 'react-router-dom'
 import SignInuserImg from "../../assets/Sign in user img.png"
 import { IoMailOutline } from "react-icons/io5";
 import { RiLoader4Line } from "react-icons/ri";
-import { LuEye } from "react-icons/lu";
+import { GoEye } from "react-icons/go";
+import { GoEyeClosed } from "react-icons/go";
 import Swal from 'sweetalert2'
-import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const Register = ({setLoggedIn}) => {
 
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
+  const [passwordType, setPasswordType] = useState("password")
+  const [confirmPasswordType, setConfirmPasswordType] = useState("password")
   const [errors, setErrors] = useState(false)
 
   // const App = () => {
@@ -50,6 +54,7 @@ const Register = ({setLoggedIn}) => {
         const data = await res.json()
         if(res) setLoading(false)
         if(!res.ok){
+          toast.error(data.message)
           // Swal.fire({
           //   title: 'Error!',
           //   text: data.messsage[0],
@@ -65,40 +70,44 @@ const Register = ({setLoggedIn}) => {
       // navigate("/")
     }
 
-  function validateInputFields(errors, inputFieldValue){
+  function validateInputFields(inputFieldValue){
       console.log(inputFieldValue);
       for(let i = 0; i <= inputFieldValue.length; i++){
         if(inputFieldValue[i] === ""){
-          Swal.fire({
-            title: 'Error!',
-            text: 'Please fill in all fields',
-            icon: 'error',
-            cancelButtonText:'Close'
-          })
+          toast.error("Please fill in all fields")
           return true
+          // if(inputFieldValue[i] === ""){
+          //   Swal.fire({
+          //     title: 'Error!',
+          //     text: 'Please fill in all fields',
+          //     icon: 'error',
+          //     cancelButtonText:'Close'
+          //   })
         }
       }
       
       if(userData.password.length < 8){
         setErrors(true)
-        Swal.fire({
-          title: 'Error!',
-          text: 'Password length must be equal or greater than 8 characters',
-          icon: 'error',
-          cancelButtonText:'Close'
-        })
+        toast.error("Password length must be equal or greater than 8 characters")
         return true
+        // Swal.fire({
+        //   title: 'Error!',
+        //   text: 'Password length must be equal or greater than 8 characters',
+        //   icon: 'error',
+        //   cancelButtonText:'Close'
+        // })
       }
       
       if(userData.password !== userData.confirmPassword){
         setErrors(true)
-        Swal.fire({
-          title: 'Error!',
-          text: 'Please both password fields must match',
-          icon: 'error',
-          cancelButtonText:'Close'
-        })
+        toast.error("Please both password fields must match")
         return true
+        // Swal.fire({
+        //   title: 'Error!',
+        //   text: 'Please both password fields must match',
+        //   icon: 'error',
+        //   cancelButtonText:'Close'
+        // })
       }
     }
 
@@ -133,7 +142,7 @@ const Register = ({setLoggedIn}) => {
                                 </div>
                             </div>
                             <div className='mt-8'>
-                                <div className="text-sm font-bold text-gray-700 tracking-wide">Email Address</div>
+                                <div className="text-sm font-bold text-gray-700 tracking-wide label-helper">Email Address</div>
                                 <div className='w-full p-[2px] border border-gray-300 flex items-center gap-2'>
                                   <div className="bg-primary-color p-3 rounded-sm text-2xl text-white">
                                     <IoMailOutline />
@@ -152,12 +161,40 @@ const Register = ({setLoggedIn}) => {
                                     <div className="bg-primary-color p-3 rounded-sm text-2xl text-white">
                                       <GoShieldCheck />
                                     </div>
-                                    <input name='password' onChange={handleInputChange} className="w-full text-lg p-2 focus:outline-none" type="password" placeholder="********" />
+                                    <input name='password' onChange={handleInputChange} className="w-full text-lg p-2 focus:outline-none" type={passwordType} placeholder="********" />
                                   </div>
-                                  <p className='mr-2'></p>
+                                  <p className='mr-2'>
+                                    {passwordType === "password" ?
+                                      <GoEye color='gray' fontSize={"20px"} cursor={"pointer"} onClick={() => setPasswordType("text")}/>
+                                      : 
+                                      <GoEyeClosed color='gray' fontSize={"20px"} cursor={"pointer"} onClick={() => setPasswordType("password")}/>
+                                     }
+                                  </p>
                                 </div>
                             </div>
                             <div className="mt-8">
+                                <div className="flex justify-between items-center">
+                                    <div className="text-sm font-bold text-gray-700 tracking-wide">
+                                        Confirm Password
+                                    </div>
+                                </div>
+                                <div className='w-full p-[2px] border border-gray-300 flex items-center justify-between gap-2'>
+                                  <div className='w-full p-[2px] flex items-center gap-2'>
+                                    <div className="bg-primary-color p-3 rounded-sm text-2xl text-white">
+                                      <GoShieldCheck />
+                                    </div>
+                                    <input name='password' onChange={handleInputChange} className="w-full text-lg p-2 focus:outline-none" type={confirmPasswordType} placeholder="********" />
+                                  </div>
+                                  <p className='mr-2'>
+                                    {confirmPasswordType === "password" ?
+                                      <GoEye color='gray' fontSize={"20px"} cursor={"pointer"} onClick={() => setConfirmPasswordType("text")}/>
+                                      : 
+                                      <GoEyeClosed color='gray' fontSize={"20px"} cursor={"pointer"} onClick={() => setConfirmPasswordType("password")}/>
+                                     }
+                                  </p>
+                                </div>
+                            </div>
+                            {/* <div className="mt-8">
                                 <div className="flex justify-between items-center">
                                     <div className="text-sm font-bold text-gray-700 tracking-wide">
                                         Confirm Password
@@ -169,7 +206,7 @@ const Register = ({setLoggedIn}) => {
                                   </div>
                                   <input name='confirmPassword' onChange={handleInputChange} className="w-full text-lg p-2 focus:outline-none" type="password" placeholder="********" />
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="mt-10">
                                 <button className="bg-[#EDEDED] text-primary-color p-4 w-full rounded-sm tracking-wide
                                 font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
@@ -188,6 +225,7 @@ const Register = ({setLoggedIn}) => {
               <img src={SignInuserImg} alt="" className="w-full object-contain"/>
             </div>
         </div>
+        <ToastContainer />
     </div>
   )
 }

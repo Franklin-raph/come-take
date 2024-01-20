@@ -27,7 +27,9 @@ import { GoArrowRight } from "react-icons/go";
 import NewlyListedProducts from "../../components/newly-listed-products/NewlyListedProducts";
 import FairlyUsedProducts from "../../components/fairly-used-products/FairlyUsedProducts";
 import BrandNewProducts from "../../components/brand-new-products/BrandNewProducts";
-
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
+import { useEffect } from "react";
 
 const Home = () => {
   const categoryArray = [
@@ -95,68 +97,100 @@ const Home = () => {
   const recommendedProductsArray = [
     {
       img:gym,
-      productName:`Gymning Track`,
-      price:20005000,
-      oldPrice: 1500000,
-      discountText:"Save #1,000 Now!",
-      discountPercent:"20%"
+      productName:`Macbook Pro 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
     },
     {
       img:stove,
-      productName:`Electric Cooker`,
-      price:45500,
-      oldPrice: 38000,
-      discountText:"Save #950 Now!",
-      discountPercent:"8%"
+      productName:`Hand Bag`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
     },
     {
       img:tripodStand,
-      productName:`Tripod Stand`,
-      price:250000,
-      oldPrice: 180000,
-      discountText:"Save #1,500 Now!",
-      discountPercent:"10%"
+      productName:`Nike Sneakers`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
     },
     {
       img:fridge,
-      productName:`Macbook Pro 13"`,
-      price:700000,
-      oldPrice: 630000,
-      discountText:"Save #5,000 Now!",
-      discountPercent:"8.5%"
-    },
-    {
-      img:gym,
-      productName:`Gymning Track"`,
-      price:20005000,
-      oldPrice: 1500000,
-      discountText:"Save #400 Now!",
-      discountPercent:"20%"
-    },
-    {
-      img:stove,
-      productName:`Electric Cooker`,
-      price:45500,
-      oldPrice: 38000,
-      discountText:"Save #1,000 Now!",
-      discountPercent:"8%"
-    },
-    {
-      img:tripodStand,
-      productName:`Tripod Stand`,
-      price:250000,
-      oldPrice: 180000,
-      discountText:"Save #1,000 Now!",
-      discountPercent:"10%"
-    },
-    {
-      img:fridge,
-      productName:`Macbook Pro 13"`,
-      price:700000,
-      oldPrice: 630000,
-      discountText:"Save #1,000 Now!",
-      discountPercent:"8.5%"
+      productName:`Iphone 13"`,
+      price:"#2m",
+      description:"256.8 core GPU, 8GB",
+      rating:5,
+      reviews:"35 Reviews"
     }
+    // {
+    //   img:gym,
+    //   productName:`Gymning Track`,
+    //   price:20005000,
+    //   oldPrice: 1500000,
+    //   discountText:"Save #1,000 Now!",
+    //   discountPercent:"20%"
+    // },
+    // {
+    //   img:stove,
+    //   productName:`Electric Cooker`,
+    //   price:45500,
+    //   oldPrice: 38000,
+    //   discountText:"Save #950 Now!",
+    //   discountPercent:"8%"
+    // },
+    // {
+    //   img:tripodStand,
+    //   productName:`Tripod Stand`,
+    //   price:250000,
+    //   oldPrice: 180000,
+    //   discountText:"Save #1,500 Now!",
+    //   discountPercent:"10%"
+    // },
+    // {
+    //   img:fridge,
+    //   productName:`Macbook Pro 13"`,
+    //   price:700000,
+    //   oldPrice: 630000,
+    //   discountText:"Save #5,000 Now!",
+    //   discountPercent:"8.5%"
+    // },
+    // {
+    //   img:gym,
+    //   productName:`Gymning Track"`,
+    //   price:20005000,
+    //   oldPrice: 1500000,
+    //   discountText:"Save #400 Now!",
+    //   discountPercent:"20%"
+    // },
+    // {
+    //   img:stove,
+    //   productName:`Electric Cooker`,
+    //   price:45500,
+    //   oldPrice: 38000,
+    //   discountText:"Save #1,000 Now!",
+    //   discountPercent:"8%"
+    // },
+    // {
+    //   img:tripodStand,
+    //   productName:`Tripod Stand`,
+    //   price:250000,
+    //   oldPrice: 180000,
+    //   discountText:"Save #1,000 Now!",
+    //   discountPercent:"10%"
+    // },
+    // {
+    //   img:fridge,
+    //   productName:`Macbook Pro 13"`,
+    //   price:700000,
+    //   oldPrice: 630000,
+    //   discountText:"Save #1,000 Now!",
+    //   discountPercent:"8.5%"
+    // }
   ]
 
   const newlyListedProductsArray = [
@@ -360,14 +394,19 @@ const Home = () => {
     }
   ]
 
+  useEffect(() => {
+    toast.success("Hello world")
+  },[])
+
   return (
     <div>
         <Swiper
-        spaceBetween={30}
+        spaceBetween={0}
         centeredSlides={true}
         autoplay={{
-          delay: 2500,
+          delay: 5000,
           disableOnInteraction: false,
+          pauseOnMouseEnter: true
         }}
         loop={true}
         pagination={{
@@ -387,22 +426,42 @@ const Home = () => {
             <div className="img-slider3"></div>
           </SwiperSlide>
         </Swiper>
+        <div className="flex justify-between py-[40px] px-12">
+          <h1 className="font-[600] text-primary-color text-[30px] w-full md:w-[30%]">
+            Discover the ultimate online shopping experience
+          </h1>
+          <div>
+            <p className="text-primary-color">
+             Shop from a wide range of products and enjoy fast, reliable delivery.
+            </p>
+            <button className="bg-secondary-color mt-5 px-8 py-3 rounded-[7px] text-white">
+              Shop Now
+            </button>
+          </div>
+        </div>
         <div className="px-12 py-8">
-          <div className="flex items-center justify-between mt-10 mb-4">
-            <h1 className="font-[600] text-[24px] text-primary-color">Shop Our Top Categories</h1>
-            <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+          <h1 className="font-[600] text-[24px] text-primary-color mb-5">Shop Our Top Categories</h1>
+          <TopCategories categoryArray={categoryArray} />
+        </div>
+        <div className="px-12 py-8">
+        <div className="flex items-center justify-between">
+          <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Trending Products</h1>
+          <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
               <p>See all</p>
               <GoArrowRight />
             </div>
           </div>
-          <TopCategories categoryArray={categoryArray} />
-        </div>
-        <div className="px-12 py-8">
-          <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Trending Products</h1>
           <TrendingProducts trendingProductsArray={trendingProductsArray}/>
         </div>
         <div className="px-12 py-8">
+          
+          <div className="flex items-center justify-between">
           <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Recommended Products</h1>
+          <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+              <p>See all</p>
+              <GoArrowRight />
+            </div>
+          </div>
           <RecommendedProducts recommendedProductsArray={recommendedProductsArray}/>
         </div>
         <div className="lady-part mt-5">
@@ -423,7 +482,7 @@ const Home = () => {
           <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Brand New Products</h1>
           <BrandNewProducts brandNewProductsArray={brandNewProductsArray}/>
         </div>
-        
+        <ToastContainer />
     </div>
   )
 }

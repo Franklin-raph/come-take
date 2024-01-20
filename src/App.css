@@ -28,7 +28,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url('./assets/Frame380.png');
+  background-image: url('./assets/Frame129.png');
   width: 100%;
   height: 90vh;
 }
@@ -38,7 +38,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url('./assets/Frame380.png');
+  background-image: url('./assets/Frame376.png');
   width: 100%;
   height: 90vh;
 }
@@ -65,15 +65,30 @@
   background-color: #ffffff;
 }
 
-.top-category-overlay{
-  background-color: rgba(0, 0, 0, 0.445);
+.category-section p{
+  font-size: 18px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
-.category-section p{
-  /* transform: translate(-50%, -50%); */
-  top: 30%;
-  left: 35%;
-  right: 50%;
+.category-section{
+  cursor: pointer;
+}
+
+.top-category-overlay{
+  background-color: rgba(0, 0, 0, 0.445);
+  bottom: -120%;
+  transition: .5s;
+}
+
+.category-section:hover .top-category-overlay{
+  bottom: 0;
+  transition: .5s;
 }
 
 .lady-part{
@@ -131,23 +146,51 @@
   background-color: #fff !important;
 }
 
+.owl-next,.owl-prev {opacity: 0;}
 
+.owl-carousel:hover .owl-prev, .owl-carousel:hover .owl-next {
+  opacity: 1 !important;
+  transition: .7s;
+}
 
+#owl-demo .owl-item > div img {
+    display: block;
+    width: 100%;
+    height: auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin-bottom:4px;
+}
+#owl-demo .owl-item > div {
+    padding: 0px 2px
+}
 
+.product-card .product-tumb{
+  border-radius: 20px;
+  overflow: hidden;
+}
 
+.product-card:hover{
+  box-shadow: 0 2px 7px #dfdfdf;
+}
 
+.product-card .product-tumb img{
+  transition: .5s;
+}
 
-
-
-
-
+.product-card:hover .product-tumb img{
+  scale: 1.35;
+  transition: .5s;
+}
 
 .product-card {
+  cursor: pointer;
   width: 100%;
   position: relative;
-  box-shadow: 0 2px 7px #dfdfdf;
+  /* box-shadow: 0 2px 7px #dfdfdf; */
   margin: 0px auto;
-  background: #fafafa;
+  /* background: #fafafa; */
 }
 
 .badge {
