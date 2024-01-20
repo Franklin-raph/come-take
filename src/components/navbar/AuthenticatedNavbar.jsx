@@ -21,7 +21,7 @@ const AuthenticatedNavbar = () => {
 
   return (
     <>
-        <navbar className='flex items-start justify-between py-7 px-12 bg-primary-color text-white text-[15px] relative z-[99]'>
+        <nav className='flex items-start justify-between py-7 px-12 bg-primary-color text-white text-[15px] relative z-[99]'>
             <div className='flex items-start justify-between gap-8'>
                 <Link to="/">Logo</Link>
                 <ul className='flex items-center gap-8'>
@@ -55,8 +55,8 @@ const AuthenticatedNavbar = () => {
                     <Link to="/get-app">Get App</Link>
                 </li>
             </div>
-        </navbar>
-        {/* <SearchComponent /> */}
+        </nav>
+        <SearchComponent />
     </>
   )
 }

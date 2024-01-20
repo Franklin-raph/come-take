@@ -13,7 +13,7 @@ const TrendingProducts = ({trendingProductsArray}) => {
         responsiveClass: true,
         nav: true,
         dots: true,
-        autoplay: true,
+        autoplay: false,
         navText: true,
         navText: ["<", ">"],
         smartSpeed: 1000,
@@ -42,12 +42,12 @@ const TrendingProducts = ({trendingProductsArray}) => {
   return (
     <OwlCarousel {...options} >
         {trendingProductsArray && trendingProductsArray.map(product => (
-            <div class="product-card">
-            <div class="badge"><CiHeart /></div>
-            <div class="product-tumb">
+            <div className="product-card">
+            <div className="badge"><CiHeart /></div>
+            <div className="product-tumb">
                 <img src={product.img} alt="" />
             </div>
-            <div class="product-details">
+            <div className="product-details">
                 <div className="flex items-center justify-between">
                     <p className="font-[500]">{product.productName}</p>
                     <p className="text-[13px] font-[500]">{product.price}</p>

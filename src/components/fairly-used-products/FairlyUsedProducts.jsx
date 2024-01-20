@@ -6,12 +6,12 @@ const FairlyUsedProducts = ({fairlyUsedProductsArray}) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {fairlyUsedProductsArray && fairlyUsedProductsArray.map(product => (
-            <div class="product-card">
-            <div class="badge"><CiHeart /></div>
-            <div class="product-tumb">
+            <div className="product-card">
+            <div className="badge"><CiHeart /></div>
+            <div className="product-tumb">
                 <img src={product.img} alt="" />
             </div>
-            <div class="product-details">
+            <div className="product-details">
                 <div className="flex items-center justify-between">
                     <p className="font-[500]">{product.productName}</p>
                     <p className="text-[13px] font-[500]">{product.price}</p>

@@ -9,7 +9,7 @@ import SearchComponent from '../search-component/SearchComponent';
 const UnAuthenticatedNavabar = () => {
   return (
     <div>
-                <navbar className='flex items-start justify-between py-7 px-12 bg-primary-color text-white text-[15px]'>
+                <nav className='flex items-start justify-between py-7 px-12 bg-primary-color text-white text-[15px]'>
             <div className='flex items-start justify-between gap-8'>
                 <Link to="/">Logo</Link>
                 <ul className='flex items-center gap-8'>
@@ -43,8 +43,8 @@ const UnAuthenticatedNavabar = () => {
                     <Link to="/get-app">Get App</Link>
                 </li>
             </div>
-        </navbar>
-        {/* <SearchComponent /> */}
+        </nav>
+        <SearchComponent />
     </div>
   )
 }
