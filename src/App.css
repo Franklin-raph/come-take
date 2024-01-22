@@ -295,7 +295,7 @@
   color: #fbb72c;
 }
 
-.email-label, .password-label{
+.input-container label{
   /* font-size: 16px;
   color: #999;
   position: absolute;
@@ -303,13 +303,31 @@
   top: 15px;
   background-color: #fff;
   padding: 2px 5px; */
-  display: none;
+  visibility: hidden;
 }
 
-.input-container .email-label, .input-container .password-label{
-  transition: .3s;
+
+.input-container:focus-within label{
+  visibility: visible;
 }
 
-.input-container:focus-within .email-label, .input-container:focus-within .password-label{
-  display: block;
+.register-modal{
+  overflow-y: scroll;
+}
+
+/* width */
+.register-modal::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.register-modal::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+.register-modal::-webkit-scrollbar-thumb {
+  background: rgb(206, 206, 206); 
+  border-radius: 10px;
 }

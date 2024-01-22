@@ -8,7 +8,7 @@ import SearchComponent from '../search-component/SearchComponent';
 import { BsCart3 } from 'react-icons/bs';
 import { CiSearch } from 'react-icons/ci';
 
-const UnAuthenticatedNavabar = ({ setLoginModal }) => {
+const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
   return (
     <div>
         <nav className='flex items-center justify-between py-5 px-12 bg-primary-color text-white text-[15px]'>
@@ -21,7 +21,10 @@ const UnAuthenticatedNavabar = ({ setLoginModal }) => {
                 
             </div>
             <div className='nav-right w-full'>
-                <li onClick={() => setLoginModal(true)}>
+                <li onClick={() => { 
+                    setLoginModal(true)
+                    setRegisterModal(false)
+                }}>
                     <Link to="#">Login</Link>
                     <FaRegCircleUser />
                 </li>

@@ -9,10 +9,11 @@ import { IoCloseOutline, IoMailOutline } from "react-icons/io5";
 import Footer from "./components/footer/Footer"
 import { GoShieldCheck } from "react-icons/go"
 import { FcGoogle } from "react-icons/fc"
-import Register from "./pages/register/Register"
+import Register from "./components/register/Register"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
+  const [registerModal, setRegisterModal] = useState(false)
 
   return (
     <>
@@ -24,8 +25,12 @@ export default function App() {
           <Route path="/signup" element={<Register />}/>
         </Routes>
         <Footer />
-        {loginModal && 
-          <Login setLoginModal={setLoginModal}/>
+        {loginModal && !registerModal &&
+          <Login setLoginModal={setLoginModal} setRegisterModal={setRegisterModal}/>
+        }
+        {
+          registerModal && !loginModal && 
+          <Register setLoginModal={setLoginModal} setRegisterModal={setRegisterModal}/>
         }
       </HashRouter>
     </>
