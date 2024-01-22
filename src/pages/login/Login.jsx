@@ -3,61 +3,59 @@ import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import SignInuserImg from "../../assets/Sign in user img.png"
 import { useEffect } from "react";
-import { IoMailOutline } from "react-icons/io5";
+import { IoCloseOutline, IoMailOutline } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 
-const Login = ({setLoggedIn}) => {
+const Login = ({ setLoginModal }) => {
 
   const navigate = useNavigate()
-
-  useEffect(() => {
-    setLoggedIn(false)
-  },[])
 
   async function handleUserSignIn(e){
     e.preventDefault()
     localStorage.setItem("user", 1)
-    setLoggedIn(true)
     navigate("/")
   }
 
   return (
     <div>
-      <div className="lg:flex">
-            <div className="lg:w-1/2 xl:max-w-screen-sm">
-              {/* <button className="relative top-10 left-10" onClick={() => navigate("/")}>Back</button> */}
-                <div className="mt-12 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
+      <div className="h-full w-full fixed top-0 left-0 z-[99999]" style={{ background:"rgba(14, 14, 14, 0.58)" }}>
+          <div className="bg-white w-[450px] h-[580px] fixed top-[50%] left-[50%] py-[35px] px-[2rem] rounded-[20px]" style={{ transform: "translate(-50%, -50%)" }}>
+            <div className="flex items-center justify-between">
+              <p className="text-[22px]">Welcome</p>
+              <IoCloseOutline fontSize={"20px"} cursor={"pointer"} onClick={() => setLoginModal(false)}/>
+            </div>
+            <div className="">
+                <div className="mt-4 px-2">
                   <div className='text-center'>
-                    <h2 className="text-4xl text-primary-color font-display font-semibold xl:text-bold">USER LOGIN</h2>
-                    <p className='mt-3'>Welcome back! Please enter your login details to access your account.</p>
+                    <div className="mt-2 flex items-center gap-5">
+                      <p className="text-primary-color pr-2 cursor-pointer" style={{ borderBottom:"2px solid #003C2F" }}>Sign in</p>
+                      <p className="text-[#B6B6B6] cursor-pointer">Register</p>
+                    </div>
                   </div>
-                  <button className="flex items-center gap-3 border border-gray-300 hover:bg-gray-200 w-full rounded text-sm mt-7 py-3 justify-center">
+                  <button className="flex items-center gap-3 border border-gray-300 hover:bg-gray-200 w-full rounded text-sm mt-7 py-[8px] justify-center">
                     <FcGoogle fontSize={"22px"}/>
                     Continue with Google
                   </button>
-                    <div className="mt-7">
-                        <form onSubmit={handleUserSignIn}>
-                            <div>
-                                <div className="text-sm font-bold text-gray-700 tracking-wide">Email Address</div>
+                  <p className="text-center text-[#B6B6B6] my-5">Or</p>
+                    <div className="">
+                        <form>
+                            <div className="relative input-container">
+                                <label className="email-label">Email Address</label>
                                 <div className='w-full p-[2px] border border-gray-300 flex items-center gap-2'>
                                   <div className="bg-primary-color p-3 rounded-sm text-2xl text-white">
                                     <IoMailOutline />
                                   </div>
-                                  <input className="w-full text-lg p-2 focus:outline-none" type="email" placeholder="johndoe@gmail.com" />
+                                  <input className="w-full text-lg p-2 outline-none" type="email" placeholder=" " />
                                 </div>
                             </div>
-                            <div className="mt-8">
-                                <div className="flex justify-between items-center">
-                                    <div className="text-sm text-gray-700 tracking-wide">
-                                        Password
-                                    </div>
-                                </div>
+                            <div className="mt-8 relative input-container">
+                                <label className="password-label">Password</label>
                                 <div className='w-full p-[2px] border border-gray-300 flex items-center gap-2'>
                                   <div className="bg-primary-color p-3 rounded-sm text-2xl text-white">
                                     <GoShieldCheck />
                                   </div>
-                                  <input className="w-full text-lg p-2 focus:outline-none" type="" placeholder="********" />
+                                  <input type="password" className="w-full text-lg px-2 focus:outline-none" placeholder=" " />
                                 </div>
                                 <div className="text-right">
                                     <Link className="text-xs text-right font-display text-secondary-color hover:text-primary-color
@@ -66,10 +64,10 @@ const Login = ({setLoggedIn}) => {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="mt-10">
-                                <button className="bg-[#EDEDED] text-primary-color p-4 w-full rounded-sm tracking-wide
+                            <div className="mt-7">
+                                <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
                                 font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
-                                shadow-sm transition-all" type="submit">
+                                shadow-sm transition-all border border-gray-500" type="submit">
                                     Log In
                                 </button>
                             </div>
@@ -80,11 +78,8 @@ const Login = ({setLoggedIn}) => {
                     </div>
                 </div>
             </div>
-            <div className="hidden lg:flex items-center justify-center bg-indigo-100 flex-1 h-screen">
-              <img src={SignInuserImg} alt="" className="w-full object-contain"/>
-            </div>
+          </div>
         </div>
-        <ToastContainer />
     </div>
   )
 }

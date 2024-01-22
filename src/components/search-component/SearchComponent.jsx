@@ -1,30 +1,28 @@
 import React from 'react'
-import { CiSearch } from "react-icons/ci";
-import { CiHeart } from "react-icons/ci";
-import { BsCart3 } from "react-icons/bs";
-import { CiBellOn } from "react-icons/ci";
+import { Link } from 'react-router-dom';
+import { IoChevronDown } from 'react-icons/io5';
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const SearchComponent = () => {
   return (
-    <div className='flex items-center justify-between px-12 py-5'>
-        <div className='flex items-center justify-between outline-none border py-2 px-2 rounded text-[14px] w-[40%]'>
-            <input type="text" placeholder='Search' className='w-full pr-20 outline-none'/>
-            <CiSearch />
-        </div>
-        <div className='top-icons '>
-            <div className='cursor-pointer'>
-                <CiHeart color='#FF3030' fontSize={"20px"}/>
-                <p>(0)</p>
-            </div>
-            <div className='cursor-pointer'>
-                <BsCart3 color='#08A805' fontSize={"20px"}/>
-                <p>(0)</p>
-            </div>
-            <div className='cursor-pointer'>
-                <CiBellOn color='#DF9007' fontSize={"20px"}/>
-                <p>(0)</p>
-            </div>
-        </div>
+    <div className='flex items-center justify-between px-12 py-5 bottom-nav bg-secondary-color text-white'>
+        <ul className='flex items-center gap-8'>
+            <RxHamburgerMenu />
+            <li>
+                <Link to="/categories">Categories</Link>
+                <IoChevronDown />
+            </li>
+            <li>
+                <Link to="/new-listing">New Listing</Link>
+            </li>
+            <li>
+                <Link to="/sell-products">Sell Products</Link>
+            </li>
+            <li>
+                <Link to="/more">More</Link>
+                <IoChevronDown />
+            </li>
+        </ul>
     </div>
   )
 }

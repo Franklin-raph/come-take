@@ -294,3 +294,22 @@
 .product-links a:hover {
   color: #fbb72c;
 }
+
+.email-label, .password-label{
+  /* font-size: 16px;
+  color: #999;
+  position: absolute;
+  left: 60px;
+  top: 15px;
+  background-color: #fff;
+  padding: 2px 5px; */
+  display: none;
+}
+
+.input-container .email-label, .input-container .password-label{
+  transition: .3s;
+}
+
+.input-container:focus-within .email-label, .input-container:focus-within .password-label{
+  display: block;
+}

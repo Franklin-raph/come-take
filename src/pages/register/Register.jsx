@@ -18,7 +18,10 @@ const Register = ({setLoggedIn}) => {
   const [loading, setLoading] = useState(false)
   const [passwordType, setPasswordType] = useState("password")
   const [confirmPasswordType, setConfirmPasswordType] = useState("password")
-  const [errors, setErrors] = useState(false)
+  const [passwordError, setPasswordError] = useState()
+  const [confirmPasswordError, setConfirmPasswordError] = useState()
+  const [emailError, setEmailError] = useState("")
+  const [nameError, setNameError] = useState("")
 
   // const App = () => {
     const [userData, setUserData] = useState({
@@ -39,12 +42,17 @@ const Register = ({setLoggedIn}) => {
 
     async function handleUserSignUp(e){
       e.preventDefault()
-      const validate = validateInputFields(errors, Object.values(userData))
+      console.log("line 42 ====> ", userData);
+      setConfirmPasswordError("")
+      setPasswordError("")
+      setEmailError("")
+      setNameError("")
+      const validate = validateInputFields(Object.values(userData))
       if(validate === true){
         return
       }else{
         setLoading(true)
-        const res = await fetch("https://cometake.pythonanywhere.com/registration",{
+        const res = await fetch("https://cometake.pythonanywhere.com/registration/customer",{
           method:"POST",
           headers:{
             "Content-Type":"application/json"
@@ -52,9 +60,11 @@ const Register = ({setLoggedIn}) => {
           body: JSON.stringify(userData)
         })
         const data = await res.json()
+        console.log(res, data);
         if(res) setLoading(false)
         if(!res.ok){
-          toast.error(data.message)
+          setEmailError(data.message.email)
+          setPasswordError(data.message.password)
           // Swal.fire({
           //   title: 'Error!',
           //   text: data.messsage[0],
@@ -62,7 +72,8 @@ const Register = ({setLoggedIn}) => {
           //   cancelButtonText:'Close'
           // })
         }
-        console.log(res, data);
+        console.log(res, data.message.email);
+        console.log(data.message);
       }
       console.log(validateInputFields(errors, Object.values(userData)));
       
@@ -73,41 +84,33 @@ const Register = ({setLoggedIn}) => {
   function validateInputFields(inputFieldValue){
       console.log(inputFieldValue);
       for(let i = 0; i <= inputFieldValue.length; i++){
+        console.log(inputFieldValue[i]);
         if(inputFieldValue[i] === ""){
-          toast.error("Please fill in all fields")
+          setEmailError("Please fill in the field")
+          setConfirmPasswordError("Please fill in the field")
+          setPasswordError("Please fill in the field")
+          setNameError("Please fill in the field")
+          // toast.error("Please fill in all fields")
           return true
-          // if(inputFieldValue[i] === ""){
-          //   Swal.fire({
-          //     title: 'Error!',
-          //     text: 'Please fill in all fields',
-          //     icon: 'error',
-          //     cancelButtonText:'Close'
-          //   })
         }
       }
+
+      inputFieldValue.forEach(value => {
+        if(value === ""){
+          // toast.error("Please fill in all fields")
+        }
+      })
       
-      if(userData.password.length < 8){
-        setErrors(true)
-        toast.error("Password length must be equal or greater than 8 characters")
-        return true
-        // Swal.fire({
-        //   title: 'Error!',
-        //   text: 'Password length must be equal or greater than 8 characters',
-        //   icon: 'error',
-        //   cancelButtonText:'Close'
-        // })
-      }
+      // if(userData.password.length < 8){
+      //   // toast.error("Password length must be equal or greater than 8 characters")
+      //   return true
+      // }
       
       if(userData.password !== userData.confirmPassword){
-        setErrors(true)
-        toast.error("Please both password fields must match")
+        setConfirmPasswordError("Both password fields must match")
+        setPasswordError("Both password fields must match")
+        // toast.error("Please both password fields must match")
         return true
-        // Swal.fire({
-        //   title: 'Error!',
-        //   text: 'Please both password fields must match',
-        //   icon: 'error',
-        //   cancelButtonText:'Close'
-        // })
       }
     }
 
@@ -131,6 +134,7 @@ const Register = ({setLoggedIn}) => {
                                   </div>
                                   <input name='first_name' onChange={handleInputChange} className="w-full text-lg p-2 focus:outline-none" type="text" placeholder="John" />
                                 </div>
+                                {nameError && <span className='text-red-500 text-[13px]'>X {nameError}</span>}
                             </div>
                             <div className='mt-8'>
                                 <div className="text-sm font-bold text-gray-700 tracking-wide">Last Name</div>
@@ -140,6 +144,7 @@ const Register = ({setLoggedIn}) => {
                                   </div>
                                   <input name='last_name' onChange={handleInputChange} className="w-full text-lg p-2 focus:outline-none" type="text" placeholder="Doe" />
                                 </div>
+                                {nameError && <span className='text-red-500 text-[13px]'>X {nameError}</span>}
                             </div>
                             <div className='mt-8'>
                                 <div className="text-sm font-bold text-gray-700 tracking-wide label-helper">Email Address</div>
@@ -149,6 +154,7 @@ const Register = ({setLoggedIn}) => {
                                   </div>
                                   <input name='email' onChange={handleInputChange} className="w-full text-lg p-2 focus:outline-none" type="email" placeholder="johndoe@gmail.com" />
                                 </div>
+                                {emailError && <span className='text-red-500 text-[13px]'>X {emailError}</span>}
                             </div>
                             <div className="mt-8">
                                 <div className="flex justify-between items-center">
@@ -168,9 +174,10 @@ const Register = ({setLoggedIn}) => {
                                       <GoEye color='gray' fontSize={"20px"} cursor={"pointer"} onClick={() => setPasswordType("text")}/>
                                       : 
                                       <GoEyeClosed color='gray' fontSize={"20px"} cursor={"pointer"} onClick={() => setPasswordType("password")}/>
-                                     }
+                                    }
                                   </p>
                                 </div>
+                                {passwordError && <span className='text-red-500 text-[13px]'>X {passwordError}</span>}
                             </div>
                             <div className="mt-8">
                                 <div className="flex justify-between items-center">
@@ -183,7 +190,7 @@ const Register = ({setLoggedIn}) => {
                                     <div className="bg-primary-color p-3 rounded-sm text-2xl text-white">
                                       <GoShieldCheck />
                                     </div>
-                                    <input name='password' onChange={handleInputChange} className="w-full text-lg p-2 focus:outline-none" type={confirmPasswordType} placeholder="********" />
+                                    <input name='confirmPassword' onChange={handleInputChange} className="w-full text-lg p-2 focus:outline-none" type={confirmPasswordType} placeholder="********" />
                                   </div>
                                   <p className='mr-2'>
                                     {confirmPasswordType === "password" ?
@@ -193,6 +200,7 @@ const Register = ({setLoggedIn}) => {
                                      }
                                   </p>
                                 </div>
+                                {confirmPasswordError && <span className='text-red-500 text-[13px]'> X {confirmPasswordError}</span>}
                             </div>
                             {/* <div className="mt-8">
                                 <div className="flex justify-between items-center">

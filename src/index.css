@@ -15,10 +15,10 @@
   @apply flex items-center gap-1
 }
 
-nav li{
+.bottom-nav li, nav li{
   @apply flex items-center justify-between cursor-pointer gap-1
 }
 
 .nav-right{
-  @apply flex items-center justify-between cursor-pointer gap-8
+  @apply flex items-center justify-end cursor-pointer gap-8
 }
