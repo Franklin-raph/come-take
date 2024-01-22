@@ -65,12 +65,9 @@ const Register = ({setLoggedIn}) => {
         if(!res.ok){
           setEmailError(data.message.email)
           setPasswordError(data.message.password)
-          // Swal.fire({
-          //   title: 'Error!',
-          //   text: data.messsage[0],
-          //   icon: 'error',
-          //   cancelButtonText:'Close'
-          // })
+        }
+        if(res.ok){
+          toast.success(data.message)
         }
         console.log(res, data.message.email);
         console.log(data.message);
