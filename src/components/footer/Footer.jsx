@@ -1,4 +1,5 @@
 import React from 'react'
+import footerImage from "../../assets/Group76.png"
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
@@ -132,7 +133,8 @@ const Footer = () => {
           pariatur quos dolorum sequi excepturi ut necessitatibus! Dolore.
         </p>
         <h1 className='font-bold text-[17px] text-primary-color mt-9 mb-4'>Accepted Payments</h1>
-        <div className='grid grid-cols-4'>
+        <img src={footerImage} alt="" />
+        {/* <div className='grid grid-cols-4'>
           <p>Visa</p>
           <p>Master-Card</p>
           <p>Apple-pay</p>
@@ -141,7 +143,7 @@ const Footer = () => {
           <p>Amazon</p>
           <p>O-pay</p>
           <p>Skrill</p>
-        </div>
+        </div> */}
       </div>
       <div className='grid grid-cols-4 gap-[2rem] text-[14px]'>
         <div>

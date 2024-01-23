@@ -19,11 +19,13 @@ const Login = ({ setLoginModal, setRegisterModal }) => {
 
   return (
     <div>
-      <div className="h-full w-full fixed top-0 left-0 z-[99999]" style={{ background:"rgba(14, 14, 14, 0.58)" }}>
-          <div className="bg-white w-[450px] h-[580px] fixed top-[50%] left-[50%] py-[35px] px-[2rem] rounded-[20px]" style={{ transform: "translate(-50%, -50%)" }}>
+      <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setLoginModal(false)}></div>
+          <div className="bg-white w-[450px] h-[580px] fixed top-[50%] left-[50%] py-[35px] px-[2rem] rounded-[20px] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>
             <div className="flex items-center justify-between">
               <p className="text-[22px]">Welcome</p>
-              <IoCloseOutline fontSize={"20px"} cursor={"pointer"} onClick={() => setLoginModal(false)}/>
+              <div  className="border border-gray-300 rounded-full p-1 flex items-center justify-center">
+                <IoCloseOutline fontSize={"20px"} cursor={"pointer"} onClick={() => setLoginModal(false)}/>
+              </div>
             </div>
             <div className="">
                 <div className="mt-4 px-2">
@@ -39,7 +41,7 @@ const Login = ({ setLoginModal, setRegisterModal }) => {
                       }}>Register</p>
                     </div>
                   </div>
-                  <button className="flex items-center gap-3 border border-gray-300 hover:bg-gray-200 w-full rounded text-sm mt-7 py-[8px] justify-center">
+                  <button className="flex items-center gap-3 border border-gray-300 hover:bg-gray-200 w-full rounded text-sm mt-7 py-[9px] justify-center">
                     <FcGoogle fontSize={"22px"}/>
                     Continue with Google
                   </button>
@@ -47,18 +49,18 @@ const Login = ({ setLoginModal, setRegisterModal }) => {
                     <div className="">
                         <form>
                             <div className="relative input-container">
-                                <label className="email-label">Email Address</label>
+                                <label className="email-label text-[14px]">Email Address</label>
                                 <div className='w-full p-[2px] border border-gray-300 flex items-center gap-2'>
-                                  <div className="bg-primary-color p-3 rounded-sm text-2xl text-white">
+                                  <div className="bg-primary-color p-2 rounded-sm text-2xl text-white">
                                     <IoMailOutline />
                                   </div>
-                                  <input className="w-full text-lg p-2 outline-none" type="email" placeholder="Email Address" />
+                                  <input className="w-full text-lg px-2 outline-none" type="email" placeholder="Email Address" />
                                 </div>
                             </div>
                             <div className="mt-4 relative input-container">
-                                <label className="password-label">Password</label>
+                                <label className="password-label text-[14px]">Password</label>
                                 <div className='w-full p-[2px] border border-gray-300 flex items-center gap-2'>
-                                  <div className="bg-primary-color p-3 rounded-sm text-2xl text-white">
+                                  <div className="bg-primary-color p-2 rounded-sm text-2xl text-white">
                                     <GoShieldCheck />
                                   </div>
                                   <input type="password" className="w-full text-lg px-2 focus:outline-none" placeholder="Password" />
@@ -72,9 +74,9 @@ const Login = ({ setLoginModal, setRegisterModal }) => {
                             </div>
                             <div className="mt-7">
                                 <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
-                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
-                                shadow-sm transition-all border border-gray-500" type="submit">
-                                    Log In
+                                font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
+                                shadow-sm transition-all" type="submit">
+                                    Login
                                 </button>
                             </div>
                         </form>
@@ -87,7 +89,7 @@ const Login = ({ setLoginModal, setRegisterModal }) => {
                     </div>
                 </div>
             </div>
-          </div>
+          {/* </div> */}
         </div>
     </div>
   )

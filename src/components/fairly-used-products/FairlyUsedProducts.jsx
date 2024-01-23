@@ -13,19 +13,19 @@ const FairlyUsedProducts = ({fairlyUsedProductsArray}) => {
             </div>
             <div className="product-details">
                 <div className="flex items-center justify-between">
-                    <p className="font-[500]">{product.productName}</p>
-                    <p className="text-[13px] font-[500]">{product.price}</p>
+                    <h1>{product.productName}</h1>
+                    <h1 className="text-[13px]">{product.price}</h1>
                 </div>
                 <p className="text-[12px] py-2">{product.description}</p>
 
                 <div className="flex items-center justify-between">
                         <div className="flex items-center">
                             <div className="flex items-center">
-                                <IoMdStar color='#003C2F'/>
-                                <IoMdStar color='#003C2F'/>
-                                <IoMdStar color='#003C2F'/>
-                                <IoMdStar color='#003C2F'/>
-                                <IoMdStar color='#003C2F'/>
+                                <IoMdStar color='#067604'/>
+                                <IoMdStar color='#067604'/>
+                                <IoMdStar color='#067604'/>
+                                <IoMdStar color='#067604'/>
+                                <IoMdStar color='#067604'/>
                             </div>
                             <span className="text-[11px] font-[500] text-[#6d6d6d] ml-2">{product.reviews}</span>
                         </div>
