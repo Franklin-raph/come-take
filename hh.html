@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .input-container {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+      
+       .input-container > input:focus + label {
+        /* targets the label when the input receives focus */
+        color: red;
+       }
+    </style>
+      <div class="input-container">
+            <label>Email</label>
+            <input type='email' />
+      </div>
+</body>
+</html>
