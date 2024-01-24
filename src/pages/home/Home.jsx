@@ -426,12 +426,12 @@ const Home = () => {
             <div className="img-slider3"></div>
           </SwiperSlide>
         </Swiper>
-        <div className="flex justify-between py-[40px] px-12">
-          <h1 className="font-[600] text-primary-color text-[30px] w-full md:w-[30%]">
+        <div className="flex flex-col lg:flex-row justify-between py-[40px] lg:px-12 px-6">
+          <h1 className="font-[600] text-primary-color lg:text-[30px] text-[22px] w-full lg:w-[40%]">
             Discover the ultimate online shopping experience
           </h1>
           <div>
-            <p className="text-primary-color">
+            <p className="text-primary-color mt-5 lg:mt-0">
              Shop from a wide range of products and enjoy fast, reliable delivery.
             </p>
             <button className="bg-secondary-color mt-5 px-8 py-3 rounded-[7px] text-white">
@@ -439,50 +439,72 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <div className="px-12 py-8">
+        <div className="lg:px-12 px-6 py-8">
           <h1 className="font-[600] text-[24px] text-primary-color mb-5">Shop Our Top Categories</h1>
           <TopCategories categoryArray={categoryArray} />
         </div>
-        <div className="px-12 py-8">
-        <div className="flex items-center justify-between">
-          <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Trending Products</h1>
-          <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
-              <p>See all</p>
-              <GoArrowRight />
+
+        <div className="lg:px-12 px-6 py-8 mt-10">
+          <div className="flex items-center justify-between mb-[20px]">
+            <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Trending Products</h1>
+            <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                <p>See all</p>
+                <GoArrowRight />
             </div>
           </div>
           <TrendingProducts trendingProductsArray={trendingProductsArray}/>
         </div>
-        <div className="px-12 py-8">
-          
-          <div className="flex items-center justify-between">
-          <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Recommended Products</h1>
-          <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
-              <p>See all</p>
-              <GoArrowRight />
-            </div>
+
+        <div className="lg:px-12 px-6 py-8 mt-10">
+          <div className="flex items-center justify-between mb-[20px]">
+            <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Recommended Products</h1>
+            <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                <p>See all</p>
+                <GoArrowRight />
+              </div>
           </div>
           <RecommendedProducts recommendedProductsArray={recommendedProductsArray}/>
         </div>
+
         <div className="lady-part mt-5">
-          <div className="content">
-            <h1 className="font-[500] text-[25px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At vel quo similique, porro, odio quasi libero laboriosam atque adipisci possimus?</h1>
+          <div className="content lg:w-[60%] md:w-[70%] w-[100%] lg:px-12 px-6">
+            <h1 className="font-[500] text-[18px] md:text-[24px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At vel quo similique, porro, odio quasi libero laboriosam atque adipisci possimus?</h1>
             <button className="bg-secondary-color mt-5 px-8 py-3 rounded-[7px]">Shop Now</button>
           </div>
         </div>
-        <div className="px-12 py-8">
-          <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Newly Listed Products</h1>
+
+        <div className="lg:px-12 px-6 py-8 mt-10">
+          <div className="flex items-center justify-between mb-[20px]">
+          <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
+          <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                <p>See all</p>
+                <GoArrowRight />
+              </div>
+          </div>
           <NewlyListedProducts newlyListedProductsArray={newlyListedProductsArray}/>
         </div>
-        <div className="px-12 py-8">
-          <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Fairly Used Products</h1>
-          <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
+
+        <div className="lg:px-12 px-6 py-8 mt-10">
+          <div className="flex items-center justify-between mb-[20px]">
+            <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Fairly Used Products</h1>
+            <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                  <p>See all</p>
+                  <GoArrowRight />
+                </div>
+            </div>
+            <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
         </div>
-        <div className="px-12 py-8">
-          <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Brand New Products</h1>
+
+        <div className="lg:px-12 px-6 py-8 mt-10">
+          <div className="flex items-center justify-between mb-[20px]">
+              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products</h1>
+              <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                    <p>See all</p>
+                    <GoArrowRight />
+              </div>
+            </div>
           <BrandNewProducts brandNewProductsArray={brandNewProductsArray}/>
         </div>
-        <ToastContainer />
     </div>
   )
 }

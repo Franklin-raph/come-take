@@ -15,7 +15,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
             <div className='flex items-center justify-start gap-8 w-full'>
                 <Link to="/" className='block'>Logo</Link>
                 <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[70%]'>
-                    <input type="text" placeholder='Find Products' className='w-full pr-20 outline-none text-primary-color'/>
+                    <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color'/>
                     <button className='rounded-full py-2 px-6 bg-secondary-color'>Search</button>
                 </div>
                 

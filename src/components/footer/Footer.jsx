@@ -122,8 +122,8 @@ const Footer = () => {
 
 
   return (
-    <div className='flex items-start justify-between gap-[2rem] mt-[7rem] mb-[3rem] px-8'>
-      <div className='w-[40%]'>
+    <div className='flex items-start justify-between md:flex-row flex-col gap-[2rem] mt-[7rem] mb-[3rem] px-8'>
+      <div className='md:w-[40%] w-full'>
         <Link to="/" className='mb-5 block'>
           Logo.
         </Link>
@@ -145,7 +145,7 @@ const Footer = () => {
           <p>Skrill</p>
         </div> */}
       </div>
-      <div className='grid grid-cols-4 gap-[2rem] text-[14px]'>
+      <div className='grid md:grid-cols-4 grid-cols-2 gap-[2rem] text-[14px]'>
         <div>
           <h1 className='font-bold text-[17px] text-primary-color mb-2'>Categories</h1>
           <ul>

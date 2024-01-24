@@ -2,61 +2,21 @@ import { CiHeart } from "react-icons/ci";
 import { BsCart3 } from "react-icons/bs";
 import { IoMdStar } from "react-icons/io";
 
-import OwlCarousel from 'react-owl-carousel';  
-import 'owl.carousel/dist/assets/owl.carousel.css';  
-import 'owl.carousel/dist/assets/owl.theme.default.css';
-import { useNavigate } from 'react-router-dom'
-
-const TrendingProducts = ({trendingProductsArray}) => {
-
-    const options = {
-        margin: 40,
-        responsiveClass: true,
-        nav: true,
-        dots: true,
-        autoplay: false,
-        navText: true,
-        navText: ["<", ">"],
-        smartSpeed: 1000,
-        loop:true,
-        responsive: {
-            0: {
-                items: 1,
-            },
-            400: {
-                items: 1,
-            },
-            600: {
-                items: 2,
-            },
-            700: {
-                items: 3,
-            },
-            1000: {
-                items: 4,
-    
-            }
-        },
-    };
-
-    const navigate = useNavigate()
-
-
+const CategoryProductPageCard = ({ categoryProductsArray }) => {
   return (
-    <OwlCarousel {...options} >
-        {trendingProductsArray && trendingProductsArray.map(product => (
-        <div className="product-card" onClick={() => navigate('/product-details')}>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {categoryProductsArray && categoryProductsArray.map(product => (
+            <div className="product-card">
             <div className="badge"><CiHeart /></div>
             <div className="product-tumb">
                 <img src={product.img} alt="" />
             </div>
             <div className="product-details">
                 <div className="flex items-center justify-between">
-                    <h1 className="">{product.productName}</h1>
+                    <h1>{product.productName}</h1>
                     <h1 className="text-[13px]">{product.price}</h1>
                 </div>
                 <p className="text-[12px] py-2">{product.description}</p>
-
                 <div className="flex items-center justify-between">
                         <div className="flex items-center">
                             <div className="flex items-center">
@@ -75,8 +35,8 @@ const TrendingProducts = ({trendingProductsArray}) => {
             </div>
         </div>
         ))}
-    </OwlCarousel>
+    </div>
   )
 }
 
-export default TrendingProducts
+export default CategoryProductPageCard

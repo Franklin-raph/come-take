@@ -10,6 +10,8 @@ import Footer from "./components/footer/Footer"
 import { GoShieldCheck } from "react-icons/go"
 import { FcGoogle } from "react-icons/fc"
 import Register from "./components/register/Register"
+import Categories from "./pages/categories/Categories"
+import ProductDescription from "./pages/product-description/ProductDescription"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -23,6 +25,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/signup" element={<Register />}/>
+          <Route path="/categories" element={<Categories />}/>
+          <Route path="/product-details" element={<ProductDescription />}/>
         </Routes>
         <Footer />
         {loginModal && !registerModal &&

@@ -19,8 +19,10 @@ const SearchComponent = () => {
                 <Link to="/sell-products">Sell Products</Link>
             </li>
             <li>
-                <Link to="/more">More</Link>
-                <IoChevronDown />
+                <Link to="#">Trending Products</Link>
+            </li>
+            <li>
+                <Link to="#">VTU</Link>
             </li>
         </ul>
     </div>
