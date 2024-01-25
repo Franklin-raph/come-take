@@ -19,12 +19,11 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                     <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color'/>
                     <button className='rounded-full py-2 px-6 bg-secondary-color'>Search</button>
                 </div>
-                
             </div>
             <div className="mobile-nav flex items-center gap-7">
-                <FaRegCircleUser />
-                <BsCart3 />
-                <MdMenu />
+                <FaRegCircleUser cursor={"pointer"}/>
+                <BsCart3 cursor={"pointer"}/>
+                <MdMenu cursor={"pointer"}/>
             </div>
             <div className='nav-right w-full'>
                 <li onClick={() => { 
@@ -52,6 +51,10 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
             </div>
         </nav>
         <BottomNav />
+        <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[90%] mx-auto my-5 mobile-search'>
+            <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color'/>
+            <button className='rounded-full py-2 px-6 bg-secondary-color text-white'>Search</button>
+        </div>
     </div>
   )
 }

@@ -360,7 +360,7 @@
   list-style: disc !important;
 }
 
-.mobile-nav{
+.mobile-nav, .mobile-search{
   display: none !important;
 }
 
@@ -373,7 +373,7 @@
     display: none !important;
   }
 
-  .mobile-nav{
+  .mobile-nav, .mobile-search{
     display: flex !important;
     font-size: 22px;
   }
@@ -381,8 +381,19 @@
   .bottom-nav, .search-bar{
     display: none !important;
   }
+}
 
 
+@media screen and (max-width:767px) {
+  .category-section{
+    height: auto !important;
+    /* bottom: 30% !important; */
+  }
+
+  .category-section:hover .top-category-overlay{
+    transition: .5s;
+    height: 100% !important;
+  }
 }
 
 @media screen and (max-width:600px) {

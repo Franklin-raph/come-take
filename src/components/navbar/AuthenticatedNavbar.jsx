@@ -4,7 +4,7 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { IoChevronDown } from "react-icons/io5";
 import { PiWarningCircle } from "react-icons/pi";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
-import SearchComponent from '../search-component/SearchComponent';
+import BottomNav from '../bottom-nav/BottomNav';
 
 const AuthenticatedNavbar = () => {
 
@@ -58,7 +58,7 @@ const AuthenticatedNavbar = () => {
                 </li>
             </div>
         </nav>
-        <SearchComponent />
+        <BottomNav />
     </>
   )
 }
