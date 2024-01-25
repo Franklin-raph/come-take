@@ -122,7 +122,7 @@ const Footer = () => {
 
 
   return (
-    <div className='flex items-start justify-between md:flex-row flex-col gap-[2rem] mt-[7rem] mb-[3rem] px-8'>
+    <div className='flex items-start justify-between md:flex-row flex-col gap-[2rem] mt-[7rem] mb-[3rem] px-12'>
       <div className='md:w-[40%] w-full'>
         <Link to="/" className='mb-5 block'>
           Logo.

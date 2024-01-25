@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { IoChevronDown } from 'react-icons/io5';
 import { RxHamburgerMenu } from "react-icons/rx";
 
-const SearchComponent = () => {
+const BottomNav = () => {
   return (
-    <div className='flex items-center justify-between px-12 py-5 bottom-nav bg-secondary-color text-white'>
+    <div className='flex items-center justify-between px-12 py-5 bottom-nav bg-secondary-color text-white bottom-nav'>
         <ul className='flex items-center gap-8'>
             <RxHamburgerMenu />
             <li>
@@ -29,4 +29,4 @@ const SearchComponent = () => {
   )
 }
 
-export default SearchComponent
+export default BottomNav

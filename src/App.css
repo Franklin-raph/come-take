@@ -341,3 +341,53 @@
   background: rgba(255, 255, 255, 0.535); 
   border-radius: 10px;
 }
+
+.sellerPerformanceList{
+  margin-left: 2.5rem;
+  padding-top: 10px;
+}
+
+.sellerPerformanceList li{
+  list-style: disc !important;
+}
+
+.specList{
+  margin-left: 1.5rem;
+  padding-top: 10px;
+}
+
+.specList li{
+  list-style: disc !important;
+}
+
+.mobile-nav{
+  display: none !important;
+}
+
+@media screen and (max-width:960px) {
+  .help, .getApp{
+    display: none;
+  }
+
+  .nav-right{
+    display: none !important;
+  }
+
+  .mobile-nav{
+    display: flex !important;
+    font-size: 22px;
+  }
+
+  .bottom-nav, .search-bar{
+    display: none !important;
+  }
+
+
+}
+
+@media screen and (max-width:600px) {
+  .product-tumb{
+    height: 200px;
+    padding: 15px;
+  }
+}
