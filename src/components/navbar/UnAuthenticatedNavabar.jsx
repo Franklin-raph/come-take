@@ -26,7 +26,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                 <MdMenu cursor={"pointer"}/>
             </div>
             <div className='nav-right w-full'>
-                <li onClick={() => { 
+                <li onClick={() => {
                     setLoginModal(true)
                     setRegisterModal(false)
                 }}>

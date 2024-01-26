@@ -60,7 +60,7 @@ const ProductDescription = () => {
 
   return (
     <div>
-        <div className="flex items-center justify-start px-12 py-5 gap-4">
+        <div className="md:flex items-center justify-start px-12 py-5 gap-4 hidden">
             <p>Home</p>
             <MdKeyboardArrowRight />
             <p>Computing</p>
@@ -73,44 +73,46 @@ const ProductDescription = () => {
         </div>
 
         <div className="lg:px-12 px-6 py-8 mt-10 gap-20">
-            <h1 className="font-[600] text-[18px] lg:text-[20px] mb-8 text-primary-color">Delivery & Returns</h1>
-            <div className='flex items-start gap-[7rem]'>
-                <div className='w-[20%]'>
-                    <div className='mb-10'>
-                        <div className='flex items-center justify-between mb-2'>
-                            <h2 className='text-primary-color text-[17px]'>Door Delivery</h2>
-                            <h2 className='text-[12px] text-secondary-color'>View Details</h2>
+            <div className='flex items-start gap-[7rem] flex-col-reverse lg:flex-row'>
+                <div className='w-[80%] lg:w-[30%]'>
+                    <h1 className="font-[600] text-[18px] lg:text-[20px] mb-8 text-primary-color">Delivery & Returns</h1>
+                    <div>
+                        <div className='mb-10'>
+                            <div className='flex items-center justify-between mb-2'>
+                                <h2 className='text-primary-color text-[17px]'>Door Delivery</h2>
+                                <h2 className='text-[12px] text-secondary-color'>View Details</h2>
+                            </div>
+                            <p className='text-[#ff3030] mb-2 text-[16px]'>Price #4,500</p>
+                            <p className='text-[#4e4e4e] text-[14px]'>
+                                Ready for delivery 2 days from the day you submitted your order
+                            </p>
                         </div>
-                        <p className='text-[#ff3030] mb-2 text-[16px]'>Price #4,500</p>
-                        <p className='text-[#4e4e4e] text-[14px]'>
-                            Ready for delivery 2 days from the day you submitted your order
-                        </p>
-                    </div>
 
-                    <div className='mt-10'>
-                        <div className='flex items-center justify-between mb-2'>
-                            <h2 className='text-primary-color text-[17px]'>Pickup Station</h2>
-                            <h2 className='text-[12px] text-secondary-color'>View Details</h2>
+                        <div className='mt-10'>
+                            <div className='flex items-center justify-between mb-2'>
+                                <h2 className='text-primary-color text-[17px]'>Pickup Station</h2>
+                                <h2 className='text-[12px] text-secondary-color'>View Details</h2>
+                            </div>
+                            <p className='text-[#ff3030] mb-2 text-[16px]'>Price #1,500</p>
+                            <p className='text-[#4e4e4e] text-[14px]'>
+                                Arriving Pickup Station a day from the day you submitted your order
+                            </p>
                         </div>
-                        <p className='text-[#ff3030] mb-2 text-[16px]'>Price #1,500</p>
-                        <p className='text-[#4e4e4e] text-[14px]'>
-                            Arriving Pickup Station a day from the day you submitted your order
-                        </p>
-                    </div>
 
-                    <div className='mt-10'>
-                        <div className='flex items-center justify-between mb-2'>
-                            <h2 className='text-primary-color text-[17px]'>Return Policy</h2>
-                            <h2 className='text-[12px] text-secondary-color'>View Details</h2>
+                        <div className='mt-10'>
+                            <div className='flex items-center justify-between mb-2'>
+                                <h2 className='text-primary-color text-[17px]'>Return Policy</h2>
+                                <h2 className='text-[12px] text-secondary-color'>View Details</h2>
+                            </div>
+                            <p className='text-[#4e4e4e] text-[14px]'>
+                                Products must be returned within 48hrs of delivery to effect changes.
+                            </p>
                         </div>
-                        <p className='text-[#4e4e4e] text-[14px]'>
-                            Products must be returned within 48hrs of delivery to effect changes.
-                        </p>
                     </div>
                 </div>
 
-                <div className='flex items-start gap-[2rem]'>
-                    <div className='w-[40%]'>
+                <div className='flex flex-col md:flex-row items-start gap-[0rem]'>
+                    <div className='w-[100%] md:w-[40%] mx-auto hidden md:block'>
                         <img src={selectedImage} alt="" className='w-[270px] h-[270px] mb-5 object-contain' />
                         <div className='flex items-center gap-5'>
                             <img src={laptop1} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop1)} />
@@ -119,7 +121,7 @@ const ProductDescription = () => {
                         </div>
                     </div>
 
-                    <div>
+                    <div className="md:w-[55%] mt-[1rem] md:mt-[0]">
                         <p className='text-[22px]'>
                             Lenovo V15 G3 Iap Laptop (12th Gen Core I5/ 21.5" 8gb/ 256 Ssd/ Dos) -82tt00juue
                         </p>
@@ -158,7 +160,7 @@ const ProductDescription = () => {
             </div>
         </div>
         
-        <div className='lg:px-12 px-6 flex items-start gap-[100px] mt-12'>
+        <div className='lg:px-12 px-6 flex flex-col lg:flex-row items-start gap-[50px] lg:gap-[100px] mt-12'>
             <div>
                 <h1 className="font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color">Seller Information</h1>
                 <div className='flex items-start gap-8'>
@@ -197,7 +199,7 @@ const ProductDescription = () => {
                 </div>
             </div>
 
-            <div className='w-[60%]'>
+            <div className='lg:w-[60%] w-[90%]'>
                 <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Product Details</h1>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar vehicula varius. 
@@ -241,7 +243,7 @@ const ProductDescription = () => {
 
         <div className="lg:px-12 px-6 py-8 mt-10">
             <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color mb-8">Customers Feedback</h1>
-            <div className="flex items-start justify-between">
+            <div className="flex items-start gap-[120px]">
                 <div className='w-[40%]'>
                     <div className="flex items-center justify-between">
                         <p>Customers Comments (3)</p>
@@ -282,16 +284,39 @@ const ProductDescription = () => {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className='w-[28%]'>
                     <p>Customers Ratings (3)</p>
-                    <div>
-                        <p>Top Rating - 5.0</p>
+                    <div className='border border-[#DCDCDC] p-4 mt-[15px] rounded-sm'>
+                        <p className='mb-2 text-[#2B2B2B]'>Top Rating - 5.0</p>
                         <div className="flex items-center">
                             <IoMdStar color='#FFEA2E'/>
                             <IoMdStar color='#FFEA2E'/>
                             <IoMdStar color='#FFEA2E'/>
                             <IoMdStar color='#FFEA2E'/>
                             <IoMdStar color='#FFEA2E'/>
+                        </div>
+                        <p className='mt-5 mb-2 text-[#2B2B2B]'>Rating Detail</p>
+                        <div className="flex items-start flex-col gap-2">
+                            <div className='flex items-center gap-2'>
+                                <IoMdStar color='#FFEA2E'/>
+                                <p className='text-[#555555]'>5(3)</p>
+                            </div>
+                            <div className='flex items-center gap-2'>
+                                <IoMdStar color='#FFEA2E'/>
+                                <p className='text-[#555555]'>4(0)</p>
+                            </div>
+                            <div className='flex items-center gap-2'>
+                                <IoMdStar color='#FFEA2E'/>
+                                <p className='text-[#555555]'>3(0)</p>
+                            </div>
+                            <div className='flex items-center gap-2'>
+                                <IoMdStar color='#FFEA2E'/>
+                                <p className='text-[#555555]'>2(0)</p>
+                            </div>
+                            <div className='flex items-center gap-2'>
+                                <IoMdStar color='#FFEA2E'/>
+                                <p className='text-[#555555] text-[12px]'>1(0)</p>
+                            </div>
                         </div>
                     </div>
                 </div>
