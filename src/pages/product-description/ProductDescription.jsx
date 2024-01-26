@@ -240,6 +240,65 @@ const ProductDescription = () => {
         </div>
 
         <div className="lg:px-12 px-6 py-8 mt-10">
+            <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color mb-8">Customers Feedback</h1>
+            <div className="flex items-start justify-between">
+                <div className='w-[40%]'>
+                    <div className="flex items-center justify-between">
+                        <p>Customers Comments (3)</p>
+                        <p className='text-secondary-color'>See All</p>
+                    </div>
+                    <div className='border border-[#DCDCDC] p-4 mt-[15px] rounded-sm'>
+                        <div className='mb-9'>
+                            <div className='flex items-start mt-[20px] justify-between'>
+                                <div className='flex items-center'>
+                                    <h1 className='bg-primary-color w-[50px] h-[50px] flex items-center justify-center rounded-full text-white'>EA</h1>
+                                    <div className='ml-5'>
+                                        <p>Egolum Anthony</p>
+                                        <p className='text-[#808080] text-[14px]'>Programmer</p>
+                                    </div>
+                                </div>
+                                <p className='text-[#808080] text-[14px]'>May 12, 2022</p>
+                            </div>
+                            <p className='mt-5 text-[#555]'>
+                                Curabitur elementum erat id lacus gravida, sit amet faucibus magna semper. 
+                                Sed eget ante maximus quam rutrum tristique sed ut magna. Fusce venenatis dui dolor
+                            </p>
+                        </div>
+                        <div>
+                            <div className='flex items-start mt-[20px] justify-between'>
+                                <div className='flex items-center'>
+                                    <h1 className='bg-primary-color w-[50px] h-[50px] flex items-center justify-center rounded-full text-white'>EA</h1>
+                                    <div className='ml-5'>
+                                        <p>Egolum Anthony</p>
+                                        <p className='text-[#808080] text-[14px]'>Programmer</p>
+                                    </div>
+                                </div>
+                                <p className='text-[#808080] text-[14px]'>May 12, 2022</p>
+                            </div>
+                            <p className='mt-5 text-[#555]'>
+                                Curabitur elementum erat id lacus gravida, sit amet faucibus magna semper. 
+                                Sed eget ante maximus quam rutrum tristique sed ut magna. Fusce venenatis dui dolor
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p>Customers Ratings (3)</p>
+                    <div>
+                        <p>Top Rating - 5.0</p>
+                        <div className="flex items-center">
+                            <IoMdStar color='#FFEA2E'/>
+                            <IoMdStar color='#FFEA2E'/>
+                            <IoMdStar color='#FFEA2E'/>
+                            <IoMdStar color='#FFEA2E'/>
+                            <IoMdStar color='#FFEA2E'/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div className="lg:px-12 px-6 py-8 mt-10">
           <div className="flex items-center justify-between mb-[20px]">
             <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">More Items From Seller</h1>
             <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>

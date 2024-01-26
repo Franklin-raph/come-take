@@ -402,3 +402,18 @@
     padding: 15px;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .product-details h1{
+    font-size: 13px;
+  }
+
+  .reviews{
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .reviews span {
+    margin-left: 0;
+  }
+}

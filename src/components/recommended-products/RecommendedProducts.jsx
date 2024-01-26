@@ -53,7 +53,7 @@ const RecommendedProducts = ({recommendedProductsArray}) => {
                     <p className="text-[12px] py-2">{product.description}</p>
 
                     <div className="flex items-center justify-between">
-                            <div className="flex items-center">
+                            <div className="flex items-center reviews">
                                 <div className="flex items-center">
                                     <IoMdStar color='#067604'/>
                                     <IoMdStar color='#067604'/>

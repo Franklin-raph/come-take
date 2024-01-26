@@ -4,7 +4,7 @@ import { IoMdStar } from "react-icons/io";
 
 const CategoryProductPageCard = ({ categoryProductsArray }) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-6 gap-3">
         {categoryProductsArray && categoryProductsArray.map(product => (
             <div className="product-card">
             <div className="badge"><CiHeart /></div>
@@ -18,7 +18,7 @@ const CategoryProductPageCard = ({ categoryProductsArray }) => {
                 </div>
                 <p className="text-[12px] py-2">{product.description}</p>
                 <div className="flex items-center justify-between">
-                        <div className="flex items-center">
+                        <div className="flex items-center reviews">
                             <div className="flex items-center">
                                 <IoMdStar color='#067604'/>
                                 <IoMdStar color='#067604'/>
