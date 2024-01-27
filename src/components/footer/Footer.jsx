@@ -122,70 +122,63 @@ const Footer = () => {
 
 
   return (
-    <div className='flex items-start justify-between md:flex-row flex-col gap-[2rem] mt-[7rem] mb-[3rem] lg:px-12 px-8'>
-      <div className='md:w-[40%] w-full'>
-        <Link to="/" className='mb-5 block'>
-          Logo.
-        </Link>
-        <p className='text-[14px]'>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum cum repellat 
-          aspernatur vitae beatae impedit neque nesciunt provident, quam itaque aliquid optio 
-          pariatur quos dolorum sequi excepturi ut necessitatibus! Dolore.
-        </p>
-        <h1 className='font-bold text-[17px] text-primary-color mt-9 mb-4'>Accepted Payments</h1>
-        <img src={footerImage} alt="" />
-        {/* <div className='grid grid-cols-4'>
-          <p>Visa</p>
-          <p>Master-Card</p>
-          <p>Apple-pay</p>
-          <p>Ali-pay</p>
-          <p>Google-pay</p>
-          <p>Amazon</p>
-          <p>O-pay</p>
-          <p>Skrill</p>
-        </div> */}
-      </div>
-      <div className='grid md:grid-cols-4 grid-cols-2 gap-[2rem] text-[14px]'>
-        <div>
-          <h1 className='font-bold text-[17px] text-primary-color mb-2'>Categories</h1>
-          <ul>
-            {categoriesLinks.map(link => (
-              <li className='py-1'>
-                <Link to={link.url}>{link.label}</Link>
-              </li>
-            ))}
-            
-          </ul>
+    <div>
+      <div className='h-[1px] bg-[#ccc] my-4 mx-12'></div>
+      <div className='flex items-start justify-between md:flex-row flex-col gap-[2rem] mt-[2rem] mb-[3rem] lg:px-12 px-8'>
+        <div className='md:w-[40%] w-full'>
+          <Link to="/" className='mb-5 block'>
+            Logo.
+          </Link>
+          <p className='text-[14px]'>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum cum repellat 
+            aspernatur vitae beatae impedit neque nesciunt provident, quam itaque aliquid optio 
+            pariatur quos dolorum sequi excepturi ut necessitatibus! Dolore.
+          </p>
+          <h1 className='font-bold text-[17px] text-primary-color mt-9 mb-4'>Accepted Payments</h1>
+          <img src={footerImage} alt="" />
         </div>
-        <div>
-          <h1 className='font-bold text-[17px] text-primary-color mb-2'>About Us</h1>
-          <ul>
-            {aboutUsLinks.map(link => (
-              <li className='py-1'>
-                <Link to={link.url}>{link.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h1 className='font-bold text-[17px] text-primary-color mb-2'>Service</h1>
-          <ul>
-            {serviceLinks.map(link => (
-              <li className='py-1'>
-                <Link to={link.url}>{link.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h1 className='font-bold text-[17px] text-primary-color mb-2'>Help</h1>
-          <ul>
-            {helpLinks.map(link => (
-              <li className='py-1'>
-                <Link to={link.url}>{link.label}</Link>
-              </li>
-            ))}
-          </ul>
+        <div className='grid md:grid-cols-4 grid-cols-2 gap-[2rem] text-[14px]'>
+          <div>
+            <h1 className='font-bold text-[17px] text-primary-color mb-2'>Categories</h1>
+            <ul>
+              {categoriesLinks.map(link => (
+                <li className='py-1'>
+                  <Link to={link.url}>{link.label}</Link>
+                </li>
+              ))}
+              
+            </ul>
+          </div>
+          <div>
+            <h1 className='font-bold text-[17px] text-primary-color mb-2'>About Us</h1>
+            <ul>
+              {aboutUsLinks.map(link => (
+                <li className='py-1'>
+                  <Link to={link.url}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h1 className='font-bold text-[17px] text-primary-color mb-2'>Service</h1>
+            <ul>
+              {serviceLinks.map(link => (
+                <li className='py-1'>
+                  <Link to={link.url}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h1 className='font-bold text-[17px] text-primary-color mb-2'>Help</h1>
+            <ul>
+              {helpLinks.map(link => (
+                <li className='py-1'>
+                  <Link to={link.url}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

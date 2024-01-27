@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 const TrendingProducts = ({trendingProductsArray}) => {
 
     const options = {
-        margin: 40,
+        margin: 20,
         responsiveClass: true,
         nav: true,
         dots: true,
@@ -21,10 +21,10 @@ const TrendingProducts = ({trendingProductsArray}) => {
         loop:true,
         responsive: {
             0: {
-                items: 1,
+                items: 2,
             },
             400: {
-                items: 1,
+                items: 2,
             },
             600: {
                 items: 2,

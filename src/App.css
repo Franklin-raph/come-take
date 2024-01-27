@@ -58,7 +58,7 @@
 .swiper-button-next::after, 
 .swiper-button-prev::after, 
 #recommended .swiper-pagination-bullet{
-  display: none !important;
+  /* display: none !important; */
 }
 
 .swiper-pagination-bullet.swiper-pagination-bullet-active{
@@ -81,21 +81,23 @@
 }
 
 .top-category-overlay{
-  background-color: rgba(0, 0, 0, 0.445);
+  background-color: rgba(0, 0, 0, 0.25);
   bottom: -120%;
   transition: .5s;
 }
 
-.category-section:hover .top-category-overlay{
+.category-section .top-category-overlay{
   bottom: 0;
   transition: .5s;
 }
 
 .lady-part{
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("./assets/lady.png");
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("./assets/lady.png");
   background-position: center;
   background-size: cover;
-  width: 100%;
+  width: 92%;
+  margin: 0 auto;
+  border-radius: 5px;
   height: 60vh;
   position: relative;
 }
@@ -130,9 +132,10 @@
   right: 0;
   font-size: 30px !important;
   color: #000;
-  width: 35px;
-  box-shadow: 0 0 15px #9a9a9a;
-  background-color: #fff !important;
+  width: 45px;
+  box-shadow: 0 0 15px #9a9a9a4d;
+  background-color: #ffffff00 !important;
+  border-radius: 50px;
 }
 
 .owl-prev{
@@ -141,9 +144,10 @@
   left: 0;
   font-size: 30px !important;
   color: #000;
-  width: 35px;
-  box-shadow: 0 0 15px #9a9a9a;
-  background-color: #fff !important;
+  width: 45px;
+  box-shadow: 0 0 15px #9a9a9a4d;
+  background-color: #ffffff00 !important;
+  border-radius: 50px;
 }
 
 .owl-next,.owl-prev {opacity: 0;}
@@ -162,6 +166,7 @@
     border-radius: 3px;
     margin-bottom:4px;
 }
+
 #owl-demo .owl-item > div {
     padding: 0px 2px
 }
@@ -365,6 +370,10 @@
 }
 
 @media screen and (max-width:960px) {
+  .swiper-slide .img-slider1, .swiper-slide .img-slider2, .swiper-slide .img-slider3 {
+    height: 50vh;
+  }
+
   .help, .getApp{
     display: none;
   }
@@ -390,7 +399,7 @@
     /* bottom: 30% !important; */
   }
 
-  .category-section:hover .top-category-overlay{
+  .category-section .top-category-overlay{
     transition: .5s;
     height: 100% !important;
   }
