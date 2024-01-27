@@ -262,7 +262,7 @@ const ProductDescription = () => {
                             <p className='text-[#555]'>Customers Comments (3)</p>
                             <p className='text-secondary-color'>See All</p>
                         </div>
-                        <div className='border border-[#DCDCDC] p-4 mt-[15px] rounded-sm'>
+                        <div className='border border-[#f3f3f3] p-4 mt-[15px] rounded-[4px]'>
                             <div className='mb-9'>
                                 <div className='flex items-start mt-[20px] justify-between'>
                                     <div className='flex items-center'>
@@ -299,7 +299,7 @@ const ProductDescription = () => {
                     </div>
                     <div className='lg:w-[28%] w-[95%]'>
                         <p className='text-[#555]'>Customers Ratings (3)</p>
-                        <div className='border border-[#DCDCDC] p-4 mt-[15px] rounded-sm'>
+                        <div className='border border-[#f3f3f3] p-4 mt-[15px] rounded-[4px]'>
                             <p className='mb-2 text-[#2B2B2B]'>Top Rating Score - 5.0</p>
                             <div className="flex items-center">
                                 <IoMdStar color='#FFEA2E'/>
