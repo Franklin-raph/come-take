@@ -72,9 +72,9 @@ const ProductDescription = () => {
             <p>Lenovo Products</p>
         </div>
 
-        <div className="lg:px-12 px-6 py-8 mt-10 gap-20">
+        <div className="lg:px-12 px-3 py-8 mt-10 gap-20">
             <div className='flex items-start gap-[2rem] flex-col-reverse lg:flex-row'>
-                <div className='w-[80%] lg:w-[40%] px-5 py-10 lg:py-0 lg:h-[80vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <div className='w-[95%] lg:w-[40%] px-5 py-10 lg:py-0 lg:h-[80vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <h1 className="font-[600] text-[18px] lg:text-[20px] mb-8 text-primary-color">Delivery & Returns</h1>
                     <div>
                         <div className='mb-7'>
@@ -152,16 +152,16 @@ const ProductDescription = () => {
                             </div>
                         </div>
                         <div className="flex items-center gap-[15px] mt-6">
-                            <button className='rounded-[5px] bg-primary-color text-white px-[35px] py-[8px]'>Buy Now</button>
-                            <button className='rounded-[5px] text-primary-color border border-gray-300 px-[35px] py-[8px]'>Add to cart</button>
+                            <button className='rounded-[5px] bg-primary-color text-white md:px-[35px] px-[20px] py-[8px]'>Buy Now</button>
+                            <button className='rounded-[5px] text-primary-color border border-gray-300 px-[20px] md:px-[35px] py-[8px]'>Add to cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div className='lg:px-12 px-6 flex flex-col lg:flex-row items-start gap-[50px] lg:gap-[40px] mt-12'>
-            <div className='w-[80%] lg:w-[35%] p-5 lg:h-[65vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+        <div className='lg:px-12 px-3 flex flex-col lg:flex-row items-start gap-[50px] lg:gap-[40px] mt-12'>
+            <div className='w-[95%] lg:w-[35%] p-5 lg:h-[65vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <h1 className="font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color">Seller Information</h1>
                 <div className='flex items-start gap-8'>
                     <div>
@@ -199,7 +199,7 @@ const ProductDescription = () => {
                 </div>
             </div>
 
-            <div className='lg:w-[80%] w-[90%] p-10 lg:h-[65vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+            <div className='lg:w-[80%] w-[95%] lg:p-10 p-5 lg:h-[65vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Product Details</h1>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar vehicula varius. 
@@ -211,13 +211,13 @@ const ProductDescription = () => {
             </div>
         </div>
 
-        <div className='lg:px-12 px-6 mt-12'>
+        <div className='lg:px-12 px-3 mt-12'>
             <div style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color pt-12 pl-12'>Specifications</h1>
                 <div className='h-[1px] bg-[#ccc] my-4'></div>
-                <div className='pt-6 px-12 pb-12'>
-                    <div className='flex items-start gap-8'>
-                        <div className='w-[30%] p-3 border border-gray-200'>
+                <div className='pt-6 md:px-12 px-6 pb-12'>
+                    <div className='flex items-start flex-col md:flex-row gap-8'>
+                        <div className='w-[95%] p-3 border border-gray-200'>
                             <p>Key Features</p>
                             <ul className='specList'>
                                 <li>AAA</li>
@@ -229,7 +229,7 @@ const ProductDescription = () => {
                                 <li>AAA</li>
                             </ul>
                         </div>
-                        <div className='w-[30%] p-3 border border-gray-200'>
+                        <div className='w-[95%] p-3 border border-gray-200'>
                             <p>Key Features</p>
                             <ul className='specList'>
                                 <li>AAA</li>
@@ -246,11 +246,11 @@ const ProductDescription = () => {
             </div>
         </div>
 
-        <div className="lg:px-12 px-6 py-8 mt-10">
-            <div className='p-12' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+        <div className="lg:px-12 px-3 py-8 mt-10">
+            <div className='lg:p-12 p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color mb-8">Customers Feedback</h1>
-                <div className="flex items-start gap-[120px]">
-                    <div className='w-[40%]'>
+                <div className="flex items-start flex-col md:flex-row md:gap-[120px] gap-[60px]">
+                    <div className='lg:w-[40%] w-[95%]'>
                         <div className="flex items-center justify-between">
                             <p>Customers Comments (3)</p>
                             <p className='text-secondary-color'>See All</p>
@@ -260,12 +260,12 @@ const ProductDescription = () => {
                                 <div className='flex items-start mt-[20px] justify-between'>
                                     <div className='flex items-center'>
                                         <h1 className='bg-primary-color w-[50px] h-[50px] flex items-center justify-center rounded-full text-white'>EA</h1>
-                                        <div className='ml-5'>
-                                            <p>Egolum Anthony</p>
+                                        <div className='lg:ml-5 ml-2'>
+                                            <p className='text-[14px] lg:text-[16px]'>Egolum Anthony</p>
                                             <p className='text-[#808080] text-[14px]'>Programmer</p>
                                         </div>
                                     </div>
-                                    <p className='text-[#808080] text-[14px]'>May 12, 2022</p>
+                                    <p className='text-[#808080] text-[14px] hidden sm:block'>May 12, 2022</p>
                                 </div>
                                 <p className='mt-5 text-[#555]'>
                                     Curabitur elementum erat id lacus gravida, sit amet faucibus magna semper. 
@@ -281,7 +281,7 @@ const ProductDescription = () => {
                                             <p className='text-[#808080] text-[14px]'>Programmer</p>
                                         </div>
                                     </div>
-                                    <p className='text-[#808080] text-[14px]'>May 12, 2022</p>
+                                    <p className='text-[#808080] text-[14px] hidden sm:block'>May 12, 2022</p>
                                 </div>
                                 <p className='mt-5 text-[#555]'>
                                     Curabitur elementum erat id lacus gravida, sit amet faucibus magna semper. 
@@ -290,7 +290,7 @@ const ProductDescription = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='w-[28%]'>
+                    <div className='lg:w-[28%] w-[95%]'>
                         <p>Customers Ratings (3)</p>
                         <div className='border border-[#DCDCDC] p-4 mt-[15px] rounded-sm'>
                             <p className='mb-2 text-[#2B2B2B]'>Top Rating - 5.0</p>
@@ -330,7 +330,7 @@ const ProductDescription = () => {
             </div>
         </div>
 
-        <div className="lg:px-12 px-6 py-8 mt-10">
+        <div className="lg:px-12 px-3 py-8 mt-10">
             <div className='p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <div className="flex items-center justify-between mb-[20px]">
                     <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">More Items From Seller</h1>
@@ -343,7 +343,7 @@ const ProductDescription = () => {
             </div>
         </div>
 
-        <div className="lg:px-12 px-6 py-8 mt-10">
+        <div className="lg:px-12 px-3 py-8 mt-10">
             <div className='p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <div className="flex items-center justify-between mb-[20px]">
                     <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Recently Viewed</h1>
