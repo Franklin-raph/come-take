@@ -14,6 +14,7 @@ import RecommendedProducts from "../../components/recommended-products/Recommend
 import TrendingProducts from "../../components/trending-products/TrendingProducts";
 import BrandNewProducts from "../../components/brand-new-products/BrandNewProducts";
 import CategoryProductPageCard from "../../components/categories-product-page/CategoryProductPage";
+import { FaCheck } from "react-icons/fa6";
 
 const Categories = () => {
 
@@ -182,6 +183,18 @@ const Categories = () => {
           reviews:"35 Reviews"
         },
       ]
+
+      const brandsArray = [
+        "HP","Lenovo","Acer","Apple","Dell","Asus","Microsoft","Toshiba"
+      ]
+
+      const productTypeArray = [
+        "New", "Fairly Used"
+      ]
+
+      const priceRangeArray= [
+        "Below 50,000","#50,000 - #100,000","#110,000 - #160,000","#170,000 - #220,000","#230,000 - #280,000","#290,000 and Above"
+      ]
     
 
 
@@ -202,100 +215,93 @@ const Categories = () => {
                     <div className="mt-[30px]">
                         <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Type</p>
                         <div className="product-type text-gray-400">
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>New</label>
+                        {productTypeArray.map(type => (
+                          <div>
+                            <div class="inline-flex items-center my-[5px]">
+                            <label class="relative flex items-center px-2 rounded-full cursor-pointer" htmlFor="check">
+                              <input type="checkbox" value={type}
+                                class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:bg-transparent checked:border-secondary-color"
+                                id="check" />
+                              <span
+                                class="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                <FaCheck fontSize={"12px"} style={{color:"#96BF47"}}/>
+                              </span>
+                            </label>
+                            <label class="mt-px font-light text-gray-700 cursor-pointer select-none" htmlFor="check">
+                              {type}
+                            </label>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>Fairly Used</label>
-                            </div>
+                          </div>
+                          ))}
                         </div>
                     </div>
+
                     <div className="mt-[40px]">
                         <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Brand</p>
                         <div className="product-type text-gray-400">
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>Hp</label>
+                          {brandsArray.map(brand => (
+                          <div>
+                            <div class="inline-flex items-center my-[5px]">
+                            <label class="relative flex items-center px-2 rounded-full cursor-pointer" htmlFor="check">
+                              <input type="checkbox" value={brand}
+                                class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:bg-transparent checked:border-secondary-color"
+                                id="check" />
+                              <span
+                                class="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                <FaCheck fontSize={"12px"} style={{color:"#96BF47"}}/>
+                              </span>
+                            </label>
+                            <label class="mt-px font-light text-gray-700 cursor-pointer select-none" htmlFor="check">
+                              {brand}
+                            </label>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>Lenovo</label>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>Acer</label>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>Apple</label>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>Dell</label>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>Asus</label>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>Microsoft</label>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>Toshiba</label>
-                            </div>
+                          </div>
+                          ))}
                         </div>
                     </div>
+
                     <div className="mt-[40px]">
                         <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Price Range</p>
                         <div className="product-type text-gray-400">
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>Below 50,000</label>
+                          {priceRangeArray.map(price => (
+                          <div>
+                            <div class="inline-flex items-center my-[5px]">
+                            <label class="relative flex items-center px-2 rounded-full cursor-pointer" htmlFor="check">
+                              <input type="checkbox" value={price}
+                                class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:bg-transparent checked:border-secondary-color"
+                                id="check" />
+                              <span
+                                class="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                <FaCheck fontSize={"12px"} style={{color:"#96BF47"}}/>
+                              </span>
+                            </label>
+                            <label class="mt-px font-light text-gray-700 cursor-pointer select-none" htmlFor="check">
+                              {price}
+                            </label>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>#50,000 - #100,000</label>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>#110,000 - #160,000</label>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>#170,000 - #220,000</label>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>#230,000 - #280,000</label>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <input type="checkbox" name="new" value="new" id="" />
-                                <label>#290,000 and Above</label>
-                            </div>
+                          </div>
+                          ))}
                         </div>
                     </div>
+
                     <div className="mt-[30px]">
                         <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Custom Price Range</p>
                         <div className="product-type text-gray-400 flex items-center gap-3">
-                            <div className="flex items-center gap-3 px-2 rounded-sm cursor-pointer" style={{ border: "1px solid gray" }}>
+                            <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer" style={{ border: "1px solid gray" }}>
                                 <p>#Min</p>
                                 <div>
                                     <MdKeyboardArrowUp />
                                     <MdKeyboardArrowDown />
                                 </div>
                             </div>
-                            <div className="flex items-center gap-3 px-2 rounded-sm cursor-pointer" style={{ border: "1px solid gray" }}>
+                            <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer" style={{ border: "1px solid gray" }}>
                                 <p>#Max</p>
                                 <div>
                                     <MdKeyboardArrowUp />
                                     <MdKeyboardArrowDown />
                                 </div>
                             </div>
-                            <button className="px-2 py-1 rounded-sm" style={{ border: "1px solid gray" }}>Go</button>
+                            <button className="px-2 py-1 rounded-[4px]" style={{ border: "1px solid gray" }}>Go</button>
                         </div>
                     </div>
                 </div>

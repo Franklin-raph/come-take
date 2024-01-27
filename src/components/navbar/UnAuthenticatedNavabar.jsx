@@ -31,11 +31,11 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                     setRegisterModal(false)
                 }}>
                     <Link to="#">Login</Link>
-                    <FaRegCircleUser />
+                    <FaRegCircleUser fontSize={"20px"}/>
                 </li>
                 <li className='help'>
                     <Link to="/help">Help</Link>
-                    <PiWarningCircle />
+                    <PiWarningCircle fontSize={"20px"}/>
                 </li>
                 <li>
                     <div className='cursor-pointer flex'>

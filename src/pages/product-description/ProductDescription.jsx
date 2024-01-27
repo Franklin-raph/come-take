@@ -73,11 +73,11 @@ const ProductDescription = () => {
         </div>
 
         <div className="lg:px-12 px-6 py-8 mt-10 gap-20">
-            <div className='flex items-start gap-[7rem] flex-col-reverse lg:flex-row'>
-                <div className='w-[80%] lg:w-[30%]'>
+            <div className='flex items-start gap-[2rem] flex-col-reverse lg:flex-row'>
+                <div className='w-[80%] lg:w-[40%] px-5 py-10 lg:py-0 lg:h-[80vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <h1 className="font-[600] text-[18px] lg:text-[20px] mb-8 text-primary-color">Delivery & Returns</h1>
                     <div>
-                        <div className='mb-10'>
+                        <div className='mb-7'>
                             <div className='flex items-center justify-between mb-2'>
                                 <h2 className='text-primary-color text-[17px]'>Door Delivery</h2>
                                 <h2 className='text-[12px] text-secondary-color'>View Details</h2>
@@ -88,7 +88,7 @@ const ProductDescription = () => {
                             </p>
                         </div>
 
-                        <div className='mt-10'>
+                        <div className='mt-7'>
                             <div className='flex items-center justify-between mb-2'>
                                 <h2 className='text-primary-color text-[17px]'>Pickup Station</h2>
                                 <h2 className='text-[12px] text-secondary-color'>View Details</h2>
@@ -99,7 +99,7 @@ const ProductDescription = () => {
                             </p>
                         </div>
 
-                        <div className='mt-10'>
+                        <div className='mt-7'>
                             <div className='flex items-center justify-between mb-2'>
                                 <h2 className='text-primary-color text-[17px]'>Return Policy</h2>
                                 <h2 className='text-[12px] text-secondary-color'>View Details</h2>
@@ -111,7 +111,7 @@ const ProductDescription = () => {
                     </div>
                 </div>
 
-                <div className='flex flex-col md:flex-row items-start gap-[0rem]'>
+                <div className='flex flex-col md:flex-row items-start gap-[0rem] px-5 py-10 lg:py-0 lg:h-[80vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <div className='w-[100%] md:w-[40%] mx-auto hidden md:block'>
                         <img src={selectedImage} alt="" className='w-[270px] h-[270px] mb-5 object-contain' />
                         <div className='flex items-center gap-5'>
@@ -151,7 +151,7 @@ const ProductDescription = () => {
                                 <p style={{ borderLeft:"1px solid gray" }} className='px-2 text-[#B5AEAE] cursor-pointer'>+</p>
                             </div>
                         </div>
-                        <div className="flex items-center gap-8 mt-6">
+                        <div className="flex items-center gap-[15px] mt-6">
                             <button className='rounded-[5px] bg-primary-color text-white px-[35px] py-[8px]'>Buy Now</button>
                             <button className='rounded-[5px] text-primary-color border border-gray-300 px-[35px] py-[8px]'>Add to cart</button>
                         </div>
@@ -160,12 +160,12 @@ const ProductDescription = () => {
             </div>
         </div>
         
-        <div className='lg:px-12 px-6 flex flex-col lg:flex-row items-start gap-[50px] lg:gap-[100px] mt-12'>
-            <div>
+        <div className='lg:px-12 px-6 flex flex-col lg:flex-row items-start gap-[50px] lg:gap-[40px] mt-12'>
+            <div className='w-[80%] lg:w-[35%] p-5 lg:h-[65vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <h1 className="font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color">Seller Information</h1>
                 <div className='flex items-start gap-8'>
                     <div>
-                        <p className='mb-5'>Mike Okiro</p>
+                        <p className='mb-10'>Mike Okiro</p>
                         <div>
                             <p>100% seller score</p>
                             <div className="flex items-center">
@@ -178,7 +178,7 @@ const ProductDescription = () => {
                         </div>
                     </div>
                     <div>
-                        <div className='flex items-center gap-2 mb-5'>
+                        <div className='flex items-center gap-2 mb-10'>
                             <CiLocationOn fontSize={"27px"} className='text-primary-color'/>
                             <p className='text-secondary-color text-[14px]'>Anambra State</p>
                         </div>
@@ -193,13 +193,13 @@ const ProductDescription = () => {
                     <h1 className='text-[20px]'>Seller Peformance</h1>
                     <ul className='sellerPerformanceList'>
                         <li>Order Fulfillment Rate <span className='text-[#08A805]'>(Excellent)</span></li>
-                        <li>Quality Score <span className='text-[#08A805]'>(Excellent)</span></li>
+                        <li className='my-2'>Quality Score <span className='text-[#08A805]'>(Excellent)</span></li>
                         <li>Customer Rating <span className='text-[#08A805]'>(Excellent)</span></li>
                     </ul>
                 </div>
             </div>
 
-            <div className='lg:w-[60%] w-[90%]'>
+            <div className='lg:w-[80%] w-[90%] p-10 lg:h-[65vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Product Details</h1>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar vehicula varius. 
@@ -212,110 +212,117 @@ const ProductDescription = () => {
         </div>
 
         <div className='lg:px-12 px-6 mt-12'>
-            <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Specifications</h1>
-            <div className='flex items-start gap-8'>
-                <div className='w-[30%] p-3 border border-gray-200'>
-                    <p>Key Features</p>
-                    <ul className='specList'>
-                        <li>AAA</li>
-                        <li>AAA</li>
-                        <li>AAA</li>
-                        <li>AAA</li>
-                        <li>AAA</li>
-                        <li>AAA</li>
-                        <li>AAA</li>
-                    </ul>
+            <div style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color pt-12 pl-12'>Specifications</h1>
+                <div className='h-[1px] bg-[#ccc] my-4'></div>
+                <div className='pt-6 px-12 pb-12'>
+                    <div className='flex items-start gap-8'>
+                        <div className='w-[30%] p-3 border border-gray-200'>
+                            <p>Key Features</p>
+                            <ul className='specList'>
+                                <li>AAA</li>
+                                <li>AAA</li>
+                                <li>AAA</li>
+                                <li>AAA</li>
+                                <li>AAA</li>
+                                <li>AAA</li>
+                                <li>AAA</li>
+                            </ul>
+                        </div>
+                        <div className='w-[30%] p-3 border border-gray-200'>
+                            <p>Key Features</p>
+                            <ul className='specList'>
+                                <li>AAA</li>
+                                <li>AAA</li>
+                                <li>AAA</li>
+                                <li>AAA</li>
+                                <li>AAA</li>
+                                <li>AAA</li>
+                                <li>AAA</li>
+                            </ul>
+                        </div>
                 </div>
-                <div className='w-[30%] p-3 border border-gray-200'>
-                    <p>Key Features</p>
-                    <ul className='specList'>
-                        <li>AAA</li>
-                        <li>AAA</li>
-                        <li>AAA</li>
-                        <li>AAA</li>
-                        <li>AAA</li>
-                        <li>AAA</li>
-                        <li>AAA</li>
-                    </ul>
                 </div>
             </div>
         </div>
 
         <div className="lg:px-12 px-6 py-8 mt-10">
-            <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color mb-8">Customers Feedback</h1>
-            <div className="flex items-start gap-[120px]">
-                <div className='w-[40%]'>
-                    <div className="flex items-center justify-between">
-                        <p>Customers Comments (3)</p>
-                        <p className='text-secondary-color'>See All</p>
-                    </div>
-                    <div className='border border-[#DCDCDC] p-4 mt-[15px] rounded-sm'>
-                        <div className='mb-9'>
-                            <div className='flex items-start mt-[20px] justify-between'>
-                                <div className='flex items-center'>
-                                    <h1 className='bg-primary-color w-[50px] h-[50px] flex items-center justify-center rounded-full text-white'>EA</h1>
-                                    <div className='ml-5'>
-                                        <p>Egolum Anthony</p>
-                                        <p className='text-[#808080] text-[14px]'>Programmer</p>
+            <div className='p-12' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color mb-8">Customers Feedback</h1>
+                <div className="flex items-start gap-[120px]">
+                    <div className='w-[40%]'>
+                        <div className="flex items-center justify-between">
+                            <p>Customers Comments (3)</p>
+                            <p className='text-secondary-color'>See All</p>
+                        </div>
+                        <div className='border border-[#DCDCDC] p-4 mt-[15px] rounded-sm'>
+                            <div className='mb-9'>
+                                <div className='flex items-start mt-[20px] justify-between'>
+                                    <div className='flex items-center'>
+                                        <h1 className='bg-primary-color w-[50px] h-[50px] flex items-center justify-center rounded-full text-white'>EA</h1>
+                                        <div className='ml-5'>
+                                            <p>Egolum Anthony</p>
+                                            <p className='text-[#808080] text-[14px]'>Programmer</p>
+                                        </div>
                                     </div>
+                                    <p className='text-[#808080] text-[14px]'>May 12, 2022</p>
                                 </div>
-                                <p className='text-[#808080] text-[14px]'>May 12, 2022</p>
+                                <p className='mt-5 text-[#555]'>
+                                    Curabitur elementum erat id lacus gravida, sit amet faucibus magna semper. 
+                                    Sed eget ante maximus quam rutrum tristique sed ut magna. Fusce venenatis dui dolor
+                                </p>
                             </div>
-                            <p className='mt-5 text-[#555]'>
-                                Curabitur elementum erat id lacus gravida, sit amet faucibus magna semper. 
-                                Sed eget ante maximus quam rutrum tristique sed ut magna. Fusce venenatis dui dolor
-                            </p>
-                        </div>
-                        <div>
-                            <div className='flex items-start mt-[20px] justify-between'>
-                                <div className='flex items-center'>
-                                    <h1 className='bg-primary-color w-[50px] h-[50px] flex items-center justify-center rounded-full text-white'>EA</h1>
-                                    <div className='ml-5'>
-                                        <p>Egolum Anthony</p>
-                                        <p className='text-[#808080] text-[14px]'>Programmer</p>
+                            <div>
+                                <div className='flex items-start mt-[20px] justify-between'>
+                                    <div className='flex items-center'>
+                                        <h1 className='bg-primary-color w-[50px] h-[50px] flex items-center justify-center rounded-full text-white'>EA</h1>
+                                        <div className='ml-5'>
+                                            <p>Egolum Anthony</p>
+                                            <p className='text-[#808080] text-[14px]'>Programmer</p>
+                                        </div>
                                     </div>
+                                    <p className='text-[#808080] text-[14px]'>May 12, 2022</p>
                                 </div>
-                                <p className='text-[#808080] text-[14px]'>May 12, 2022</p>
+                                <p className='mt-5 text-[#555]'>
+                                    Curabitur elementum erat id lacus gravida, sit amet faucibus magna semper. 
+                                    Sed eget ante maximus quam rutrum tristique sed ut magna. Fusce venenatis dui dolor
+                                </p>
                             </div>
-                            <p className='mt-5 text-[#555]'>
-                                Curabitur elementum erat id lacus gravida, sit amet faucibus magna semper. 
-                                Sed eget ante maximus quam rutrum tristique sed ut magna. Fusce venenatis dui dolor
-                            </p>
                         </div>
                     </div>
-                </div>
-                <div className='w-[28%]'>
-                    <p>Customers Ratings (3)</p>
-                    <div className='border border-[#DCDCDC] p-4 mt-[15px] rounded-sm'>
-                        <p className='mb-2 text-[#2B2B2B]'>Top Rating - 5.0</p>
-                        <div className="flex items-center">
-                            <IoMdStar color='#FFEA2E'/>
-                            <IoMdStar color='#FFEA2E'/>
-                            <IoMdStar color='#FFEA2E'/>
-                            <IoMdStar color='#FFEA2E'/>
-                            <IoMdStar color='#FFEA2E'/>
-                        </div>
-                        <p className='mt-5 mb-2 text-[#2B2B2B]'>Rating Detail</p>
-                        <div className="flex items-start flex-col gap-2">
-                            <div className='flex items-center gap-2'>
+                    <div className='w-[28%]'>
+                        <p>Customers Ratings (3)</p>
+                        <div className='border border-[#DCDCDC] p-4 mt-[15px] rounded-sm'>
+                            <p className='mb-2 text-[#2B2B2B]'>Top Rating - 5.0</p>
+                            <div className="flex items-center">
                                 <IoMdStar color='#FFEA2E'/>
-                                <p className='text-[#555555]'>5(3)</p>
+                                <IoMdStar color='#FFEA2E'/>
+                                <IoMdStar color='#FFEA2E'/>
+                                <IoMdStar color='#FFEA2E'/>
+                                <IoMdStar color='#FFEA2E'/>
                             </div>
-                            <div className='flex items-center gap-2'>
-                                <IoMdStar color='#FFEA2E'/>
-                                <p className='text-[#555555]'>4(0)</p>
-                            </div>
-                            <div className='flex items-center gap-2'>
-                                <IoMdStar color='#FFEA2E'/>
-                                <p className='text-[#555555]'>3(0)</p>
-                            </div>
-                            <div className='flex items-center gap-2'>
-                                <IoMdStar color='#FFEA2E'/>
-                                <p className='text-[#555555]'>2(0)</p>
-                            </div>
-                            <div className='flex items-center gap-2'>
-                                <IoMdStar color='#FFEA2E'/>
-                                <p className='text-[#555555] text-[12px]'>1(0)</p>
+                            <p className='mt-5 mb-2 text-[#2B2B2B]'>Rating Detail</p>
+                            <div className="flex items-start flex-col gap-2">
+                                <div className='flex items-center gap-2'>
+                                    <IoMdStar color='#FFEA2E'/>
+                                    <p className='text-[#555555]'>5(3)</p>
+                                </div>
+                                <div className='flex items-center gap-2'>
+                                    <IoMdStar color='#FFEA2E'/>
+                                    <p className='text-[#555555]'>4(0)</p>
+                                </div>
+                                <div className='flex items-center gap-2'>
+                                    <IoMdStar color='#FFEA2E'/>
+                                    <p className='text-[#555555]'>3(0)</p>
+                                </div>
+                                <div className='flex items-center gap-2'>
+                                    <IoMdStar color='#FFEA2E'/>
+                                    <p className='text-[#555555]'>2(0)</p>
+                                </div>
+                                <div className='flex items-center gap-2'>
+                                    <IoMdStar color='#FFEA2E'/>
+                                    <p className='text-[#555555] text-[12px]'>1(0)</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -324,27 +331,30 @@ const ProductDescription = () => {
         </div>
 
         <div className="lg:px-12 px-6 py-8 mt-10">
-          <div className="flex items-center justify-between mb-[20px]">
-            <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">More Items From Seller</h1>
-            <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
-                  <p>See all</p>
-                  <GoArrowRight />
+            <div className='p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <div className="flex items-center justify-between mb-[20px]">
+                    <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">More Items From Seller</h1>
+                    <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                        <p>See all</p>
+                        <GoArrowRight />
+                    </div>
                 </div>
+                <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
             </div>
-            <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
         </div>
 
         <div className="lg:px-12 px-6 py-8 mt-10">
-          <div className="flex items-center justify-between mb-[20px]">
-            <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Recently Viewed</h1>
-            <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
-                  <p>See all</p>
-                  <GoArrowRight />
+            <div className='p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <div className="flex items-center justify-between mb-[20px]">
+                    <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Recently Viewed</h1>
+                    <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                        <p>See all</p>
+                        <GoArrowRight />
+                    </div>
                 </div>
+                <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
             </div>
-            <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
         </div>
-
     </div>
   )
 }
