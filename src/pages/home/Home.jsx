@@ -7,6 +7,10 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
+import OwlCarousel from 'react-owl-carousel';  
+import 'owl.carousel/dist/assets/owl.carousel.css';  
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import TopCategories from "../../components/top-categories/TopCategories";
@@ -30,6 +34,9 @@ import BrandNewProducts from "../../components/brand-new-products/BrandNewProduc
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 import { useEffect } from "react";
+import img1 from '../../assets/Frame129.png'
+import img2 from '../../assets/Frame376.png'
+import img3 from '../../assets/Frame380.png'
 
 const Home = () => {
   const categoryArray = [
@@ -398,9 +405,26 @@ const Home = () => {
     toast.success("Hello world")
   },[])
 
+  const options = {
+    margin: 0,
+    responsiveClass: true,
+    nav: true,
+    dots: true,
+    autoplay: true,
+    navText: true,
+    navText: ["<", ">"],
+    smartSpeed: 1000,
+    loop:true,
+    responsive: {
+        0: {
+            items: 1,
+        }
+    },
+};
+
   return (
     <div>
-        <Swiper
+        {/* <Swiper
         spaceBetween={0}
         centeredSlides={true}
         autoplay={{
@@ -417,15 +441,32 @@ const Home = () => {
         className="mySwiper"
       >
           <SwiperSlide>
-            <div className="img-slider1"></div>
+            <div className="img-slider1">
+              <img src={img1} className="h-full w-full object-contain" alt="" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="img-slider2"></div>
+            <div className="img-slider2">
+              <img src={img2} className="h-full w-full object-contain" alt="" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="img-slider3"></div>
+            <div className="img-slider3">
+              <img src={img3} className="h-full w-full object-contain" alt="" />
+            </div>
           </SwiperSlide>
-        </Swiper>
+        </Swiper> */}
+        <OwlCarousel {...options} id="home">
+            <div className="img-slider3">
+              <img src={img1} className="h-full w-full object-contain" alt="" />
+            </div>
+            <div className="img-slider3">
+              <img src={img2} className="h-full w-full object-contain" alt="" />
+            </div>
+            <div className="img-slider3">
+              <img src={img3} className="h-full w-full object-contain" alt="" />
+            </div>
+        </OwlCarousel>
         <div className="flex flex-col lg:flex-row justify-between py-[40px] lg:px-12 px-6 bg-[#F5F9ED]">
           <h1 className="font-[600] text-primary-color lg:text-[30px] text-[22px] w-full lg:w-[40%]">
             Discover the ultimate online shopping experience
@@ -444,39 +485,10 @@ const Home = () => {
           <TopCategories categoryArray={categoryArray} />
         </div>
 
-        <div className="lg:px-12 px-6 lg:py-8 py-6">
-          <div className="flex items-center justify-between mb-[20px]">
-            <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Trending Products</h1>
-            <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
-                <p>See all</p>
-                <GoArrowRight />
-            </div>
-          </div>
-          <TrendingProducts trendingProductsArray={trendingProductsArray}/>
-        </div>
-
-        <div className="lg:px-12 px-6 py-4 lg:py-8">
-          <div className="flex items-center justify-between mb-[20px]">
-            <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Recommended Products</h1>
-            <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
-                <p>See all</p>
-                <GoArrowRight />
-              </div>
-          </div>
-          <RecommendedProducts recommendedProductsArray={recommendedProductsArray}/>
-        </div>
-
-        <div className="lady-part mt-5">
-          <div className="content lg:w-[60%] md:w-[70%] w-[100%] lg:px-12 px-6">
-            <h1 className="font-[500] text-[18px] md:text-[24px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At vel quo similique, porro, odio quasi libero laboriosam atque adipisci possimus?</h1>
-            <button className="bg-secondary-color mt-5 px-8 py-3 rounded-[7px]">Shop Now</button>
-          </div>
-        </div>
-
-        <div className="block lg:hidden">
+        <div id="body">
           <div className="lg:px-12 px-6 lg:py-8 py-6">
             <div className="flex items-center justify-between mb-[20px]">
-              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
+              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Trending Products</h1>
               <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
                   <p>See all</p>
                   <GoArrowRight />
@@ -484,70 +496,101 @@ const Home = () => {
             </div>
             <TrendingProducts trendingProductsArray={trendingProductsArray}/>
           </div>
-        </div>
 
-        <div className="hidden lg:block">
-          <div className="lg:px-12 px-6 py-12">
+          <div className="lg:px-12 px-6 py-4 lg:py-8">
             <div className="flex items-center justify-between mb-[20px]">
-            <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
-            <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Recommended Products</h1>
+              <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
                   <p>See all</p>
                   <GoArrowRight />
                 </div>
             </div>
-            <NewlyListedProducts newlyListedProductsArray={newlyListedProductsArray}/>
+            <RecommendedProducts recommendedProductsArray={recommendedProductsArray}/>
           </div>
-        </div>
 
-        <div className="hidden lg:block">
-          <div className="lg:px-12 px-6 py-8">
-            <div className="flex items-center justify-between mb-[20px]">
-              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Fairly Used Products</h1>
+          <div className="lady-part my-6">
+            <div className="content lg:w-[60%] md:w-[70%] w-[100%] lg:px-12 px-6">
+              <h1 className="font-[500] text-[18px] md:text-[24px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At vel quo similique, porro, odio quasi libero laboriosam atque adipisci possimus?</h1>
+              <button className="bg-secondary-color mt-5 px-8 py-3 rounded-[7px]">Shop Now</button>
+            </div>
+          </div>
+
+          <div className="block lg:hidden">
+            <div className="lg:px-12 px-6 lg:py-8 py-6">
+              <div className="flex items-center justify-between mb-[20px]">
+                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
+                <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                    <p>See all</p>
+                    <GoArrowRight />
+                </div>
+              </div>
+              <TrendingProducts trendingProductsArray={trendingProductsArray}/>
+            </div>
+          </div>
+
+          <div className="hidden lg:block">
+            <div className="lg:px-12 px-6 py-12">
+              <div className="flex items-center justify-between mb-[20px]">
+              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
               <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
                     <p>See all</p>
                     <GoArrowRight />
                   </div>
               </div>
-              <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
-          </div>
-        </div>
-
-        <div className="block lg:hidden">
-          <div className="lg:px-12 px-6 lg:py-8 py-6">
-            <div className="flex items-center justify-between mb-[20px]">
-              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Fairly Used Products</h1>
-              <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
-                  <p>See all</p>
-                  <GoArrowRight />
-              </div>
+              <NewlyListedProducts newlyListedProductsArray={newlyListedProductsArray}/>
             </div>
-            <TrendingProducts trendingProductsArray={trendingProductsArray}/>
           </div>
-        </div>
 
-        <div className="hidden lg:block">
-          <div className="lg:px-12 px-6 py-8">
-            <div className="flex items-center justify-between mb-[20px]">
-                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products</h1>
+          <div className="hidden lg:block">
+            <div className="lg:px-12 px-6 py-8">
+              <div className="flex items-center justify-between mb-[20px]">
+                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Fairly Used Products</h1>
                 <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
                       <p>See all</p>
                       <GoArrowRight />
+                    </div>
+                </div>
+                <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
+            </div>
+          </div>
+
+          <div className="block lg:hidden">
+            <div className="lg:px-12 px-6 lg:py-8 py-6">
+              <div className="flex items-center justify-between mb-[20px]">
+                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Fairly Used Products</h1>
+                <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                    <p>See all</p>
+                    <GoArrowRight />
                 </div>
               </div>
-            <BrandNewProducts brandNewProductsArray={brandNewProductsArray}/>
-          </div>
-        </div>
-
-        <div className="block lg:hidden">
-          <div className="lg:px-12 px-6 lg:py-8 py-6">
-            <div className="flex items-center justify-between mb-[20px]">
-              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products</h1>
-              <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
-                  <p>See all</p>
-                  <GoArrowRight />
-              </div>
+              <TrendingProducts trendingProductsArray={trendingProductsArray}/>
             </div>
-            <TrendingProducts trendingProductsArray={trendingProductsArray}/>
+          </div>
+
+          <div className="hidden lg:block">
+            <div className="lg:px-12 px-6 py-8">
+              <div className="flex items-center justify-between mb-[20px]">
+                  <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products</h1>
+                  <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                        <p>See all</p>
+                        <GoArrowRight />
+                  </div>
+                </div>
+              <BrandNewProducts brandNewProductsArray={brandNewProductsArray}/>
+            </div>
+          </div>
+
+          <div className="block lg:hidden">
+            <div className="lg:px-12 px-6 lg:py-8 py-6">
+              <div className="flex items-center justify-between mb-[20px]">
+                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products</h1>
+                <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                    <p>See all</p>
+                    <GoArrowRight />
+                </div>
+              </div>
+              <TrendingProducts trendingProductsArray={trendingProductsArray}/>
+            </div>
           </div>
         </div>
     </div>

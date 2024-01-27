@@ -8,6 +8,7 @@ import BottomNav from '../bottom-nav/BottomNav';
 import { BsCart3 } from 'react-icons/bs';
 import { MdMenu } from "react-icons/md";
 import { CiSearch } from 'react-icons/ci';
+import { IoIosSearch } from "react-icons/io";
 
 const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
   return (
@@ -20,7 +21,8 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                     <button className='rounded-full py-2 px-6 bg-secondary-color'>Search</button>
                 </div>
             </div>
-            <div className="mobile-nav flex items-center gap-7">
+            <div className="mobile-nav flex items-center gap-5">
+                <IoIosSearch cursor={"pointer"}/>
                 <FaRegCircleUser cursor={"pointer"}/>
                 <BsCart3 cursor={"pointer"}/>
                 <MdMenu cursor={"pointer"}/>
@@ -51,10 +53,11 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
             </div>
         </nav>
         <BottomNav />
-        <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[90%] mx-auto my-5 mobile-search'>
+        <div className='bg-secondary-color py-5 mobile-search'></div>
+        {/* <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[90%] mx-auto my-5 mobile-search'>
             <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color'/>
             <button className='rounded-full py-2 px-6 bg-secondary-color text-white'>Search</button>
-        </div>
+        </div> */}
     </div>
   )
 }
