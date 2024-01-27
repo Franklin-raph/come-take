@@ -123,7 +123,7 @@ const Footer = () => {
 
   return (
     <div>
-      <div className='h-[1px] bg-[#ccc] my-4 mx-12'></div>
+      <div className='h-[1px] bg-[#ccc] my-4 lg:mx-12'></div>
       <div className='flex items-start justify-between md:flex-row flex-col gap-[2rem] mt-[2rem] mb-[3rem] lg:px-12 px-8'>
         <div className='md:w-[40%] w-full'>
           <Link to="/" className='mb-5 block'>

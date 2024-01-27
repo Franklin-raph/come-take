@@ -253,7 +253,7 @@ const ProductDescription = () => {
             </div>
         </div>
 
-        <div className="lg:px-12 px-3 py-8 mt-10">
+        <div className="lg:px-12 py-8 mt-10">
             <div className='lg:p-12 p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <h1 className="font-[400] text-[18px] lg:text-[24px] mb-8">Customers Feedback</h1>
                 <div className="flex items-start flex-col md:flex-row md:gap-[120px] gap-[60px]">
@@ -337,7 +337,7 @@ const ProductDescription = () => {
             </div>
         </div>
 
-        <div className="lg:px-12 px-3 py-8 mt-10">
+        <div className="lg:px-12 py-8 mt-10">
             <div className='p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <div className="flex items-center justify-between mb-[20px]">
                     <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">More Items From Seller</h1>
@@ -350,7 +350,7 @@ const ProductDescription = () => {
             </div>
         </div>
 
-        <div className="lg:px-12 px-3 py-8 mt-10">
+        <div className="lg:px-12 py-8 mt-10">
             <div className='p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <div className="flex items-center justify-between mb-[20px]">
                     <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Recently Viewed</h1>
