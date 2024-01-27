@@ -74,7 +74,7 @@ const ProductDescription = () => {
 
         <div className="lg:px-12 px-3 py-8 mt-10 gap-20">
             <div className='flex items-start gap-[2rem] flex-col-reverse lg:flex-row'>
-                <div className='w-[95%] lg:w-[40%] px-5 py-10 lg:py-0 lg:h-[80vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <div className='w-[95%] lg:w-[20%] px-5 py-10 lg:py-0 lg:h-[80vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <h1 className="font-[600] text-[18px] lg:text-[20px] mb-8 text-primary-color">Delivery & Returns</h1>
                     <div>
                         <div className='mb-7'>
