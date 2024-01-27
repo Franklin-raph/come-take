@@ -72,9 +72,10 @@ const ProductDescription = () => {
             <p>Lenovo Products</p>
         </div>
 
-        <div className="lg:px-12 px-3 py-8 mt-10 gap-20">
-            <div className='flex items-start gap-[2rem] flex-col-reverse lg:flex-row'>
-                <div className='w-[95%] lg:w-[20%] px-5 py-10 lg:py-0 lg:h-[80vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+        <div className="lg:px-12 px-0 mt-10 gap-20">
+            <div className='flex items-start gap-[2rem] flex-col-reverse lg:flex-row lg:h-[504px]'>
+                <div className='flex flex-[0.5] w-[100%] items-center px-5 py-5 lg:py-0 h-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                   <div>
                     <h1 className="font-[600] text-[18px] lg:text-[20px] mb-8 text-primary-color">Delivery & Returns</h1>
                     <div>
                         <div className='mb-7'>
@@ -109,12 +110,13 @@ const ProductDescription = () => {
                             </p>
                         </div>
                     </div>
+                   </div>
                 </div>
 
-                <div className='flex flex-col md:flex-row items-start gap-[0rem] px-5 py-10 lg:py-0 lg:h-[80vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
-                    <div className='w-[100%] md:w-[40%] mx-auto hidden md:block'>
-                        <img src={selectedImage} alt="" className='w-[270px] h-[270px] mb-5 object-contain' />
-                        <div className='flex items-center gap-5'>
+                <div className=' h-full flex flex-col md:flex-row items-start gap-[0rem] px-5 py-[3rem] flex-[2]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                    <div className='w-[309px] md:w-[40%] mx-auto md:block flex flex-col items-center justify-center'>
+                        <img src={selectedImage} alt="" className='w-[100%] h-[309px] mb-5 object-cover' />
+                        <div className='flex items-center gap-5 w-[100%] justify-center'>
                             <img src={laptop1} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop1)} />
                             <img src={laptop2} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop2)} />
                             <img src={laptop3} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop3) } />
@@ -122,10 +124,10 @@ const ProductDescription = () => {
                     </div>
 
                     <div className="md:w-[55%] mt-[1rem] md:mt-[0]">
-                        <p className='text-[22px]'>
+                        <p className='text-[24px]' style={{lineHeight:"1.8"}}>
                             Lenovo V15 G3 Iap Laptop (12th Gen Core I5/ 21.5" 8gb/ 256 Ssd/ Dos) -82tt00juue
                         </p>
-                        <p className='text-[#898989] my-2'>Brand: Lenovo</p>
+                        <p className='text-[#898989] my-3'>Brand: Lenovo</p>
                         <div className="flex items-center">
                             <div className="flex items-center">
                                 <IoMdStar color='#FFEA2E'/>
@@ -136,41 +138,41 @@ const ProductDescription = () => {
                             </div>
                             <span className="text-[11px] font-[500] text-[#6d6d6d] ml-2">25 Reviews</span>
                         </div>
-                        <div className='h-[1px] bg-[#ccc] my-4'></div>
+                        <div className='h-[1px] bg-[#ccc] my-4 md:block hidden'></div>
                         <div className='flex items-center gap-5 justify-between lg:justify-start'>
-                            <p className='text-[28px]'>#150,000</p>
-                            <p className='text-[#34343457] line-through'>#115,000</p>
+                            <p className='text-[35px]'>#150,000</p>
+                            <p className='text-[#34343457] text-[20px] line-through'>#115,000</p>
                         </div>
                         <p className='text-[#ff3030] lg:block hidden'>Fairly Used</p>
                         <div className='h-[1px] bg-[#ccc] my-4'></div>
                         <div className="flex items-center gap-4 justify-between">
                             <p className='text-[#ff3030] lg:hidden block'>Fairly Used</p>
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-4 mt-2">
                                 <p className='text-[#898989]'>Quantity</p>
-                                <div className='flex items-center gap-2 border border-[#B5AEAE] rounded-[4px]'>
-                                    <p style={{ borderRight:"1px solid gray" }} className='px-2 text-[#B5AEAE] cursor-pointer'>-</p>
-                                    <p>1</p>
-                                    <p style={{ borderLeft:"1px solid gray" }} className='px-2 text-[#B5AEAE] cursor-pointer'>+</p>
+                                <div className='flex items-center justify-center gap-2 border border-[#B5AEAE] rounded-[4px] w-[120px] text-center h-[30px]'>
+                                    <p style={{ borderRight:"1px solid gray" }} className='flex-1 px-2 text-[#B5AEAE] cursor-pointer h-full'>-</p>
+                                    <p className='flex-1'>1</p>
+                                    <p style={{ borderLeft:"1px solid gray" }} className='flex-1 px-2 text-[#B5AEAE] cursor-pointer h-full'>+</p>
                                 </div>
                             </div>
                         </div>
                         <div className="flex items-center gap-[15px] mt-6">
-                            <button className='rounded-[5px] bg-primary-color text-white md:px-[35px] px-[20px] py-[8px]'>Buy Now</button>
-                            <button className='rounded-[5px] text-primary-color border border-gray-300 px-[20px] md:px-[35px] py-[8px]'>Add to cart</button>
+                            <button className='rounded-[5px] bg-primary-color text-white md:px-[35px] px-[20px] py-[8px] w-[50%]'>Buy Now</button>
+                            <button className='rounded-[5px] text-primary-color border border-primary-color px-[20px] md:px-[35px] py-[8px] w-[50%]'>Add to cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div className='lg:px-12 px-3 flex flex-col lg:flex-row items-start gap-[50px] lg:gap-[40px] mt-12'>
-            <div className='w-[95%] lg:w-[35%] p-5 lg:h-[65vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
-                <h1 className="font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color">Seller Information</h1>
+        <div className='lg:px-12 flex flex-col lg:flex-row items-center gap-[50px] lg:gap-[40px] mt-12 lg:h-[324px]'>
+            <div className='lg:flex w-[280px] flex-col px-4 h-full py-[2rem] hidden' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <h1 className="font-[600] text-[18px] lg:text-[20px] mb-3 text-primary-color">Seller Information</h1>
                 <div className='flex items-start gap-8'>
                     <div>
-                        <p className='mb-10'>Mike Okiro</p>
+                        <p className='mb-5'>Mike Okiro</p>
                         <div>
-                            <p>100% seller score</p>
+                            <p className='text-[12px]'>100% seller score</p>
                             <div className="flex items-center">
                                 <IoMdStar color='#FFEA2E'/>
                                 <IoMdStar color='#FFEA2E'/>
@@ -181,81 +183,83 @@ const ProductDescription = () => {
                         </div>
                     </div>
                     <div>
-                        <div className='flex items-center gap-2 mb-10'>
-                            <CiLocationOn fontSize={"27px"} className='text-primary-color'/>
-                            <p className='text-secondary-color text-[14px]'>Anambra State</p>
+                        <div className='flex items-center gap-2 mb-5'>
+                            <CiLocationOn fontSize={"20px"} className='text-primary-color'/>
+                            <p className='text-secondary-color text-[10px]'>Anambra State</p>
                         </div>
                         <div className='flex items-center gap-2'>
-                            <IoCallOutline fontSize={"25px"} className='text-primary-color' />
-                            <p className='text-secondary-color text-[14px]'>Call the seller</p>
+                            <IoCallOutline fontSize={"20px"} className='text-primary-color' />
+                            <p className='text-secondary-color text-[10px]'>Call the seller</p>
                         </div>
                     </div>
                 </div>
 
-                <div className='mt-8'>
-                    <h1 className='text-[20px]'>Seller Peformance</h1>
+                <div className='mt-4'>
+                    <h1 className='text-[16px]'>Seller Peformance</h1>
                     <ul className='sellerPerformanceList'>
-                        <li>Order Fulfillment Rate <span className='text-[#08A805]'>(Excellent)</span></li>
-                        <li className='my-2'>Quality Score <span className='text-[#08A805]'>(Excellent)</span></li>
-                        <li>Customer Rating <span className='text-[#08A805]'>(Excellent)</span></li>
+                        <li className='text-[14px]'>Order Fulfillment Rate <span className='text-[#08A805]'>(Excellent)</span></li>
+                        <li className='my-1 text-[14px]'>Quality Score <span className='text-[#08A805]'>(Excellent)</span></li>
+                        <li className='text-[14px]'>Customer Rating <span className='text-[#08A805]'>(Excellent)</span></li>
                     </ul>
                 </div>
             </div>
 
-            <div className='lg:w-[80%] w-[95%] lg:p-10 p-5 lg:h-[65vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+            <div className='lg:w-[80%] w-full px-10 lg:h-[320px] lg:pt-[2rem] pb-[10px]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Product Details</h1>
-                <p>
+                <p className='text-[16px]' style={{lineHeight:'1.7'}}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar vehicula varius. 
                     Nunc sed risus sagittis, rutrum purus non, finibus neque. Nam auctor tellus id dignissim hendrerit. 
                     Nulla facilisi. Ut commodo bibendum posuere. Mauris sed sem eget ipsum interdum varius. Pellentesque 
                     habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam erat nisl, consectetur 
                     non mauris id, accumsan pulvinar erat. 
+                    Nulla facilisi. Ut commodo bibendum posuere. Mauris sed sem eget ipsum interdum varius. Pellentesque 
+                    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam erat nisl, consectetur 
+                    non mauris id, accumsan pulvinar erat. 
+                    Nulla facilisi. Ut commodo bibendum 
                 </p>
             </div>
         </div>
 
-        <div className='lg:px-12 px-3 mt-12'>
+        <div className='lg:px-12 mt-12'>
             <div style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
-                <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color pt-12 pl-12'>Specifications</h1>
-                <div className='h-[1px] bg-[#ccc] my-4'></div>
+                <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 pt-12 pl-12 hidden lg:block'>Specifications</h1>
+                <div className='h-[1px] bg-[#ccc] my-4 hidden lg:block'></div>
                 <div className='pt-6 md:px-12 px-6 pb-12'>
                     <div className='flex items-start flex-col md:flex-row gap-8'>
-                        <div className='w-[95%] p-3 border border-gray-200'>
-                            <p>Key Features</p>
-                            <ul className='specList'>
-                                <li>AAA</li>
-                                <li>AAA</li>
-                                <li>AAA</li>
-                                <li>AAA</li>
-                                <li>AAA</li>
-                                <li>AAA</li>
-                                <li>AAA</li>
+                        <div className='w-[95%] p-3 border border-gray-200 h-full'>
+                            <p className='text-primary-color text-bold'>Key Features</p>
+                            <ul className='specList keyFeatures'>
+                                <li>1200 watts.</li>
+                                <li>3 attachments.</li>
+                                <li>8 speeds.</li>
+                                <li>Pulse control.</li>
+                                <li>5 litre bowl capacity.</li>
+                                <li>Inclues whisk attachment</li>
                             </ul>
                         </div>
                         <div className='w-[95%] p-3 border border-gray-200'>
-                            <p>Key Features</p>
+                            <p className='text-primary-color text-bold'>Specifications</p>
                             <ul className='specList'>
-                                <li>AAA</li>
-                                <li>AAA</li>
-                                <li>AAA</li>
-                                <li>AAA</li>
-                                <li>AAA</li>
-                                <li>AAA</li>
-                                <li>AAA</li>
+                                <li>SKU: VO669HL14P4OYNAFAMZ</li>
+                                <li>Product Line: Mex crystal</li>
+                                <li>Model: NA</li>
+                                <li>Weight (kg): 3.8</li>
+                                <li>Certifications: Eco Friendly</li>
+                                <li>Color: NA</li>
                             </ul>
                         </div>
-                </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div className="lg:px-12 px-3 py-8 mt-10">
             <div className='lg:p-12 p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
-                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color mb-8">Customers Feedback</h1>
+                <h1 className="font-[400] text-[18px] lg:text-[24px] mb-8">Customers Feedback</h1>
                 <div className="flex items-start flex-col md:flex-row md:gap-[120px] gap-[60px]">
                     <div className='lg:w-[40%] w-[95%]'>
                         <div className="flex items-center justify-between">
-                            <p>Customers Comments (3)</p>
+                            <p className='text-[#555]'>Customers Comments (3)</p>
                             <p className='text-secondary-color'>See All</p>
                         </div>
                         <div className='border border-[#DCDCDC] p-4 mt-[15px] rounded-sm'>
@@ -270,7 +274,7 @@ const ProductDescription = () => {
                                     </div>
                                     <p className='text-[#808080] text-[14px] hidden sm:block'>May 12, 2022</p>
                                 </div>
-                                <p className='mt-5 text-[#555]'>
+                                <p className='mt-5 text-[#555] text-[14px]'>
                                     Curabitur elementum erat id lacus gravida, sit amet faucibus magna semper. 
                                     Sed eget ante maximus quam rutrum tristique sed ut magna. Fusce venenatis dui dolor
                                 </p>
@@ -286,7 +290,7 @@ const ProductDescription = () => {
                                     </div>
                                     <p className='text-[#808080] text-[14px] hidden sm:block'>May 12, 2022</p>
                                 </div>
-                                <p className='mt-5 text-[#555]'>
+                                <p className='mt-5 text-[#555] text-[14px]'>
                                     Curabitur elementum erat id lacus gravida, sit amet faucibus magna semper. 
                                     Sed eget ante maximus quam rutrum tristique sed ut magna. Fusce venenatis dui dolor
                                 </p>
@@ -294,9 +298,9 @@ const ProductDescription = () => {
                         </div>
                     </div>
                     <div className='lg:w-[28%] w-[95%]'>
-                        <p>Customers Ratings (3)</p>
+                        <p className='text-[#555]'>Customers Ratings (3)</p>
                         <div className='border border-[#DCDCDC] p-4 mt-[15px] rounded-sm'>
-                            <p className='mb-2 text-[#2B2B2B]'>Top Rating - 5.0</p>
+                            <p className='mb-2 text-[#2B2B2B]'>Top Rating Score - 5.0</p>
                             <div className="flex items-center">
                                 <IoMdStar color='#FFEA2E'/>
                                 <IoMdStar color='#FFEA2E'/>
@@ -304,27 +308,27 @@ const ProductDescription = () => {
                                 <IoMdStar color='#FFEA2E'/>
                                 <IoMdStar color='#FFEA2E'/>
                             </div>
-                            <p className='mt-5 mb-2 text-[#2B2B2B]'>Rating Detail</p>
+                            <p className='mt-5 mb-2 text-[#000]'>Rating Detail</p>
                             <div className="flex items-start flex-col gap-2">
                                 <div className='flex items-center gap-2'>
                                     <IoMdStar color='#FFEA2E'/>
-                                    <p className='text-[#555555]'>5(3)</p>
+                                    <p className='text-[#555555] text-[14px]'>5(3)</p>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <IoMdStar color='#FFEA2E'/>
-                                    <p className='text-[#555555]'>4(0)</p>
+                                    <p className='text-[#555555] text-[14px]'>4(0)</p>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <IoMdStar color='#FFEA2E'/>
-                                    <p className='text-[#555555]'>3(0)</p>
+                                    <p className='text-[#555555] text-[14px]'>3(0)</p>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <IoMdStar color='#FFEA2E'/>
-                                    <p className='text-[#555555]'>2(0)</p>
+                                    <p className='text-[#555555] text-[14px]'>2(0)</p>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <IoMdStar color='#FFEA2E'/>
-                                    <p className='text-[#555555] text-[12px]'>1(0)</p>
+                                    <p className='text-[#555555] text-[14px]'>1(0)</p>
                                 </div>
                             </div>
                         </div>

@@ -348,7 +348,7 @@
 }
 
 .sellerPerformanceList{
-  margin-left: 2.5rem;
+  margin-left: 1.5rem;
   padding-top: 10px;
 }
 
@@ -359,6 +359,7 @@
 .specList{
   margin-left: 1.5rem;
   padding-top: 10px;
+  color: #414141;
 }
 
 .specList li{
@@ -402,6 +403,10 @@
   .category-section .top-category-overlay{
     transition: .5s;
     height: 100% !important;
+  }
+
+  .keyFeatures li{
+    list-style-type: decimal !important;
   }
 }
 
