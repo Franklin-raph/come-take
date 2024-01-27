@@ -111,7 +111,7 @@ const ProductDescription = () => {
                     </div>
                 </div>
 
-                <div className='flex flex-col md:flex-row items-start gap-[0rem] px-5 py-10 lg:py-0 lg:h-[80vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <div className='flex flex-col md:flex-row items-start gap-[0rem] px-5 py-10 lg:py-0 lg:min-h-[80vh]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <div className='w-[100%] md:w-[40%] mx-auto hidden md:block'>
                         <img src={selectedImage} alt="" className='w-[270px] h-[270px] mb-5 object-contain' />
                         <div className='flex items-center gap-5'>
