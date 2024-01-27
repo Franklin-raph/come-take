@@ -137,18 +137,21 @@ const ProductDescription = () => {
                             <span className="text-[11px] font-[500] text-[#6d6d6d] ml-2">25 Reviews</span>
                         </div>
                         <div className='h-[1px] bg-[#ccc] my-4'></div>
-                        <div className='flex items-center gap-5'>
+                        <div className='flex items-center gap-5 justify-between lg:justify-start'>
                             <p className='text-[28px]'>#150,000</p>
                             <p className='text-[#34343457] line-through'>#115,000</p>
                         </div>
-                        <p className='text-[#ff3030]'>Fairly Used</p>
+                        <p className='text-[#ff3030] lg:block hidden'>Fairly Used</p>
                         <div className='h-[1px] bg-[#ccc] my-4'></div>
-                        <div className="flex items-center gap-4">
-                            <p className='text-[#898989]'>Quantity</p>
-                            <div className='flex items-center gap-2 border border-[#B5AEAE] rounded-[4px]'>
-                                <p style={{ borderRight:"1px solid gray" }} className='px-2 text-[#B5AEAE] cursor-pointer'>-</p>
-                                <p>1</p>
-                                <p style={{ borderLeft:"1px solid gray" }} className='px-2 text-[#B5AEAE] cursor-pointer'>+</p>
+                        <div className="flex items-center gap-4 justify-between">
+                            <p className='text-[#ff3030] lg:hidden block'>Fairly Used</p>
+                            <div className="flex items-center gap-4">
+                                <p className='text-[#898989]'>Quantity</p>
+                                <div className='flex items-center gap-2 border border-[#B5AEAE] rounded-[4px]'>
+                                    <p style={{ borderRight:"1px solid gray" }} className='px-2 text-[#B5AEAE] cursor-pointer'>-</p>
+                                    <p>1</p>
+                                    <p style={{ borderLeft:"1px solid gray" }} className='px-2 text-[#B5AEAE] cursor-pointer'>+</p>
+                                </div>
                             </div>
                         </div>
                         <div className="flex items-center gap-[15px] mt-6">
