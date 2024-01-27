@@ -370,7 +370,7 @@
 }
 
 @media screen and (max-width:960px) {
-  .swiper-slide .img-slider1, .swiper-slide .img-slider2, .swiper-slide .img-slider3 {
+  .swiper-slide .img-slider1, .swiper-slide .img-slider2, .swiper-slide .img-slider3, .lady-part {
     height: 50vh;
   }
 
