@@ -22,7 +22,7 @@ const Categories = () => {
         {
           img:gym,
           productName:`Macbook Pro 13"`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -30,7 +30,7 @@ const Categories = () => {
         {
           img:stove,
           productName:`Hand Bag`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -38,7 +38,7 @@ const Categories = () => {
         {
           img:tripodStand,
           productName:`Nike Sneakers`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -46,7 +46,7 @@ const Categories = () => {
         {
           img:fridge,
           productName:`Iphone 13"`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -57,7 +57,7 @@ const Categories = () => {
         {
           img:laptopImage,
           productName:`Macbook Pro 13"`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -65,7 +65,7 @@ const Categories = () => {
         {
           img:bagImage,
           productName:`Hand Bag`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -73,7 +73,7 @@ const Categories = () => {
         {
           img:shoeImage,
           productName:`Nike Sneakers`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -81,7 +81,7 @@ const Categories = () => {
         {
           img:phoneImage,
           productName:`Iphone 13"`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -89,7 +89,7 @@ const Categories = () => {
         {
           img:laptopImage,
           productName:`Macbook Pro 13"`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -97,7 +97,7 @@ const Categories = () => {
         {
           img:bagImage,
           productName:`Hand Bag`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -105,7 +105,7 @@ const Categories = () => {
         {
           img:shoeImage,
           productName:`Nike Sneakers`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -113,7 +113,7 @@ const Categories = () => {
         {
           img:phoneImage,
           productName:`Iphone 13"`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -121,7 +121,7 @@ const Categories = () => {
         {
           img:laptopImage,
           productName:`Macbook Pro 13"`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -129,7 +129,7 @@ const Categories = () => {
         {
           img:bagImage,
           productName:`Hand Bag`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -137,7 +137,7 @@ const Categories = () => {
         {
           img:shoeImage,
           productName:`Nike Sneakers`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -145,7 +145,7 @@ const Categories = () => {
         {
           img:phoneImage,
           productName:`Iphone 13"`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -153,7 +153,7 @@ const Categories = () => {
         {
           img:laptopImage,
           productName:`Macbook Pro 13"`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -161,7 +161,7 @@ const Categories = () => {
         {
           img:bagImage,
           productName:`Hand Bag`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -169,7 +169,7 @@ const Categories = () => {
         {
           img:shoeImage,
           productName:`Nike Sneakers`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -177,7 +177,7 @@ const Categories = () => {
         {
           img:phoneImage,
           productName:`Iphone 13"`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"

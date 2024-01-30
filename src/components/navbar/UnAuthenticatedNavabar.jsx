@@ -13,7 +13,7 @@ import { IoIosSearch } from "react-icons/io";
 const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
   return (
     <div>
-        <nav className='flex items-center justify-between py-5 px-8 lg:px-12 bg-primary-color text-white text-[15px]'>
+        <nav className='flex items-center justify-between py-5 px-8 lg:px-12 bg-primary-color text-white text-[15px] fixed top-0 w-full self-start z-50'>
             <div className='flex items-center justify-start gap-8 w-full'>
                 <Link to="/" className='block'>Logo</Link>
                 <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[70%] search-bar'>
@@ -22,7 +22,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                 </div>
             </div>
             <div className="mobile-nav flex items-center gap-5">
-                <IoIosSearch cursor={"pointer"}/>
+                {/* <IoIosSearch cursor={"pointer"}/> */}
                 <FaRegCircleUser cursor={"pointer"}/>
                 <BsCart3 cursor={"pointer"}/>
                 <MdMenu cursor={"pointer"}/>
@@ -52,12 +52,13 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                 </li>
             </div>
         </nav>
+        <div className="bg-red-500 pb-[85px]"></div>
         <BottomNav />
-        <div className='bg-secondary-color py-5 mobile-search'></div>
-        {/* <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[90%] mx-auto my-5 mobile-search'>
+        {/* <div className='bg-secondary-color py-5 mobile-search'></div> */}
+        <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[90%] mx-auto my-5 mobile-search'>
             <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color'/>
             <button className='rounded-full py-2 px-6 bg-secondary-color text-white'>Search</button>
-        </div> */}
+        </div>
     </div>
   )
 }

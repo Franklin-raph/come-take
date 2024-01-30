@@ -27,7 +27,7 @@ const ProductDescription = () => {
         {
           img:laptopImage,
           productName:`Macbook Pro 13"`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -35,7 +35,7 @@ const ProductDescription = () => {
         {
           img:bagImage,
           productName:`Hand Bag`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -43,7 +43,7 @@ const ProductDescription = () => {
         {
           img:shoeImage,
           productName:`Nike Sneakers`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -51,7 +51,7 @@ const ProductDescription = () => {
         {
           img:phoneImage,
           productName:`Iphone 13"`,
-          price:"#2m",
+          price:"2m",
           description:"256.8 core GPU, 8GB",
           rating:5,
           reviews:"35 Reviews"
@@ -72,10 +72,10 @@ const ProductDescription = () => {
             <p>Lenovo Products</p>
         </div>
 
-        <div className="lg:px-12 px-0 mt-10 gap-20">
+        <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20">
             <div className='flex items-start gap-[2rem] flex-col-reverse lg:flex-row lg:h-[504px]'>
-                <div className='flex flex-[0.5] w-[100%] items-center px-5 py-5 lg:py-0 h-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
-                   <div>
+                <div className='flex flex-[0.5] w-[100%] items-center px-5 lg:py-0 h-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                   <div className='my-10'>
                     <h1 className="font-[600] text-[18px] lg:text-[20px] mb-8 text-primary-color">Delivery & Returns</h1>
                     <div>
                         <div className='mb-7'>
@@ -124,7 +124,7 @@ const ProductDescription = () => {
                     </div>
 
                     <div className="md:w-[55%] mt-[1rem] md:mt-[0]">
-                        <p className='text-[24px]' style={{lineHeight:"1.8"}}>
+                        <p className='text-[24px] leading-[1.5] lg:leading-[1.8]'>
                             Lenovo V15 G3 Iap Laptop (12th Gen Core I5/ 21.5" 8gb/ 256 Ssd/ Dos) -82tt00juue
                         </p>
                         <p className='text-[#898989] my-3'>Brand: Lenovo</p>
@@ -204,9 +204,9 @@ const ProductDescription = () => {
                 </div>
             </div>
 
-            <div className='lg:w-[80%] w-full px-10 lg:h-[320px] lg:pt-[2rem] pb-[10px]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+            <div className='lg:w-[80%] w-full px-5 lg:px-10 lg:h-[320px] lg:pt-[2rem] pb-[10px]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Product Details</h1>
-                <p className='text-[16px]' style={{lineHeight:'1.7'}}>
+                <p className='text-[15px] text-[#414141]' style={{lineHeight:'1.7'}}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar vehicula varius. 
                     Nunc sed risus sagittis, rutrum purus non, finibus neque. Nam auctor tellus id dignissim hendrerit. 
                     Nulla facilisi. Ut commodo bibendum posuere. Mauris sed sem eget ipsum interdum varius. Pellentesque 
@@ -226,7 +226,7 @@ const ProductDescription = () => {
                 <div className='h-[1px] bg-[#ccc] my-4 hidden lg:block'></div>
                 <div className='pt-6 md:px-12 px-6 pb-12'>
                     <div className='flex items-start flex-col md:flex-row gap-8'>
-                        <div className='w-[95%] p-3 border border-gray-200 h-full'>
+                        <div className='w-[95%] p-3 border border-[#f3f3f3] h-full'>
                             <p className='text-primary-color text-bold'>Key Features</p>
                             <ul className='specList keyFeatures'>
                                 <li>1200 watts.</li>
@@ -237,7 +237,7 @@ const ProductDescription = () => {
                                 <li>Inclues whisk attachment</li>
                             </ul>
                         </div>
-                        <div className='w-[95%] p-3 border border-gray-200'>
+                        <div className='w-[95%] p-3 border border-[#f3f3f3]'>
                             <p className='text-primary-color text-bold'>Specifications</p>
                             <ul className='specList'>
                                 <li>SKU: VO669HL14P4OYNAFAMZ</li>
