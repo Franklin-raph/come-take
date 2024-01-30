@@ -351,7 +351,7 @@ const Home = () => {
     dots: true,
     autoplay: true,
     navText: true,
-    navText: ['<img src="https://d1ycj7j4cqq4r8.cloudfront.net/20bd4ea61b53e89f4d8c6531d59f19ab.svg" />','<img src="https://d1ycj7j4cqq4r8.cloudfront.net/bbb447994b253bea1bb81b002e3413b2.svg" class="arrow-right" />'],
+    navText: ['<i class="ri-arrow-left-s-line"></i>','<i class="ri-arrow-right-s-line"></i>'],
     smartSpeed: 1000,
     loop:true,
     responsive: {
@@ -414,13 +414,13 @@ const Home = () => {
             <p className="text-primary-color mt-1 lg:mt-0">
              Shop from a wide range of products and enjoy fast, reliable delivery.
             </p>
-            <button className="bg-secondary-color mt-1 px-8 py-3 rounded-[7px] text-white">
+            <button className="bg-secondary-color mt-8 lg:mt-4 px-8 py-3 rounded-[7px] text-white">
               Shop Now
             </button>
           </div>
         </div>
-        <div className="lg:px-12 px-6 py-4 lg:py-8">
-          <h1 className="font-[600] text-[24px] text-primary-color mb-5">Shop Our Top Categories</h1>
+        <div className="lg:px-12 px-6 py-4 lg:py-8 mt-10">
+          <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color mb-5">Shop Our Top Categories</h1>
           <TopCategories categoryArray={categoryArray} />
         </div>
 

@@ -15,7 +15,7 @@ const RecommendedProducts = ({recommendedProductsArray}) => {
         dots: true,
         autoplay: true,
         navText: true,
-        navText: ["<", ">"],
+        navText: ['<i class="ri-arrow-left-s-line"></i>','<i class="ri-arrow-right-s-line"></i>'],
         smartSpeed: 1000,
         loop:true,
         responsive: {
