@@ -23,7 +23,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
             </div>
             <div className="mobile-nav flex items-center gap-5">
                 {/* <IoIosSearch cursor={"pointer"}/> */}
-                <FaRegCircleUser cursor={"pointer"}/>
+                <FaRegCircleUser cursor={"pointer"} onClick={() => setLoginModal(true)}/>
                 <BsCart3 cursor={"pointer"}/>
                 <MdMenu cursor={"pointer"}/>
             </div>
