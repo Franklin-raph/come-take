@@ -20,7 +20,7 @@ const Login = ({ setLoginModal, setRegisterModal }) => {
   return (
     <div>
       <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setLoginModal(false)}></div>
-          <div className="bg-white w-[450px] h-[580px] fixed top-[50%] left-[50%] py-[35px] px-[2rem] rounded-[20px] z-[100]" style={{ transform: "translate(-50%, -50%)" }}>
+          <div className="bg-white w-[450px] h-[580px] fixed top-[50%] left-[50%] py-[35px] px-[2rem] rounded-[20px] z-[100] login-modal" style={{ transform: "translate(-50%, -50%)" }}>
             <div className="flex items-center justify-between">
               <p className="text-[22px]">Welcome</p>
               <div  className="border border-gray-300 rounded-full p-1 flex items-center justify-center">

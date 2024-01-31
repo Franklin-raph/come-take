@@ -502,4 +502,11 @@
   .reviews span {
     margin-left: 0;
   }
+
+  .login-modal{
+    width: 310px !important;
+    height: 540px !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
 }
