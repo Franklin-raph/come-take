@@ -310,15 +310,15 @@ const Categories = () => {
                     <div className="flex bg-primary-color text-white items-center justify-between rounded-[4px] px-3 py-4 md:hidden mb-8">
                       <div className="flex items-center">
                         <p>Category</p>
-                        <MdKeyboardArrowDown />
+                        <MdKeyboardArrowDown fontSize={"22px"}/>
                       </div>
                       <div className="flex items-center">
-                        <BsFilterLeft />
+                        <BsFilterLeft fontSize={"22px"}/>
                         <p>Filter</p>
                       </div>
                       <div className="flex items-center">
                         <p>New Arivals</p>
-                        <MdKeyboardArrowDown />
+                        <MdKeyboardArrowDown fontSize={"22px"}/>
                       </div>
                     </div>
                     <div className="md:flex items-center justify-between hidden">
