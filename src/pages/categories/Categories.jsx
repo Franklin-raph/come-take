@@ -14,6 +14,7 @@ import RecommendedProducts from "../../components/recommended-products/Recommend
 import TrendingProducts from "../../components/trending-products/TrendingProducts";
 import BrandNewProducts from "../../components/brand-new-products/BrandNewProducts";
 import CategoryProductPageCard from "../../components/categories-product-page/CategoryProductPage";
+import { BsFilterLeft } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa6";
 
 const Categories = () => {
@@ -200,7 +201,7 @@ const Categories = () => {
 
   return (
     <div>
-        <div className="flex items-center justify-start px-12 py-5 gap-4">
+        <div className="lg:flex items-center justify-start px-12 py-5 gap-4 hidden">
             <p>Home</p>
             <MdKeyboardArrowRight />
             <p>Computing</p>
@@ -208,9 +209,9 @@ const Categories = () => {
             <p>Laptops</p>
         </div>
 
-        <div className="px-12 py-8">
+        <div className="px-6 pb-8 pt-4">
             <div className="flex gap-[3rem]">
-                <div className="w-[20%] sticky z-[10] h-full bg-white left-0">
+                <div className="w-[20%] sticky z-[10] h-full bg-white left-0 category-left">
                     <p className="font-[700] text-[18px] text-primary-color mt-[16px]">Laptops</p>
                     <div className="mt-[30px]">
                         <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Type</p>
@@ -305,9 +306,23 @@ const Categories = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-[75%] ml-auto">
-                    <div className="flex items-center justify-between">
-                        <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Laptops</h1>
+                <div className="w-[75%] ml-auto category-right">
+                    <div className="flex bg-primary-color text-white items-center justify-between rounded-[4px] px-3 py-4 md:hidden mb-8">
+                      <div className="flex items-center">
+                        <p>Category</p>
+                        <MdKeyboardArrowDown />
+                      </div>
+                      <div className="flex items-center">
+                        <BsFilterLeft />
+                        <p>Filter</p>
+                      </div>
+                      <div className="flex items-center">
+                        <p>New Arivals</p>
+                        <MdKeyboardArrowDown />
+                      </div>
+                    </div>
+                    <div className="md:flex items-center justify-between hidden">
+                        <h1 className="font-[600] text-[24px] mb-4 lg:mt-10 text-primary-color">Laptops</h1>
                         <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" >
                         <p>Sort By:New Arrivals</p>
                         <MdKeyboardArrowDown />

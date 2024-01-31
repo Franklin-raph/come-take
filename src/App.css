@@ -456,8 +456,12 @@
     font-size: 22px;
   }
 
-  .bottom-nav, .search-bar{
+  .bottom-nav, .search-bar, .category-left{
     display: none !important;
+  }
+
+  .category-right{
+    width: 100% !important;
   }
 }
 
