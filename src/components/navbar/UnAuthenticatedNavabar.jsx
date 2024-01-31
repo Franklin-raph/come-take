@@ -52,7 +52,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                 </li>
             </div>
         </nav>
-        <div className="bg-red-500 pb-[62px] lg:pb-[85px]"></div>
+        <div className="bg-white-500 pb-[62px] lg:pb-[85px]"></div>
         <BottomNav />
         {/* <div className='bg-secondary-color py-5 mobile-search'></div> */}
         <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[90%] mx-auto my-5 mobile-search'>

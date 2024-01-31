@@ -210,7 +210,7 @@ const Categories = () => {
 
         <div className="px-12 py-8">
             <div className="flex gap-[3rem]">
-                <div className="w-[20%] sticky z-[10] h-full bg-white left-0">
+                <div className="w-[22%] sticky z-[10] h-full bg-white left-0 hidden md:flex flex-col">
                     <p className="font-[700] text-[18px] text-primary-color mt-[16px]">Laptops</p>
                     <div className="mt-[30px]">
                         <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Type</p>
@@ -305,7 +305,7 @@ const Categories = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-[75%] ml-auto">
+                <div className="w-[100%] ml-auto md:w-[75%]">
                     <div className="flex items-center justify-between">
                         <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">Laptops</h1>
                         <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" >
