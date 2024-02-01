@@ -150,12 +150,12 @@
 
 .lady-part{
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("./assets/lady.png");
-  background-position: center;
+  /* background-position: center; */
   background-size: cover;
   width: 92%;
   margin: 0 auto;
   border-radius: 5px;
-  height: 60vh;
+  height: 45vh;
   position: relative;
 }
 
@@ -491,7 +491,23 @@
   #body .owl-carousel .owl-nav button.owl-next, #body .owl-carousel .owl-nav button.owl-prev{
     display: none;
   }
+
+  .lady-part{
+    background-position: center;
+    height: 25vh;
+  }
   
+  .lady-part h1{
+    font-size: 14px !important;
+  }
+
+  .lady-part button{
+    display: none;
+    padding-top: 0.4rem !important;
+    padding-bottom: 0.4rem !important;
+    padding-left:  1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
 }
 
 @media screen and (max-width: 480px) {

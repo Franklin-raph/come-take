@@ -448,8 +448,8 @@ const Home = () => {
           </div>
 
           <div className="lady-part my-6">
-            <div className="content lg:w-[60%] md:w-[70%] w-[100%] lg:px-12 px-6">
-              <h1 className="font-[500] text-[18px] md:text-[24px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At vel quo similique, porro, odio quasi libero laboriosam atque adipisci possimus?</h1>
+            <div className="content lg:w-[60%] md:w-[70%] w-[100%] lg:px-12 px-3">
+              <h1 className="font-[500] text-[18px] md:text-[24px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare sollicitudin nunc, consectetur tincidunt ligula</h1>
               <button className="bg-secondary-color mt-5 px-8 py-3 rounded-[7px]">Shop Now</button>
             </div>
           </div>
