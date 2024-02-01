@@ -44,6 +44,7 @@ import img3 from '../../assets/Frame380.png'
 import leftArrow from "../../assets/arrow-left.svg"
 import rightArrow from "../../assets/arrow-right.svg"
 import { IoChevronBack } from "react-icons/io5";
+import NewsLetter from "../../components/news-letter/NewsLetter";
 
 const Home = () => {
   const categoryArray = [
@@ -541,6 +542,8 @@ const Home = () => {
             </div>
           </div>
           {/* MOBILE DESIGN FOR BRANDED NEW*/}
+
+          {/* <NewsLetter /> */}
         </div>
     </div>
   )
