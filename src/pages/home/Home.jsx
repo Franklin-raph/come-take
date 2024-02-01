@@ -19,6 +19,10 @@ import RecommendedProducts from "../../components/recommended-products/Recommend
 
 import furnitureImage from "../../assets/furniture.png"
 import fashionImage from "../../assets/fashion.png"
+import ElectronicsImage from "../../assets/electronics.png"
+import PhonesImage from "../../assets/phone.png"
+import sportsImage from "../../assets/sports.png"
+import computingImage from "../../assets/computing.png"
 import laptopImage from "../../assets/laptop.png"
 import bagImage from "../../assets/bag.png"
 import shoeImage from "../../assets/shoe.png"
@@ -52,20 +56,20 @@ const Home = () => {
       text:"Fashion"
     },
     {
-      img:furnitureImage,
-      text:"Furniture"
+      img:ElectronicsImage,
+      text:"Elecronics"
     },
     {
-      img:fashionImage,
-      text:"Fashion"
+      img:PhonesImage,
+      text:"Phones"
     },
     {
-      img: furnitureImage,
-      text:"Furniture"
+      img: computingImage,
+      text:"Computing"
     },
     {
-      img: fashionImage,
-      text:"Fashion"
+      img: sportsImage,
+      text:"Sports"
     },
   ]
 
@@ -449,7 +453,7 @@ const Home = () => {
 
           <div className="lady-part my-6">
             <div className="content lg:w-[60%] md:w-[70%] w-[100%] lg:px-12 px-3">
-              <h1 className="font-[500] text-[18px] md:text-[24px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare sollicitudin nunc, consectetur tincidunt ligula</h1>
+              <h1 className="font-[500] text-[18px] md:text-[24px]">A place to get all your dream Amazing deals. Click to shop.</h1>
               <button className="bg-secondary-color mt-5 px-8 py-3 rounded-[7px]">Shop Now</button>
             </div>
           </div>
