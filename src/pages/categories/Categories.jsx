@@ -333,15 +333,15 @@ const Categories = () => {
             </div>
           </div>
 
-        <div className="px-12 py-8">
+        <div className="lg:px-12 px-6 py-4 lg:py-8" id="body">
           <div className="flex items-center justify-between">
-          <h1 className="font-[600] text-[24px] mb-4 mt-10 text-primary-color">You might also like</h1>
+          <h1 className="font-[600] text-[24px] mb-4 mt-5 text-primary-color">You might also like</h1>
           <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
               <p>See all</p>
               <GoArrowRight />
             </div>
           </div>
-          <RecommendedProducts recommendedProductsArray={recommendedProductsArray}/>
+          <CategoryProductPageCard categoryProductsArray={categoryProductsArray}/>
         </div>
     </div>
   )

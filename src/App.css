@@ -487,6 +487,11 @@
     height: 150px;
     padding: 15px;
   }
+
+  #body .owl-carousel .owl-nav button.owl-next, #body .owl-carousel .owl-nav button.owl-prev{
+    display: none;
+  }
+  
 }
 
 @media screen and (max-width: 480px) {
