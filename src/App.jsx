@@ -30,11 +30,11 @@ export default function App() {
         </Routes>
         <Footer />
         {loginModal && !registerModal &&
-          <Login setLoginModal={setLoginModal} setRegisterModal={setRegisterModal}/>
+          <Login setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} loginModal={loginModal}/>
         }
         {
           registerModal && !loginModal && 
-          <Register setLoginModal={setLoginModal} setRegisterModal={setRegisterModal}/>
+          <Register setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} registerModal={registerModal}/>
         }
       </HashRouter>
     </>
