@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { FaRegCircleUser } from "react-icons/fa6";
 import { IoChevronDown } from "react-icons/io5";
 import { PiWarningCircle } from "react-icons/pi";
@@ -19,6 +19,7 @@ import { LuMessagesSquare } from "react-icons/lu";
 const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
 
     const [accountDropDown, setAccountDropDown] = useState(false)
+    const navigate = useNavigate()
 
 
 
@@ -50,7 +51,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                     <Link to="/help">Help</Link>
                     <PiWarningCircle fontSize={"20px"}/>
                 </li>
-                <li>
+                <li onClick={() => navigate('/shoping-cart')}>
                     <div className='cursor-pointer flex'>
                         <p>Cart</p>
                         <BsCart3 color='#08A805' fontSize={"20px"}/>

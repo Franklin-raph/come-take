@@ -139,7 +139,7 @@ const Footer = () => {
           <h1 className='font-bold text-[17px] text-primary-color mt-9 mb-4'>Accepted Payments</h1>
           <img src={footerImage} alt="" />
         </div>
-        <div className='grid grid-cols-2 gap-[2rem] w-full text-[14px]'>
+        <div className='grid lg:grid-cols-4 grid-cols-2 gap-[2rem] w-full text-[14px]'>
           <div>
             <h1 className='font-bold text-[15px] md:text-[17px] text-primary-color mb-2'>Categories</h1>
             <ul>
