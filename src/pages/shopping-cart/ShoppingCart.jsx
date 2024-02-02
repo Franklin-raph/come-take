@@ -10,8 +10,11 @@ import laptopImage from "../../assets/laptop.png"
 import bagImage from "../../assets/bag.png"
 import shoeImage from "../../assets/shoe.png"
 import phoneImage from "../../assets/iphone.png"
+import { useNavigate } from 'react-router-dom';
 
 const ShoppingCart = () => {
+
+    const navigate = useNavigate()
 
     const fairlyUsedProductsArray = [
         {
@@ -89,7 +92,7 @@ const ShoppingCart = () => {
                                     <p className='text-[#000] text-[16px]'>#165,550</p>
                                 </div>
                                 <p className='text-secondary-color text-[12px] text-end mt-1'>Exclude Delivery Charges</p>
-                                <button className='bg-primary-color text-white w-full h-[45px] rounded-[10px] mt-10'>Proceed to Checkout</button>
+                                <button className='bg-primary-color text-white w-full h-[45px] rounded-[10px] mt-10' onClick={() => navigate('/check-out')} >Proceed to Checkout</button>
                                 <div className='h-[1px] bg-[#dcdcdc] mt-8'></div>
                                 <div className="flex items-center mt-4 gap-4">
                                     <p className='text-[#6C6C6C] text-[12px]'>We Accept:</p>
@@ -153,8 +156,8 @@ const ShoppingCart = () => {
                                     </td>
                                     <td class="py-4">
                                         <div>
-                                            <p>#115,000</p>
-                                            <p className='text-[#6C6C6C] text-[12px]'>#115,000 x 1</p>
+                                            <p className='text-[12px]'>#115,000</p>
+                                            <p className='text-[#6C6C6C] text-[10px]'>#115,000 x 1</p>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4">
@@ -194,8 +197,8 @@ const ShoppingCart = () => {
                                     </td>
                                     <td class="py-4">
                                         <div>
-                                            <p>#115,000</p>
-                                            <p className='text-[#6C6C6C] text-[12px]'>#115,000 x 1</p>
+                                            <p className='text-[12px]'>#115,000</p>
+                                            <p className='text-[#6C6C6C] text-[10px]'>#115,000 x 1</p>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4">
@@ -235,8 +238,8 @@ const ShoppingCart = () => {
                                     </td>
                                     <td class="py-4">
                                         <div>
-                                            <p>#115,000</p>
-                                            <p className='text-[#6C6C6C] text-[12px]'>#115,000 x 1</p>
+                                            <p className='text-[12px]'>#115,000</p>
+                                            <p className='text-[#6C6C6C] text-[10px]'>#115,000 x 1</p>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4">
@@ -276,8 +279,8 @@ const ShoppingCart = () => {
                                     </td>
                                     <td class="py-4">
                                         <div>
-                                            <p>#115,000</p>
-                                            <p className='text-[#6C6C6C] text-[12px]'>#115,000 x 1</p>
+                                            <p className='text-[12px]'>#115,000</p>
+                                            <p className='text-[#6C6C6C] text-[10px]'>#115,000 x 1</p>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4">

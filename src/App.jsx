@@ -13,6 +13,7 @@ import Register from "./components/register/Register"
 import Categories from "./pages/categories/Categories"
 import ProductDescription from "./pages/product-description/ProductDescription"
 import ShoppingCart from "./pages/shopping-cart/ShoppingCart"
+import Checkout from "./pages/check-out/Checkout"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/categories" element={<Categories />}/>
           <Route path="/product-details" element={<ProductDescription />}/>
           <Route path="/shoping-cart" element={<ShoppingCart />}/>
+          <Route path="/check-out" element={<Checkout />}/>
         </Routes>
         <Footer />
         {loginModal && !registerModal &&
