@@ -62,9 +62,9 @@ const ShoppingCart = () => {
                     <h1 className='text-[#003C2F] text-[20px] font-bold mb-5'>Shopping Cart</h1>
                     <div class="relative overflow-x-auto">
                         <table class="w-full text-sm text-left rtl:text-left shoppingCartTable">
-                            <thead class="text-[14px] bg-[#D4E5B4]">
+                            <thead class="text-[14px] bg-[#D4E5B4]" style={{boxShadow:"0 11px 40px -17px #00000024", borderRadius:"10px"}}>
                                 <tr>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-6 py-3 th1">
                                         Item Detail
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -73,7 +73,7 @@ const ShoppingCart = () => {
                                     <th scope="col" class="px-6 py-3">
                                         Price
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-6 py-3 th2">
                                         Action
                                     </th>
                                 </tr>
