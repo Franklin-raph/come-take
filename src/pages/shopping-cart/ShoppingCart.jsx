@@ -11,10 +11,15 @@ import bagImage from "../../assets/bag.png"
 import shoeImage from "../../assets/shoe.png"
 import phoneImage from "../../assets/iphone.png"
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const ShoppingCart = () => {
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    },[])
 
     const fairlyUsedProductsArray = [
         {

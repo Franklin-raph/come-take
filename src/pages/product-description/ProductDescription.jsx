@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import laptop1 from "../../assets/laptop1.png"
 import laptop2 from "../../assets/laptop.png"
@@ -57,6 +57,10 @@ const ProductDescription = () => {
           reviews:"35 Reviews"
         }
       ]
+
+      useEffect(() => {
+        window.scrollTo(0, 0)
+    },[])
 
   return (
     <div>

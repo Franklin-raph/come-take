@@ -14,6 +14,7 @@ import Categories from "./pages/categories/Categories"
 import ProductDescription from "./pages/product-description/ProductDescription"
 import ShoppingCart from "./pages/shopping-cart/ShoppingCart"
 import Checkout from "./pages/check-out/Checkout"
+import MyProfile from "./pages/my-profile/MyProfile"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/product-details" element={<ProductDescription />}/>
           <Route path="/shoping-cart" element={<ShoppingCart />}/>
           <Route path="/check-out" element={<Checkout />}/>
+          <Route path="/my-profile" element={<MyProfile />}/>
         </Routes>
         <Footer />
         {loginModal && !registerModal &&

@@ -47,6 +47,11 @@ import { IoChevronBack } from "react-icons/io5";
 import NewsLetter from "../../components/news-letter/NewsLetter";
 
 const Home = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+},[])
+
   const categoryArray = [
     {
       img:furnitureImage,

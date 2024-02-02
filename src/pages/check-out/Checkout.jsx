@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { IoMdStar } from 'react-icons/io'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { SlTrash } from 'react-icons/sl'
 import laptop1 from "../../assets/category-product-preview.png"
 
 const Checkout = () => {
+
+    useEffect(() => {
+        document.querySelector("body").style.scrollTop = 0
+    },[])
+
   return (
     <div>
         <div className="md:flex items-center justify-start px-12 py-5 gap-4 hidden">
@@ -52,11 +57,11 @@ const Checkout = () => {
                    </div>
                 </div>
 
-                <div className='gap-[0rem] px-5 pb-[3rem] pt-[2rem] flex-[2]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <div className='gap-[0rem] px-5 pb-[3rem] pt-[2rem] flex-[2] w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <h1 className='text-[#003C2F] text-[20px] font-bold mb-5'>Check Out</h1>
                     <div>
                         <div className='flex items-center justify-between'>
-                            <p className='text-[#343434] font-[700]'>Delivery Address</p>
+                            <p className='text-[#343434] font-[700]'>Delivery Address..</p>
                             <p className='text-secondary-color text-[14px]'>Edit</p>
                         </div>
                         <div className='p-3 rounded-[4px] mt-1' style={{border:"1px solid #CCCCCC"}}>

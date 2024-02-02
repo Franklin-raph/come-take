@@ -16,8 +16,13 @@ import BrandNewProducts from "../../components/brand-new-products/BrandNewProduc
 import CategoryProductPageCard from "../../components/categories-product-page/CategoryProductPage";
 import { BsFilterLeft } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa6";
+import { useEffect } from "react";
 
 const Categories = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+},[])
 
     const recommendedProductsArray = [
         {
