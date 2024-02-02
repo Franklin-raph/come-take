@@ -33,7 +33,7 @@ const Checkout = () => {
                         </div>
                         <div>
                             <div className='mb-7'>
-                                <div className='flex items-start justify-between mb-4 pb-4' style={{borderBottom:"1px solid #dcdcdc"}}>
+                                <div className='flex items-start justify-between mb-4 pb-12' style={{borderBottom:"1px solid #dcdcdc"}}>
                                     <h2 className='text-primary-color text-[16px] text-[#343434] flex-[2]'>Delivery Charges</h2>
                                     <p className='text-[12px] text-[#6C6C6C] item-end text-end flex-[1.2]'>
                                         4500
@@ -67,7 +67,7 @@ const Checkout = () => {
                         <div>
                             <p className='font-[700] text-[20px] text-primary-color mt-10 pr-6 mb-1' style={{borderBottom:"1px solid #898989", display:"inline-block"}}>Delivery method</p>
                             <div className='flex items-center gap-4 my-4'>
-                                <input type="radio" />
+                                <input type="radio" name='deliveryType' className='cursor-pointer'/>
                                 <div>
                                     <p className='text-secondary-color text-[20px]'>Door Delivery</p>
                                     <p className='text-[#6C6C6C] text-[14px]'>Delivery Price (4,500) for the next 20 days</p>
@@ -75,7 +75,7 @@ const Checkout = () => {
                             </div>
 
                             <div className='flex items-center gap-4'>
-                                <input type="radio" />
+                                <input type="radio" name='deliveryType' className='cursor-pointer'/>
                                 <div>
                                     <p className='text-secondary-color text-[20px]'>Pickup Station</p>
                                     <p className='text-[#6C6C6C] text-[14px]'>Delivery Price (2,500) for the next 20 days</p>
@@ -83,7 +83,7 @@ const Checkout = () => {
                             </div>
                         </div>
 
-                        <div>
+                        {/* <div>
                             <p className='font-[700] text-[20px] text-primary-color mt-10 pr-6 mb-1' style={{borderBottom:"1px solid #898989", display:"inline-block"}}>Payment method</p>
                             <div className='flex items-center gap-4 my-4'>
                                 <input type="radio" />
@@ -108,7 +108,22 @@ const Checkout = () => {
                                     <p className='text-[#6C6C6C] text-[14px]'>Generate and tranfer directly to our Bank Account.</p>
                                 </div>
                             </div>
+                        </div> */}
+
+                        <div className='h-[1px] bg-[#ccc] mb-4 mt-[100px]'></div>
+                        <div className='text-[#4E4E4E] text-[16px] flex items-center justify-between'>
+                            <p>Subtotal</p>
+                            <p>#165,500</p>
                         </div>
+                        <div className='text-[#4E4E4E] text-[16px] flex items-center justify-between mt-2'>
+                            <p>Delivery Charges</p>
+                            <p>#4,500</p>
+                        </div>
+                        <div className='text-[#000] text-[22px] flex items-center justify-between mt-4'>
+                            <p>Total</p>
+                            <p>#169,500</p>
+                        </div>
+                        <button className='bg-primary-color text-white w-full h-[45px] rounded-[10px] mt-10'>Proceed to Payment</button>
                     </div>
                 </div>
             </div>

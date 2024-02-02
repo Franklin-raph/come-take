@@ -36,7 +36,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
             <div className="mobile-nav flex items-center gap-5">
                 {/* <IoIosSearch cursor={"pointer"}/> */}
                 <FaRegCircleUser cursor={"pointer"} onClick={() => setAccountDropDown(!accountDropDown)}/>
-                <BsCart3 cursor={"pointer"}/>
+                <BsCart3 cursor={"pointer"} onClick={() => navigate('/shoping-cart')}/>
                 <MdMenu cursor={"pointer"}/>
             </div>
             <div className='nav-right w-full'>
