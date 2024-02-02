@@ -439,6 +439,14 @@
   display: none !important;
 }
 
+.shoppingCartTable th{
+  font-weight: 400 !important;
+}
+
+.shoppingCartTable thead{
+  border-radius: 4px 4px 0 0 !important;
+}
+
 @media screen and (max-width:960px) {
 .lady-part {
     height: 40vh;

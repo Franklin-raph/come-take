@@ -7,10 +7,12 @@ const BottomNav = () => {
   return (
     <div className='flex items-center justify-between px-12 py-5 bottom-nav bg-secondary-color text-white bottom-nav'>
         <ul className='flex items-center gap-8'>
-            <RxHamburgerMenu />
-            <li>
-                <Link to="/categories">Categories</Link>
-                <IoChevronDown />
+            <li className='flex items-center'>
+                <RxHamburgerMenu />
+                <li className='ml-1'>
+                    <Link to="/categories">Categories</Link>
+                    <IoChevronDown />
+                </li>
             </li>
             <li>
                 <Link to="/new-listing">New Listing</Link>
