@@ -144,7 +144,7 @@ const Footer = () => {
             <h1 className='font-bold text-[15px] md:text-[17px] text-primary-color mb-2'>Categories</h1>
             <ul>
               {categoriesLinks.map(link => (
-                <li className='py-1 text-[12px] md:text-[16px]'>
+                <li className='py-1 text-[12px] md:text-[14px]'>
                   <Link to={link.url}>{link.label}</Link>
                 </li>
               ))}
@@ -155,7 +155,7 @@ const Footer = () => {
             <h1 className='font-bold text-[15px] md:text-[17px] text-primary-color mb-2'>About Us</h1>
             <ul>
               {aboutUsLinks.map(link => (
-                <li className='py-1 text-[12px] md:text-[16px]'>
+                <li className='py-1 text-[12px] md:text-[14px]'>
                   <Link to={link.url}>{link.label}</Link>
                 </li>
               ))}
@@ -165,7 +165,7 @@ const Footer = () => {
             <h1 className='font-bold text-[15px] md:text-[17px] text-primary-color mb-2'>Service</h1>
             <ul>
               {serviceLinks.map(link => (
-                <li className='py-1 text-[12px] md:text-[16px]'>
+                <li className='py-1 text-[12px] md:text-[14px]'>
                   <Link to={link.url}>{link.label}</Link>
                 </li>
               ))}
@@ -175,7 +175,7 @@ const Footer = () => {
             <h1 className='font-bold text-[15px] md:text-[17px] text-primary-color mb-2'>Help</h1>
             <ul>
               {helpLinks.map(link => (
-                <li className='py-1 text-[12px] md:text-[16px]'>
+                <li className='py-1 text-[12px] md:text-[14px]'>
                   <Link to={link.url}>{link.label}</Link>
                 </li>
               ))}
