@@ -4,8 +4,50 @@ import laptop1 from "../../assets/category-product-preview.png"
 import { SlTrash } from "react-icons/sl";
 import paymentAccept from "../../assets/paymentAccepted.png"
 import laptop3 from "../../assets/product1.jpeg"
+import { GoArrowRight } from 'react-icons/go';
+import FairlyUsedProducts from '../../components/fairly-used-products/FairlyUsedProducts';
+import laptopImage from "../../assets/laptop.png"
+import bagImage from "../../assets/bag.png"
+import shoeImage from "../../assets/shoe.png"
+import phoneImage from "../../assets/iphone.png"
 
 const ShoppingCart = () => {
+
+    const fairlyUsedProductsArray = [
+        {
+          img:laptopImage,
+          productName:`Macbook Pro 13"`,
+          price:"2m",
+          description:"256.8 core GPU, 8GB",
+          rating:5,
+          reviews:"35 Reviews"
+        },
+        {
+          img:bagImage,
+          productName:`Hand Bag`,
+          price:"2m",
+          description:"256.8 core GPU, 8GB",
+          rating:5,
+          reviews:"35 Reviews"
+        },
+        {
+          img:shoeImage,
+          productName:`Nike Sneakers`,
+          price:"2m",
+          description:"256.8 core GPU, 8GB",
+          rating:5,
+          reviews:"35 Reviews"
+        },
+        {
+          img:phoneImage,
+          productName:`Iphone 13"`,
+          price:"2m",
+          description:"256.8 core GPU, 8GB",
+          rating:5,
+          reviews:"35 Reviews"
+        }
+      ]
+
   return (
     <div>
         <div className="md:flex items-center justify-start px-12 py-5 gap-4 hidden">
@@ -246,52 +288,48 @@ const ShoppingCart = () => {
                             </tbody>
                         </table>
                     </div>
-
-                    {/* <div className="h-[56px] bg-[#D4E5B4] flex items-center justify-between px-5 mt-4" style={{borderRadius:"4px 4px 0 0", boxShadow:"0 11px 40px -17px #00000024"}}>
-                        <p>Item Detail</p>
-                        <div className='flex items-center gap-[5rem]'>
-                            <p>Quantity</p>
-                            <p>Price</p>
-                            <p>Action</p>
-                        </div>
-                    </div> */}
-                    {/* <div className='flex items-center justify-between'>
-                        <div className='flex items-center gap-[30px]'>
-                            <img src={laptop1} className='w-[15%]'/>
-                            <div>
-                                <p>Lenovo V15 G3 (12th Gen Core I5/ 21.5" 8gb/ 256 Ssd/ Dos)</p>
-                                <p className='text-[#898989] text-[12px] py-2'>Brand : Lenovo</p>
-                                <div className="flex items-center">
-                                    <div className="flex items-center">
-                                        <IoMdStar color='#FFEA2E'/>
-                                        <IoMdStar color='#FFEA2E'/>
-                                        <IoMdStar color='#FFEA2E'/>
-                                        <IoMdStar color='#FFEA2E'/>
-                                        <IoMdStar color='#FFEA2E'/>
-                                    </div>
-                                    <span className="text-[11px] font-[500] text-[#6d6d6d] ml-2">25 Reviews</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div  className='flex items-center gap-[5rem] flex-[1]'>
-                            <div className='flex items-center justify-center gap-2 rounded-[4px] w-[120px] text-center h-[30px]'>
-                                <p className='flex-1 px-2 text-[#B5AEAE] cursor-pointer h-full border border-[#B5AEAE] rounded-[5px]'>-</p>
-                                <p className='flex-1'>1</p>
-                                <p className='flex-1 px-2 text-[#B5AEAE] cursor-pointer h-full border border-[#B5AEAE] rounded-[5px]'>+</p>
-                            </div>
-                            <div>
-                                <p>#115,000</p>
-                                <p className='text-[#6C6C6C] text-[12px]'>#115,000 x 1 item</p>
-                            </div>
-                            <div>
-                                <SlTrash color='#FF0505'/>
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </div>
 
+        <div className="lg:px-12 py-8">
+            <div className='p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <div className="flex items-center justify-between mb-[20px]">
+                    <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Products Related to Items in your cart</h1>
+                    <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                        <p>See all</p>
+                        <GoArrowRight />
+                    </div>
+                </div>
+                <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
+            </div>
+        </div>
+
+        <div className="lg:px-12 py-8">
+            <div className='p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <div className="flex items-center justify-between mb-[20px]">
+                    <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Recommended</h1>
+                    <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                        <p>See all</p>
+                        <GoArrowRight />
+                    </div>
+                </div>
+                <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
+            </div>
+        </div>
+
+        <div className="lg:px-12 py-8">
+            <div className='p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <div className="flex items-center justify-between mb-[20px]">
+                    <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Recently viewed</h1>
+                    <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                        <p>See all</p>
+                        <GoArrowRight />
+                    </div>
+                </div>
+                <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
+            </div>
+        </div>
     </div>
   )
 }
