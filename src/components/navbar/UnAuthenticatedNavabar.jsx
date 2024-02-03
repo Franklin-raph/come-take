@@ -73,7 +73,10 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                         <div className='flex items-center gap-2'>
                             <div>
                                 <h1 className='text-bold text-primary-color'>Anthony Egolum...</h1>
-                                <p className='text-[#6C6C6C]'>View Profile</p>
+                                <p className='text-[#6C6C6C] cursor-pointer' onClick={() => {
+                                    navigate("/my-profile")
+                                    setAccountDropDown(!accountDropDown)
+                                }}>View Profile</p>
                             </div>
                             <CiPlay1 />
                         </div>
