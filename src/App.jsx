@@ -16,7 +16,7 @@ import ShoppingCart from "./pages/shopping-cart/ShoppingCart"
 import Checkout from "./pages/check-out/Checkout"
 import MyProfile from "./pages/my-profile/MyProfile"
 import PasswordReset from "./pages/password-reset/PasswordReset"
-import MyOrder from "./pages/my-order/MyOrder"
+import MyOrder from "./pages/my-order-history/MyOrderHistory"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
