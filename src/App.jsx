@@ -17,6 +17,7 @@ import Checkout from "./pages/check-out/Checkout"
 import MyProfile from "./pages/my-profile/MyProfile"
 import PasswordReset from "./pages/password-reset/PasswordReset"
 import MyOrder from "./pages/my-order-history/MyOrderHistory"
+import OrederdItem from "./pages/ordered-item/OrederdItem"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/my-profile" element={<MyProfile />}/>
           <Route path="/password-reset" element={<PasswordReset />}/>
           <Route path="/my-order-history" element={<MyOrder />}/>
+          <Route path="/order-item" element={<OrederdItem />}/>
         </Routes>
         <Footer />
         {loginModal && !registerModal &&
