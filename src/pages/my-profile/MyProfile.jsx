@@ -7,7 +7,7 @@ const MyProfile = () => {
         <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20">
             <div className='flex items-start gap-[2rem] flex-col-reverse lg:flex-row'>
                 <ProfileSideNav />
-                <div className='gap-[0rem] px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <div className='gap-[0rem] px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <div>
                         <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Account Information</h1>
                         <div>
@@ -40,7 +40,7 @@ const MyProfile = () => {
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>Address</label>
                             <input type="text" style={{border:"1px solid #CCCCCC"}} value={"No 5 Ituku Street Umuokpu"} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
                         </div>
-                        <div className='flex items-center gap-[38px] my-7'>
+                        <div className='flex items-center gap-[38px] my-7 flex-col sm:flex-row'>
                             <div className='w-full'>
                                 <label className='text-[16px] block mb-[3px] text-[#101010]'>Town</label>
                                 <div className='flex items-center justify-between w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]' style={{border:"1px solid #CCCCCC"}}>

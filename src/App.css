@@ -456,6 +456,11 @@
   color: #1A1A1A;
 }
 
+.active-msg-tab{
+  color: #003C2F;
+  border-bottom: 2px solid #003C2F;
+}
+
 @media screen and (max-width:960px) {
 .lady-part {
     height: 40vh;
