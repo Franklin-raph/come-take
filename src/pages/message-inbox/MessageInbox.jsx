@@ -55,7 +55,7 @@ const MessageInbox = () => {
                 <div>
                     {!read &&
                         <>
-                            <div className='flex items-center gap-5 bg-[#EDEDED] mt-[20px] p-4 rounded-[20px]' style={{border: "0.7px solid #003C2F"}}>
+                            <div className='flex items-center gap-5 bg-[#EDEDED] mt-[20px] p-4 rounded-[20px] cursor-pointer' style={{border: "0.7px solid #003C2F"}} onClick={() => navigate('/message-content')}>
                                 <div style={{backgroundColor:"#FCF4E6", padding:"11px", borderRadius:"50px"}}>
                                     <FaEnvelope color='#FF9999' fontSize={"22px"}/>
                                 </div>
@@ -67,7 +67,7 @@ const MessageInbox = () => {
                                     <p className='text-[#6C6C6C] text-[16px]'>Hello, Mr Anthony, Welcome to our shop.  fermentum diam. Curabitur sit amet purus justo.</p>
                                 </div>
                             </div>
-                            <div className='flex items-center gap-5 bg-[#EDEDED] mt-[20px] p-4 rounded-[20px]' style={{border: "0.7px solid #003C2F"}}>
+                            <div className='flex items-center gap-5 bg-[#EDEDED] mt-[20px] p-4 rounded-[20px] cursor-pointer' style={{border: "0.7px solid #003C2F"}} onClick={() => navigate('/message-content')}>
                                 <div style={{backgroundColor:"#FCF4E6", padding:"11px", borderRadius:"50px"}}>
                                     <FaEnvelope color='#FF9999' fontSize={"22px"}/>
                                 </div>
@@ -79,7 +79,7 @@ const MessageInbox = () => {
                                     <p className='text-[#6C6C6C] text-[16px]'>Hello, Mr Anthony, Welcome to our shop.  fermentum diam. Curabitur sit amet purus justo.</p>
                                 </div>
                             </div>
-                            <div className='flex items-center gap-5 bg-[#EDEDED] mt-[20px] p-4 rounded-[20px]' style={{border: "0.7px solid #003C2F"}}>
+                            <div className='flex items-center gap-5 bg-[#EDEDED] mt-[20px] p-4 rounded-[20px] cursor-pointer' style={{border: "0.7px solid #003C2F"}} onClick={() => navigate('/message-content')}>
                                 <div style={{backgroundColor:"#FCF4E6", padding:"11px", borderRadius:"50px"}}>
                                     <FaEnvelope color='#FF9999' fontSize={"22px"}/>
                                 </div>
@@ -95,7 +95,7 @@ const MessageInbox = () => {
                     }
                     
                     {read && 
-                        <div className='flex items-center gap-5 bg-[#EDEDED] mt-[20px] p-4 rounded-[20px]' style={{border: "0.7px solid #003C2F"}}>
+                        <div className='flex items-center gap-5 bg-[#EDEDED] mt-[20px] p-4 rounded-[20px] cursor-pointer' style={{border: "0.7px solid #003C2F"}} onClick={() => navigate('/message-content')}>
                             <div style={{backgroundColor:"#E6ECEA", padding:"11px", borderRadius:"50px"}}>
                                 <FaEnvelope color='#989898' fontSize={"22px"}/>
                             </div>
