@@ -35,7 +35,7 @@ const MessageContent = () => {
                     <button onClick={() => setMessages(!messages)} className='text-[#FF3030]'>Mark all as read</button>
                 </div>
 
-                <div className='flex items-start flex-col gap-3 bg-[#EDEDED] mt-[20px] px-5 py-7 rounded-[20px]' style={{border: "0.7px solid #003C2F"}}>
+                <div className='flex items-start flex-col gap-3 bg-[#EDEDED] mt-[50px] px-5 py-7 rounded-[20px]' style={{border: "0.7px solid #003C2F"}}>
                     <div style={{backgroundColor:"#FCF4E6", padding:"11px", borderRadius:"50px"}}>
                         <FaEnvelope color='#FF9999' fontSize={"22px"}/>
                     </div>
