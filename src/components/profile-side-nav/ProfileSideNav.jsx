@@ -19,26 +19,17 @@ const ProfileSideNav = () => {
                     <ul className='ml-3 grid gap-2'>
                         <li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/my-profile')}>Account Information</li>
                         <li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/password-reset')} >Security Settings</li>
-                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>Edit Phone Number</li>
-                    </ul>
-                </div>
-                <div className='mt-10'>
-                    <div className='flex items-center gap-2 mb-3'>
-                        <LuMessagesSquare color='#292D32' fontSize={"18px"}/>
-                        <p className='text-[18px] font-[500]'>Messages</p>
-                    </div>
-                    <ul className='ml-3 grid gap-2'>
-                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/messages')}>Inbox</li>
-                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>Sent Messages</li>
+                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/saved-items')}>Saved Items</li>
+                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/messages')}>Notification</li>
                     </ul>
                 </div>
                 <div className='mt-10'>
                     <div className='flex items-center gap-2 mb-3'>
                         <TiDocumentText color='#292D32' fontSize={"18px"}/>
-                        <p className='text-[18px] font-[500]'>My Order</p>
+                        <p className='text-[18px] font-[500]'>My Shop</p>
                     </div>
                     <ul className='ml-3 grid gap-2'>
-                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/my-order-history')}>Order History</li>
+                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/my-order-history')}>My Shop</li>
                     </ul>
                 </div>
                 <div className='mt-10'>

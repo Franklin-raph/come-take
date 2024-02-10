@@ -1,5 +1,6 @@
 import ProfileSideNav from '../../components/profile-side-nav/ProfileSideNav';
 import { IoChevronDown } from 'react-icons/io5';
+import userProfilePic  from '../../assets/profilePic.png'
 
 const MyProfile = () => {
   return (
@@ -10,6 +11,11 @@ const MyProfile = () => {
                 <div className='gap-[0rem] px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <div>
                         <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Account Information</h1>
+                        <div className='flex items-center justify-center flex-col my-[3rem]'>
+                            <img src={userProfilePic} alt="" width="140px" height="140px"/>
+                            <p className='text-[#5C5C5C] font-[600] text-[24px] mt-3 mb-1'>John Doe</p>
+                            <p className='text-[#5C5C5C]'>JohnDoes@gmail.com</p>
+                        </div>
                         <div>
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>First Name</label>
                             <input type="text" style={{border:"1px solid #CCCCCC"}} value={"Anthony"} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
@@ -34,7 +40,7 @@ const MyProfile = () => {
                         <button className='bg-primary-color w-full py-[16px] px-[32px] text-[#fff] rounded-[4px] mt-10'>Update</button>
                     </div>
 
-                    <div className='mt-[60px]'>
+                    {/* <div className='mt-[60px]'>
                         <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Delivery Details</h1>
                         <div>
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>Address</label>
@@ -61,7 +67,7 @@ const MyProfile = () => {
                             <input type="text" style={{border:"1px solid #CCCCCC"}} value={"08145463122"} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
                         </div>
                         <button className='bg-primary-color w-full py-[16px] px-[32px] text-[#fff] rounded-[4px] mt-10'>Save Information</button>
-                    </div>
+                    </div> */}
                     {/* <div className="md:w-[55%] mt-[1rem] md:mt-[0]">
                         <p className='text-[24px] leading-[1.5] lg:leading-[1.8]'>
                             Lenovo V15 G3 Iap Laptop (12th Gen Core I5/ 21.5" 8gb/ 256 Ssd/ Dos) -82tt00juue

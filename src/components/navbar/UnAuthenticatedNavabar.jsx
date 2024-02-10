@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import { FaRegCircleUser } from "react-icons/fa6";
-import { IoChevronDown } from "react-icons/io5";
+import { CiHeart } from "react-icons/ci";
 import { PiWarningCircle } from "react-icons/pi";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import BottomNav from '../bottom-nav/BottomNav';
 import { BsCart3 } from 'react-icons/bs';
 import { MdMenu } from "react-icons/md";
 import { CiPlay1 } from "react-icons/ci";
-import { CiHeart } from "react-icons/ci";
 import { BsCart } from "react-icons/bs";
 import { TbSettings2 } from "react-icons/tb";
 import { PiWarningCircleThin } from "react-icons/pi";
@@ -20,8 +19,6 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
 
     const [accountDropDown, setAccountDropDown] = useState(false)
     const navigate = useNavigate()
-
-
 
   return (
     <div>
@@ -53,8 +50,8 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                 </li>
                 <li onClick={() => navigate('/shoping-cart')}>
                     <div className='cursor-pointer flex'>
-                        <p>Cart</p>
-                        <BsCart3 color='#08A805' fontSize={"20px"}/>
+                        <p>Saved</p>
+                        <CiHeart color='#FF3030' fontSize={"20px"}/>
                         <p>(0)</p>
                     </div>
                 </li>

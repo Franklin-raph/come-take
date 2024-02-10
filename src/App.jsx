@@ -20,6 +20,7 @@ import MyOrder from "./pages/my-order-history/MyOrderHistory"
 import OrederdItem from "./pages/ordered-item/OrederdItem"
 import MessageInbox from "./pages/message-inbox/MessageInbox"
 import MessageContent from "./pages/message-content/MessageContent"
+import SavedItems from "./pages/saved-items/SavedItems"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -43,6 +44,7 @@ export default function App() {
           <Route path="/order-item" element={<OrederdItem />}/>
           <Route path="/messages" element={<MessageInbox />}/>
           <Route path="/message-content" element={<MessageContent />}/>
+          <Route path="/saved-items" element={<SavedItems />}/>
         </Routes>
         <Footer />
         {loginModal && !registerModal &&
