@@ -28,7 +28,7 @@ const ProductDescription = () => {
           img:laptopImage,
           productName:`Macbook Pro 13"`,
           price:"2m",
-          description:"256.8 core GPU, 8GB",
+          location:"Imo State",
           rating:5,
           reviews:"35 Reviews"
         },
@@ -36,7 +36,7 @@ const ProductDescription = () => {
           img:bagImage,
           productName:`Hand Bag`,
           price:"2m",
-          description:"256.8 core GPU, 8GB",
+          location:"Imo State",
           rating:5,
           reviews:"35 Reviews"
         },
@@ -44,7 +44,7 @@ const ProductDescription = () => {
           img:shoeImage,
           productName:`Nike Sneakers`,
           price:"2m",
-          description:"256.8 core GPU, 8GB",
+          location:"Imo State",
           rating:5,
           reviews:"35 Reviews"
         },
@@ -52,7 +52,7 @@ const ProductDescription = () => {
           img:phoneImage,
           productName:`Iphone 13"`,
           price:"2m",
-          description:"256.8 core GPU, 8GB",
+          location:"Imo State",
           rating:5,
           reviews:"35 Reviews"
         }
