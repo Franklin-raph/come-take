@@ -22,6 +22,7 @@ import MessageInbox from "./pages/message-inbox/MessageInbox"
 import MessageContent from "./pages/message-content/MessageContent"
 import SavedItems from "./pages/saved-items/SavedItems"
 import ShopSetUp from "./pages/sellers/shop-set-up/ShopSetUp"
+import IdVerification from "./pages/sellers/id-verification/IdVerification"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -46,7 +47,8 @@ export default function App() {
           <Route path="/messages" element={<MessageInbox />}/>
           <Route path="/message-content" element={<MessageContent />}/>
           <Route path="/saved-items" element={<SavedItems />}/>
-          <Route path="/shop-set-up" element={<ShopSetUp />}/>
+          <Route path="/shop-set-up" element={<ShopSetUp />} />
+          <Route path="/verify-id" element={<IdVerification />}/>
         </Routes>
         <Footer />
         {loginModal && !registerModal &&

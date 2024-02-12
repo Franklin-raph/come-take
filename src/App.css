@@ -461,6 +461,10 @@
   border-bottom: 2px solid #003C2F;
 }
 
+.active-id{
+  background-color: #003C2F !important;
+}
+
 @media screen and (max-width:960px) {
 .lady-part {
     height: 40vh;
