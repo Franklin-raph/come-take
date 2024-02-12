@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import { FaRegCircleUser } from "react-icons/fa6";
-import { IoChevronDown } from "react-icons/io5";
+import { CiBellOn } from "react-icons/ci";
 import { PiWarningCircle } from "react-icons/pi";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import BottomNav from '../bottom-nav/BottomNav';
@@ -53,10 +53,13 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                 </li>
                 <li onClick={() => navigate('/shoping-cart')}>
                     <div className='cursor-pointer flex'>
-                        <p>Cart</p>
-                        <BsCart3 color='#08A805' fontSize={"20px"}/>
+                        <p>Saved</p>
+                        <CiHeart color='#FF3030' fontSize={"20px"}/>
                         <p>(0)</p>
                     </div>
+                </li>
+                <li>
+                    <CiBellOn fontSize={"20px"}/>
                 </li>
                 <li className='bg-secondary-color px-3 py-1 rounded-full getApp'>
                     <HiOutlineDevicePhoneMobile />
