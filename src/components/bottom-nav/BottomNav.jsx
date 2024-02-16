@@ -18,7 +18,7 @@ const BottomNav = () => {
                 <Link to="/new-listing">New Listing</Link>
             </li>
             <li>
-                <Link to="/sell-products">Sell Products</Link>
+                <Link to="/shop-set-up">Sell Products</Link>
             </li>
             <li>
                 <Link to="#">Trending Products</Link>

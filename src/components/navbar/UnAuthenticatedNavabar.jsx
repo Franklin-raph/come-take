@@ -5,7 +5,7 @@ import { CiBellOn, CiHeart } from "react-icons/ci";
 import { PiWarningCircle } from "react-icons/pi";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import BottomNav from '../bottom-nav/BottomNav';
-import { BsCart3 } from 'react-icons/bs';
+import { BsCart3, BsClock } from 'react-icons/bs';
 import { MdMenu } from "react-icons/md";
 import { CiPlay1 } from "react-icons/ci";
 import { BsCart } from "react-icons/bs";
@@ -13,7 +13,11 @@ import { TbSettings2 } from "react-icons/tb";
 import { PiWarningCircleThin } from "react-icons/pi";
 import { TbLogout2 } from "react-icons/tb";
 import { TiDocumentText } from "react-icons/ti";
-import { LuMessagesSquare } from "react-icons/lu";
+import { LuMessagesSquare, LuUserX2 } from "react-icons/lu";
+import { IoNotificationsOutline } from "react-icons/io5";
+import { HiOutlineUser } from "react-icons/hi2";
+import { CiShop } from "react-icons/ci";
+import { BiSolidPhoneCall } from "react-icons/bi";
 
 const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
 
@@ -32,9 +36,9 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
             </div>
             <div className="mobile-nav flex items-center gap-5">
                 {/* <IoIosSearch cursor={"pointer"}/> */}
+                <IoNotificationsOutline cursor={"pointer"} fontWeight={"bold"} onClick={() => navigate('/shoping-cart')}/>
                 <FaRegCircleUser cursor={"pointer"} onClick={() => setAccountDropDown(!accountDropDown)}/>
-                <BsCart3 cursor={"pointer"} onClick={() => navigate('/shoping-cart')}/>
-                <MdMenu cursor={"pointer"}/>
+                {/* <MdMenu cursor={"pointer"}/> */}
             </div>
             <div className='nav-right w-full'>
                 <li onClick={() => {
@@ -65,7 +69,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
             </div>
         </nav>
 
-        {accountDropDown && 
+        {/* {accountDropDown && 
             <div className='fixed right-0 bg-white top-[63px] z-[999] border'>
                 <div className='p-5'>
                     <div className='flex items-center gap-[25px] mb-7'>
@@ -108,6 +112,63 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                         <div className='flex items-center gap-3 text-[#FF0505]'>
                             <TbLogout2 className='text-[20px]'/>
                             <p className='text-[16px]'>Logout</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        } */}
+
+        {accountDropDown && 
+            <div className='fixed right-0 bg-white top-[63px] z-[999] border w-full'>
+                <div className='p-5'>
+                    <div className='flex items-start gap-[20px] mb-7'>
+                        <div className="p-2 rounded-full text-[30px]" style={{ border:"1px solid #6C6C6C" }}>
+                            <HiOutlineUser color='#6C6C6C'/>
+                        </div>
+                        <div className='flex items-center gap-2'>
+                            <div className='cursor-pointer' onClick={() => {
+                                    navigate("/my-profile")
+                                    setAccountDropDown(!accountDropDown)
+                                }}>
+                                <h1 className='text-bold text-primary-color'>Ndubuisi Emmanuel</h1>
+                                <p className='text-[#6C6C6C] mt-[-5px]'>Useruseruser@email.com</p>
+                                <p className='text-secondary-color font-[700]'>Account Settings</p>
+                            </div>
+                            {/* <CiPlay1 /> */}
+                        </div>
+                    </div>
+                    <div className='grid gap-4 grid-cols-2'>
+                        <div className='flex items-center gap-3'>
+                            <CiHeart className='text-[21px] text-[#FF0505]'/>
+                            <p className='text-[16px] text-[#6C6C6C]'>Saved Items</p>
+                        </div>
+                        <div className='flex items-center gap-3'>
+                            <CiBellOn className='text-[#292D32] text-[20px] font-[700]'/>
+                            <p className='text-[16px] text-[#6C6C6C]'>Notifications</p>
+                        </div>
+                        <div className='flex items-center gap-3'>
+                            <BsClock className='text-[#292D32] text-[18px] font-[700]'/>
+                            <p className='text-[16px] text-[#6C6C6C]'>Pending Reviews</p>
+                        </div>
+                        <div className='flex items-center gap-3'>
+                            <CiShop className='text-[#292D32] text-[20px] font-[700]'/>
+                            <p className='text-[16px] text-[#6C6C6C]'>List Product</p>
+                        </div>
+                        <div className='flex items-center gap-3'>
+                            <CiShop className='text-[#292D32] text-[20px] font-[700]'/>
+                            <p className='text-[16px] text-[#6C6C6C]'>My Shop</p>
+                        </div>
+                        <div className='flex items-center gap-3'>
+                            <BiSolidPhoneCall className='text-[#292D32] text-[20px] font-[700]'/>
+                            <p className='text-[16px] text-[#6C6C6C]'>Contact Us</p>
+                        </div>
+                        <div className='flex items-center gap-3'>
+                            <LuUserX2 className='text-[#292D32] text-[20px] font-[700]'/>
+                            <p className='text-[16px] text-[#6C6C6C]'>Delete Account</p>
+                        </div>
+                        <div className='flex items-center gap-3'>
+                            <TbLogout2 className='text-[#292D32] text-[20px] font-[700]'/>
+                            <p className='text-[16px] text-[#6C6C6C]'>Logout</p>
                         </div>
                     </div>
                 </div>
