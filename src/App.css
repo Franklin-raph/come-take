@@ -465,6 +465,10 @@
   background-color: #003C2F !important;
 }
 
+.mobile-filter{
+  display: none !important;
+}
+
 @media screen and (max-width:960px) {
 .lady-part {
     height: 40vh;
@@ -474,8 +478,12 @@
     display: none;
   }
 
-  .nav-right{
+  .nav-right, .profile-side-nav{
     display: none !important;
+  }
+
+  .mobile-filter{
+    display: flex !important;
   }
 
   .mobile-nav, .mobile-search{
@@ -483,7 +491,7 @@
     font-size: 22px;
   }
 
-  .bottom-nav, .search-bar, .category-left{
+  .bottom-nav, .search-bar, .category-left, .desktop-filter{
     display: none !important;
   }
 

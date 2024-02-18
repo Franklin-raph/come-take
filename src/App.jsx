@@ -23,6 +23,7 @@ import MessageContent from "./pages/message-content/MessageContent"
 import SavedItems from "./pages/saved-items/SavedItems"
 import ShopSetUp from "./pages/sellers/shop-set-up/ShopSetUp"
 import IdVerification from "./pages/sellers/id-verification/IdVerification"
+import Subscription from "./pages/subscription-page/Subscription"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -49,6 +50,7 @@ export default function App() {
           <Route path="/saved-items" element={<SavedItems />}/>
           <Route path="/shop-set-up" element={<ShopSetUp />} />
           <Route path="/verify-id" element={<IdVerification />}/>
+          <Route path="/subscription-plan" element={<Subscription />} />
         </Routes>
         <Footer />
         {loginModal && !registerModal &&

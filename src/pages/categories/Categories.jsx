@@ -16,7 +16,7 @@ import BrandNewProducts from "../../components/brand-new-products/BrandNewProduc
 import CategoryProductPageCard from "../../components/categories-product-page/CategoryProductPage";
 import { BsFilterLeft } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa6";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Categories = () => {
 
@@ -201,6 +201,11 @@ const Categories = () => {
       const priceRangeArray= [
         "Below 50,000","#50,000 - #100,000","#110,000 - #160,000","#170,000 - #220,000","#230,000 - #280,000","#290,000 and Above"
       ]
+
+      const sortArray = ["Newest Arrival", "Verified", "Price: Low to High", "Price: High to low"]
+
+      const [selectedSort, setSelectedSort] = useState('Newest Arrival')
+      const [showSort, setShowSort] = useState(false)
     
 
 
@@ -312,7 +317,7 @@ const Categories = () => {
                     </div>
                 </div>
                 <div className="w-[75%] ml-auto category-right">
-                    <div className="flex bg-primary-color text-white items-center justify-between rounded-[4px] px-3 py-4 md:hidden mb-8">
+                    <div className="flex bg-primary-color text-white items-center justify-between rounded-[4px] px-3 py-4 mb-8 mobile-filter">
                       <div className="flex items-center">
                         <p>Category</p>
                         <MdKeyboardArrowDown fontSize={"22px"}/>
@@ -326,11 +331,18 @@ const Categories = () => {
                         <MdKeyboardArrowDown fontSize={"22px"}/>
                       </div>
                     </div>
-                    <div className="md:flex items-center justify-between hidden">
+                    <div className="flex items-center justify-between desktop-filter">
                         <h1 className="font-[600] text-[24px] mb-4 lg:mt-10 text-primary-color">Laptops</h1>
-                        <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" >
-                        <p>Sort By:New Arrivals</p>
-                        <MdKeyboardArrowDown />
+                        <div className="flex items-center gap-1 py-1 px-2 rounded-full cursor-pointer text-[12px] relative" >
+                          <p>Sort By: <span>{selectedSort}</span> </p>
+                          <MdKeyboardArrowDown fontSize={"20px"} onClick={() => setShowSort(!showSort)}/>
+
+                          {showSort &&
+                            <div className="absolute bg-white border top-[30px] right-[10px] z-[999] px-4">
+                            { sortArray.map(item => (<p className="my-3">{item}</p>))}
+                            </div>
+                          }
+
                         </div>
                     </div>
                     <CategoryProductPageCard categoryProductsArray={categoryProductsArray}/>

@@ -1,4 +1,4 @@
-import React from 'react'
+import { LiaTelegramPlane } from "react-icons/lia";
 
 const NewsLetter = () => {
   return (
@@ -7,7 +7,8 @@ const NewsLetter = () => {
         <p className='mt-2 mb-5 text-[#ccc]'>Subscribe to our newsletter to get firsthand information on our latest offers</p>
         <div className='rounded-full py-1 px-1 bg-white flex items-center w-[80%] md:w-[50%]'>
             <input type="text" placeholder='Email Address'className='w-full pl-3 outline-none'/>
-            <button className='bg-secondary-color rounded-full py-2 px-9 text-white'>Subscribe</button>
+            <button className='bg-secondary-color rounded-full py-2 px-9 text-white hidden sm:block'>Subscribe</button>
+            <button className='bg-secondary-color rounded-full py-2 px-4 text-white sm:hidden'> <LiaTelegramPlane /> </button>
         </div>
     </div>
   )

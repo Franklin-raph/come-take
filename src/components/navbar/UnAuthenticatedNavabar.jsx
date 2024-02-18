@@ -5,23 +5,27 @@ import { CiBellOn, CiHeart } from "react-icons/ci";
 import { PiWarningCircle } from "react-icons/pi";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import BottomNav from '../bottom-nav/BottomNav';
-import { BsCart3, BsClock } from 'react-icons/bs';
+import { IoCubeOutline } from "react-icons/io5";
 import { MdMenu } from "react-icons/md";
-import { CiPlay1 } from "react-icons/ci";
-import { BsCart } from "react-icons/bs";
+import { PiWarningCircleLight } from "react-icons/pi";
+import { BsCart, BsClock } from "react-icons/bs";
 import { TbSettings2 } from "react-icons/tb";
-import { PiWarningCircleThin } from "react-icons/pi";
+import { MdClose } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
-import { TiDocumentText } from "react-icons/ti";
+import { TbHome } from "react-icons/tb";
 import { LuMessagesSquare, LuUserX2 } from "react-icons/lu";
-import { IoNotificationsOutline } from "react-icons/io5";
+import { IoTriangleSharp } from "react-icons/io5";
+import { IoChevronDown, IoNotificationsOutline } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi2";
 import { CiShop } from "react-icons/ci";
 import { BiSolidPhoneCall } from "react-icons/bi";
 
 const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
 
-    const [accountDropDown, setAccountDropDown] = useState(false)
+    const [desktopAccountDropDown, setDesktopAccountDropDown] = useState(false)
+    const [mobileAccountDropDown, setMobileAccountDropDown] = useState(false)
+    const user = localStorage.getItem("user")
+    const [mobileNav, setMobileNav] = useState(false)
     const navigate = useNavigate()
 
   return (
@@ -37,10 +41,49 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
             <div className="mobile-nav flex items-center gap-5">
                 {/* <IoIosSearch cursor={"pointer"}/> */}
                 <IoNotificationsOutline cursor={"pointer"} fontWeight={"bold"} onClick={() => navigate('/shoping-cart')}/>
-                <FaRegCircleUser cursor={"pointer"} onClick={() => setAccountDropDown(!accountDropDown)}/>
-                {/* <MdMenu cursor={"pointer"}/> */}
+                <FaRegCircleUser cursor={"pointer"} onClick={() => setMobileAccountDropDown(!mobileAccountDropDown)}/>
+                <MdMenu cursor={"pointer"} onClick={() => setMobileNav(true)}/>
             </div>
             <div className='nav-right w-full'>
+                {
+                user ? 
+                <li className='relative' onClick={() => {
+                    setDesktopAccountDropDown(!desktopAccountDropDown)
+                }}>
+                    <FaRegCircleUser fontSize={"20px"}/>
+                    <Link to="#">Account</Link>
+                    <IoChevronDown fontSize={"20px"} />
+
+                    { desktopAccountDropDown &&
+                        <ul className='fixed bg-white z-50 top-[57px] translate-x-[-20px] rounded-md mt-[10px]' style={{ border:"1px solid #DCDCDC" }}>
+                            <div className='flex items-center justify-center mt-[-18px]'>
+                                <IoTriangleSharp color='white' fontSize={"20px"}/>
+                            </div>
+                            <p className='text-[#333333] text-[14px] text-center mt-2 pb-1' style={{ borderBottom:"1px solid #DCDCDC" }}>Hi, John Doe</p>
+                            <li onClick={() => navigate('/my-profile')} className='mt-4 px-[15px]'>
+                                <div className='cursor-pointer flex items-center gap-3 justify-center text-center'>
+                                    <FaRegCircleUser fontSize={"20px"} color='#434343'/>
+                                    <p className='text-[#434343] text-[14px]'>My Account</p>
+                                </div>
+                            </li>
+                            <li onClick={() => navigate('/saved-items')} className='my-3 px-[15px]'>
+                                <div className='cursor-pointer flex items-center gap-3'>
+                                    <CiHeart color='#FF3030' fontSize={"20px"}/>
+                                    <p className='text-[#434343] text-[14px]'>Saved Item</p>
+                                </div>
+                            </li>
+                            <li className='inline-flex items-center gap-3 cursor-pointer mb-4 text-center justify-center px-[15px]' onClick={() => {
+                                localStorage.clear()
+                                location.href = "/"
+                            }} >
+                                <TbLogout2 className='text-[#292D32] text-[20px] font-[700]'/>
+                                <p className='text-[14px] text-[#434343]'>Logout</p>
+                            </li>
+                        </ul>
+                    }
+
+                </li> 
+                :
                 <li onClick={() => {
                     setLoginModal(true)
                     setRegisterModal(false)
@@ -48,11 +91,13 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                     <Link to="#">Login</Link>
                     <FaRegCircleUser fontSize={"20px"}/>
                 </li>
-                <li className='help'>
-                    <Link to="/help">Help</Link>
+                }
+                <li className='help flex items-center'>
                     <PiWarningCircle fontSize={"20px"}/>
+                    <Link to="/help">Help</Link>
+                    <IoChevronDown fontSize={"20px"} />
                 </li>
-                <li onClick={() => navigate('/shoping-cart')}>
+                <li onClick={() => navigate('/saved-items')}>
                     <div className='cursor-pointer flex'>
                         <p>Saved</p>
                         <CiHeart color='#FF3030' fontSize={"20px"}/>
@@ -68,6 +113,54 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                 </li>
             </div>
         </nav>
+
+        {
+            mobileNav &&
+            <div className='fixed z-[999] w-full h-full' style={{ background:"rgba(0, 0, 0, 0.7)" }}>
+                <ul className='bg-white w-[50%] px-5 py-[20px]'>
+                    <li className='flex items-center justify-between mb-6'>
+                        <p>Logo</p>
+                        <MdClose color='#797979' fontSize={"25px"} cursor={"pointer"} onClick={() => setMobileNav(false)}/>
+                    </li>
+                    <li className='text-[18px] mb-3'>
+                        <Link to="/" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
+                            <TbHome fontSize={"20px"} color='#797979'/>
+                            <p>Home</p>
+                        </Link>
+                    </li>
+                    <li className='text-[18px] mb-3'>
+                        <Link to="/categories" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
+                            <IoCubeOutline fontSize={"20px"} color='#797979'/>
+                            <p>Categories</p>
+                        </Link>
+                    </li>
+                    <li className='text-[18px] mb-3'>
+                        <Link to="/saved-items" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
+                            <IoCubeOutline fontSize={"20px"} color='#797979'/>
+                            <p>Saved Items</p>
+                        </Link>
+                    </li>
+                    <li className='text-[18px] mb-3'>
+                        <Link to="#" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
+                            <IoCubeOutline fontSize={"20px"} color='#797979'/>
+                            <p>VTU</p>
+                        </Link>
+                    </li>
+                    <li className='text-[18px] mb-3'>
+                        <Link to="/shop-set-up" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
+                            <IoCubeOutline fontSize={"20px"} color='#797979'/>
+                            <p>Sell Product</p>
+                        </Link>
+                    </li>
+                    <li className='text-[18px]'>
+                        <Link to="#" onClick={() => setMobileNav(false)}  className='flex items-center gap-3 text-[#333333]'>
+                            <PiWarningCircleLight fontSize={"22px"} color='#797979' style={{ transform:"rotate(180deg)" }}/>
+                            <p>About Us</p>
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+        }
 
         {/* {accountDropDown && 
             <div className='fixed right-0 bg-white top-[63px] z-[999] border'>
@@ -118,7 +211,9 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
             </div>
         } */}
 
-        {accountDropDown && 
+        
+
+        {mobileAccountDropDown && 
             <div className='fixed right-0 bg-white top-[63px] z-[999] border w-full'>
                 <div className='p-5'>
                     <div className='flex items-start gap-[20px] mb-7'>
@@ -128,45 +223,57 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                         <div className='flex items-center gap-2'>
                             <div className='cursor-pointer' onClick={() => {
                                     navigate("/my-profile")
-                                    setAccountDropDown(!accountDropDown)
+                                    setMobileAccountDropDown(!mobileAccountDropDown)
                                 }}>
                                 <h1 className='text-bold text-primary-color'>Ndubuisi Emmanuel</h1>
-                                <p className='text-[#6C6C6C] mt-[-5px]'>Useruseruser@email.com</p>
+                                <p className='text-[#6C6C6C] mt-[-5px]'>user@gmail.com</p>
                                 <p className='text-secondary-color font-[700]'>Account Settings</p>
                             </div>
                             {/* <CiPlay1 /> */}
                         </div>
                     </div>
                     <div className='grid gap-4 grid-cols-2'>
-                        <div className='flex items-center gap-3'>
+                        <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
+                            navigate("/saved-items")
+                            setMobileAccountDropDown(!mobileAccountDropDown)
+                        }}>
                             <CiHeart className='text-[21px] text-[#FF0505]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>Saved Items</p>
                         </div>
-                        <div className='flex items-center gap-3'>
+                        <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
+                            setMobileAccountDropDown(!mobileAccountDropDown)
+                            navigate('/messages')
+                        }}>
                             <CiBellOn className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>Notifications</p>
                         </div>
-                        <div className='flex items-center gap-3'>
+                        <div className='flex items-center gap-3 cursor-pointer'>
                             <BsClock className='text-[#292D32] text-[18px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>Pending Reviews</p>
                         </div>
-                        <div className='flex items-center gap-3'>
+                        <div className='flex items-center gap-3 cursor-pointer'>
                             <CiShop className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>List Product</p>
                         </div>
-                        <div className='flex items-center gap-3'>
+                        <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
+                            setMobileAccountDropDown(!mobileAccountDropDown)
+                            navigate('/my-order-history')
+                        }}>
                             <CiShop className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>My Shop</p>
                         </div>
-                        <div className='flex items-center gap-3'>
+                        <div className='flex items-center gap-3 cursor-pointer'>
                             <BiSolidPhoneCall className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>Contact Us</p>
                         </div>
-                        <div className='flex items-center gap-3'>
+                        <div className='flex items-center gap-3 cursor-pointer'>
                             <LuUserX2 className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>Delete Account</p>
                         </div>
-                        <div className='flex items-center gap-3'>
+                        <div className='inline-flex items-center gap-3 cursor-pointer' onClick={() => {
+                            localStorage.clear()
+                            location.href = "/"
+                        }} >
                             <TbLogout2 className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>Logout</p>
                         </div>
@@ -175,7 +282,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
             </div>
         }
 
-        <div className="bg-red-500 pb-[62px] lg:pb-[85px]"></div>
+        <div className="bg-white pb-[62px] lg:pb-[85px]"></div>
         <BottomNav />
         {/* <div className='bg-secondary-color py-5 mobile-search'></div> */}
         <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[90%] mx-auto my-5 mobile-search'>

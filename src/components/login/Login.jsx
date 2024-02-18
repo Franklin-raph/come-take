@@ -14,6 +14,7 @@ const Login = ({ setLoginModal, setRegisterModal }) => {
   async function handleUserSignIn(e){
     e.preventDefault()
     localStorage.setItem("user", 1)
+    setLoginModal(false)
     navigate("/")
   }
 
@@ -47,7 +48,7 @@ const Login = ({ setLoginModal, setRegisterModal }) => {
                   </button>
                   <p className="text-center text-[#B6B6B6] mt-5">Or</p>
                     <div className="">
-                        <form>
+                        <form onSubmit={handleUserSignIn}>
                             <div className="relative input-container">
                                 <label className="email-label text-[14px]">Email Address</label>
                                 <div className='w-full p-[2px] border border-gray-300 flex items-center gap-2'>
