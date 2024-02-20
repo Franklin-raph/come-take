@@ -1,8 +1,12 @@
 import ProfileSideNav from '../../components/profile-side-nav/ProfileSideNav';
 import { IoChevronDown } from 'react-icons/io5';
 import userProfilePic  from '../../assets/profilePic.png'
+import { useState } from 'react';
 
 const MyProfile = () => {
+
+    const [deleteModal, setDeleteModal] = useState(false)
+
   return (
     <div>
         <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20">
@@ -106,6 +110,17 @@ const MyProfile = () => {
                             <button className='rounded-[5px] text-primary-color border border-primary-color px-[20px] md:px-[35px] py-[8px] w-[50%]'>Add to cart</button>
                         </div>
                     </div> */}
+                {
+                    !deleteModal &&
+                    <div className='fixed w-full h-full top-0 left-0 z-[9999] flex items-start justify-center' style={{ background:"rgba(21, 21, 21, 0.6)" }}>
+                        <div className='bg-white'>
+                            <div className="flex items-center justify-between">
+                                <p className='text-[#333333] text-[24px]'>Delete Product </p>
+                                <p>X</p>
+                            </div>
+                        </div>
+                    </div>
+                }
                 </div>
             </div>
         </div>

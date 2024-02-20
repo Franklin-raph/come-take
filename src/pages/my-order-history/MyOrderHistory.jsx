@@ -55,7 +55,7 @@ const MyOrder = () => {
                                     </div>
                                     <div className='flex items-center gap-3 mt-3 justify-end'>
                                         <AiOutlineEdit fontSize={"24px"} color='#292D32'/>
-                                        <SlTrash fontSize={"18px"} color='#FF0505'/>
+                                        <SlTrash fontSize={"18px"} color='#FF0505' cursor={"pointer"} onClick={() => setDeleteModal(true)}/>
                                     </div>
                                 </div>
                             </div>
