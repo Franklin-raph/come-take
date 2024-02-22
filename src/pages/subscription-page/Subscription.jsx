@@ -1,4 +1,4 @@
-import React from 'react'
+import { FiArrowLeft } from "react-icons/fi";
 
 const Subscription = () => {
   return (
@@ -25,6 +25,23 @@ const Subscription = () => {
             <li>10 Days of Onsite Ad</li>
           </ul>
           <button className='bg-secondary-color text-white mt-5 w-[140px] rounded-[10px] h-[49px]'>Make Payment</button>
+        </div>
+      </div>
+      <div className="fixed h-full w-full top-0 left-0 z-[99] flex items-center justify-center" style={{ background:"rgba(18, 18, 18, 0.8)" }}>
+        <div className="bg-white w-[544px] h-[485px] rounded-[23.93px]">
+          <div className="flex items-center justify-between mt-[3rem] px-[2rem] mb-[2rem]">
+            <FiArrowLeft color="#292D32" fontSize={"22px"}/>
+            <p className="text-[24px]">Store Subscription</p>
+            <p></p>
+          </div>
+          <p className="text-[#1C1C1C] text-[40px] text-center font-[700] my-3" style={{ borderTop:"1px solid #E6ECEA", borderBottom:"1px solid #E6ECEA" }}>Premium Plan</p>
+          <p className="text-center text-[20px]">Select Period of Payment</p>
+          <div className="flex items-center justify-center gap-[20px]">
+            <p className="text-[#1C1C1C] bg-secondary-color">1 Month</p>
+            <p className="text-[#1C1C1C]">3 Months</p>
+            <p className="text-[#1C1C1C]">6 Months</p>
+            <p className="text-[#1C1C1C]">1 Year</p>
+          </div>
         </div>
       </div>
     </div>
