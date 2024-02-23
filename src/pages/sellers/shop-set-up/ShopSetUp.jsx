@@ -1,6 +1,10 @@
 import { GoChevronDown } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
 
 const ShopSetUp = () => {
+
+  const navigate = useNavigate()
+
   return (
     <div className="w-[100%] lg:w-[845px] flex items-center justify-center mx-auto mt-[5rem] py-[30px]" style={{boxShadow:"0 11px 40px -17px #00000024"}}>
       <div className='w-full px-[1rem] lg:px-[3rem]'>
@@ -70,7 +74,7 @@ const ShopSetUp = () => {
             </div>
           </div>
         </div>
-        <button className="bg-secondary-color py-[12px] mt-10 rounded-[5px] text-white w-full">Save Details</button>
+        <button className="bg-secondary-color py-[12px] mt-10 rounded-[5px] text-white w-full" onClick={() => navigate('/subscription-plan')}>Save Details</button>
       </div>
     </div>
   )
