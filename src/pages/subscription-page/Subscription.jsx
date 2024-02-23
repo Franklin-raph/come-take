@@ -30,7 +30,10 @@ const Subscription = () => {
             <li>Unlimited Listing of Products</li>
             <li>10 Days of Onsite Ad</li>
           </ul>
-          <button className='bg-secondary-color text-white mt-5 w-[140px] rounded-[10px] h-[49px]'>Make Payment</button>
+          <button className='bg-secondary-color text-white mt-5 w-[140px] rounded-[10px] h-[49px]'onClick={() => {
+                setPaymentModal(true)
+                setOpenSubscriptionModal(false)
+                }}>Make Payment</button>
         </div>
       </div>
 
