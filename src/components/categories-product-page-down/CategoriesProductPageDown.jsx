@@ -1,8 +1,8 @@
 import ProductCard from "../productCard/ProductCard";
 
-const CategoryProductPageCard = ({ categoryProductsArray }) => {
+const CategoriesProductPageDown = ({ categoryProductsArray }) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 md:gap-6 gap-3">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-6 gap-3">
         {categoryProductsArray && categoryProductsArray.map(product => (
             <ProductCard product={product}/>
         ))}
@@ -10,4 +10,4 @@ const CategoryProductPageCard = ({ categoryProductsArray }) => {
   )
 }
 
-export default CategoryProductPageCard
+export default CategoriesProductPageDown

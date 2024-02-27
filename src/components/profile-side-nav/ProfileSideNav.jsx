@@ -31,7 +31,7 @@ const ProfileSideNav = () => {
                         <p className='text-[18px] font-[500]'>My Shop</p>
                     </div>
                     <ul className='ml-3 grid gap-2'>
-                        {location.pathname === "/my-order-history" ? <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/my-order-history')}>My Shop</li>:<li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/my-order-history')}>My Shop</li>}
+                        {location.pathname === "/my-shop" ? <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/my-shop')}>My Shop</li>:<li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/my-shop')}>My Shop</li>}
                     </ul>
                 </div>
                 <div className='mt-10'>

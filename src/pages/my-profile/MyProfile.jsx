@@ -1,11 +1,14 @@
 import ProfileSideNav from '../../components/profile-side-nav/ProfileSideNav';
 import { IoChevronDown } from 'react-icons/io5';
 import userProfilePic  from '../../assets/profilePic.png'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const MyProfile = () => {
 
-    const [deleteModal, setDeleteModal] = useState(false)
+    // const [deleteModal, setDeleteModal] = useState(false)
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    },[])
 
   return (
     <div>
@@ -110,7 +113,7 @@ const MyProfile = () => {
                             <button className='rounded-[5px] text-primary-color border border-primary-color px-[20px] md:px-[35px] py-[8px] w-[50%]'>Add to cart</button>
                         </div>
                     </div> */}
-                {
+                {/* {
                     !deleteModal &&
                     <div className='fixed w-full h-full top-0 left-0 z-[9999] flex items-start justify-center' style={{ background:"rgba(21, 21, 21, 0.6)" }}>
                         <div className='bg-white'>
@@ -120,7 +123,7 @@ const MyProfile = () => {
                             </div>
                         </div>
                     </div>
-                }
+                } */}
                 </div>
             </div>
         </div>
