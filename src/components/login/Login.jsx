@@ -2,20 +2,52 @@ import { GoShieldCheck } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import SignInuserImg from "../../assets/Sign in user img.png"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IoCloseOutline, IoMailOutline } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
+import Btnloader from "../loader/Btnloader";
 
-const Login = ({ setLoginModal, setRegisterModal }) => {
+const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModal }) => {
 
   const navigate = useNavigate()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [emailError, setEmailError] = useState("")
+  const [passwordError, setPasswordError] = useState("")
+  const [loading, setLoading] = useState(false)
 
   async function handleUserSignIn(e){
     e.preventDefault()
-    localStorage.setItem("user", 1)
-    setLoginModal(false)
-    navigate("/")
+    if(!email){
+      setEmailError("Please enter your email")
+    }else if(!password){
+      setPasswordError("Please enter your password")
+    }else{
+      setEmailError("")
+      setPasswordError("")
+      setLoading(true)
+      const res = await fetch(`${baseUrl}/login`, {
+        method:"POST",
+        headers: {
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify({email, password})
+      })
+      const data = await res.json()
+      console.log(res, data);
+      if(res) setLoading(false)
+      if(!res.ok){
+        setEmailError(data.detail)
+      }
+      if(res.ok){
+        setLoginModal(false)
+        navigate("/")
+      }
+    }
+    // localStorage.setItem("user", 1)
+    // setLoginModal(false)
+    // navigate("/")
   }
 
   return (
@@ -55,31 +87,52 @@ const Login = ({ setLoginModal, setRegisterModal }) => {
                                   <div className="bg-primary-color p-2 rounded-sm text-2xl text-white">
                                     <IoMailOutline />
                                   </div>
-                                  <input className="w-full text-lg px-2 outline-none" type="email" placeholder="Email Address" />
+                                  <input onChange={e => setEmail(e.target.value)} className="w-full text-lg px-2 outline-none" type="email" placeholder="Email Address" />
                                 </div>
+                                {emailError && <span className='text-red-500 text-[13px]'>X {emailError}</span>}
                             </div>
+
                             <div className="mt-4 relative input-container">
                                 <label className="password-label text-[14px]">Password</label>
                                 <div className='w-full p-[2px] border border-gray-300 flex items-center gap-2'>
                                   <div className="bg-primary-color p-2 rounded-sm text-2xl text-white">
                                     <GoShieldCheck />
                                   </div>
-                                  <input type="password" className="w-full text-lg px-2 focus:outline-none" placeholder="Password" />
+                                  <input onChange={e => setPassword(e.target.value)} type="password" className="w-full text-lg px-2 focus:outline-none" placeholder="Password" />
                                 </div>
-                                <div className="text-right">
-                                    <Link className="text-xs text-right font-display text-secondary-color hover:text-primary-color
+                                <div className="text-right" onClick={() => {
+                                  setForgotPasswordModal(true)
+                                  setLoginModal(false)
+                                  }}>
+                                    <p className="text-xs text-right font-display text-secondary-color hover:text-primary-color
                                     cursor-pointer">
                                         Forgot Password?
-                                    </Link>
+                                    </p>
                                 </div>
+                                {passwordError && <span className='text-red-500 text-[13px]'>X {passwordError}</span>}
                             </div>
-                            <div className="mt-7">
+
+                            {
+                              loading ?
+                              <div className="mt-7">
+                                <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
+                                font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
+                                shadow-sm transition-all cursor-not-allowed">
+                                    <Btnloader />
+                                </button>
+                              </div> 
+                            : 
+                              <div className="mt-7">
                                 <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
                                 font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
                                 shadow-sm transition-all" type="submit">
                                     Login
                                 </button>
-                            </div>
+                              </div>
+                            }
+                            
+                            
+                            
                         </form>
                         <div className="mt-5 text-sm font-display font-semibold text-gray-700 text-center">
                             Don't have an account ? <button className="cursor-pointer text-secondary-color hover:text-green-800" onClick={() => {

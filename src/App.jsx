@@ -25,19 +25,24 @@ import ShopSetUp from "./pages/sellers/shop-set-up/ShopSetUp"
 import IdVerification from "./pages/sellers/id-verification/IdVerification"
 import Subscription from "./pages/subscription-page/Subscription"
 import ListProduct from "./pages/list-product/ListProduct"
+import ForgotPassword from "./components/forgot-password/ForgotPassword"
+import OTPInput from "./components/otp-input/OTPInput"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
   const [registerModal, setRegisterModal] = useState(false)
+  const [forgotPasswodModal, setForgotPasswordModal] = useState(false)
+  const [otpInput, setOtpInput] = useState(false)
+  const baseUrl = "https://cometake.pythonanywhere.com"
 
   return (
     <>
       <HashRouter>
       {/* <AuthenticatedNavbar /> */}
-       <UnAuthenticatedNavabar setLoginModal={setLoginModal}/>
+       <UnAuthenticatedNavabar setLoginModal={setLoginModal} baseUrl={baseUrl}/>
         <Routes>
           <Route path="/" element={<Home />}/>
-          <Route path="/signup" element={<Register />}/>
+          <Route path="/signup" element={<Register baseUrl={baseUrl}/>}/>
           <Route path="/categories" element={<Categories />}/>
           <Route path="/product-details" element={<ProductDescription />}/>
           <Route path="/shoping-cart" element={<ShoppingCart />}/>
@@ -56,11 +61,21 @@ export default function App() {
         </Routes>
         <Footer />
         {loginModal && !registerModal &&
-          <Login setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} loginModal={loginModal}/>
+          <Login setLoginModal={setLoginModal} setForgotPasswordModal={setForgotPasswordModal} baseUrl={baseUrl} setRegisterModal={setRegisterModal} loginModal={loginModal}/>
         }
         {
           registerModal && !loginModal && 
-          <Register setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} registerModal={registerModal}/>
+          <Register setLoginModal={setLoginModal} baseUrl={baseUrl} setRegisterModal={setRegisterModal} registerModal={registerModal}/>
+        }
+        {
+          forgotPasswodModal && (
+            <ForgotPassword setLoginModal={setLoginModal} setOtpInput={setOtpInput} baseUrl={baseUrl} forgotPasswodModal={forgotPasswodModal} setForgotPasswordModal={setForgotPasswordModal}/>
+          )
+        }
+        {
+          otpInput && (
+            <OTPInput baseUrl={baseUrl} setOtpInput={setOtpInput} setForgotPasswordModal={setForgotPasswordModal}/>
+          )
         }
       </HashRouter>
     </>

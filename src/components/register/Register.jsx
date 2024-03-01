@@ -87,7 +87,6 @@ const Register = ({ setLoginModal, setRegisterModal }) => {
           setConfirmPasswordError("Please fill in the field")
           setPasswordError("Please fill in the field")
           setNameError("Please fill in the field")
-          // toast.error("Please fill in all fields")
           return true
         }
       }
