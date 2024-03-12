@@ -4,6 +4,9 @@ import Btnloader from '../loader/Btnloader'
 import EnvelopeImg from '../../assets/envelope.png'
 import ProgressBar from '../../assets/progressbar1.png'
 import { IoArrowBackOutline } from "react-icons/io5";
+import loaderImg from '../../assets/loader.gif'
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 
 const ForgotPassword = ({ setForgotPasswordModal, setLoginModal, setOtpInput, baseUrl }) => {
@@ -15,6 +18,7 @@ const ForgotPassword = ({ setForgotPasswordModal, setLoginModal, setOtpInput, ba
     async function handleUserForgotPassword(e){
         e.preventDefault()
         if(!email){
+            toast.error("Please enter your email or phone number")
             setEmailError("Please enter your email or phone number")
         }else{
             setLoading(true)
@@ -27,9 +31,15 @@ const ForgotPassword = ({ setForgotPasswordModal, setLoginModal, setOtpInput, ba
             })
             if(res) setLoading(false)
             const data = await res.json()
+            console.log(res, data);
             if(!res.ok){
                 setEmailError(data.message)
+                toast.error(data.message)
+            }
+            if(res.ok){
+                toast.success()
                 setOtpInput(true)
+                setForgotPasswordModal(false)
             }
             console.log(res, data);
         }
@@ -66,27 +76,26 @@ const ForgotPassword = ({ setForgotPasswordModal, setLoginModal, setOtpInput, ba
                         {emailError && <span className='text-red-500 text-[13px]'>X {emailError}</span>}
                     </div>
 
+                    <div className="mt-7">
                     {
                         loading ?
-                        <div className="mt-7">
-                        <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
-                        font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
-                        shadow-sm transition-all cursor-not-allowed">
-                            <Btnloader />
-                        </button>
-                        </div> 
-                    : 
-                        <div className="mt-7">
-                        <button className="bg-secondary-color text-white px-4 py-3 w-full rounded-[10px] tracking-wide
-                        font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
-                        shadow-sm transition-all" type="submit">
-                            Continue
-                        </button>
-                        </div>
+                            <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
+                            font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
+                            shadow-sm transition-all cursor-not-allowed">
+                                <img src={loaderImg} className='h-6 w-6 mx-auto'/>
+                            </button>
+                        :
+                            <button className="bg-secondary-color text-white px-4 py-3 w-full rounded-sm tracking-wide
+                            font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
+                            shadow-sm transition-all" type="submit">
+                                Continue
+                            </button>
                     }
+                    </div>
                 </form>
             </div>
         </div>
+        <ToastContainer />
     </div>
   )
 }

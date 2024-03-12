@@ -23,7 +23,8 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
       setEmailError("Please enter your email")
     }else if(!password){
       setPasswordError("Please enter your password")
-    }else{
+    }else if(email || password){
+      console.log(emailError, passwordError);
       setEmailError("")
       setPasswordError("")
       setLoading(true)
@@ -145,6 +146,7 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
             </div>
           {/* </div> */}
         </div>
+        <ToastContainer />
     </div>
   )
 }

@@ -27,12 +27,14 @@ import Subscription from "./pages/subscription-page/Subscription"
 import ListProduct from "./pages/list-product/ListProduct"
 import ForgotPassword from "./components/forgot-password/ForgotPassword"
 import OTPInput from "./components/otp-input/OTPInput"
+import ConfirmActivateAccountModal from "./components/confirmActivateAccountModal/ConfirmActivateAccountModal"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
   const [registerModal, setRegisterModal] = useState(false)
   const [forgotPasswodModal, setForgotPasswordModal] = useState(false)
   const [otpInput, setOtpInput] = useState(false)
+  const [confirmActivateAccountModal, setConfirmActivateAccountModal] = useState(false)
   const baseUrl = "https://cometake.pythonanywhere.com"
 
   return (
@@ -74,9 +76,10 @@ export default function App() {
         }
         {
           otpInput && (
-            <OTPInput baseUrl={baseUrl} setOtpInput={setOtpInput} setForgotPasswordModal={setForgotPasswordModal}/>
+            <OTPInput baseUrl={baseUrl} setOtpInput={setOtpInput} setConfirmActivateAccountModal={setConfirmActivateAccountModal} setForgotPasswordModal={setForgotPasswordModal}/>
           )
         }
+        {confirmActivateAccountModal && <ConfirmActivateAccountModal setConfirmActivateAccountModal={setConfirmActivateAccountModal}/> }
       </HashRouter>
     </>
   )

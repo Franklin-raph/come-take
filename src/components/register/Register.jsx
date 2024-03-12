@@ -8,28 +8,37 @@ import { IoCloseOutline, IoMailOutline } from "react-icons/io5";
 import { RiLoader4Line } from "react-icons/ri";
 import { GoEye } from "react-icons/go";
 import { GoEyeClosed } from "react-icons/go";
-import Swal from 'sweetalert2'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
+import OTPInput from '../otp-input/OTPInput'
+import loaderImg from '../../assets/loader.gif'
+import Alert from '../alert/Alert'
+import ConfirmActivateAccountModal from '../confirmActivateAccountModal/ConfirmActivateAccountModal'
 
-const Register = ({ setLoginModal, setRegisterModal }) => {
+const Register = ({ setLoginModal, setRegisterModal, baseUrl }) => {
 
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
+  const [otpModal, setOtpModal] = useState(false)
   const [passwordType, setPasswordType] = useState("password")
   const [confirmPasswordType, setConfirmPasswordType] = useState("password")
   const [passwordError, setPasswordError] = useState()
   const [confirmPasswordError, setConfirmPasswordError] = useState()
   const [emailError, setEmailError] = useState("")
   const [nameError, setNameError] = useState("")
+  const [fromRegister, setFromRegister] = useState(false)
+ 
+
+  const [msg, setMsg] = useState(false)
+  const [alertType, setAlertType] = useState('')
 
   // const App = () => {
     const [userData, setUserData] = useState({
-      first_name: '',
-      last_name: '',
+      first_name: 'frank',
+      last_name: 'frank',
       email: '',
-      password: '',
-      confirmPassword: ''
+      password: '123456789',
+      confirmPassword: '123456789'
     })
 
     const handleInputChange = event => {
@@ -52,7 +61,7 @@ const Register = ({ setLoginModal, setRegisterModal }) => {
         return
       }else{
         setLoading(true)
-        const res = await fetch("https://cometake.pythonanywhere.com/registration/customer",{
+        const res = await fetch(`${baseUrl}/registration/customer`,{
           method:"POST",
           headers:{
             "Content-Type":"application/json"
@@ -67,12 +76,16 @@ const Register = ({ setLoginModal, setRegisterModal }) => {
           setPasswordError(data.message.password)
         }
         if(res.ok){
-          toast.success(data.message)
+          setMsg(data.message)
+          setAlertType('success')
+          // toast.success(data.message)
+          setFromRegister(true)
+          setOtpModal(true)
         }
         console.log(res, data.message.email);
         console.log(data.message);
       }
-      console.log(validateInputFields(errors, Object.values(userData)));
+      // console.log(validateInputFields(errors, Object.values(userData)));
       
       // setLoggedIn(true)
       // navigate("/")
@@ -93,42 +106,22 @@ const Register = ({ setLoginModal, setRegisterModal }) => {
 
       inputFieldValue.forEach(value => {
         if(value === ""){
-          // toast.error("Please fill in all fields")
+          toast.error("Please fill in all fields")
         }
       })
       
       if(userData.password.length < 8){
-        // toast.error("Password length must be equal or greater than 8 characters")
+        toast.error("Password length must be equal or greater than 8 characters")
         return true
       }
       
       if(userData.password !== userData.confirmPassword){
         setConfirmPasswordError("Both password fields must match")
         setPasswordError("Both password fields must match")
-        // toast.error("Please both password fields must match")
+        toast.error("Please both password fields must match")
         return true
       }
     }
-
-  //   const ref = useRef()
-  // useEffect(() => {
-  //   const checkIfClickedOutside = e => {
-  //     if (ref.current && !ref.current.contains(e.target)) {
-  //       onClose()
-  //     }
-  //   }
-  //   document.addEventListener("click", checkIfClickedOutside)
-  //   return () => {
-  //     document.removeEventListener("click", checkIfClickedOutside)
-  //   }
-  // }, [onClose])
-
-  // useEffect(() => {
-  //   document.body.style.overflow = "hidden"
-  //   return () => {
-  //     document.body.style.overflow = "auto"
-  //   }
-  // }, [])
 
   return (
   <div>
@@ -153,10 +146,8 @@ const Register = ({ setLoginModal, setRegisterModal }) => {
               }}>Register</p>
             </div>
           </div>
-          
             <div className="">
                 <form onSubmit={handleUserSignUp}>
-
                   <div className="relative input-container mt-8">
                     <label>First Name</label>
                         <div className='w-full p-[2px] border border-gray-300 flex items-center gap-2'>
@@ -230,11 +221,20 @@ const Register = ({ setLoginModal, setRegisterModal }) => {
                       {confirmPasswordError && <span className='text-red-500 text-[13px]'> X {confirmPasswordError}</span>}
                   </div>
                     <div className="mt-7">
+                      {
+                        loading ? 
+                        <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
+                        font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
+                        shadow-sm transition-all cursor-not-allowed">
+                            <img src={loaderImg} className='h-6 w-6 mx-auto'/>
+                        </button>
+                        :
                         <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
                         font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
                         shadow-sm transition-all" type="submit">
                             Create Account
                         </button>
+                      }
                     </div>
                 </form>
                 <div className="mt-5 text-sm font-display font-semibold text-gray-700 text-center">
@@ -246,7 +246,9 @@ const Register = ({ setLoginModal, setRegisterModal }) => {
             </div>
         </div>
     </div>
-    <ToastContainer />
+    {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
+    
+    {otpModal && <OTPInput setLoginModal={setLoginModal} baseUrl={baseUrl} setOtpModal={setOtpModal} setRegisterModal={setRegisterModal} fromRegister={fromRegister}/> }
   </div>
   )
 }
