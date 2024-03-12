@@ -9,7 +9,9 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 
 
-const ForgotPassword = ({ setForgotPasswordModal, setLoginModal, setOtpInput, baseUrl }) => {
+const ForgotPassword = ({ setForgotPasswordModal, setEmailForOTP, setLoginModal, setOtpInput, baseUrl }) => {
+    const [msg, setMsg] = useState(false)
+    const [alertType, setAlertType] = useState('')
 
     const [email, setEmail] = useState("")
     const [emailError, setEmailError] = useState("")
@@ -18,9 +20,11 @@ const ForgotPassword = ({ setForgotPasswordModal, setLoginModal, setOtpInput, ba
     async function handleUserForgotPassword(e){
         e.preventDefault()
         if(!email){
-            toast.error("Please enter your email or phone number")
+            // toast.error("Please enter your email or phone number")
             setEmailError("Please enter your email or phone number")
         }else{
+            // setEmailForOTP(email)
+            localStorage.setItem('emailForPasswordReset', JSON.stringify(email))
             setLoading(true)
             const res = await fetch(`${baseUrl}/reset-password`,{
                 method:"POST",
@@ -33,11 +37,15 @@ const ForgotPassword = ({ setForgotPasswordModal, setLoginModal, setOtpInput, ba
             const data = await res.json()
             console.log(res, data);
             if(!res.ok){
-                setEmailError(data.message)
-                toast.error(data.message)
+                // setEmailError(data.message)
+                // toast.error(data.message)
+                setAlertType('error')
+                setMsg(data.message)
             }
             if(res.ok){
-                toast.success()
+                // toast.success()
+                // setAlertType('success')
+                // setMsg(data.message)
                 setOtpInput(true)
                 setForgotPasswordModal(false)
             }
@@ -82,7 +90,7 @@ const ForgotPassword = ({ setForgotPasswordModal, setLoginModal, setOtpInput, ba
                             <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
                             font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
                             shadow-sm transition-all cursor-not-allowed">
-                                <img src={loaderImg} className='h-6 w-6 mx-auto'/>
+                                <Btnloader />
                             </button>
                         :
                             <button className="bg-secondary-color text-white px-4 py-3 w-full rounded-sm tracking-wide
@@ -95,7 +103,7 @@ const ForgotPassword = ({ setForgotPasswordModal, setLoginModal, setOtpInput, ba
                 </form>
             </div>
         </div>
-        <ToastContainer />
+        {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
     </div>
   )
 }

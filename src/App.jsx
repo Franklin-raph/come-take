@@ -28,6 +28,7 @@ import ListProduct from "./pages/list-product/ListProduct"
 import ForgotPassword from "./components/forgot-password/ForgotPassword"
 import OTPInput from "./components/otp-input/OTPInput"
 import ConfirmActivateAccountModal from "./components/confirmActivateAccountModal/ConfirmActivateAccountModal"
+import ResetPassword from "./components/reset-password/ResetPassword"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -35,6 +36,9 @@ export default function App() {
   const [forgotPasswodModal, setForgotPasswordModal] = useState(false)
   const [otpInput, setOtpInput] = useState(false)
   const [confirmActivateAccountModal, setConfirmActivateAccountModal] = useState(false)
+  const [resetPasswordModal, setResetPasswordModal] = useState(false)
+  const [emailForOTP, setEmailForOTP] = useState('')
+  const [otp, setOTP] = useState('')
   const baseUrl = "https://cometake.pythonanywhere.com"
 
   return (
@@ -71,15 +75,19 @@ export default function App() {
         }
         {
           forgotPasswodModal && (
-            <ForgotPassword setLoginModal={setLoginModal} setOtpInput={setOtpInput} baseUrl={baseUrl} forgotPasswodModal={forgotPasswodModal} setForgotPasswordModal={setForgotPasswordModal}/>
+            <ForgotPassword setEmailForOTP={setEmailForOTP} setLoginModal={setLoginModal} setOtpInput={setOtpInput} baseUrl={baseUrl} forgotPasswodModal={forgotPasswodModal} setForgotPasswordModal={setForgotPasswordModal}/>
           )
         }
         {
           otpInput && (
-            <OTPInput baseUrl={baseUrl} setOtpInput={setOtpInput} setConfirmActivateAccountModal={setConfirmActivateAccountModal} setForgotPasswordModal={setForgotPasswordModal}/>
+            <OTPInput emailForOTP={emailForOTP} baseUrl={baseUrl} setResetPasswordModal={setResetPasswordModal} setOtpInput={setOtpInput} setLoginModal={setLoginModal} setForgotPasswordModal={setForgotPasswordModal}/>
           )
         }
         {confirmActivateAccountModal && <ConfirmActivateAccountModal setConfirmActivateAccountModal={setConfirmActivateAccountModal}/> }
+      
+        {
+          resetPasswordModal && <ResetPassword otp={otp} emailForOTP={emailForOTP} setResetPasswordModal={setResetPasswordModal} setLoginModal={setLoginModal} setOtpInput={setOtpInput} baseUrl={baseUrl} />
+        }
       </HashRouter>
     </>
   )

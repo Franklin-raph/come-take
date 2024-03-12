@@ -60,6 +60,7 @@ const Register = ({ setLoginModal, setRegisterModal, baseUrl }) => {
       if(validate === true){
         return
       }else{
+        localStorage.setItem('signUpEmail', JSON.stringify(userData.email))
         setLoading(true)
         const res = await fetch(`${baseUrl}/registration/customer`,{
           method:"POST",

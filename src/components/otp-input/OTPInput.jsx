@@ -11,62 +11,86 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import Alert from '../alert/Alert'
 
 
-const OTPInput = ({ setForgotPasswordModal, setConfirmActivateAccountModal, baseUrl, setLoginModal, setRegisterModal, setOtpInput, setOtpModal, fromRegister }) => {
+const OTPInput = ({ setForgotPasswordModal, emailForOTP, setResetPasswordModal, email, baseUrl, setLoginModal, setRegisterModal, setOtpInput, setOtpModal, fromRegister }) => {
 
     const [otp, setOtp] = useState("")
     const [otpError, setOtpError] = useState("")
     const [loading, setLoading] = useState(false)
+    const [emailForPasswordReset, setEmailForPasswordReset] = useState('')
     
     const navigate = useNavigate()
 
     const [msg, setMsg] = useState(false)
     const [alertType, setAlertType] = useState('')
+
     useEffect(() => {
-        console.log(fromRegister);
+        console.log(fromRegister, emailForOTP);
+        setEmailForPasswordReset(JSON.parse(localStorage.getItem('emailForPasswordReset')))
     },[])
 
-    async function handleUserOTPInput (e) {
-        e.preventDefault()
-        let endpoint;
-        fromRegister === true ? endpoint = 'registration/verify-token' : endpoint = 'account-activation'
+    async function forgotPasswordOTP(){
         if(!otp){
             setOtpError("Please enter the OTP code sent to your mail")
         }else{
+            console.log(`${baseUrl}/reset-password/verify-password-token/${emailForPasswordReset}/${otp}`);
             setLoading(true)
-            console.log(`${baseUrl}/${endpoint}`, JSON.stringify({email:"igboekwulusifranklin@gmail.com", token:otp}));
-            const res = await fetch(`${baseUrl}/${endpoint}`, {
-                method:"POST",
-                body: JSON.stringify({email:"igboekwulusifranklin@gmail.com", token:otp}),
-                headers: {
-                    "Content-Type":"application/json"
-                }
+            const res = await fetch(`${baseUrl}/reset-password/verify-password-token/${emailForPasswordReset}/${otp}`, {
+                method:"GET",
             })
             const data = await res.json()
+            console.log(res, data);
             if(res) setLoading(false)
             if(!res.ok){
                 setMsg(data.message)
                 setAlertType('error')
             }
             if(res.ok){
-                setMsg(data.message)
-                setAlertType('success')
-                setConfirmActivateAccountModal(true)
-                setRegisterModal(false)
-                // toast.success(data.message)
-                
+                setResetPasswordModal(true)
+                setOtpInput(false) 
             }
             console.log(res, data);
         }
     }
 
-    async function resendToken () {
-        let endpoint;
-        fromRegister === true ? endpoint = 'registration/resend-verifcation-token' : endpoint = 'account-activation'
+    async function resetPassword(){
+        
+    }
+
+
+    async function verifyTokenForAccountActivation(){
+        console.log('verifyTokenForAccountActivation called', JSON.parse(localStorage.getItem('signUpEmail')));
+        if(!otp){
+            setOtpError("Please enter the OTP code sent to your mail")
+        }else{
+            setLoading(true)
+            const res = await fetch(`${baseUrl}/registration/verify-token`, {
+                method:"POST",
+                body: JSON.stringify({email:JSON.parse(localStorage.getItem('signUpEmail')), token:otp}),
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            })
+            const data = await res.json()
+            console.log(res, data);
+            if(res) setLoading(false)
+            if(!res.ok){
+                setMsg(data.message)
+                setAlertType('error')
+            }
+            if(res.ok){
+                localStorage.setItem('user', JSON.stringify(1))
+                localStorage.removeItem('signUpEmail')
+                window.location.href = '/'
+            }
+        }
+    }
+
+
+    async function resendTokenForForgotPassword () {
         setLoading(true)
-        console.log(`${baseUrl}/${endpoint}`, JSON.stringify({email:"igboekwulusifranklin@gmail.com"}));
-        const res = await fetch(`${baseUrl}/${endpoint}`, {
+        const res = await fetch(`${baseUrl}/registration/resend-verifcation-token`, {
             method:"POST",
-            body: JSON.stringify({email:"igboekwulusifranklin@gmail.com"}),
+            body: JSON.stringify({email:emailForPasswordReset}),
             headers: {
                 "Content-Type":"application/json"
             }
@@ -74,18 +98,54 @@ const OTPInput = ({ setForgotPasswordModal, setConfirmActivateAccountModal, base
         const data = await res.json()
         if(res) setLoading(false)
         if(!res.ok){
-            // toast.error(data.message)
             setMsg(data.message)
             setAlertType('error')
         }
         if(res.ok){
             setMsg(data.message)
             setAlertType('success')
-            
-            // setLoginModal(true)
+        }
+    }
+
+
+    async function resendTokenForAccountActivation(){
+        console.log(JSON.stringify({email:JSON.parse(localStorage.getItem('signUpEmail'))}));
+        setLoading(true)
+        const res = await fetch(`${baseUrl}/registration/resend-verifcation-token`, {
+            method:"POST",
+            body: JSON.stringify({email:'igboekwulusifranklin@gmail.com'}),
+            headers: {
+                "Content-Type":"application/json"
+            }
+        })
+        const data = await res.json()
+        if(res) setLoading(false)
+        if(res.ok){
+            setMsg(data.message)
+            setAlertType('success')
         }
         console.log(res, data);
     }
+
+
+    function resendToken(){
+        if(fromRegister === true){
+            console.log('From Register');
+            resendTokenForAccountActivation()
+        }else{
+            resendTokenForForgotPassword()
+        }
+    }
+
+    async function handleUserOTPInput(e) {
+        e.preventDefault()
+        if(fromRegister === true){
+            verifyTokenForAccountActivation()
+        }else{
+            forgotPasswordOTP()
+        }
+    }
+
 
 
 
