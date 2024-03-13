@@ -43,6 +43,7 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
       }
       if(res.ok){
         setLoginModal(false)
+        localStorage.setItem('user', JSON.stringify(data))
         navigate("/")
       }
     }

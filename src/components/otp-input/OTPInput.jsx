@@ -63,8 +63,8 @@ const OTPInput = ({ setForgotPasswordModal, emailForOTP, setResetPasswordModal, 
             setLoading(true)
             const res = await fetch(`${baseUrl}/registration/verify-token`, {
                 method:"POST",
-                body: JSON.stringify({email:`igboekwulusifranklin@gmail.com`, token:otp}),
-                // body: JSON.stringify({email:JSON.parse(localStorage.getItem('signUpEmail')), token:otp}),
+                // body: JSON.stringify({email:`igboekwulusifranklin@gmail.com`, token:otp}),
+                body: JSON.stringify({email:JSON.parse(localStorage.getItem('signUpEmail')), token:otp}),
                 headers: {
                     "Content-Type":"application/json"
                 }
@@ -77,10 +77,8 @@ const OTPInput = ({ setForgotPasswordModal, emailForOTP, setResetPasswordModal, 
                 setAlertType('error')
             }
             if(res.ok){
-                // localStorage.setItem('user', JSON.stringify(1))
                 setAccountActivationSuccess(data.message)
                 localStorage.removeItem('signUpEmail')
-                // window.location.href = '/'
             }
         }
     }

@@ -52,9 +52,8 @@ const ResetPassword = ({ setLoginModal, setOtpInput, setResetPasswordModal, base
             setAlertType('error')
           }
           if(res.ok){
-            // setMsg(data.message)
-            // setAlertType('success')
-            
+            localStorage.removeItem('emailForPasswordReset')
+            localStorage.removeItem('passwordResetDetails')
             setPasswordResetSuccess(data.message)
           }
           console.log(res, data);

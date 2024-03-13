@@ -45,7 +45,7 @@ export default function App() {
     <>
       <HashRouter>
       {/* <AuthenticatedNavbar /> */}
-       <UnAuthenticatedNavabar setLoginModal={setLoginModal} baseUrl={baseUrl}/>
+       <UnAuthenticatedNavabar setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} baseUrl={baseUrl}/>
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/signup" element={<Register baseUrl={baseUrl}/>}/>
