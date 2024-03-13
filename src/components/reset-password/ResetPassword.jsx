@@ -5,7 +5,6 @@ import KeyImg from '../../assets/keylock.png'
 import ProgressBar from '../../assets/progressbar3.png'
 import { IoArrowBackOutline } from "react-icons/io5";
 import Alert from '../alert/Alert'
-import 'react-toastify/dist/ReactToastify.min.css';
 import { GoEye, GoEyeClosed, GoShieldCheck } from 'react-icons/go'
 
 const ResetPassword = ({ setLoginModal, setOtpInput, setResetPasswordModal, baseUrl }) => {

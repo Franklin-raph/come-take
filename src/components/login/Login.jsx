@@ -4,8 +4,6 @@ import { FcGoogle } from "react-icons/fc";
 import SignInuserImg from "../../assets/Sign in user img.png"
 import { useEffect, useState } from "react";
 import { IoCloseOutline, IoMailOutline } from "react-icons/io5";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.min.css';
 import Btnloader from "../loader/Btnloader";
 
 const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModal }) => {

@@ -1,18 +1,7 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
 import OwlCarousel from 'react-owl-carousel';  
 import 'owl.carousel/dist/assets/owl.carousel.css';  
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 
-// import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import TopCategories from "../../components/top-categories/TopCategories";
 import TrendingProducts from "../../components/trending-products/TrendingProducts";
 import RecommendedProducts from "../../components/recommended-products/RecommendedProducts";
@@ -35,8 +24,6 @@ import { GoArrowRight } from "react-icons/go";
 import NewlyListedProducts from "../../components/newly-listed-products/NewlyListedProducts";
 import FairlyUsedProducts from "../../components/fairly-used-products/FairlyUsedProducts";
 import BrandNewProducts from "../../components/brand-new-products/BrandNewProducts";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.min.css';
 import { useEffect } from "react";
 import img1 from '../../assets/Frame129.png'
 import img2 from '../../assets/Frame376.png'
@@ -349,10 +336,6 @@ const Home = () => {
       reviews:"35 Reviews"
     }
   ]
-
-  useEffect(() => {
-    toast.success("Hello world")
-  },[])
 
   const options = {
     margin: 0,

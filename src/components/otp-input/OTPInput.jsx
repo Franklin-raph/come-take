@@ -5,9 +5,7 @@ import EnvelopeImg from '../../assets/envelope.png'
 import ProgressBar from '../../assets/progressbar2.png'
 import { IoArrowBackOutline } from "react-icons/io5";
 import { LuKeyRound } from "react-icons/lu";
-import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-import 'react-toastify/dist/ReactToastify.min.css';
 import Alert from '../alert/Alert'
 
 

@@ -8,12 +8,9 @@ import { IoCloseOutline, IoMailOutline } from "react-icons/io5";
 import { RiLoader4Line } from "react-icons/ri";
 import { GoEye } from "react-icons/go";
 import { GoEyeClosed } from "react-icons/go";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.min.css';
 import OTPInput from '../otp-input/OTPInput'
 import loaderImg from '../../assets/loader.gif'
 import Alert from '../alert/Alert'
-import ConfirmActivateAccountModal from '../confirmActivateAccountModal/ConfirmActivateAccountModal'
 
 const Register = ({ setLoginModal, setRegisterModal, baseUrl }) => {
 

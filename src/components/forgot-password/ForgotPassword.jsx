@@ -5,8 +5,6 @@ import EnvelopeImg from '../../assets/envelope.png'
 import ProgressBar from '../../assets/progressbar1.png'
 import { IoArrowBackOutline } from "react-icons/io5";
 import loaderImg from '../../assets/loader.gif'
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.min.css';
 
 
 const ForgotPassword = ({ setForgotPasswordModal, setEmailForOTP, setLoginModal, setOtpInput, baseUrl }) => {
