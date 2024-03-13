@@ -22,6 +22,7 @@ const OTPInput = ({ setForgotPasswordModal, emailForOTP, setResetPasswordModal, 
 
     const [msg, setMsg] = useState(false)
     const [alertType, setAlertType] = useState('')
+    const [accountActivationSuccess, setAccountActivationSuccess] = useState(false)
 
     useEffect(() => {
         console.log(fromRegister, emailForOTP);
@@ -45,15 +46,12 @@ const OTPInput = ({ setForgotPasswordModal, emailForOTP, setResetPasswordModal, 
                 setAlertType('error')
             }
             if(res.ok){
+                localStorage.setItem('passwordResetDetails', JSON.stringify({email:emailForPasswordReset, otp:otp}))
                 setResetPasswordModal(true)
                 setOtpInput(false) 
             }
             console.log(res, data);
         }
-    }
-
-    async function resetPassword(){
-        
     }
 
 
@@ -65,7 +63,8 @@ const OTPInput = ({ setForgotPasswordModal, emailForOTP, setResetPasswordModal, 
             setLoading(true)
             const res = await fetch(`${baseUrl}/registration/verify-token`, {
                 method:"POST",
-                body: JSON.stringify({email:JSON.parse(localStorage.getItem('signUpEmail')), token:otp}),
+                body: JSON.stringify({email:`igboekwulusifranklin@gmail.com`, token:otp}),
+                // body: JSON.stringify({email:JSON.parse(localStorage.getItem('signUpEmail')), token:otp}),
                 headers: {
                     "Content-Type":"application/json"
                 }
@@ -78,9 +77,10 @@ const OTPInput = ({ setForgotPasswordModal, emailForOTP, setResetPasswordModal, 
                 setAlertType('error')
             }
             if(res.ok){
-                localStorage.setItem('user', JSON.stringify(1))
+                // localStorage.setItem('user', JSON.stringify(1))
+                setAccountActivationSuccess(data.message)
                 localStorage.removeItem('signUpEmail')
-                window.location.href = '/'
+                // window.location.href = '/'
             }
         }
     }
@@ -214,6 +214,32 @@ const OTPInput = ({ setForgotPasswordModal, emailForOTP, setResetPasswordModal, 
             </div>
         </div>
         {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType}/>}
+        
+        {
+          accountActivationSuccess &&
+          <div>
+            <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setAccountActivationSuccess(false)}></div>
+            <div className="bg-white w-[450px] flex items-center justify-center h-[580px] fixed top-[50%] left-[50%] py-[35px] px-[2rem] rounded-[20px] z-[100] login-modal" style={{ transform: "translate(-50%, -50%)" }}>
+              <div className="">
+                  <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+                {/* <div class="wrapper"> 
+                </div> */}
+                <p className='text-center text-[#3b4054]'>{accountActivationSuccess}</p>
+                <div className="mt-7">
+                    <button className="bg-secondary-color text-white px-4 py-3 w-full rounded-sm tracking-wide
+                    font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
+                    shadow-sm transition-all" onClick={() => {
+                        setLoginModal(true)
+                        setAccountActivationSuccess(false)
+                        setOtpInput(false)
+                    }}>
+                        Continue to Login
+                    </button>
+                </div>
+              </div>
+          </div>
+        </div>
+        }
     </div>
   )
 }

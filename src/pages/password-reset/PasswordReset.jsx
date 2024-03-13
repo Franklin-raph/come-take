@@ -3,6 +3,9 @@ import ProfileSideNav from '../../components/profile-side-nav/ProfileSideNav';
 import { GoEyeClosed } from 'react-icons/go';
 
 const PasswordReset = () => {
+
+    
+
   return (
     <div>
         <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20 mb-8">

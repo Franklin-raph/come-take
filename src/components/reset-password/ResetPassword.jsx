@@ -1,15 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IoMailOutline } from 'react-icons/io5'
 import Btnloader from '../loader/Btnloader'
 import KeyImg from '../../assets/keylock.png'
 import ProgressBar from '../../assets/progressbar3.png'
 import { IoArrowBackOutline } from "react-icons/io5";
-import loaderImg from '../../assets/loader.gif'
-import { ToastContainer, toast } from "react-toastify";
+import Alert from '../alert/Alert'
 import 'react-toastify/dist/ReactToastify.min.css';
 import { GoEye, GoEyeClosed, GoShieldCheck } from 'react-icons/go'
 
-const ResetPassword = ({ setLoginModal, setOtpInput, emailForOTP, otp, setResetPasswordModal, baseUrl }) => {
+const ResetPassword = ({ setLoginModal, setOtpInput, setResetPasswordModal, baseUrl }) => {
 
     const [msg, setMsg] = useState(false)
     const [alertType, setAlertType] = useState('')
@@ -20,19 +19,46 @@ const ResetPassword = ({ setLoginModal, setOtpInput, emailForOTP, otp, setResetP
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
-    const [email, setEmail] = useState("igboekwulusifranklin@gmail.com")
-    const [emailError, setEmailError] = useState("")
+    const [passwordResetDetails, setPasswordResetDetails] = useState({})
+    const [passwordResetSuccess, setPasswordResetSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
 
+    useEffect(() => {
+      setPasswordResetDetails(JSON.parse(localStorage.getItem('passwordResetDetails')))
+      // console.log();
+    },[])
+
     async function handleUserResetPassword(e){
-        e.preventDefult()
-        const res = await fetch(`${baseUrl}/reset-password`, {
-            method:"PUT",
-            headers:{
-                'Content-Type':'application/json'
-            },
-            // body: JSON.stringify({token:, email:, new_password:, confirm_password:,})
-        })
+        e.preventDefault()
+        if(!password || !confirmPassword){
+          setMsg('Please enter the fields')
+          setAlertType('error')
+        }else if(password !== confirmPassword){
+          setMsg('Both fields do not match')
+          setAlertType('error')
+        }else{
+          setLoading(true)
+          const res = await fetch(`${baseUrl}/reset-password`, {
+              method:"PUT",
+              headers:{
+                  'Content-Type':'application/json'
+              },
+              body: JSON.stringify({token:passwordResetDetails.otp, email:passwordResetDetails.email, new_password:password, confirm_password:confirmPassword,})
+          })
+          const data = await res.json()
+          if(res) setLoading(false)
+          if(!res.ok){
+            setMsg(data.message)
+            setAlertType('error')
+          }
+          if(res.ok){
+            // setMsg(data.message)
+            // setAlertType('success')
+            
+            setPasswordResetSuccess(data.message)
+          }
+          console.log(res, data);
+        }
     }
 
   return (
@@ -55,7 +81,7 @@ const ResetPassword = ({ setLoginModal, setOtpInput, emailForOTP, otp, setResetP
             </div>
             <div className="mt-4 px-2">
                 <form onSubmit={handleUserResetPassword}>
-                <div className="relative input-container">
+                  <div className="relative input-container">
                       <label>Password</label>
                         <div className='w-full p-[2px] border border-gray-300 flex items-center justify-between gap-2'>
                           <div className='w-full p-[2px] flex items-center gap-2'>
@@ -115,6 +141,32 @@ const ResetPassword = ({ setLoginModal, setOtpInput, emailForOTP, otp, setResetP
             </div>
         </div>
         {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
+        
+        {
+          passwordResetSuccess &&
+          <div>
+            <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setPasswordResetSuccess(false)}></div>
+            <div className="bg-white w-[450px] flex items-center justify-center h-[580px] fixed top-[50%] left-[50%] py-[35px] px-[2rem] rounded-[20px] z-[100] login-modal" style={{ transform: "translate(-50%, -50%)" }}>
+              <div className="">
+                  <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+                {/* <div class="wrapper"> 
+                </div> */}
+                <p className='text-center text-[#3b4054]'>{passwordResetSuccess}</p>
+                <div className="mt-7">
+                    <button className="bg-secondary-color text-white px-4 py-3 w-full rounded-sm tracking-wide
+                    font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
+                    shadow-sm transition-all" onClick={() => {
+                        setLoginModal(true)
+                        setPasswordResetSuccess(false)
+                        setResetPasswordModal(false)
+                    }}>
+                        Continue to Login
+                    </button>
+                </div>
+              </div>
+          </div>
+        </div>
+        }
     </div>
   )
 }
