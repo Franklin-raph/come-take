@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IoChevronDown } from 'react-icons/io5';
 import { RxHamburgerMenu } from "react-icons/rx";
 
@@ -10,6 +10,16 @@ const BottomNav = () => {
     const categoryNavArray = ['Computing','Property','Vehicle','Home and kitchen','Mobile Phones & Tablets','Electronics','Health & Beauty',
     'Fashion','Sports','Pets','Baby Products','Agriculture']
     const computerCategory = ["Laptops","Desktop","Printers","Accessories"]
+    const user = JSON.parse(localStorage.getItem('user'))
+    const navigate = useNavigate()
+
+    function registerSeller(){
+        if(user.data[1].is_seller !== false){
+            console.log('Not Seller');
+        }else{
+            navigate('/shop-set-up')
+        }
+    }
 
 
   return (
@@ -25,8 +35,8 @@ const BottomNav = () => {
             <li>
                 <Link to="/new-listing">New Listing</Link>
             </li>
-            <li>
-                <Link to="/shop-set-up">Sell Products</Link>
+            <li onClick={() => registerSeller()}>
+                Sell Products
             </li>
             <li>
                 <Link to="#">Trending Products</Link>

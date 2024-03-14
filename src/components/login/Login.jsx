@@ -145,7 +145,6 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
             </div>
           {/* </div> */}
         </div>
-        <ToastContainer />
     </div>
   )
 }
