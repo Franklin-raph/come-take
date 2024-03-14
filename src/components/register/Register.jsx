@@ -31,11 +31,11 @@ const Register = ({ setLoginModal, setRegisterModal, baseUrl }) => {
 
   // const App = () => {
     const [userData, setUserData] = useState({
-      first_name: 'frank',
-      last_name: 'frank',
+      first_name: '',
+      last_name: '',
       email: '',
-      password: '123456789',
-      confirmPassword: '123456789'
+      password: '',
+      confirmPassword: ''
     })
 
     const handleInputChange = event => {
