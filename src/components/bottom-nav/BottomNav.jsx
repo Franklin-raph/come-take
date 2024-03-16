@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { IoChevronDown } from 'react-icons/io5';
 import { RxHamburgerMenu } from "react-icons/rx";
+import Alert from '../alert/Alert';
 
 const BottomNav = () => {
 
@@ -11,11 +12,16 @@ const BottomNav = () => {
     'Fashion','Sports','Pets','Baby Products','Agriculture']
     const computerCategory = ["Laptops","Desktop","Printers","Accessories"]
     const user = JSON.parse(localStorage.getItem('user'))
+    const [msg, setMsg] = useState(false)
+    const [alertType, setAlertType] = useState('')
     const navigate = useNavigate()
 
-    function registerSeller(){
-        if(user.data[1].is_seller !== false){
-            console.log('Not Seller');
+    function checkIsSellerVerified(){
+        if(!user){
+            setMsg("You have to be logged in to perform this operation")
+        }
+        if(user.data[1].is_seller === false){
+            navigate('/verify-id')
         }else{
             navigate('/shop-set-up')
         }
@@ -35,7 +41,7 @@ const BottomNav = () => {
             <li>
                 <Link to="/new-listing">New Listing</Link>
             </li>
-            <li onClick={() => registerSeller()}>
+            <li onClick={() => checkIsSellerVerified()}>
                 Sell Products
             </li>
             <li>
@@ -57,6 +63,7 @@ const BottomNav = () => {
                 }
             </div>
         }
+        {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType}/>}
         {
             singleCategoryNav &&
             <div className='absolute left-[25.1%] bg-white px-12 pb-5 pt-[40px] w-[25%] top-[65px] z-[9] rounded-[4px] h-[460px]'>

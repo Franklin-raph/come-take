@@ -9,8 +9,8 @@ import Btnloader from "../loader/Btnloader";
 const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModal }) => {
 
   const navigate = useNavigate()
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("igboekwulusifranklin@gmail.com")
+  const [password, setPassword] = useState("123456789")
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPasswordError] = useState("")
   const [loading, setLoading] = useState(false)
@@ -100,7 +100,7 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
                                   </div>
                                   <input onChange={e => setPassword(e.target.value)} type="password" className="w-full text-lg px-2 focus:outline-none" placeholder="Password" />
                                 </div>
-                                <div className="text-right" onClick={() => {
+                                <div className="flex flex-row-reverse justify-between mt-1" onClick={() => {
                                   setForgotPasswordModal(true)
                                   setLoginModal(false)
                                   }}>
@@ -108,8 +108,8 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
                                     cursor-pointer">
                                         Forgot Password?
                                     </p>
+                                    {passwordError && <span className='text-red-500 text-[12px]'>X {passwordError}</span>}
                                 </div>
-                                {passwordError && <span className='text-red-500 text-[13px]'>X {passwordError}</span>}
                             </div>
 
                             {

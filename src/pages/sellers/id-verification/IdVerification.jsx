@@ -4,41 +4,28 @@ import { GoChevronDown } from 'react-icons/go'
 const IdVerification = () => {
 
   const idTypeArray = ["Drivers License", "National ID Card", "International Passport", "Or Any Other Valid ID"]
-  const [activeId, setActiveId] = useState(idTypeArray[0]);
+  const [idTypeDropDown, setIdTypeDropDown] = useState(false)
+  const [selectedIdType, setSelectedIdType] = useState(idTypeArray[0])
 
-  const [driversLicense, setDriverLicense] = useState(true)
-  const [nationalIdCard, setNationalIdCard] = useState(false)
-  const [passport, setPassport] = useState(false)
-  const [any, setAny] = useState(false)
+  const [fileFront, setFileFront] = useState();
+  const [fileBack, setFileBack] = useState();
 
-  function handleTabClick(iDtype){
-    setActiveId(iDtype)
-    if(iDtype === 'Drivers License'){
-      setDriverLicense(true)
-      setNationalIdCard(false)
-      setPassport(false)
-      setAny(false)
+  function verifyId(){
+    console.log('Back', fileBack);
+    console.log('Front', fileFront);
+  }
+
+  function handleFileUploadFront(e){
+      if (e.target.files) {
+        setFileFront(1);
     }
-    if(iDtype === 'National ID Card'){
-      setNationalIdCard(true)
-      setPassport(false)
-      setDriverLicense(false)
-      setAny(false)
+  }
+
+  function handleFileUploadBack(e){
+      if (e.target.files) {
+        setFileBack(2);
     }
-    if(iDtype === "International Passport"){
-      setPassport(true)
-      setNationalIdCard(false)
-      setDriverLicense(false)
-      setAny(false)
-    }
-    if(iDtype === "Or Any Other Valid ID"){
-      setPassport(false)
-      setNationalIdCard(false)
-      setDriverLicense(false)
-      setAny(true)
-    }
-    console.log(iDtype);
-}
+  }
 
   return (
     <div className="w-[90%] lg:w-[845px] flex items-center justify-center mx-auto mt-[5rem] py-[50px]" style={{boxShadow:"0 11px 40px -17px #00000024"}}>
@@ -51,16 +38,8 @@ const IdVerification = () => {
           </div> */}
 
           <p className='text-primary-color text-[28px] text-center'>ID Verification</p>
-          <div className='text-[#6C6C6C] text-center mt-[4rem]'>
-            <p>Valid ID can be a scanned copy of either</p>
-            <div className='flex items-center mt-3 gap-x-[20px] gap-y-[5px] flex-wrap justify-center'>
-              {idTypeArray.map(idType => (
-                <div className='flex items-center gap-1'>
-                  <p className={`cursor-pointer ${activeId === idType ? 'active-id' : ''} p-[5px] rounded-full bg-[#D9D9D9]`} onClick={() => handleTabClick(idType)}></p>
-                  <p>{idType}</p>
-                </div>
-              ))}
-            </div>
+          <div className='text-[#6C6C6C] text-center mt-[1rem]'>
+            <p>Valid ID, can be a scanned copy of either</p>
           </div>
 
           {/* CHOOSE ID TYPE */}
@@ -73,142 +52,92 @@ const IdVerification = () => {
             </div>
           </div> */}
 
-          {passport && 
             <div className='mt-10'>
               <div className='mt-5 flex flex-col md:flex-row items-center gap-[15px] lg:gap-[30px] w-full'>
                 <div className='w-full'>
                   <p className='mb-[5px]'>Choose ID Type</p>
-                  <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                    <p className='text-[#B6B6B6]'>Passport</p>
-                    <GoChevronDown className="cursor-pointer"/>
+                  <div className='relative flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
+                    <p className='text-gray-700'>{selectedIdType}</p>
+                    <GoChevronDown className="cursor-pointer" onClick={() => setIdTypeDropDown(!idTypeDropDown)}/>
+                        {
+                          idTypeDropDown &&
+                          <div className='absolute rounded-[6px] bg-white border w-full left-0 top-[45px] p-2'>
+                            {
+                                idTypeArray.map(idType => (
+                                <p className='cursor-pointer py-[6px] hover:text-[#B6B6B6]' onClick={() => {
+                                  setSelectedIdType(idType)
+                                  setIdTypeDropDown(false)
+                                }}>{idType}</p>
+                                ))
+                            }
+                            </div>
+                        }
                   </div>
                 </div>
                 <div className='w-full'>
-                  <p className='mb-[5px]'>Passport</p>
-                  <input type="text" style={{border:"1px solid #DCDCDC"}} className='w-full p-2 rounded-[6px]' placeholder='Passport Number' />
+                  <p className='mb-[5px]'>{selectedIdType}</p>
+                  <input type="text" style={{border:"1px solid #DCDCDC"}} className='w-full p-2 rounded-[6px]' placeholder={`${selectedIdType} Number`} />
                 </div>
               </div>
               <div className='mt-5 flex items-center gap-[15px] lg:gap-[30px] w-full'>
-                <div className='w-full'>
-                  <p className='mb-[5px]'>Upload Passport</p>
-                  <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                    <p className='text-[#B6B6B6]'>Frontside</p>
-                    <GoChevronDown className="cursor-pointer"/>
-                  </div>
-                </div>
-                <div className='w-full'>
-                  <p className='mb-[5px]'>Upload Passport</p>
-                  <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                    <p className='text-[#B6B6B6]'>Backside</p>
-                    <GoChevronDown className="cursor-pointer"/>
-                  </div>
-                </div>
-              </div>
-            </div>
-          }
 
-          {driversLicense && 
-            <div className='mt-10'>
-              <div className='mt-5 flex flex-col md:flex-row items-center gap-[15px] lg:gap-[30px] w-full'>
                 <div className='w-full'>
-                  <p className='mb-[5px]'>Choose ID Type</p>
-                  <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                    <p className='text-[#B6B6B6]'>Passport</p>
-                    <GoChevronDown className="cursor-pointer"/>
+                  <p className='mb-[5px]'>Upload {selectedIdType}</p>
+                  <div class="flex flex-row items-center rounded-[6px]" style={{border:"1px solid #DCDCDC"}}>
+                    <input
+                      type="file"
+                      id="custom-input"
+                      onChange={handleFileUploadFront}
+                      hidden
+                    />
+                    <label
+                      for="custom-input"
+                      class="block mr-4 py-2 px-4
+                        border-0 text-sm bg-gray-200
+                        text-[#B6B6B6] hover:bg-gray-300 cursor-pointer"
+                        style={{ borderRadius:"6px 0 0 6px" }}
+                    >
+                      Frontside
+                    </label>
+                    {
+                      fileFront ?
+                      <label class="text-sm text-slate-500">{fileFront}</label>
+                      :
+                      <label class="text-sm text-slate-500">No file chosen</label>
+                    }
                   </div>
                 </div>
-                <div className='w-full'>
-                  <p className='mb-[5px]'>Driving License</p>
-                  <input type="text" style={{border:"1px solid #DCDCDC"}} className='w-full p-2 rounded-[6px]' placeholder='Driving License Number' />
-                </div>
-              </div>
-              <div className='mt-5 flex items-center gap-[15px] lg:gap-[30px] w-full'>
-                <div className='w-full'>
-                  <p className='mb-[5px]'>Upload Driving License</p>
-                  <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                    <p className='text-[#B6B6B6]'>Frontside</p>
-                    <GoChevronDown className="cursor-pointer"/>
-                  </div>
-                </div>
-                <div className='w-full'>
-                  <p className='mb-[5px]'>Upload Driving License</p>
-                  <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                    <p className='text-[#B6B6B6]'>Backside</p>
-                    <GoChevronDown className="cursor-pointer"/>
-                  </div>
-                </div>
-              </div>
-            </div>
-          }
 
-          {nationalIdCard && 
-            <div className='mt-10'>
-              <div className='mt-5 flex flex-col md:flex-row items-center gap-[15px] lg:gap-[30px] w-full'>
                 <div className='w-full'>
-                  <p className='mb-[5px]'>Choose ID Type</p>
-                  <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                    <p className='text-[#B6B6B6]'>Passport</p>
-                    <GoChevronDown className="cursor-pointer"/>
+                  <p className='mb-[5px]'>Upload {selectedIdType}.</p>
+                    <div class="flex flex-row items-center rounded-[6px]" style={{border:"1px solid #DCDCDC"}}>
+                      <input
+                        type="file"
+                        id="custom-input"
+                        onChange={handleFileUploadBack}
+                        hidden
+                      />
+                      <label
+                        for="custom-input"
+                        class="block mr-4 py-2 px-4
+                          border-0 text-sm bg-gray-200
+                          text-[#B6B6B6] hover:bg-gray-300 cursor-pointer"
+                          style={{ borderRadius:"6px 0 0 6px" }}
+                      >
+                        Backside.
+                      </label>
+                      {
+                        fileBack ?
+                        <label class="text-sm text-slate-500">{fileBack}</label>
+                        :
+                        <label class="text-sm text-slate-500">No file chosen</label>
+                    }
                   </div>
                 </div>
-                <div className='w-full'>
-                  <p className='mb-[5px]'>National ID</p>
-                  <input type="text" style={{border:"1px solid #DCDCDC"}} className='w-full p-2 rounded-[6px]' placeholder='National ID Number' />
-                </div>
-              </div>
-              <div className='mt-5 flex items-center gap-[15px] lg:gap-[30px] w-full'>
-                <div className='w-full'>
-                  <p className='mb-[5px]'>Upload National ID</p>
-                  <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                    <p className='text-[#B6B6B6]'>Frontside</p>
-                    <GoChevronDown className="cursor-pointer"/>
-                  </div>
-                </div>
-                <div className='w-full'>
-                  <p className='mb-[5px]'>Upload National ID</p>
-                  <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                    <p className='text-[#B6B6B6]'>Backside</p>
-                    <GoChevronDown className="cursor-pointer"/>
-                  </div>
-                </div>
-              </div>
-            </div>
-          }
 
-          {any && 
-            <div className='mt-10'>
-              <div className='mt-5 flex flex-col md:flex-row items-center gap-[15px] lg:gap-[30px] w-full'>
-                <div className='w-full'>
-                  <p className='mb-[5px]'>Choose ID Type</p>
-                  <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                    <p className='text-[#B6B6B6]'>Passport</p>
-                    <GoChevronDown className="cursor-pointer"/>
-                  </div>
-                </div>
-                <div className='w-full'>
-                  <p className='mb-[5px]'>Voter's Card</p>
-                  <input type="text" style={{border:"1px solid #DCDCDC"}} className='w-full p-2 rounded-[6px]' placeholder="Voter's Card Number" />
-                </div>
-              </div>
-              <div className='mt-5 flex items-center gap-[15px] lg:gap-[30px] w-full'>
-                <div className='w-full'>
-                  <p className='mb-[5px]'>Upload Voter's Card</p>
-                  <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                    <p className='text-[#B6B6B6]'>Frontside</p>
-                    <GoChevronDown className="cursor-pointer"/>
-                  </div>
-                </div>
-                <div className='w-full'>
-                  <p className='mb-[5px]'>Upload Voter's Card</p>
-                  <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                    <p className='text-[#B6B6B6]'>Backside</p>
-                    <GoChevronDown className="cursor-pointer"/>
-                  </div>
-                </div>
               </div>
             </div>
-          }
-          <button className="bg-secondary-color py-[12px] mt-10 text-white w-full">Save Details</button>
+          <button onClick={() => verifyId()} className="bg-secondary-color py-[12px] mt-10 text-white w-full">Save Details</button>
         </div>
       </div>
     </div>
