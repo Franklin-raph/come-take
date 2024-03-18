@@ -61,7 +61,7 @@ export default function App() {
           <Route path="/message-content" element={<MessageContent />}/>
           <Route path="/saved-items" element={<SavedItems />}/>
           <Route path="/shop-set-up" element={<ShopSetUp />} />
-          <Route path="/verify-id" element={<IdVerification />}/>
+          <Route path="/verify-id" element={<IdVerification baseUrl={baseUrl}/>}/>
           <Route path="/subscription-plan" element={<Subscription />} />
           <Route path="/list-product" element={<ListProduct />} />
         </Routes>
