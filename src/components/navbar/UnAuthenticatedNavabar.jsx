@@ -33,15 +33,21 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
         <nav className='flex items-center justify-between py-5 px-8 lg:px-12 bg-primary-color text-white text-[15px] fixed top-0 w-full self-start z-50'>
             <div className='flex items-center justify-start gap-8 w-full'>
                 <Link to="/" className='block'>Logo</Link>
-                <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[70%] search-bar'>
+                {/* <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[70%] search-bar'>
                     <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color'/>
                     <button className='rounded-full py-2 px-6 bg-secondary-color'>Search</button>
-                </div>
+                </div> */}
             </div>
             <div className="mobile-nav flex items-center gap-5">
                 {/* <IoIosSearch cursor={"pointer"}/> */}
-                <IoNotificationsOutline cursor={"pointer"} fontWeight={"bold"} onClick={() => navigate('/shoping-cart')}/>
-                <FaRegCircleUser cursor={"pointer"} onClick={() => setMobileAccountDropDown(!mobileAccountDropDown)}/>
+                <IoNotificationsOutline cursor={"pointer"} fontWeight={"bold"} onClick={() => navigate('/messages')}/>
+                <FaRegCircleUser cursor={"pointer"} onClick={() => {
+                    if(!user){
+                        setLoginModal(true)
+                    }else{
+                        setMobileAccountDropDown(!mobileAccountDropDown)
+                    }
+                    }}/>
                 <MdMenu cursor={"pointer"} onClick={() => setMobileNav(true)}/>
             </div>
             <div className='nav-right w-full'>
@@ -105,7 +111,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                     </div>
                 </li>
                 <li>
-                    <CiBellOn fontSize={"20px"}/>
+                    <CiBellOn fontSize={"20px"} onClick={() => navigate('/messages')}/>
                 </li>
                 <li className='bg-secondary-color px-3 py-1 rounded-full getApp'>
                     <HiOutlineDevicePhoneMobile />
@@ -282,7 +288,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
             </div>
         }
 
-        <div className="bg-white pb-[62px] lg:pb-[85px]"></div>
+        <div className="bg-white pb-[62px] lg:pb-[70px]"></div>
         <BottomNav />
         {/* <div className='bg-secondary-color py-5 mobile-search'></div> */}
         <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[90%] mx-auto my-5 mobile-search'>

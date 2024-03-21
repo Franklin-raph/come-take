@@ -5,13 +5,14 @@ import { FaEnvelope } from "react-icons/fa";
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const MessageInbox = () => {
+const MessageInbox = ({baseUrl}) => {
 
     const [messages, setMessages] = useState(false)
     const [read, setRead] = useState(false)
 
     const tabsArray = ['Unread','Read']
     const [activeTab, setActiveTab] = useState(tabsArray[0]);
+    const user = JSON.parse(localStorage.getItem('user'))
     const navigate = useNavigate()
 
     function handleTabClick(tab){
@@ -24,6 +25,20 @@ const MessageInbox = () => {
         }
         console.log(tab);
     }
+    // https://cometake.pythonanywhere.com/messages/{user_id}
+    async function getAllMessages(){
+        const res = await fetch(`${baseUrl}/messages/${user.data[1].id}`,{
+            headers: {
+                Authorization: `Bearer ${user.data[0].access}`
+            },
+        })
+        const data = await res.json()
+        console.log(res, data);
+    }
+
+    useEffect(() => {
+        getAllMessages()
+    },[])
 
   return (
     <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20 mb-8">

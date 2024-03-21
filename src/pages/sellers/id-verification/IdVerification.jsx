@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { GoChevronDown } from 'react-icons/go';
+import Alert from '../../../components/alert/Alert';
+import { IoCheckmarkCircle } from "react-icons/io5";
 
 const IdVerification = ({baseUrl}) => {
   const idTypeArray = ["Drivers License", "National ID Card", "International Passport", "Or Any Other Valid ID"];
   const [idTypeDropDown, setIdTypeDropDown] = useState(false);
   const [selectedIdType, setSelectedIdType] = useState(idTypeArray[0]);
-  const [fileFront, setFileFront] = useState(null); // Initialize with null
-  const [fileBack, setFileBack] = useState(null); // Initialize with null
+  const [fileFront, setFileFront] = useState(null);
+  const [fileBack, setFileBack] = useState(null);
+  const [fileFrontUploadSuccess, setFileFrontUploadSuccess] = useState(null)
+  const [fileBackUploadSuccess, setFileBackUploadSuccess] = useState(null)
   const [fileUploadLoader, setFileUploadLoader] = useState(false)
+  const [msg, setMsg] = useState(false)
+  const [alertType, setAlertType] = useState('')
   const user = JSON.parse(localStorage.getItem('user'))
 
   useEffect(() =>{
@@ -37,13 +43,44 @@ const IdVerification = ({baseUrl}) => {
     })
     const data = await res.json()
     if(res) setFileUploadLoader(false)
-    console.log(res, data);
+    if(res.ok){
+      setFileFrontUploadSuccess(true)
+      setMsg('File successfully uploaded')
+      setAlertType('success')
+    }
+    if(!res.ok){
+      setMsg('File upload was not successfull, please try again')
+      setAlertType('error')
+    }
   }
 
-  function handleFileUploadBack(e) {
+  async function handleFileUploadBack(e) {
     if (e.target.files && e.target.files.length > 0) {
       // Update fileBack state with the selected file
       setFileBack(e.target.files[0]);
+    }
+    const formData = new FormData()
+    formData.append('media_type', 'photo')
+    formData.append('media', e.target.files[0])
+    setFileUploadLoader(true)
+    const res = await fetch(`${baseUrl}/media`,{
+      method:"POST",
+      headers:{
+        Authorization:`Bearer ${user.data[0].access}`,
+      },
+      body: formData
+    })
+    const data = await res.json()
+    console.log(data);
+    if(res) setFileUploadLoader(false)
+    if(res.ok){
+      setFileBackUploadSuccess(true)
+      setMsg('File successfully uploaded')
+      setAlertType('success')
+    }
+    if(!res.ok){
+      setMsg('File upload was not successfull, please try again')
+      setAlertType('error')
     }
   }
 
@@ -86,46 +123,62 @@ const IdVerification = ({baseUrl}) => {
             <div className='mt-5 flex items-center gap-[15px] lg:gap-[30px] w-full'>
               <div className='w-full'>
                 <p className='mb-[5px]'>Upload {selectedIdType}</p>
-                <div className="flex flex-row items-center rounded-[6px]" style={{ border: "1px solid #DCDCDC" }}>
-                  <input
-                    type="file"
-                    id="custom-input-front"
-                    onChange={handleFileUploadFront}
-                    hidden
-                  />
-                  <label
-                    htmlFor="custom-input-front"
-                    className="block mr-4 py-2 px-4
-                    border-0 text-sm bg-gray-200
-                    text-[#B6B6B6] hover:bg-gray-300 cursor-pointer"
-                    style={{ borderRadius: "6px 0 0 6px" }}
-                  >
-                    Frontside
-                  </label>
-                  <label className="text-[12px] text-slate-500">{fileFront ? fileFront.name : "No file chosen"}</label>
-                </div>
+                {
+                  fileFrontUploadSuccess ? 
+                      <div className='flex items-center justify-between border border-[#DCDCDC] p-[10px] rounded-[6px]'>
+                        <p className='text-[12px] text-gray-500'>File Upload was successfull</p>
+                        <IoCheckmarkCircle className='text-green-500'/>
+                      </div>
+                    :
+                      <div className="flex flex-row items-center rounded-[6px]" style={{ border: "1px solid #DCDCDC" }}>
+                        <input
+                          type="file"
+                          id="custom-input-front"
+                          onChange={handleFileUploadFront}
+                          hidden
+                        />
+                        <label
+                          htmlFor="custom-input-front"
+                          className="block mr-4 py-2 px-4
+                          border-0 text-sm bg-gray-200
+                          text-[#B6B6B6] hover:bg-gray-300 cursor-pointer"
+                          style={{ borderRadius: "6px 0 0 6px" }}
+                        >
+                          Frontside
+                        </label>
+                        <label className="text-[12px] text-slate-500">{fileFront ? fileFront.name : "No file chosen"}</label>
+                      </div>
+                }
               </div>
 
               <div className='w-full'>
                 <p className='mb-[5px]'>Upload {selectedIdType}</p>
-                <div className="flex flex-row items-center rounded-[6px]" style={{ border: "1px solid #DCDCDC" }}>
-                  <input
-                    type="file"
-                    id="custom-input-back"
-                    onChange={handleFileUploadBack}
-                    hidden
-                  />
-                  <label
-                    htmlFor="custom-input-back"
-                    className="block mr-4 py-2 px-4
-                    border-0 text-sm bg-gray-200
-                    text-[#B6B6B6] hover:bg-gray-300 cursor-pointer"
-                    style={{ borderRadius: "6px 0 0 6px" }}
-                  >
-                    Backside
-                  </label>
-                  <label className="text-[12px] text-slate-500">{fileBack ? fileBack.name : "No file chosen"}</label>
-                </div>
+                {
+                  fileBackUploadSuccess ? 
+                      <div className='flex items-center justify-between border border-[#DCDCDC] p-[10px] rounded-[6px]'>
+                        <p className='text-[12px] text-gray-500'>File Upload was successfull</p>
+                        <IoCheckmarkCircle className='text-green-500'/>
+                      </div>
+                    :
+                  <div className="flex flex-row items-center rounded-[6px]" style={{ border: "1px solid #DCDCDC" }}>
+                    <input
+                      type="file"
+                      id="custom-input-back"
+                      onChange={handleFileUploadBack}
+                      hidden
+                    />
+                    <label
+                      htmlFor="custom-input-back"
+                      className="block mr-4 py-2 px-4
+                      border-0 text-sm bg-gray-200
+                      text-[#B6B6B6] hover:bg-gray-300 cursor-pointer"
+                      style={{ borderRadius: "6px 0 0 6px" }}
+                    >
+                      Backside
+                    </label>
+                    <label className="text-[12px] text-slate-500">{fileBack ? fileBack.name : "No file chosen"}</label>
+                  </div>
+              }
               </div>
 
             </div>
@@ -133,6 +186,7 @@ const IdVerification = ({baseUrl}) => {
           <button onClick={() => verifyId()} className="bg-secondary-color py-[12px] mt-10 text-white w-full">Save Details</button>
         </div>
       </div>
+      {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
       {
             fileUploadLoader &&
             <div className="fixed h-full w-full top-0 left-0 z-[99] flex items-center justify-center" style={{ background:"rgba(18, 18, 18, 0.8)" }}>

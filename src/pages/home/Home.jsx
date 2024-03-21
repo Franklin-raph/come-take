@@ -388,17 +388,28 @@ const Home = () => {
             </div>
           </SwiperSlide>
         </Swiper> */}
-        <OwlCarousel {...options} id="home">
-            <div className="img-slider3">
+        <div id='home'>
+          <div className='image-overlay'></div>
+          <img src={img2} alt="" />
+          <div className="w-full absolute left-[50%] right-[50%] z-[10] translate-x-[-50%] translate-y-[-50%] text-center">
+            <h1>Buy & Sell on Nigeria’s No1 Market Place</h1>
+            <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[70%] search-bar'>
+                  <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color'/>
+                  <button className='rounded-full py-2 px-6 bg-secondary-color'>Search</button>
+              </div>
+          </div>
+        </div>
+        {/* <OwlCarousel {...options} id="home"> */}
+            {/* <div className="img-slider3">
               <img src={img1} className="h-full w-full object-contain" alt="" />
-            </div>
-            <div className="img-slider3">
+            </div> */}
+            {/* <div className="img-slider3">
               <img src={img2} className="h-full w-full object-contain" alt="" />
-            </div>
-            <div className="img-slider3">
+            </div> */}
+            {/* <div className="img-slider3">
               <img src={img3} className="h-full w-full object-contain" alt="" />
-            </div>
-        </OwlCarousel>
+            </div> */}
+        {/* </OwlCarousel> */}
         <div className="flex flex-col lg:flex-row justify-between py-[20px] lg:px-12 px-6 bg-[#F5F9ED]">
           <h1 className="font-[600] text-primary-color lg:text-[30px] text-[22px] w-full lg:w-[40%]">
             Discover the ultimate online shopping experience

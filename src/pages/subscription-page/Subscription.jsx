@@ -1,8 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiArrowLeft } from "react-icons/fi";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
-const Subscription = () => {
+const Subscription = ({baseUrl}) => {
+
+  const user = JSON.parse(localStorage.getItem('user'))
+
+  useEffect(() => {
+    getSubscriptionPlans()
+  },[])
+
+  async function getSubscriptionPlans(){
+    const res = await fetch(`${baseUrl}/subscription/plans`,{
+      headers: {
+        Authorization: `Bearer ${user.data[0].access}`
+      },
+    })
+    const data = await res.json()
+    console.log(res, data);
+  }
 
   const [openSubscriptionModal, setOpenSubscriptionModal] = useState(false)
   const [paymentModal, setPaymentModal] = useState(false)

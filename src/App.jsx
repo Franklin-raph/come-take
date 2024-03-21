@@ -53,16 +53,16 @@ export default function App() {
           <Route path="/product-details" element={<ProductDescription />}/>
           <Route path="/shoping-cart" element={<ShoppingCart />}/>
           <Route path="/check-out" element={<Checkout />}/>
-          <Route path="/my-profile" element={<MyProfile />}/>
-          <Route path="/password-reset" element={<PasswordReset />}/>
+          <Route path="/my-profile" element={<MyProfile baseUrl={baseUrl}/>}/>
+          <Route path="/password-reset" element={<PasswordReset baseUrl={baseUrl}/>}/>
           <Route path="/my-shop" element={<MyOrder />}/>
           <Route path="/order-item" element={<OrederdItem />}/>
-          <Route path="/messages" element={<MessageInbox />}/>
+          <Route path="/messages" element={<MessageInbox baseUrl={baseUrl}/>}/>
           <Route path="/message-content" element={<MessageContent />}/>
           <Route path="/saved-items" element={<SavedItems />}/>
           <Route path="/shop-set-up" element={<ShopSetUp />} />
           <Route path="/verify-id" element={<IdVerification baseUrl={baseUrl}/>}/>
-          <Route path="/subscription-plan" element={<Subscription />} />
+          <Route path="/subscription-plan" element={<Subscription baseUrl={baseUrl}/>} />
           <Route path="/list-product" element={<ListProduct />} />
         </Routes>
         <Footer />

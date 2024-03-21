@@ -2,49 +2,140 @@ import ProfileSideNav from '../../components/profile-side-nav/ProfileSideNav';
 import { IoChevronDown } from 'react-icons/io5';
 import userProfilePic  from '../../assets/profilePic.png'
 import { useEffect, useState } from 'react';
+import Btnloader from '../../components/loader/Btnloader';
+import Alert from '../../components/alert/Alert';
 
-const MyProfile = () => {
+const MyProfile = ({baseUrl}) => {
 
     // const [deleteModal, setDeleteModal] = useState(false)
     useEffect(() => {
         window.scrollTo(0, 0)
     },[])
 
+    const user = JSON.parse(localStorage.getItem('user'))
+    console.log(user);
+
+    const [email, setEmail] = useState('')
+    const [first_name, setFirstName] = useState('')
+    const [last_name, setLastName] = useState('')
+    const [phone, setPhone] = useState('')
+    const [middleName, setMiddleName] = useState('')
+    const [msg, setMsg] = useState(false)
+    const [alertType, setAlertType] = useState('')
+    const [loader1, setLoader1] = useState(false)
+    const [loader2, setLoader2] = useState(false)
+
+    async function updateUserNames(){
+        console.log(`Bearer ${user.data[0].access}`);
+        setLoader1(true)
+        const res = await fetch(`${baseUrl}/update-profile`,{
+            method:"PUT",
+            headers: {
+                'Content-Type':'application/json',
+                Authorization: `Bearer ${user.data[0].access}`
+            },
+            body: JSON.stringify({first_name, last_name})
+        })
+        const data = await res.json()
+        if(res) setLoader1(false)
+        if(res.ok){
+            setMsg(data.message)
+            setAlertType('success')
+        }
+        console.log(res, data);
+    }
+
+
+    async function updateEmail(){
+        console.log(`Bearer ${user.data[0].access}`);
+        setLoader2(true)
+        const res = await fetch(`${baseUrl}/update-profile`,{
+            method:"PUT",
+            headers: {
+                'Content-Type':'application/json',
+                Authorization: `Bearer ${user.data[0].access}`
+            },
+            body: JSON.stringify({email})
+        })
+        const data = await res.json()
+        if(res) setLoader2(false)
+        if(res.ok){
+            setMsg(data.message)
+            setAlertType('success')
+        }
+        console.log(res, data);
+    }
+
   return (
     <div>
         <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20">
             <div className='flex items-start gap-[2rem] flex-col-reverse lg:flex-row'>
                 <ProfileSideNav />
+                {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
                 <div className='gap-[0rem] px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <div>
                         <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Account Information</h1>
-                        <div className='flex items-center justify-center flex-col my-[3rem]'>
+                        {/* <div className='flex items-center justify-center flex-col my-[3rem]'>
                             <img src={userProfilePic} alt="" width="140px" height="140px"/>
                             <p className='text-[#5C5C5C] font-[600] text-[24px] mt-3 mb-1'>John Doe</p>
                             <p className='text-[#5C5C5C]'>JohnDoes@gmail.com</p>
-                        </div>
+                        </div> */}
                         <div>
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>First Name</label>
-                            <input type="text" style={{border:"1px solid #CCCCCC"}} value={"Anthony"} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
+                            <input type="text" style={{border:"1px solid #CCCCCC"}} onChange={e => setFirstName(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
                         </div>
                         <div className='my-7'>
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>Middle Name</label>
-                            <input type="text" style={{border:"1px solid #CCCCCC"}} value={""} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
+                            <input type="text" style={{border:"1px solid #CCCCCC"}} onChange={e => setMiddleName(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
                         </div>
                         <div>
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>Last Name</label>
-                            <input type="text" style={{border:"1px solid #CCCCCC"}} value={"Egolum"} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
+                            <input type="text" style={{border:"1px solid #CCCCCC"}} onChange={e => setLastName(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
                         </div>
-                        <button className='bg-primary-color w-full py-[16px] px-[32px] text-[#fff] rounded-[4px] mt-10'>Save Information</button>
+                        {
+                            loader1 ?
+                                <div className="mt-7">
+                                    <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
+                                    font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
+                                    shadow-sm transition-all cursor-not-allowed">
+                                        <Btnloader />
+                                    </button>
+                                </div>
+                              :
+                                <button onClick={updateUserNames} className='bg-primary-color w-full py-[16px] px-[32px] text-[#fff] rounded-[4px] mt-10'>Save Information</button>
+
+                        }
                     </div>
 
                     <div className='mt-[60px]'>
                         <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Update Email</h1>
                         <div>
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>Email</label>
-                            <input type="text" style={{border:"1px solid #CCCCCC"}} value={"Example@Cometake.com"} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
+                            <input type="text" style={{border:"1px solid #CCCCCC"}} placeholder='Example@Cometake.com' onChange={e => setEmail(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
+                        </div>
+                        {
+                            loader2 ?
+                                <div className="mt-7">
+                                    <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
+                                    font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
+                                    shadow-sm transition-all cursor-not-allowed">
+                                        <Btnloader />
+                                    </button>
+                                </div>
+                              :
+                                <button onClick={updateEmail} className='bg-primary-color w-full py-[16px] px-[32px] text-[#fff] rounded-[4px] mt-10'>Update</button>
+
+                        }
+                    </div>
+
+                    <div className='mt-[60px]'>
+                        <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Update Phone Number</h1>
+                        <div>
+                            <label className='text-[16px] block mb-[3px] text-[#101010]'>Phone</label>
+                            <input type="text" style={{border:"1px solid #CCCCCC"}} placeholder='08145463122' onChange={e => setPhone(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
                         </div>
                         <button className='bg-primary-color w-full py-[16px] px-[32px] text-[#fff] rounded-[4px] mt-10'>Update</button>
+                        
                     </div>
 
                     {/* <div className='mt-[60px]'>
