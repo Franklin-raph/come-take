@@ -37,8 +37,13 @@ const MessageInbox = ({baseUrl}) => {
     }
 
     useEffect(() => {
-        getAllMessages()
-    },[])
+        if(!user){
+          navigate('/')
+        }else{
+          getAllMessages()
+        }
+      },[])
+
 
   return (
     <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20 mb-8">

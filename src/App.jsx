@@ -40,12 +40,27 @@ export default function App() {
   const [emailForOTP, setEmailForOTP] = useState('')
   const [otp, setOTP] = useState('')
   const baseUrl = "https://cometake.pythonanywhere.com"
+  const user = JSON.parse(localStorage.getItem('user'))
+  const [userDetails, setUserDetails] = useState()
+  const [checkUser, setCheckUser] = useState(false)
+
+  async function getUserDetails(){
+    const res = await fetch(`${baseUrl}/complete-registration`,{
+      headers:{
+        Authorization:`Bearer ${user.data[0].access}`
+      }
+    })
+    const data = await res.json()
+    setUserDetails(data.data)
+    console.log(res, data);
+  }
+
 
   return (
     <>
       <HashRouter>
       {/* <AuthenticatedNavbar /> */}
-       <UnAuthenticatedNavabar setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} baseUrl={baseUrl}/>
+       <UnAuthenticatedNavabar userDetails={userDetails} getUserDetails={getUserDetails} setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} baseUrl={baseUrl}/>
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/signup" element={<Register baseUrl={baseUrl}/>}/>

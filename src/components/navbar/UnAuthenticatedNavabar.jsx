@@ -19,14 +19,24 @@ import { IoChevronDown, IoNotificationsOutline } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi2";
 import { CiShop } from "react-icons/ci";
 import { BiSolidPhoneCall } from "react-icons/bi";
+import { IoDownloadOutline } from "react-icons/io5";
+import { BiCategory } from "react-icons/bi";
+import { GrVirtualStorage } from "react-icons/gr";
 
-const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
+
+const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, getUserDetails, userDetails }) => {
 
     const [desktopAccountDropDown, setDesktopAccountDropDown] = useState(false)
     const [mobileAccountDropDown, setMobileAccountDropDown] = useState(false)
     const user = localStorage.getItem("user")
     const [mobileNav, setMobileNav] = useState(false)
     const navigate = useNavigate()
+
+    useEffect(() => {
+        getUserDetails()
+    },[])
+
+    // async function
 
   return (
     <div>
@@ -65,7 +75,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                             <div className='flex items-center justify-center mt-[-18px]'>
                                 <IoTriangleSharp color='white' fontSize={"20px"}/>
                             </div>
-                            <p className='text-[#333333] text-[14px] text-center mt-2 pb-1' style={{ borderBottom:"1px solid #DCDCDC" }}>Hi, John Doe</p>
+                            <p className='text-[#333333] text-[14px] text-center mt-2 pb-1' style={{ borderBottom:"1px solid #DCDCDC" }}>Hi, {userDetails && userDetails.first_name} {userDetails && userDetails.last_name}</p>
                             <li onClick={() => navigate('/my-profile')} className='mt-4 px-[15px]'>
                                 <div className='cursor-pointer flex items-center gap-3 justify-center text-center'>
                                     <FaRegCircleUser fontSize={"20px"} color='#434343'/>
@@ -123,42 +133,54 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
         {
             mobileNav &&
             <div className='fixed z-[999] w-full h-full' style={{ background:"rgba(0, 0, 0, 0.7)" }}>
-                <ul className='bg-white w-[50%] px-5 py-[20px]'>
+                <ul className='bg-white w-[50%] px-5 py-[20px] flex flex-col gap-[.8rem]'>
                     <li className='flex items-center justify-between mb-6'>
                         <p>Logo</p>
                         <MdClose color='#797979' fontSize={"25px"} cursor={"pointer"} onClick={() => setMobileNav(false)}/>
                     </li>
-                    <li className='text-[18px] mb-3'>
+                    <li className='text-[15px] mb-3'>
                         <Link to="/" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
                             <TbHome fontSize={"20px"} color='#797979'/>
                             <p>Home</p>
                         </Link>
                     </li>
-                    <li className='text-[18px] mb-3'>
+                    <li className='text-[15px] mb-3'>
                         <Link to="/categories" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
-                            <IoCubeOutline fontSize={"20px"} color='#797979'/>
+                            <BiCategory fontSize={"20px"} color='#797979'/>
                             <p>Categories</p>
                         </Link>
                     </li>
-                    <li className='text-[18px] mb-3'>
+                    <li className='text-[15px] mb-3'>
                         <Link to="/saved-items" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
-                            <IoCubeOutline fontSize={"20px"} color='#797979'/>
+                            <CiHeart fontSize={"20px"} color='#797979'/>
                             <p>Saved Items</p>
                         </Link>
                     </li>
-                    <li className='text-[18px] mb-3'>
+                    <li className='text-[15px] mb-3'>
                         <Link to="#" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
-                            <IoCubeOutline fontSize={"20px"} color='#797979'/>
+                            <GrVirtualStorage fontSize={"20px"} color='#797979'/>
                             <p>VTU</p>
                         </Link>
                     </li>
-                    <li className='text-[18px] mb-3'>
+                    <li className='text-[15px] mb-3'>
                         <Link to="/shop-set-up" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
                             <IoCubeOutline fontSize={"20px"} color='#797979'/>
                             <p>Sell Product</p>
                         </Link>
                     </li>
-                    <li className='text-[18px]'>
+                    <li className='text-[15px] mb-3'>
+                        <Link to="/shop-set-up" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
+                            <CiShop fontSize={"20px"} color='#797979'/>
+                            <p>My Shop</p>
+                        </Link>
+                    </li>
+                    <li className='text-[15px] mb-3'>
+                        <Link to="/shop-set-up" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
+                            <IoDownloadOutline fontSize={"20px"} color='#797979'/>
+                            <p>Download App</p>
+                        </Link>
+                    </li>
+                    <li className='text-[15px]'>
                         <Link to="#" onClick={() => setMobileNav(false)}  className='flex items-center gap-3 text-[#333333]'>
                             <PiWarningCircleLight fontSize={"22px"} color='#797979' style={{ transform:"rotate(180deg)" }}/>
                             <p>About Us</p>
@@ -231,8 +253,8 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
                                     navigate("/my-profile")
                                     setMobileAccountDropDown(!mobileAccountDropDown)
                                 }}>
-                                <h1 className='text-bold text-primary-color'>Ndubuisi Emmanuel</h1>
-                                <p className='text-[#6C6C6C] mt-[-5px]'>user@gmail.com</p>
+                                <h1 className='text-bold text-primary-color'>{userDetails && userDetails.first_name} {userDetails && userDetails.last_name}</h1>
+                                <p className='text-[#6C6C6C] mt-[-5px]'>{userDetails && userDetails.email}</p>
                                 <p className='text-secondary-color font-[700]'>Account Settings</p>
                             </div>
                             {/* <CiPlay1 /> */}
@@ -291,10 +313,10 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal }) => {
         <div className="bg-white pb-[62px] lg:pb-[70px]"></div>
         <BottomNav />
         {/* <div className='bg-secondary-color py-5 mobile-search'></div> */}
-        <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[90%] mx-auto my-5 mobile-search'>
+        {/* <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[90%] mx-auto my-5 mobile-search'>
             <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color'/>
             <button className='rounded-full py-2 px-6 bg-secondary-color text-white'>Search</button>
-        </div>
+        </div> */}
     </div>
   )
 }
