@@ -4,6 +4,7 @@ import Alert from '../../../components/alert/Alert';
 import { IoCheckmarkCircle } from "react-icons/io5";
 import Btnloader from '../../../components/loader/Btnloader';
 import AwaitingVerification from '../../../components/awaitingVerifircation/AwaitingVerification';
+import RejectSellerVerification from '../../../components/rejectSellerVerification/RejectSellerVerification';
 
 const IdVerification = ({baseUrl}) => {
   const idTypeArray = ["drivers_licence", "national_id_card", "international_passport", "voters_card", "others"];
@@ -259,6 +260,9 @@ const IdVerification = ({baseUrl}) => {
         }
         {
           userDetails && userDetails.kyc_status === 'pending' ? <AwaitingVerification /> : ""
+        }
+        {
+          userDetails && userDetails.kyc_status === 'rejected' ? <RejectSellerVerification /> : ""
         }
         
     </div>

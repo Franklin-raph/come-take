@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { IoChevronDown } from 'react-icons/io5';
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -14,13 +14,31 @@ const BottomNav = () => {
     const user = JSON.parse(localStorage.getItem('user'))
     const [msg, setMsg] = useState(false)
     const [alertType, setAlertType] = useState('')
+    const [userDetails, setUserDetails] = useState()
     const navigate = useNavigate()
+
+    async function getUserDetails(){
+        const res = await fetch(`https://cometake.pythonanywhere.com/complete-registration`,{
+          headers:{
+            Authorization:`Bearer ${user.data[0].access}`
+          }
+        })
+        const data = await res.json()
+        setUserDetails(data.data)
+        console.log(res, data);
+      }
+
+    useEffect(() => {
+        getUserDetails()
+    },[])
 
     function checkIsSellerVerified(){
         if(!user){
             setMsg("You have to be logged in to perform this operation")
         }
-        if(user.data[1].is_seller === false){
+        if(userDetails.kyc_status === 'pending'){
+            navigate('/verify-id')
+        }else if(userDetails.kyc_status === 'rejected'){
             navigate('/verify-id')
         }else{
             navigate('/shop-set-up')
