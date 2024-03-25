@@ -28,7 +28,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
 
     const [desktopAccountDropDown, setDesktopAccountDropDown] = useState(false)
     const [mobileAccountDropDown, setMobileAccountDropDown] = useState(false)
-    const user = localStorage.getItem("user")
+    const user = JSON.parse(localStorage.getItem("user"))
     const [mobileNav, setMobileNav] = useState(false)
     const navigate = useNavigate()
     const [userDetails, setUserDetails] = useState()
@@ -45,6 +45,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
       }
     
       useEffect(() =>{
+        // alert("helo")
         getUserDetails()
       },[])
 
