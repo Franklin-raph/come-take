@@ -60,7 +60,7 @@ export default function App() {
     <>
       <HashRouter>
       {/* <AuthenticatedNavbar /> */}
-       <UnAuthenticatedNavabar userDetails={userDetails} getUserDetails={getUserDetails} setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} baseUrl={baseUrl}/>
+       <UnAuthenticatedNavabar setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} baseUrl={baseUrl}/>
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/signup" element={<Register baseUrl={baseUrl}/>}/>
@@ -76,7 +76,7 @@ export default function App() {
           <Route path="/message-content" element={<MessageContent />}/>
           <Route path="/saved-items" element={<SavedItems />}/>
           <Route path="/shop-set-up" element={<ShopSetUp />} />
-          <Route path="/verify-id" element={<IdVerification baseUrl={baseUrl}/>}/>
+          <Route path="/verify-id" element={<IdVerification baseUrl={baseUrl} userDetails={userDetails}/>}/>
           <Route path="/subscription-plan" element={<Subscription baseUrl={baseUrl}/>} />
           <Route path="/list-product" element={<ListProduct />} />
         </Routes>

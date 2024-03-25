@@ -24,19 +24,29 @@ import { BiCategory } from "react-icons/bi";
 import { GrVirtualStorage } from "react-icons/gr";
 
 
-const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, getUserDetails, userDetails }) => {
+const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) => {
 
     const [desktopAccountDropDown, setDesktopAccountDropDown] = useState(false)
     const [mobileAccountDropDown, setMobileAccountDropDown] = useState(false)
     const user = localStorage.getItem("user")
     const [mobileNav, setMobileNav] = useState(false)
     const navigate = useNavigate()
+    const [userDetails, setUserDetails] = useState()
 
-    useEffect(() => {
+    async function getUserDetails(){
+        const res = await fetch(`${baseUrl}/complete-registration`,{
+          headers:{
+            Authorization:`Bearer ${user.data[0].access}`
+          }
+        })
+        const data = await res.json()
+        setUserDetails(data.data)
+        console.log(res, data);
+      }
+    
+      useEffect(() =>{
         getUserDetails()
-    },[])
-
-    // async function
+      },[])
 
   return (
     <div>
