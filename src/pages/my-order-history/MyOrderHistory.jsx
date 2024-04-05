@@ -21,7 +21,7 @@ const MyOrder = () => {
                 <ProfileSideNav />
                 <div className='gap-[0rem] px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 password-reset w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <div className='flex justify-between items-center mb-8 '  style={{borderBottom:"1px solid #E6ECEA"}}>
-                        <h1 className='text-[#003C2F] text-[24px] font-bold pb-3'>Order</h1>
+                        <h1 className='text-[#003C2F] text-[24px] font-bold pb-3'>My Shop</h1>
                         <button onClick={() => setOrderHistory(!orderHistory)}>Click me</button>
                     </div>
                 {orderHistory &&
