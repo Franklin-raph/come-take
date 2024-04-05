@@ -6,15 +6,7 @@ import Btnloader from '../../components/loader/Btnloader';
 import Alert from '../../components/alert/Alert';
 
 const MyProfile = ({baseUrl}) => {
-
-    // const [deleteModal, setDeleteModal] = useState(false)
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    },[])
-
-    const user = JSON.parse(localStorage.getItem('user'))
-    console.log(user);
-
+    const [userDetails, setUserDetails] = useState()
     const [email, setEmail] = useState('')
     const [first_name, setFirstName] = useState('')
     const [last_name, setLastName] = useState('')
@@ -24,6 +16,35 @@ const MyProfile = ({baseUrl}) => {
     const [alertType, setAlertType] = useState('')
     const [loader1, setLoader1] = useState(false)
     const [loader2, setLoader2] = useState(false)
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    async function getUserDetails(){
+        const res = await fetch(`${baseUrl}/complete-registration`,{
+          headers:{
+            Authorization:`Bearer ${user.data[0].access}`
+          }
+        })
+        const data = await res.json()
+        setUserDetails(data.data)
+        setFirstName(data.data.first_name)
+        setLastName(data.data.last_name)
+        setEmail(data.data.email)
+        setPhone(data.data.phone)
+        console.log(res, data);
+      }
+    
+      useEffect(() =>{
+        // alert("helo")
+        getUserDetails()
+      },[])
+
+    // const [deleteModal, setDeleteModal] = useState(false)
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    },[])
+
+    console.log(user);
+
 
     async function updateUserNames(){
         console.log(`Bearer ${user.data[0].access}`);
@@ -82,7 +103,7 @@ const MyProfile = ({baseUrl}) => {
                         </div> */}
                         <div>
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>First Name</label>
-                            <input type="text" style={{border:"1px solid #CCCCCC"}} onChange={e => setFirstName(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
+                            <input type="text" style={{border:"1px solid #CCCCCC"}} value={first_name} onChange={e => setFirstName(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
                         </div>
                         <div className='my-7'>
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>Middle Name</label>
@@ -90,7 +111,7 @@ const MyProfile = ({baseUrl}) => {
                         </div>
                         <div>
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>Last Name</label>
-                            <input type="text" style={{border:"1px solid #CCCCCC"}} onChange={e => setLastName(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
+                            <input type="text" style={{border:"1px solid #CCCCCC"}} value={last_name} onChange={e => setLastName(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
                         </div>
                         {
                             loader1 ?
@@ -111,7 +132,7 @@ const MyProfile = ({baseUrl}) => {
                         <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Update Email</h1>
                         <div>
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>Email</label>
-                            <input type="text" style={{border:"1px solid #CCCCCC"}} placeholder='Example@Cometake.com' onChange={e => setEmail(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
+                            <input type="text" style={{border:"1px solid #CCCCCC"}} placeholder='Example@Cometake.com' onChange={e => setEmail(e.target.value)} value={email} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
                         </div>
                         {
                             loader2 ?
@@ -132,7 +153,7 @@ const MyProfile = ({baseUrl}) => {
                         <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Update Phone Number</h1>
                         <div>
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>Phone</label>
-                            <input type="text" style={{border:"1px solid #CCCCCC"}} placeholder='08145463122' onChange={e => setPhone(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
+                            <input type="text" style={{border:"1px solid #CCCCCC"}} placeholder='08145463122' onChange={e => setPhone(e.target.value)} value={phone} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
                         </div>
                         <button className='bg-primary-color w-full py-[16px] px-[32px] text-[#fff] rounded-[4px] mt-10'>Update</button>
                         

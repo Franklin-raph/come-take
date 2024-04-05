@@ -75,10 +75,10 @@ export default function App() {
           <Route path="/messages" element={<MessageInbox baseUrl={baseUrl}/>}/>
           <Route path="/message-content" element={<MessageContent />}/>
           <Route path="/saved-items" element={<SavedItems />}/>
-          <Route path="/shop-set-up" element={<ShopSetUp />} />
+          <Route path="/shop-set-up" element={<ShopSetUp baseUrl={baseUrl} />} />
           <Route path="/verify-id" element={<IdVerification baseUrl={baseUrl} userDetails={userDetails}/>}/>
           <Route path="/subscription-plan" element={<Subscription baseUrl={baseUrl}/>} />
-          <Route path="/list-product" element={<ListProduct />} />
+          <Route path="/list-product" element={<ListProduct baseUrl={baseUrl}/>} />
         </Routes>
         <Footer />
         {loginModal && !registerModal &&

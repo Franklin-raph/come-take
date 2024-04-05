@@ -57,7 +57,7 @@ const BottomNav = () => {
                 </li>
             </li>
             <li>
-                <Link to="/new-listing">New Listing</Link>
+                <Link to="/list-product">List Product</Link>
             </li>
             <li onClick={() => checkIsSellerVerified()}>
                 Sell Products
