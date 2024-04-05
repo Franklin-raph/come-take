@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { FiArrowLeft } from "react-icons/fi";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import PaystackPop from "@paystack/inline-js"
 
 const Subscription = ({baseUrl}) => {
 
   const user = JSON.parse(localStorage.getItem('user'))
+  const [userDetails, setUserDetails] = useState()
 
   useEffect(() => {
     getSubscriptionPlans()
+    getUserDetails()
   },[])
 
   async function getSubscriptionPlans(){
@@ -18,6 +21,37 @@ const Subscription = ({baseUrl}) => {
     })
     const data = await res.json()
     console.log(res, data);
+  }
+
+  async function getUserDetails(){
+    const res = await fetch(`${baseUrl}/complete-registration`,{
+      headers:{
+        Authorization:`Bearer ${user.data[0].access}`
+      }
+    })
+    const data = await res.json()
+    setUserDetails(data.data)
+    console.log(res, data);
+  }
+
+  function payWithPayStack(){
+    console.log(userDetails.email,);
+    // setTotalFee(amount + 0.2)
+    const payStack = new PaystackPop()
+    payStack.newTransaction({
+      key:"pk_test_12420d20e0b354e9670266456195a13f3a03ec68",
+      amount:10000 + 0.2 * 100,
+      email:userDetails.email,
+      onSuccess(transaction){
+        console.log(transaction)
+        // setFundAccountModal(false)
+        // setVerifyPaymentModal(true)
+        // handleVerifyAccountFund(transaction.reference, (+amount/750).toFixed(2))
+      },
+      oncancel(){
+        console.log("Failed Transaction")
+      }
+    })
   }
 
   const [openSubscriptionModal, setOpenSubscriptionModal] = useState(false)
@@ -91,11 +125,11 @@ const Subscription = ({baseUrl}) => {
               <IoIosCloseCircleOutline className="text-[20px] cursor-pointer mt-[-50px]" onClick={() => setPaymentModal(false)}/>
             </div>
             <div style={{ borderTop:"1px solid #E6ECEA", borderBottom:"1px solid #E6ECEA" }} className="mb-8">
-              <p className="text-[#1C1C1C] text-[40px] text-center font-[700] my-3">N10,000</p>
+              <p className="text-[#1C1C1C] text-[40px] text-center font-[700] my-3">N100,000</p>
               <p className="text-center text-[10px] mb-3 text-[#989898]">Premium plan 1 month payment ( 30 Days )</p>
             </div>
             <div className="flex items-center justify-center gap-6">
-              <button className="text-white bg-secondary-color px-3 py-[10px] rounded md:w-[287px] w-[180px]">Pay Now</button>
+              <button onClick={() => payWithPayStack()} className="text-white bg-secondary-color px-3 py-[10px] rounded md:w-[287px] w-[180px]">Pay Now</button>
             </div>
           </div>
         </div>
