@@ -38,27 +38,27 @@ const ListProduct = () => {
       <div className="ml-[3.2rem]">
         <p className="text-[#101010] mb-2">Image/Videos</p>
         <div className="flex items-center justify-between">
-            <div className="h-[110px] w-[110px] rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+            <div className="h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
                 <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
                 <p>Main Image</p>
             </div>
-            <div className="h-[110px] w-[110px] rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+            <div className="h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
                 <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
                 <p>Main Image</p>
             </div>
-            <div className="h-[110px] w-[110px] rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+            <div className="h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
                 <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
                 <p>Main Image</p>
             </div>
-            <div className="h-[110px] w-[110px] rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+            <div className="h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
                 <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
                 <p>Main Image</p>
             </div>
-            <div className="h-[110px] w-[110px] rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+            <div className="h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
                 <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
                 <p>Main Image</p>
             </div>
-            <div className="h-[110px] w-[110px] rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+            <div className="h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
                 <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
                 <p>Main Image</p>
             </div>

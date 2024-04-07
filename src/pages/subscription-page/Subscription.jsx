@@ -35,15 +35,14 @@ const Subscription = ({baseUrl}) => {
   }
 
   function payWithPayStack(){
-    console.log(userDetails.email,);
-    // setTotalFee(amount + 0.2)
     const payStack = new PaystackPop()
     payStack.newTransaction({
       key:"pk_test_12420d20e0b354e9670266456195a13f3a03ec68",
-      amount:10000 + 0.2 * 100,
+      amount:10000 * 100,
       email:userDetails.email,
       onSuccess(transaction){
         console.log(transaction)
+        subscribeUser()
         // setFundAccountModal(false)
         // setVerifyPaymentModal(true)
         // handleVerifyAccountFund(transaction.reference, (+amount/750).toFixed(2))
@@ -52,6 +51,19 @@ const Subscription = ({baseUrl}) => {
         console.log("Failed Transaction")
       }
     })
+  }
+
+  async function subscribeUser () {
+    const res = await fetch(`${baseUrl}/seller/subscription/my-plan`,{
+      method:'POST',
+      body: JSON.stringify({amount_paid:100000, subscription_duration_months:3, subscription_plan:'basic plan'}),
+      headers: {
+        Authorization: `Bearer ${user.data[0].access}`,
+        'Content-Type':'application/json'
+      },
+    })
+    const data = await res.json()
+    console.log(res, data);
   }
 
   const [openSubscriptionModal, setOpenSubscriptionModal] = useState(false)

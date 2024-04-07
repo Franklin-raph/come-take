@@ -42,7 +42,7 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
       if(res.ok){
         setLoginModal(false)
         localStorage.setItem('user', JSON.stringify(data))
-        navigate("/")
+        window.location.href = '/'
       }
     }
     // localStorage.setItem("user", 1)
