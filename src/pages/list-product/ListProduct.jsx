@@ -5,14 +5,365 @@ import { GoChevronRight } from "react-icons/go";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useEffect, useState } from "react";
+import Alert from "../../components/alert/Alert";
+import Btnloader from "../../components/loader/Btnloader";
 
-const ListProduct = () => {
+const ListProduct = ({baseUrl}) => {
 
     const [categoryNav,SetCategoryNav] = useState(false)
     const [currentCategory, setCurrentCategory] = useState('All Categories')
     const AllCategoryArray = ['Automobile','Baby Product','Funiture','Electronics','Computing','Phones & Accessories','Gaming','Health','Musical','Office']
+    const productConditionArray = ['new', 'used_like_new', 'used_like_good', 'used_like_fair']
     const [currentCategoryArray, setCurrentCategoryArray] = useState(AllCategoryArray)
     const computingCategoryArray = ['Laptops','Desktops','Printers','Accessories']
+
+    const [productCondition, setProductCondition] = useState(false)
+
+    const [fileUploadLoader, setFileUploadLoader] = useState(false)
+    const [loader, setLoader] = useState(false)
+    const [msg, setMsg] = useState(false)
+    const [alertType, setAlertType] = useState('')
+    const user = JSON.parse(localStorage.getItem('user'))
+    // const [mediaType, setMediaType] = useState('')
+
+    const [file1, setFile1] = useState(null)
+    const [file2, setFile2] = useState(null)
+    const [file3, setFile3] = useState(null)
+    const [file4, setFile4] = useState(null)
+    const [file5, setFile5] = useState(null)
+    const [file6, setFile6] = useState(null)
+
+    const [uploadedIds, setUploadedIds] = useState([])
+    let mediaType;
+
+    async function handleFile1Upload(e) {
+    if (e.target.files && e.target.files.length > 0) {
+      // Update file state with the selected file
+        const selectedFile = e.target.files[0];
+        
+        // Check file size
+        const fileSizeMB = selectedFile.size / (1024 * 1024);
+        if (fileSizeMB > 5) {
+            setMsg('File size exceeds the limit of 5MB.')
+            setAlertType('warning')
+            return;
+        }
+        if(e.target.files[0].type.includes('image')){
+            mediaType = 'photo';
+        }else if(e.target.files[0].type.includes('video')){
+            mediaType = 'video';
+        }
+
+        setFile1(selectedFile);
+        const formData = new FormData()
+        formData.append('media_type', mediaType)
+        formData.append('media', e.target.files[0])
+        setFileUploadLoader(true)
+        const res = await fetch(`${baseUrl}/media`,{
+        method:"POST",
+        headers:{
+            Authorization:`Bearer ${user.data[0].access}`,
+        },
+        body: formData
+        })
+        const data = await res.json()
+        console.log(data);
+        if(res) {
+            setFileUploadLoader(false)
+            mediaType = ''
+        }
+        if(res.ok){
+            const fileId = data.data.id;
+            setUploadedIds([...uploadedIds, fileId]);
+            setMsg('File successfully uploaded')
+            setAlertType('success')
+        }
+        if(!res.ok){
+            setMsg('File upload was not successfull, please try again')
+            setAlertType('error')
+        }
+    }
+}
+
+  async function handleFile2Upload(e) {
+    if (e.target.files && e.target.files.length > 0) {
+    // Update file state with the selected file
+        const selectedFile = e.target.files[0];
+        
+        // Check file size
+        const fileSizeMB = selectedFile.size / (1024 * 1024);
+        if (fileSizeMB > 5) {
+            setMsg('File size exceeds the limit of 5MB.')
+            setAlertType('warning')
+            return;
+        }
+        if(e.target.files[0].type.includes('image')){
+            mediaType = 'photo';
+        }else if(e.target.files[0].type.includes('video')){
+            mediaType = 'video';
+        }
+
+        setFile2(selectedFile)
+        const formData = new FormData()
+        formData.append('media_type', mediaType)
+        formData.append('media', e.target.files[0])
+        setFileUploadLoader(true)
+        const res = await fetch(`${baseUrl}/media`,{
+        method:"POST",
+        headers:{
+            Authorization:`Bearer ${user.data[0].access}`,
+        },
+        body: formData
+        })
+        const data = await res.json()
+        console.log(data);
+        if(res) {
+            setFileUploadLoader(false)
+            mediaType = ''
+        }
+        if(res.ok){
+            const fileId = data.data.id;
+            setUploadedIds([...uploadedIds, fileId]);
+            setMsg('File successfully uploaded')
+            setAlertType('success')
+        }
+        if(!res.ok){
+            setMsg('File upload was not successfull, please try again')
+            setAlertType('error')
+        }
+    }
+  }
+
+
+  async function handleFile3Upload(e) {
+    if (e.target.files && e.target.files.length > 0) {
+    // Update file state with the selected file
+        const selectedFile = e.target.files[0];
+        
+        // Check file size
+        const fileSizeMB = selectedFile.size / (1024 * 1024);
+        if (fileSizeMB > 5) {
+            setMsg('File size exceeds the limit of 5MB.')
+            setAlertType('warning')
+            return;
+        }
+        if(e.target.files[0].type.includes('image')){
+            mediaType = 'photo';
+        }else if(e.target.files[0].type.includes('video')){
+            mediaType = 'video';
+        }
+
+        setFile3(selectedFile)
+        const formData = new FormData()
+        formData.append('media_type', mediaType)
+        formData.append('media', e.target.files[0])
+        setFileUploadLoader(true)
+        const res = await fetch(`${baseUrl}/media`,{
+        method:"POST",
+        headers:{
+            Authorization:`Bearer ${user.data[0].access}`,
+        },
+        body: formData
+        })
+        const data = await res.json()
+        console.log(data);
+        if(res) {
+            setFileUploadLoader(false)
+            mediaType = ''
+        }
+        if(res.ok){
+            const fileId = data.data.id;
+            setUploadedIds([...uploadedIds, fileId]);
+            setMsg('File successfully uploaded')
+            setAlertType('success')
+        }
+        if(!res.ok){
+            setMsg('File upload was not successfull, please try again')
+            setAlertType('error')
+        }
+    }
+}
+
+  async function handleFile4Upload(e) {
+    if (e.target.files && e.target.files.length > 0) {
+        // Update file state with the selected file
+            const selectedFile = e.target.files[0];
+            
+            // Check file size
+            const fileSizeMB = selectedFile.size / (1024 * 1024);
+            if (fileSizeMB > 5) {
+                setMsg('File size exceeds the limit of 5MB.')
+                setAlertType('warning')
+                return;
+            }
+            if(e.target.files[0].type.includes('image')){
+                mediaType = 'photo';
+            }else if(e.target.files[0].type.includes('video')){
+                mediaType = 'video';
+            }
+    
+            setFile4(selectedFile)
+    const formData = new FormData()
+    formData.append('media_type', mediaType)
+    formData.append('media', e.target.files[0])
+    setFileUploadLoader(true)
+    const res = await fetch(`${baseUrl}/media`,{
+      method:"POST",
+      headers:{
+        Authorization:`Bearer ${user.data[0].access}`,
+      },
+      body: formData
+    })
+    const data = await res.json()
+    console.log(data);
+    if(res) {
+        setFileUploadLoader(false)
+        mediaType = ''
+    }
+    if(res.ok){
+        const fileId = data.data.id;
+        setUploadedIds([...uploadedIds, fileId]);
+        setMsg('File successfully uploaded')
+        setAlertType('success')
+    }
+    if(!res.ok){
+        setMsg('File upload was not successfull, please try again')
+        setAlertType('error')
+    }
+}
+  }
+
+  async function handleFile5Upload(e) {
+    if (e.target.files && e.target.files.length > 0) {
+    // Update file state with the selected file
+        const selectedFile = e.target.files[0];
+        
+        // Check file size
+        const fileSizeMB = selectedFile.size / (1024 * 1024);
+        if (fileSizeMB > 5) {
+            setMsg('File size exceeds the limit of 5MB.')
+            setAlertType('warning')
+            return;
+        }
+        if(e.target.files[0].type.includes('image')){
+            mediaType = 'photo';
+        }else if(e.target.files[0].type.includes('video')){
+            mediaType = 'video';
+        }
+
+        setFile5(selectedFile)
+        const formData = new FormData()
+        formData.append('media_type', mediaType)
+        formData.append('media', e.target.files[0])
+        setFileUploadLoader(true)
+        const res = await fetch(`${baseUrl}/media`,{
+        method:"POST",
+        headers:{
+            Authorization:`Bearer ${user.data[0].access}`,
+        },
+        body: formData
+        })
+        const data = await res.json()
+        console.log(data);
+        if(res) {
+            setFileUploadLoader(false)
+            mediaType = ''
+        }
+        if(res.ok){
+            const fileId = data.data.id;
+            setUploadedIds([...uploadedIds, fileId]);
+            setMsg('File successfully uploaded')
+            setAlertType('success')
+        }
+        if(!res.ok){
+            setMsg('File upload was not successfull, please try again')
+            setAlertType('error')
+        }
+    }
+}
+
+  async function handleFile6Upload(e) {
+    if (e.target.files && e.target.files.length > 0) {
+    // Update file state with the selected file
+        const selectedFile = e.target.files[0];
+        
+        // Check file size
+        const fileSizeMB = selectedFile.size / (1024 * 1024);
+        if (fileSizeMB > 5) {
+            setMsg('File size exceeds the limit of 5MB.')
+            setAlertType('warning')
+            return;
+        }
+        if(e.target.files[0].type.includes('image')){
+            mediaType = 'photo';
+        }else if(e.target.files[0].type.includes('video')){
+            mediaType = 'video';
+        }
+
+        setFile6(selectedFile)
+        const formData = new FormData()
+        formData.append('media_type', mediaType)
+        formData.append('media', e.target.files[0])
+        setFileUploadLoader(true)
+        const res = await fetch(`${baseUrl}/media`,{
+        method:"POST",
+        headers:{
+            Authorization:`Bearer ${user.data[0].access}`,
+        },
+        body: formData
+        })
+        const data = await res.json()
+        console.log(data);
+        if(res) {
+            setFileUploadLoader(false)
+            mediaType = ''
+        }
+        if(res.ok){
+            const fileId = data.data.id;
+            setUploadedIds([...uploadedIds, fileId]);
+            setMsg('File successfully uploaded')
+            setAlertType('success')
+        }
+        if(!res.ok){
+            setMsg('File upload was not successfull, please try again')
+            setAlertType('error')
+        }
+    }
+}
+
+  function uploadProduct(){
+    console.log(uploadedIds);
+  }
+
+//   async function handleFileUploadBack(e) {
+//     if (e.target.files && e.target.files.length > 0) {
+//       // Update fileBack state with the selected file
+//       setFileBack(e.target.files[0]);
+//     }
+//     const formData = new FormData()
+//     formData.append('media_type', 'photo')
+//     formData.append('media', e.target.files[0])
+//     setFileUploadLoader(true)
+//     const res = await fetch(`${baseUrl}/media`,{
+//       method:"POST",
+//       headers:{
+//         Authorization:`Bearer ${user.data[0].access}`,
+//       },
+//       body: formData
+//     })
+//     const data = await res.json()
+//     console.log(data);
+//     if(res) setFileUploadLoader(false)
+//     if(res.ok){
+//       setFileBackUploadSuccess(true)
+//       setMsg('File successfully uploaded')
+//       setAlertType('success')
+//     }
+//     if(!res.ok){
+//       setMsg('File upload was not successfull, please try again')
+//       setAlertType('error')
+//     }
+//   }
 
     // useEffect(() => {
     //     if(currentCategory === 'All Categories'){
@@ -38,29 +389,96 @@ const ListProduct = () => {
       <div className="ml-[3.2rem]">
         <p className="text-[#101010] mb-2">Image/Videos</p>
         <div className="flex items-center justify-between">
-            <div className="h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
-                <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
-                <p>Main Image</p>
+            <div className="relative h-[110px] w-[110px] rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+                {
+                    file1 ? 
+                        <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
+                            <p>File Uploaded Succesfully</p>
+                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                        </div> 
+                            :
+                        <>
+                            <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
+                            <p>Main Image</p>
+                            <input type="file" onChange={handleFile1Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" />
+                        </>
+                }
             </div>
-            <div className="h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
-                <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
-                <p>Main Image</p>
+
+            <div className="relative h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+                {
+                    file2 ? 
+                        <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
+                            <p>File Uploaded Succesfully</p>
+                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                        </div> 
+                            :
+                        <>
+                            <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
+                            <p>Main Image</p>
+                            <input type="file" onChange={handleFile2Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" />
+                        </>
+                }
             </div>
-            <div className="h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
-                <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
-                <p>Main Image</p>
+            <div className="relative h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+            {
+                file3 ? 
+                    <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
+                        <p>File Uploaded Succesfully</p>
+                        <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                    </div> 
+                        :
+                    <>
+                        <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
+                        <p>Main Image</p>
+                        <input type="file" onChange={handleFile3Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" />
+                    </>
+            }
             </div>
-            <div className="h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
-                <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
-                <p>Main Image</p>
+            <div className="relative h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+                {
+                    file4 ? 
+                        <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
+                            <p>File Uploaded Succesfully</p>
+                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                        </div> 
+                            :
+                        <>
+                            <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
+                            <p>Main Image</p>
+                            <input type="file" onChange={handleFile4Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" />
+                        </>
+                }
             </div>
-            <div className="h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
-                <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
-                <p>Main Image</p>
+            <div className="relative h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+                {
+                    file5 ? 
+                        <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
+                            <p>File Uploaded Succesfully</p>
+                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                        </div> 
+                            :
+                        <>
+                            <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
+                            <p>Main Image</p>
+                            <input type="file" onChange={handleFile5Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" />
+                        </>
+                }
             </div>
-            <div className="h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
-                <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
-                <p>Main Image</p>
+            <div className="relative h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+                {
+                    file6 ? 
+                        <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
+                            <p>File Uploaded Succesfully</p>
+                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                        </div> 
+                            :
+                        <>
+                            <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
+                            <p>Main Image</p>
+                            <input type="file" onChange={handleFile6Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" />
+                        </>
+                }
             </div>
         </div>
         <p className="text-[#989898] my-4 ml-2 text-[14px]">
@@ -73,17 +491,63 @@ const ListProduct = () => {
                 <input type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="Name of Product here" style={{ border:"1.5px solid #CCCCCC" }}/>
             </div>
             <div className="w-full">
-                <p>Caegories</p>
+                <p>Categories</p>
                 <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
                     <input type="text" className="outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Choose Categories" />
                     <GoChevronRight color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} onClick={() => SetCategoryNav(!categoryNav)}/>
                 </div>
             </div>
         </div>
+        <div className="flex items-center gap-5 mt-5">
+            <div className="w-full">
+                <p>Brand</p>
+                <input type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="Product brand here" style={{ border:"1.5px solid #CCCCCC" }}/>
+            </div>
+            <div className="w-full">
+                <p>Color</p>
+                <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
+                    <input type="text" className="outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Choose Color" />
+                    <GoChevronRight color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} onClick={() => SetCategoryNav(!categoryNav)}/>
+                </div>
+            </div>
+        </div>
+        <div className="flex items-center gap-5 mt-5">
+            <div className="w-full">
+                <p>Price</p>
+                <input type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="#32,000" style={{ border:"1.5px solid #CCCCCC" }}/>
+            </div>
+            <div className="w-full">
+                <p>Weight</p>
+                <input type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="10Kg" style={{ border:"1.5px solid #CCCCCC" }}/>
+            </div>
+        </div>
+        <div className="flex items-center gap-5 mt-5">
+            <div className="w-full">
+                <p>In Stock</p>
+                <input type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="#32,000" style={{ border:"1.5px solid #CCCCCC" }}/>
+            </div>
+            <div className="w-full relative">
+                <p>Condition</p>
+                <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
+                    <input type="text" className="outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Product Condition" />
+                    <GoChevronRight color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} onClick={() => setProductCondition(!productCondition)}/>
+                </div>
+                    {
+                        productCondition &&
+                        <div className="absolute top-[90px] bg-white w-full border rounded-[6px] py-3 px-4">
+                            {
+                                productConditionArray.map(condition => (
+                                    <p className="cursor-pointer my-1">{condition}</p>
+                                ))
+                            }
+                        </div>
+                    }
+            </div>
+        </div>
       </div>
       {
         categoryNav &&
-            <div className="fixed h-full w-full top-0 left-0 z-[99] flex items-center justify-center" style={{ background:"rgba(18, 18, 18, 0.8)" }}>
+            <div className="fixed h-full w-full top-0 left-0 z-[99] flex items-center justify-center overflow-y-scroll" style={{ background:"rgba(18, 18, 18, 0.8)" }}>
                 <div className="bg-white w-[400px] h-[600px] absolute right-0 top-0 px-5">
                     <IoIosCloseCircleOutline className="absolute right-[10px] text-[20px] cursor-pointer top-[20px]" onClick={() => SetCategoryNav(false)}/>
                     <p className="text-[#101010] mt-[65px] text-[24px] pb-2" style={{ borderBottom:"1px solid #E6ECEA" }}>Categories</p>
@@ -109,6 +573,28 @@ const ListProduct = () => {
                 </div>
             </div>
       }
+      {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
+      {
+            fileUploadLoader &&
+            <div className="fixed h-full w-full top-0 left-0 z-[99] flex items-center justify-center" style={{ background:"rgba(18, 18, 18, 0.8)" }}>
+                <div className="bg-white md:w-[450px] w-[300px] rounded-[18px]">
+                    <div className="flex items-center justify-between mt-[1rem] px-[2rem] mb-[2rem] flex-col">
+                        <img src='./loader.gif' className='h-10 w-10 mt-3 mb-5'/>
+                        <p className='text-gray-500 text-[15px] mb-2 text-center'>File Upload in progress, please do not refresh the page</p>
+                    </div>
+                </div>
+            </div>
+        }
+        {
+            loader ?
+                <button className="bg-[#EDEDED] text-primary-color py-[12px] mt-10 w-full rounded-sm tracking-wide
+                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
+                shadow-sm transition-all cursor-not-allowed">
+                    <Btnloader />
+                </button>
+            : 
+            <button onClick={uploadProduct} className="bg-secondary-color py-[12px] mt-10 text-white w-full">Save Details</button>
+          }
     </div>
   )
 }
