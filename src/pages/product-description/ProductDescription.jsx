@@ -79,7 +79,7 @@ const ProductDescription = () => {
         </div>
 
         <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20">
-            <div className='flex items-start gap-[2rem] flex-col-reverse lg:flex-row lg:h-[504px]'>
+            <div className='flex items-start gap-[2rem] flex-col lg:flex-row lg:h-[504px]'>
                 
 
                 <div className=' h-full flex flex-col md:flex-row items-start gap-[0rem] px-5 py-[3rem] flex-[2]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
@@ -144,9 +144,9 @@ const ProductDescription = () => {
                     </div>
                 </div>
 
-                <div className='flex flex-[0.5] w-[100%] items-center px-5 lg:py-0 h-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
-                    <div className='lg:flex w-[280px] flex-col px-4 h-full py-[2rem] hidden'>
-                        <h1 className="font-[600] text-[18px] lg:text-[20px] mb-3 text-primary-color">Seller Information</h1>
+                <div className='flex flex-[0.5] flex-col gap-4 w-[100%] items-center lg:py-0 h-full'>
+                    <div className='lg:flex lg:w-[280px] w-full flex-col px-4 h-full py-[2rem] border'>
+                        <h1 className="font-[500] text-[18px] lg:text-[20px] mb-3 text-primary-color">Seller Information</h1>
                         <div>
                             <div className='flex items-start justify-between'>
                                 <p className='mb-5'>Mike Okiro</p>
@@ -158,22 +158,28 @@ const ProductDescription = () => {
                             <div>
                                 <div className='flex items-center gap-2 mb-2'>
                                     <RiVerifiedBadgeFill fontSize={"20px"} color='#DF9007' />
-                                    <p className='text-secondary-color text-[12px]'>Verified Vendor</p>
+                                    <p className='text-[#2B2B2B] text-[12px]'>Verified Vendor</p>
                                 </div>
                                 <div className='flex items-center gap-2'>
-                                    <CiUser fontSize={"20px"} className='text-secondary-color' />
+                                    <CiUser fontSize={"20px"} className='text-[#B6B6B6]' />
                                     <p className='text-secondary-color text-[12px]'>2 months User</p>
                                 </div>
                             </div>
                         </div>
 
                         <div className='mt-4'>
-                            <h1 className='text-[16px] font-[500] text-primary-color mb-2'>Store Address</h1>
+                            <h1 className='font-[500] text-[18px] lg:text-[20px] mb-3 text-primary-color'>Store Address</h1>
                             <div className='flex items-center gap-1'>
                                 <CiLocationOn color='background: #1D1D1FCC' fontSize={"25px"} />
                                 <p className='text-[12px]'>No 55 Blessed Avenue Uper Iweka Road Onitsha</p>
                             </div>
                         </div>
+                    </div>
+                    <div className='lg:flex w-[280px] flex-col px-4 h-full py-[2rem] border hidden'>
+                        <p className='text-[20px] text-[#003C2F] font-[700] mb-4'>Tips</p>
+                        <p className='text-[#2B2B2B]'>
+                            Avoid paying in advance. Make sure properly inspect Item before payment
+                        </p>
                     </div>
                    
                     {/* <h1 className="font-[600] text-[18px] lg:text-[20px] mb-8 text-primary-color">Delivery & Returns</h1>
@@ -256,7 +262,10 @@ const ProductDescription = () => {
             </div> */}
 
             <div className='lg:w-[80%] w-full px-5 lg:px-10 lg:h-[320px] lg:pt-[2rem] pb-[10px]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
-                <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Product Details</h1>
+                <div className='flex items-center gap-8'>
+                    <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Product Details</h1>
+                    <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Reviews</h1>
+                </div>
                 <p className='text-[15px] text-[#414141]' style={{lineHeight:'1.7'}}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar vehicula varius. 
                     Nunc sed risus sagittis, rutrum purus non, finibus neque. Nam auctor tellus id dignissim hendrerit. 
@@ -271,7 +280,7 @@ const ProductDescription = () => {
             </div>
         </div>
 
-        <div className='lg:px-12 mt-12'>
+        {/* <div className='lg:px-12 mt-12'>
             <div style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 pt-12 pl-12 hidden lg:block'>Specifications</h1>
                 <div className='h-[1px] bg-[#ccc] my-4 hidden lg:block'></div>
@@ -302,9 +311,9 @@ const ProductDescription = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
 
-        <div className="lg:px-12 py-8 mt-10">
+        {/* <div className="lg:px-12 py-8 mt-10">
             <div className='lg:p-12 p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <h1 className="font-[400] text-[18px] lg:text-[24px] mb-8">Customers Feedback</h1>
                 <div className="flex items-start flex-col md:flex-row md:gap-[120px] gap-[60px]">
@@ -386,7 +395,7 @@ const ProductDescription = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
 
         <div className="lg:px-12 py-8">
             <div className='p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
