@@ -45,6 +45,19 @@ const BottomNav = () => {
         }
     }
 
+    function checkSellersSub(){
+        console.log(userDetails);
+        if(!user){
+            setMsg("You have to be logged in to perform this operation")
+        }
+        if(userDetails.subscription_plan === null){
+            setMsg("You don't have an active subscription plan at the moment, please subscribe in order to continue with this operation")
+            navigate('/subscription-plan')
+        }else{
+            navigate('/list-product')
+        }
+    }
+
 
   return (
     <div className='flex items-center justify-between px-12 py-5 bottom-nav bg-secondary-color text-white bottom-nav relative'>
@@ -56,8 +69,8 @@ const BottomNav = () => {
                     <IoChevronDown />
                 </li>
             </li>
-            <li>
-                <Link to="/list-product">List Product</Link>
+            <li onClick={() => checkSellersSub()}>
+                List Product
             </li>
             <li onClick={() => checkIsSellerVerified()}>
                 Sell Products

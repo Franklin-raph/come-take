@@ -296,7 +296,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                         </div>
                         <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
                             setMobileAccountDropDown(!mobileAccountDropDown)
-                            navigate('/my-sh')
+                            navigate('/my-shop')
                         }}>
                             <CiShop className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>My Shop</p>
