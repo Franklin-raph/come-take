@@ -12,8 +12,9 @@ const ListProduct = ({baseUrl}) => {
 
     const [categoryNav,setCategoryNav] = useState(false)
     const [currentCategory, setCurrentCategory] = useState('All Categories')
-    const AllCategoryArray = ['Automobile','Baby Product','Funiture','Electronics','Computing','Phones & Accessories','Gaming','Health','Musical','Office']
-    const [currentCategoryArray, setCurrentCategoryArray] = useState(AllCategoryArray)
+    // const AllCategoryArray = ['Automobile','Baby Product','Funiture','Electronics','Computing','Phones & Accessories','Gaming','Health','Musical','Office']
+    const [allCategoryArray, setAllCategoryArray] = useState([])
+    const [currentCategoryArray, setCurrentCategoryArray] = useState(allCategoryArray)
     const computingCategoryArray = ['Laptops','Desktops','Printers','Accessories']
     
     const productConditionArray = ['new', 'used_like_new', 'used_like_good', 'used_like_fair']
@@ -25,11 +26,11 @@ const ListProduct = ({baseUrl}) => {
     const productColorsArray = ['Blue','Red','white', 'brown', 'yellow', 'black']
     const [productColor, setProductColor] = useState(false)
 
-    const warrantyDurationArray = ['None','Month','Year']
-    const [warrantyDurationDropDown, setWarrantyDurationDropDown] = useState(false)
-
-    const warrantyTypeArray = [1, 2, 3, 4, 5, 6]
+    const warrantyTypeArray = ['none','month','year']
     const [warrantyType, setWarrantyType] = useState(false)
+    
+    const warrantyDurationArray = [1, 2, 3, 4, 5, 6]
+    const [warrantyDurationDropDown, setWarrantyDurationDropDown] = useState(false)
 
     const [fileUploadLoader, setFileUploadLoader] = useState(false)
     const [loader, setLoader] = useState(false)
@@ -44,9 +45,26 @@ const ListProduct = ({baseUrl}) => {
     const [file4, setFile4] = useState(null)
     const [file5, setFile5] = useState(null)
     const [file6, setFile6] = useState(null)
+    const [coverPhoto, setCoverPhoto] = useState(null)
+    const [coverPhotoId, setCoverPhotoId] = useState('')
 
     const [product_image, setProductImage] = useState([])
     let mediaType;
+
+    async function getCatgories(){
+        const res = await fetch(`${baseUrl}/categories`,{
+            headers:{
+                Authorization:`Bearer ${user.data[0].access}`,
+            },
+        })
+        const data = await res.json()
+        setAllCategoryArray(data.data)
+        console.log(data);
+    }
+
+    useEffect(() => {
+        getCatgories()
+    },[])
 
     async function handleFile1Upload(e) {
     if (e.target.files && e.target.files.length > 0) {
@@ -342,6 +360,54 @@ const ListProduct = ({baseUrl}) => {
     }
 }
 
+async function handleCoverPhtotoUpload(e){
+    if (e.target.files && e.target.files.length > 0) {
+        // Update file state with the selected file
+            const selectedFile = e.target.files[0];
+            
+            // Check file size
+            const fileSizeMB = selectedFile.size / (1024 * 1024);
+            if (fileSizeMB > 5) {
+                setMsg('File size exceeds the limit of 5MB.')
+                setAlertType('warning')
+                return;
+            }
+            if(e.target.files[0].type.includes('image')){
+                mediaType = 'photo';
+            }else if(e.target.files[0].type.includes('video')){
+                mediaType = 'video';
+            }
+    
+            setCoverPhoto(selectedFile)
+            const formData = new FormData()
+            formData.append('media_type', mediaType)
+            formData.append('media', e.target.files[0])
+            setFileUploadLoader(true)
+            const res = await fetch(`${baseUrl}/media`,{
+            method:"POST",
+            headers:{
+                Authorization:`Bearer ${user.data[0].access}`,
+            },
+            body: formData
+            })
+            const data = await res.json()
+            console.log(data);
+            if(res) {
+                setFileUploadLoader(false)
+                mediaType = ''
+            }
+            if(res.ok){
+                setCoverPhotoId(data.data.id);
+                setMsg('File successfully uploaded')
+                setAlertType('success')
+            }
+            if(!res.ok){
+                setMsg('File upload was not successfull, please try again')
+                setAlertType('error')
+            }
+        }
+}
+
 
 // const [product_image, setProductImage] = useState([])
 const [warranty_address, setWarrantyAddress] = useState('')
@@ -361,7 +427,7 @@ const [category, setCategory] = useState('')
     setLoader(true)
     const res = await fetch(`${baseUrl}/products`, {
         method:"POST",
-        body: JSON.stringify({category, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}),
+        body: JSON.stringify({category, product_cover_image:coverPhotoId, media:product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}),
         headers: {
             'Content-Type':'application/json',
             Authorization:`Bearer ${user.data[0].access}`
@@ -378,7 +444,7 @@ const [category, setCategory] = useState('')
         setAlertType('error')
     }
     console.log(res, data);
-    console.log(JSON.stringify({category, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}));
+    console.log(JSON.stringify({category, coverPhotoId, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}));
   }
 
 
@@ -496,6 +562,21 @@ const [category, setCategory] = useState('')
                         </>
                 }
             </div>
+        </div>
+        <div  className="relative h-[110px] w-[100%] mt-5 cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+            {
+                coverPhoto ?
+                    <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
+                        <p>File Uploaded Succesfully</p>
+                        <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                    </div> 
+                        :
+                    <>
+                        <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
+                        <p>Cover Image</p>
+                        <input type="file" onChange={handleCoverPhtotoUpload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" accept=".jpg, .png, .jpeg" />
+                    </>
+            }
         </div>
         <p className="text-[#989898] my-4 ml-2 text-[14px]">
             Image needs to be between 500x500 and 2000x2000 pixels. White backgrounds are recommended. No watermarks. Maximum image 
@@ -663,15 +744,15 @@ const [category, setCategory] = useState('')
                     <p className="mt-9">{currentCategory}</p>
                     <div className="border border-[#989898] px-5 mt-4 rounded">
                         {
-                            AllCategoryArray.map(category => (
+                            allCategoryArray.map(category => (
                                 <div className="flex items-center gap-2 my-2 cursor-pointer" onClick={() => {
                                     setCurrentCategory(category)
                                     setCurrentCategoryArray(category)
-                                    setCategory(category)
+                                    setCategory(category.id)
                                     setCategoryNav(false)
                                     console.log(category);
                                     }}>
-                                    <p className="text-[#101010]">{category}</p>
+                                    <p className="text-[#101010]">{category.name}</p>
                                     <IoChevronForwardOutline color="#B6B6B6"/>
                                 </div>
                             ))
