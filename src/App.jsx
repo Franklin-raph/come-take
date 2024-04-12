@@ -39,7 +39,8 @@ export default function App() {
   const [resetPasswordModal, setResetPasswordModal] = useState(false)
   const [emailForOTP, setEmailForOTP] = useState('')
   const [otp, setOTP] = useState('')
-  const baseUrl = "https://cometake.pythonanywhere.com"
+  // const baseUrl = "https://cometake.pythonanywhere.com"
+  const baseUrl = "https://api.yamltech.com"
   const user = JSON.parse(localStorage.getItem('user'))
   const [userDetails, setUserDetails] = useState()
   const [checkUser, setCheckUser] = useState(false)

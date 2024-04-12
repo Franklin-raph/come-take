@@ -55,7 +55,7 @@ const Subscription = ({baseUrl}) => {
 
   function subscribe(subTitle, id, price) {
     console.log(subTitle, id, price);
-    if(subTitle === 'basic'){
+    if(subTitle === 'Basic'){
       subscribeUser(id, price, 6)
     }else{
       payWithPayStack(id, price, 6)
@@ -63,6 +63,7 @@ const Subscription = ({baseUrl}) => {
   }
 
   function payWithPayStack(id, amount, duration){
+    console.log(id, amount, duration);
     const payStack = new PaystackPop()
     payStack.newTransaction({
       key:"pk_test_12420d20e0b354e9670266456195a13f3a03ec68",

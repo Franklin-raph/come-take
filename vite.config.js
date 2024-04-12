@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://cometake.pythonanywhere.com',
+        // target: 'https://cometake.pythonanywhere.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },

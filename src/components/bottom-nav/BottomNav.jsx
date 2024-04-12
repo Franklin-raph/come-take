@@ -18,7 +18,7 @@ const BottomNav = () => {
     const navigate = useNavigate()
 
     async function getUserDetails(){
-        const res = await fetch(`https://cometake.pythonanywhere.com/complete-registration`,{
+        const res = await fetch(`https://api.yamltech.com/complete-registration`,{
           headers:{
             Authorization:`Bearer ${user.data[0].access}`
           }

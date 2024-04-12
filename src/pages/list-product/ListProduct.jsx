@@ -398,6 +398,7 @@ async function handleCoverPhtotoUpload(e){
             }
             if(res.ok){
                 setCoverPhotoId(data.data.id);
+                console.log("Cover photo ID after upload ===>", data.data.id);
                 setMsg('File successfully uploaded')
                 setAlertType('success')
             }
@@ -424,10 +425,11 @@ const [name, setName] = useState('')
 const [category, setCategory] = useState('')
 
   async function uploadProduct(){
+    console.log("Cover photo ID while uploading product ====> ", coverPhotoId);
     setLoader(true)
     const res = await fetch(`${baseUrl}/products`, {
         method:"POST",
-        body: JSON.stringify({category, product_cover_image:coverPhotoId, media:product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}),
+        body: JSON.stringify({category, product_cover_image:coverPhotoId, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}),
         headers: {
             'Content-Type':'application/json',
             Authorization:`Bearer ${user.data[0].access}`
@@ -733,8 +735,8 @@ const [category, setCategory] = useState('')
 
       {
         categoryNav &&
-            <div className="fixed h-full w-full top-0 left-0 z-[99] flex items-center justify-center overflow-y-scroll" style={{ background:"rgba(18, 18, 18, 0.8)" }}>
-                <div className="bg-white w-[400px] h-[600px] absolute right-0 top-0 px-5">
+            <div className="fixed h-full w-full top-0 left-0 z-[99] flex items-center justify-center" style={{ background:"rgba(18, 18, 18, 0.8)" }}>
+                <div className="bg-white w-[400px] h-[600px] absolute right-0 top-0 px-5 overflow-y-scroll">
                     <IoIosCloseCircleOutline className="absolute right-[10px] text-[20px] cursor-pointer top-[20px]" onClick={() => setCategoryNav(false)}/>
                     <p className="text-[#101010] mt-[65px] text-[24px] pb-2" style={{ borderBottom:"1px solid #E6ECEA" }}>Categories</p>
                     <div className="border border-[#989898] rounded-full flex items-center justify-between mt-5 px-3 py-[7px]">
