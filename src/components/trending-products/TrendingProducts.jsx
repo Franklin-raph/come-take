@@ -3,7 +3,9 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import ProductCard from "../productCard/ProductCard";
 
-const TrendingProducts = ({trendingProductsArray}) => {
+const TrendingProducts = ({allProducts}) => {
+
+    console.log(allProducts);
 
     const options = {
         margin: 20,
@@ -38,7 +40,7 @@ const TrendingProducts = ({trendingProductsArray}) => {
 
   return (
     <OwlCarousel {...options} >
-        {trendingProductsArray && trendingProductsArray.map(product => (
+        {allProducts && allProducts.map(product => (
             <ProductCard product={product}/>
         ))}
     </OwlCarousel>

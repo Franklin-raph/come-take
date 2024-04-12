@@ -24,7 +24,7 @@ import { GoArrowRight } from "react-icons/go";
 import NewlyListedProducts from "../../components/newly-listed-products/NewlyListedProducts";
 import FairlyUsedProducts from "../../components/fairly-used-products/FairlyUsedProducts";
 import BrandNewProducts from "../../components/brand-new-products/BrandNewProducts";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import img1 from '../../assets/Frame129.png'
 import img2 from '../../assets/Frame376.png'
@@ -34,11 +34,27 @@ import rightArrow from "../../assets/arrow-right.svg"
 import { IoChevronBack } from "react-icons/io5";
 import NewsLetter from "../../components/news-letter/NewsLetter";
 
-const Home = () => {
+const Home = ({baseUrl}) => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    getAllProducts()
 },[])
+
+const user = JSON.parse(localStorage.getItem('user'))
+
+const [allProducts, setAllProducts] = useState([])
+
+async function getAllProducts(){
+  const res = await fetch(`${baseUrl}/products`,{
+    headers:{
+        Authorization:`Bearer ${user.data[0].access}`,
+      },
+    })
+    const data = await res.json()
+    setAllProducts(data.data)
+    console.log(data);
+}
 
   const categoryArray = [
     {
@@ -439,7 +455,7 @@ const Home = () => {
                   <GoArrowRight />
               </div>
             </div>
-            <TrendingProducts trendingProductsArray={trendingProductsArray}/>
+            <TrendingProducts allProducts={allProducts}/>
           </div>
 
           <div className="lg:px-12 px-6 py-4 lg:py-8">
@@ -450,7 +466,7 @@ const Home = () => {
                   <GoArrowRight />
                 </div>
             </div>
-            <RecommendedProducts recommendedProductsArray={recommendedProductsArray}/>
+            <RecommendedProducts allProducts={allProducts}/>
           </div>
 
           <div className="lady-part my-6">
@@ -469,7 +485,7 @@ const Home = () => {
                     <GoArrowRight />
                   </div>
               </div>
-              <NewlyListedProducts newlyListedProductsArray={newlyListedProductsArray}/>
+              <NewlyListedProducts allProducts={allProducts}/>
             </div>
           </div>
 
@@ -483,7 +499,7 @@ const Home = () => {
                     <GoArrowRight />
                 </div>
               </div>
-              <TrendingProducts trendingProductsArray={trendingProductsArray}/>
+              <TrendingProducts allProducts={allProducts}/>
             </div>
           </div>
           {/* MOBILE DESIGN FOR NEWLY LISTED*/}
@@ -497,7 +513,7 @@ const Home = () => {
                       <GoArrowRight />
                     </div>
                 </div>
-                <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
+                <FairlyUsedProducts allProducts={allProducts}/>
             </div>
           </div>
 
@@ -511,7 +527,7 @@ const Home = () => {
                     <GoArrowRight />
                 </div>
               </div>
-              <TrendingProducts trendingProductsArray={trendingProductsArray}/>
+              <TrendingProducts allProducts={allProducts}/>
             </div>
           </div>
           {/* MOBILE DESIGN FOR FAIRLY USED*/}
@@ -525,7 +541,7 @@ const Home = () => {
                         <GoArrowRight />
                   </div>
                 </div>
-              <BrandNewProducts brandNewProductsArray={brandNewProductsArray}/>
+              <BrandNewProducts allProducts={allProducts}/>
             </div>
           </div>
 
@@ -539,7 +555,7 @@ const Home = () => {
                     <GoArrowRight />
                 </div>
               </div>
-              <TrendingProducts trendingProductsArray={trendingProductsArray}/>
+              <TrendingProducts allProducts={allProducts}/>
             </div>
           </div>
           {/* MOBILE DESIGN FOR BRANDED NEW*/}

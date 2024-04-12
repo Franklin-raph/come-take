@@ -7,7 +7,7 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import ProductCard from "../productCard/ProductCard";
 
-const RecommendedProducts = ({recommendedProductsArray}) => {
+const RecommendedProducts = ({allProducts}) => {
     const options = {
         margin: 20,
         responsiveClass: true,
@@ -40,7 +40,7 @@ const RecommendedProducts = ({recommendedProductsArray}) => {
 
   return (
         <OwlCarousel {...options} >
-            {recommendedProductsArray && recommendedProductsArray.map(product => (
+            {allProducts && allProducts.map(product => (
                 <ProductCard product={product}/>
             //     <div className="product-card">
             //     <div className="badge"><CiHeart /></div>

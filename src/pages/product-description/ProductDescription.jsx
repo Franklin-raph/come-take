@@ -19,11 +19,48 @@ import { IoEyeOutline } from "react-icons/io5";
 import { GoClock } from "react-icons/go";
 import { FaRegBookmark } from "react-icons/fa6";
 import { CiUser } from "react-icons/ci";
+import { useParams } from 'react-router-dom'
 
 
-const ProductDescription = () => {
+const ProductDescription = ({baseUrl}) => {
 
     const [selectedImage, setSelectedImage] = useState(laptop1)
+    const { id } = useParams()
+    const [product, setProduct] = useState()
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    useEffect(() => {
+        getProductDescription()
+        getAllProducts()
+        window.scrollTo(0, 0)
+    },[])
+
+
+    async function getProductDescription(){
+        const res = await fetch(`${baseUrl}/products/${id}`,{
+            headers:{
+                Authorization:`Bearer ${user.data[0].access}`,
+            }
+        })
+        const data = await res.json()
+        setSelectedImage(data.data.product_image[0])
+        setProduct(data.data)
+        console.log(data);
+    }
+
+    const [allProducts, setAllProducts] = useState([])
+
+    async function getAllProducts(){
+    const res = await fetch(`${baseUrl}/products`,{
+        headers:{
+            Authorization:`Bearer ${user.data[0].access}`,
+        },
+        })
+        const data = await res.json()
+        setAllProducts(data.data)
+        console.log(data);
+    }
+
 
     const fairlyUsedProductsArray = [
         {
@@ -60,13 +97,10 @@ const ProductDescription = () => {
         }
       ]
 
-      useEffect(() => {
-        window.scrollTo(0, 0)
-    },[])
 
   return (
     <div>
-        <div className="md:flex items-center justify-start px-12 py-5 gap-4 hidden">
+        {/* <div className="md:flex items-center justify-start px-12 py-5 gap-4 hidden">
             <p>Home</p>
             <MdKeyboardArrowRight />
             <p>Computing</p>
@@ -76,209 +110,207 @@ const ProductDescription = () => {
             <p>Fairly Used</p>
             <MdKeyboardArrowRight />
             <p>Lenovo Products</p>
-        </div>
+        </div> */}
 
-        <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20">
-            <div className='flex items-start gap-[2rem] flex-col lg:flex-row lg:h-[504px]'>
-                
+        {
+            product &&
+            <>    
+                <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20">
+                    <div className='flex items-start gap-[2rem] flex-col lg:flex-row lg:h-[504px]'>
+                        
 
-                <div className=' h-full flex flex-col md:flex-row items-start gap-[0rem] px-5 py-[3rem] flex-[2]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
-                    <div className='w-[309px] md:w-[40%] mx-auto md:block flex flex-col items-center justify-center'>
-                        <img src={selectedImage} alt="" className='w-[100%] h-[309px] mb-5 object-cover' />
-                        <div className='flex items-center gap-5 w-[100%] justify-center'>
-                            <img src={laptop1} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop1)} />
-                            <img src={laptop2} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop2)} />
-                            <img src={laptop3} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop3) } />
-                        </div>
-                    </div>
-
-                    <div className="md:w-[55%] mt-[1rem] md:mt-[0]">
-                        <p className='text-[24px] leading-[1.5] lg:leading-[1.8]'>
-                            Lenovo V15 G3 Iap Laptop (12th Gen Core I5/ 21.5" 8gb/ 256 Ssd/ Dos) -82tt00juue
-                        </p>
-                        <div className='flex items-center justify-between mt-3'>
-                            <p className='text-[#898989]'>Brand: Lenovo</p>
-                            <FaRegBookmark color='#6C6C6C' />
-                        </div>
-                        <div className='flex items-center justify-start gap-1 mt-2'>
-                            <GoClock color='#6C6C6C' />
-                            <p className='text-[#1C1C1C]'>Posted 3hrs Ago</p>
-                        </div>
-                        <div className='flex items-center justify-start gap-1 mt-2'>
-                            <IoEyeOutline color='#6C6C6C' fontSize="20px"/>
-                            <p className='text-[#898989]'>963 views</p>
-                        </div>
-                        <p className='text-[#898989] mt-2'>Availability: Only 2 in Stock</p>
-                        {/* <div className="flex items-center">
-                            <div className="flex items-center">
-                                <IoMdStar color='#FFEA2E'/>
-                                <IoMdStar color='#FFEA2E'/>
-                                <IoMdStar color='#FFEA2E'/>
-                                <IoMdStar color='#FFEA2E'/>
-                                <IoMdStar color='#FFEA2E'/>
-                            </div>
-                            <span className="text-[11px] font-[500] text-[#6d6d6d] ml-2">25 Reviews</span>
-                        </div> */}
-                        <div className='h-[1px] bg-[#ccc] my-4 md:block hidden'></div>
-                        <div className='flex items-center gap-5 justify-between lg:justify-start'>
-                            <p className='text-[35px]'>#150,000</p>
-                            <p className='text-[#34343457] text-[20px]'>Non Negotibale</p>
-                        </div>
-                        <p className='text-[#ff3030] lg:block hidden'>Fairly Used</p>
-                        <div className='h-[1px] bg-[#ccc] my-4'></div>
-                        {/* <div className="flex items-center gap-4 justify-between">
-                            <p className='text-[#ff3030] lg:hidden block'>Fairly Used</p>
-                            <div className="flex items-center gap-4 mt-2">
-                                <p className='text-[#898989]'>Quantity</p>
-                                <div className='flex items-center justify-center gap-2 border border-[#B5AEAE] rounded-[4px] w-[120px] text-center h-[30px]'>
-                                    <p style={{ borderRight:"1px solid gray" }} className='flex-1 px-2 text-[#B5AEAE] cursor-pointer h-full'>-</p>
-                                    <p className='flex-1'>1</p>
-                                    <p style={{ borderLeft:"1px solid gray" }} className='flex-1 px-2 text-[#B5AEAE] cursor-pointer h-full'>+</p>
+                        <div className=' h-full w-full flex flex-col md:flex-row items-start gap-[0rem] px-5 py-[3rem] flex-[2]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                            <div className='w-[309px] md:w-[40%] mx-auto md:block flex flex-col items-center justify-center'>
+                                <img src={selectedImage} alt="" className='w-[100%] h-[309px] mb-5 object-cover' />
+                                <div className='flex items-center gap-5 w-[100%] justify-center'>
+                                    <img src={laptop1} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop1)} />
+                                    <img src={laptop2} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop2)} />
+                                    <img src={laptop3} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop3) } />
                                 </div>
                             </div>
-                        </div> */}
-                        <div className="flex items-center gap-[15px] mt-6">
-                            <button className='rounded-[5px] bg-primary-color text-white md:px-[35px] px-[20px] py-[8px] w-[50%]'>Message Seller</button>
-                            <button className='rounded-[5px] text-primary-color border border-primary-color px-[20px] md:px-[35px] py-[8px] w-[50%]'>Call</button>
+
+                            <div className="md:w-[55%] w-full mt-[1rem] md:mt-[0]">
+                                <p className='text-[24px] leading-[1.5] lg:leading-[1.8]'>
+                                    {product.name}
+                                </p>
+                                <div className='flex items-center justify-between mt-3'>
+                                    <p className='text-[#898989]'>Brand: {product.brand_name}</p>
+                                    <FaRegBookmark color='#6C6C6C' />
+                                </div>
+                                <div className='flex items-center justify-start gap-1 mt-2'>
+                                    <GoClock color='#6C6C6C' />
+                                    <p className='text-[#1C1C1C]'>Posted 3hrs Ago</p>
+                                </div>
+                                <div className='flex items-center justify-start gap-1 mt-2'>
+                                    <IoEyeOutline color='#6C6C6C' fontSize="20px"/>
+                                    <p className='text-[#898989]'>963 views</p>
+                                </div>
+                                <p className='text-[#898989] mt-2'>Availability: {product.in_stock.toString()}</p>
+                                {/* <div className="flex items-center">
+                                    <div className="flex items-center">
+                                        <IoMdStar color='#FFEA2E'/>
+                                        <IoMdStar color='#FFEA2E'/>
+                                        <IoMdStar color='#FFEA2E'/>
+                                        <IoMdStar color='#FFEA2E'/>
+                                        <IoMdStar color='#FFEA2E'/>
+                                    </div>
+                                    <span className="text-[11px] font-[500] text-[#6d6d6d] ml-2">25 Reviews</span>
+                                </div> */}
+                                <div className='h-[1px] bg-[#ccc] my-4 md:block hidden'></div>
+                                <div className='flex items-center gap-5 justify-between lg:justify-start'>
+                                    <p className='text-[35px]'>&#8358;{product.price}</p>
+                                    <p className='text-[#34343457] text-[20px]'>Non Negotibale</p>
+                                </div>
+                                <p className='text-[#ff3030] lg:block hidden capitalize'>{product.condition}</p>
+                                <div className='h-[1px] bg-[#ccc] my-4'></div>
+                                {/* <div className="flex items-center gap-4 justify-between">
+                                    <p className='text-[#ff3030] lg:hidden block'>Fairly Used</p>
+                                    <div className="flex items-center gap-4 mt-2">
+                                        <p className='text-[#898989]'>Quantity</p>
+                                        <div className='flex items-center justify-center gap-2 border border-[#B5AEAE] rounded-[4px] w-[120px] text-center h-[30px]'>
+                                            <p style={{ borderRight:"1px solid gray" }} className='flex-1 px-2 text-[#B5AEAE] cursor-pointer h-full'>-</p>
+                                            <p className='flex-1'>1</p>
+                                            <p style={{ borderLeft:"1px solid gray" }} className='flex-1 px-2 text-[#B5AEAE] cursor-pointer h-full'>+</p>
+                                        </div>
+                                    </div>
+                                </div> */}
+                                <div className="flex items-center gap-[15px] mt-6">
+                                    <a href={`https://wa.me/${product.seller.phone}`} className='rounded-[5px] bg-primary-color text-white md:px-[35px] px-[20px] py-[8px] w-[50%] text-center' target='_blank' >Message Seller</a>
+                                    <a className='rounded-[5px] text-primary-color border border-primary-color px-[20px] md:px-[35px] py-[8px] w-[50%] text-center' target='_blank' href={`tel:${product.seller.phone}`}>Call Seller</a>
+                                    {/* <button>Call</button> */}
+                                </div>
+                            </div>
                         </div>
+
+                        <div className='flex flex-[0.5] flex-col gap-4 w-[100%] items-center lg:py-0 h-full'>
+                            <div className='lg:flex lg:w-[280px] w-full flex-col px-4 h-full py-[2rem] border'>
+                                <h1 className="font-[500] text-[18px] lg:text-[20px] mb-3 text-primary-color">Seller Information</h1>
+                                <div>
+                                    <div className='flex items-start justify-between'>
+                                        <p className='mb-5'>{product.seller.first_name} {product.seller.last_name}</p>
+                                        <div className='flex items-center gap-2 mb-5'>
+                                            <CiLocationOn fontSize={"20px"} className='text-primary-color'/>
+                                            <p className='text-secondary-color text-[10px]'>{product.seller.state} State</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className='flex items-center gap-2 mb-2'>
+                                            <RiVerifiedBadgeFill fontSize={"20px"} color='#DF9007' />
+                                            <p className='text-[#2B2B2B] text-[12px]'>Verified Vendor</p>
+                                        </div>
+                                        <div className='flex items-center gap-2'>
+                                            <CiUser fontSize={"20px"} className='text-[#B6B6B6]' />
+                                            <p className='text-secondary-color text-[12px]'>2 months User</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='mt-4'>
+                                    <h1 className='font-[500] text-[18px] lg:text-[20px] mb-3 text-primary-color'>Store Address</h1>
+                                    <div className='flex items-center gap-1'>
+                                        <CiLocationOn color='background: #1D1D1FCC' fontSize={"25px"} />
+                                        <p className='text-[12px]'>No 55 Blessed Avenue Uper Iweka Road Onitsha</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='lg:flex w-[280px] flex-col px-4 h-full py-[2rem] border hidden'>
+                                <p className='text-[20px] text-[#003C2F] font-[700] mb-4'>Tips</p>
+                                <p className='text-[#2B2B2B]'>
+                                    Avoid paying in advance. Make sure properly inspect Item before payment
+                                </p>
+                            </div>
+                        
+                            {/* <h1 className="font-[600] text-[18px] lg:text-[20px] mb-8 text-primary-color">Delivery & Returns</h1>
+                            <div>
+                                <div className='mb-7'>
+                                    <div className='flex items-center justify-between mb-2'>
+                                        <h2 className='text-primary-color text-[17px]'>Door Delivery</h2>
+                                        <h2 className='text-[12px] text-secondary-color'>View Details</h2>
+                                    </div>
+                                    <p className='text-[#ff3030] mb-2 text-[16px]'>Price #4,500</p>
+                                    <p className='text-[#4e4e4e] text-[14px]'>
+                                        Ready for delivery 2 days from the day you submitted your order
+                                    </p>
+                                </div>
+
+                                <div className='mt-7'>
+                                    <div className='flex items-center justify-between mb-2'>
+                                        <h2 className='text-primary-color text-[17px]'>Pickup Station</h2>
+                                        <h2 className='text-[12px] text-secondary-color'>View Details</h2>
+                                    </div>
+                                    <p className='text-[#ff3030] mb-2 text-[16px]'>Price #1,500</p>
+                                    <p className='text-[#4e4e4e] text-[14px]'>
+                                        Arriving Pickup Station a day from the day you submitted your order
+                                    </p>
+                                </div>
+
+                                <div className='mt-7'>
+                                    <div className='flex items-center justify-between mb-2'>
+                                        <h2 className='text-primary-color text-[17px]'>Return Policy</h2>
+                                        <h2 className='text-[12px] text-secondary-color'>View Details</h2>
+                                    </div>
+                                    <p className='text-[#4e4e4e] text-[14px]'>
+                                        Products must be returned within 48hrs of delivery to effect changes.
+                                    </p>
+                                </div>
+                            </div> */}
+                        
+                        </div>
+
                     </div>
                 </div>
-
-                <div className='flex flex-[0.5] flex-col gap-4 w-[100%] items-center lg:py-0 h-full'>
-                    <div className='lg:flex lg:w-[280px] w-full flex-col px-4 h-full py-[2rem] border'>
-                        <h1 className="font-[500] text-[18px] lg:text-[20px] mb-3 text-primary-color">Seller Information</h1>
-                        <div>
-                            <div className='flex items-start justify-between'>
+                
+                <div className='lg:px-12 flex flex-col lg:flex-row items-center gap-[50px] lg:gap-[40px] mt-12 lg:h-[324px]'>
+                    {/* <div className='lg:flex w-[280px] flex-col px-4 h-full py-[2rem] hidden' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                        <h1 className="font-[600] text-[18px] lg:text-[20px] mb-3 text-primary-color">Seller Information</h1>
+                        <div className='flex items-start gap-8'>
+                            <div>
                                 <p className='mb-5'>Mike Okiro</p>
+                                <div>
+                                    <p className='text-[12px]'>100% seller score</p>
+                                    <div className="flex items-center">
+                                        <IoMdStar color='#FFEA2E'/>
+                                        <IoMdStar color='#FFEA2E'/>
+                                        <IoMdStar color='#FFEA2E'/>
+                                        <IoMdStar color='#FFEA2E'/>
+                                        <IoMdStar color='#FFEA2E'/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
                                 <div className='flex items-center gap-2 mb-5'>
                                     <CiLocationOn fontSize={"20px"} className='text-primary-color'/>
                                     <p className='text-secondary-color text-[10px]'>Anambra State</p>
                                 </div>
-                            </div>
-                            <div>
-                                <div className='flex items-center gap-2 mb-2'>
-                                    <RiVerifiedBadgeFill fontSize={"20px"} color='#DF9007' />
-                                    <p className='text-[#2B2B2B] text-[12px]'>Verified Vendor</p>
-                                </div>
                                 <div className='flex items-center gap-2'>
-                                    <CiUser fontSize={"20px"} className='text-[#B6B6B6]' />
-                                    <p className='text-secondary-color text-[12px]'>2 months User</p>
+                                    <IoCallOutline fontSize={"20px"} className='text-primary-color' />
+                                    <p className='text-secondary-color text-[10px]'>Call the seller</p>
                                 </div>
                             </div>
                         </div>
 
                         <div className='mt-4'>
-                            <h1 className='font-[500] text-[18px] lg:text-[20px] mb-3 text-primary-color'>Store Address</h1>
-                            <div className='flex items-center gap-1'>
-                                <CiLocationOn color='background: #1D1D1FCC' fontSize={"25px"} />
-                                <p className='text-[12px]'>No 55 Blessed Avenue Uper Iweka Road Onitsha</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='lg:flex w-[280px] flex-col px-4 h-full py-[2rem] border hidden'>
-                        <p className='text-[20px] text-[#003C2F] font-[700] mb-4'>Tips</p>
-                        <p className='text-[#2B2B2B]'>
-                            Avoid paying in advance. Make sure properly inspect Item before payment
-                        </p>
-                    </div>
-                   
-                    {/* <h1 className="font-[600] text-[18px] lg:text-[20px] mb-8 text-primary-color">Delivery & Returns</h1>
-                    <div>
-                        <div className='mb-7'>
-                            <div className='flex items-center justify-between mb-2'>
-                                <h2 className='text-primary-color text-[17px]'>Door Delivery</h2>
-                                <h2 className='text-[12px] text-secondary-color'>View Details</h2>
-                            </div>
-                            <p className='text-[#ff3030] mb-2 text-[16px]'>Price #4,500</p>
-                            <p className='text-[#4e4e4e] text-[14px]'>
-                                Ready for delivery 2 days from the day you submitted your order
-                            </p>
-                        </div>
-
-                        <div className='mt-7'>
-                            <div className='flex items-center justify-between mb-2'>
-                                <h2 className='text-primary-color text-[17px]'>Pickup Station</h2>
-                                <h2 className='text-[12px] text-secondary-color'>View Details</h2>
-                            </div>
-                            <p className='text-[#ff3030] mb-2 text-[16px]'>Price #1,500</p>
-                            <p className='text-[#4e4e4e] text-[14px]'>
-                                Arriving Pickup Station a day from the day you submitted your order
-                            </p>
-                        </div>
-
-                        <div className='mt-7'>
-                            <div className='flex items-center justify-between mb-2'>
-                                <h2 className='text-primary-color text-[17px]'>Return Policy</h2>
-                                <h2 className='text-[12px] text-secondary-color'>View Details</h2>
-                            </div>
-                            <p className='text-[#4e4e4e] text-[14px]'>
-                                Products must be returned within 48hrs of delivery to effect changes.
-                            </p>
+                            <h1 className='text-[16px]'>Seller Peformance</h1>
+                            <ul className='sellerPerformanceList'>
+                                <li className='text-[14px]'>Order Fulfillment Rate <span className='text-[#08A805]'>(Excellent)</span></li>
+                                <li className='my-1 text-[14px]'>Quality Score <span className='text-[#08A805]'>(Excellent)</span></li>
+                                <li className='text-[14px]'>Customer Rating <span className='text-[#08A805]'>(Excellent)</span></li>
+                            </ul>
                         </div>
                     </div> */}
-                   
-                </div>
 
-            </div>
-        </div>
-        
-        <div className='lg:px-12 flex flex-col lg:flex-row items-center gap-[50px] lg:gap-[40px] mt-12 lg:h-[324px]'>
-            {/* <div className='lg:flex w-[280px] flex-col px-4 h-full py-[2rem] hidden' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
-                <h1 className="font-[600] text-[18px] lg:text-[20px] mb-3 text-primary-color">Seller Information</h1>
-                <div className='flex items-start gap-8'>
-                    <div>
-                        <p className='mb-5'>Mike Okiro</p>
-                        <div>
-                            <p className='text-[12px]'>100% seller score</p>
-                            <div className="flex items-center">
-                                <IoMdStar color='#FFEA2E'/>
-                                <IoMdStar color='#FFEA2E'/>
-                                <IoMdStar color='#FFEA2E'/>
-                                <IoMdStar color='#FFEA2E'/>
-                                <IoMdStar color='#FFEA2E'/>
-                            </div>
+                    <div className='lg:w-[80%] w-full px-5 lg:px-10 lg:h-[320px] lg:pt-[2rem] pb-[10px]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                        <div className='flex items-center gap-8'>
+                            <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Product Details</h1>
+                            <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Reviews</h1>
                         </div>
-                    </div>
-                    <div>
-                        <div className='flex items-center gap-2 mb-5'>
-                            <CiLocationOn fontSize={"20px"} className='text-primary-color'/>
-                            <p className='text-secondary-color text-[10px]'>Anambra State</p>
-                        </div>
-                        <div className='flex items-center gap-2'>
-                            <IoCallOutline fontSize={"20px"} className='text-primary-color' />
-                            <p className='text-secondary-color text-[10px]'>Call the seller</p>
-                        </div>
+                        <p className='text-[15px] text-[#414141]' style={{lineHeight:'1.7'}}>
+                            {product.description}
+                        </p>
                     </div>
                 </div>
-
-                <div className='mt-4'>
-                    <h1 className='text-[16px]'>Seller Peformance</h1>
-                    <ul className='sellerPerformanceList'>
-                        <li className='text-[14px]'>Order Fulfillment Rate <span className='text-[#08A805]'>(Excellent)</span></li>
-                        <li className='my-1 text-[14px]'>Quality Score <span className='text-[#08A805]'>(Excellent)</span></li>
-                        <li className='text-[14px]'>Customer Rating <span className='text-[#08A805]'>(Excellent)</span></li>
-                    </ul>
-                </div>
-            </div> */}
-
-            <div className='lg:w-[80%] w-full px-5 lg:px-10 lg:h-[320px] lg:pt-[2rem] pb-[10px]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
-                <div className='flex items-center gap-8'>
-                    <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Product Details</h1>
-                    <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Reviews</h1>
-                </div>
-                <p className='text-[15px] text-[#414141]' style={{lineHeight:'1.7'}}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar vehicula varius. 
-                    Nunc sed risus sagittis, rutrum purus non, finibus neque. Nam auctor tellus id dignissim hendrerit. 
-                    Nulla facilisi. Ut commodo bibendum posuere. Mauris sed sem eget ipsum interdum varius. Pellentesque 
-                    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam erat nisl, consectetur 
-                    non mauris id, accumsan pulvinar erat. 
-                    Nulla facilisi. Ut commodo bibendum posuere. Mauris sed sem eget ipsum interdum varius. Pellentesque 
-                    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam erat nisl, consectetur 
-                    non mauris id, accumsan pulvinar erat. 
-                    Nulla facilisi. Ut commodo bibendum 
-                </p>
-            </div>
-        </div>
+            </>
+        }
 
         {/* <div className='lg:px-12 mt-12'>
             <div style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
@@ -406,7 +438,7 @@ const ProductDescription = () => {
                         <GoArrowRight />
                     </div>
                 </div>
-                <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
+                <FairlyUsedProducts allProducts={allProducts}/>
             </div>
         </div>
 
@@ -419,7 +451,7 @@ const ProductDescription = () => {
                         <GoArrowRight />
                     </div>
                 </div>
-                <FairlyUsedProducts fairlyUsedProductsArray={fairlyUsedProductsArray}/>
+                <FairlyUsedProducts allProducts={allProducts}/>
             </div>
         </div>
     </div>

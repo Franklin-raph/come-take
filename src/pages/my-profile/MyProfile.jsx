@@ -16,6 +16,7 @@ const MyProfile = ({baseUrl}) => {
     const [alertType, setAlertType] = useState('')
     const [loader1, setLoader1] = useState(false)
     const [loader2, setLoader2] = useState(false)
+    const [loader3, setLoader3] = useState(false)
     const user = JSON.parse(localStorage.getItem('user'))
 
     async function getUserDetails(){
@@ -68,7 +69,6 @@ const MyProfile = ({baseUrl}) => {
 
 
     async function updateEmail(){
-        console.log(`Bearer ${user.data[0].access}`);
         setLoader2(true)
         const res = await fetch(`${baseUrl}/update-profile`,{
             method:"PUT",
@@ -80,6 +80,25 @@ const MyProfile = ({baseUrl}) => {
         })
         const data = await res.json()
         if(res) setLoader2(false)
+        if(res.ok){
+            setMsg(data.message)
+            setAlertType('success')
+        }
+        console.log(res, data);
+    }
+
+    async function updatePhone(){
+        setLoader3(true)
+        const res = await fetch(`${baseUrl}/update-profile`,{
+            method:"PUT",
+            headers: {
+                'Content-Type':'application/json',
+                Authorization: `Bearer ${user.data[0].access}`
+            },
+            body: JSON.stringify({phone})
+        })
+        const data = await res.json()
+        if(res) setLoader3(false)
         if(res.ok){
             setMsg(data.message)
             setAlertType('success')
@@ -106,8 +125,8 @@ const MyProfile = ({baseUrl}) => {
                             <input type="text" style={{border:"1px solid #CCCCCC"}} value={first_name} onChange={e => setFirstName(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
                         </div>
                         <div className='my-7'>
-                            <label className='text-[16px] block mb-[3px] text-[#101010]'>Middle Name</label>
-                            <input type="text" style={{border:"1px solid #CCCCCC"}} onChange={e => setMiddleName(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
+                            {/* <label className='text-[16px] block mb-[3px] text-[#101010]'>Middle Name</label>
+                            <input type="text" style={{border:"1px solid #CCCCCC"}} onChange={e => setMiddleName(e.target.value)} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/> */}
                         </div>
                         <div>
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>Last Name</label>
@@ -155,8 +174,18 @@ const MyProfile = ({baseUrl}) => {
                             <label className='text-[16px] block mb-[3px] text-[#101010]'>Phone</label>
                             <input type="text" style={{border:"1px solid #CCCCCC"}} placeholder='08145463122' onChange={e => setPhone(e.target.value)} value={phone} className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]'/>
                         </div>
-                        <button className='bg-primary-color w-full py-[16px] px-[32px] text-[#fff] rounded-[4px] mt-10'>Update</button>
-                        
+                        {
+                            loader3 ?
+                                <div className="mt-7">
+                                    <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
+                                    font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
+                                    shadow-sm transition-all cursor-not-allowed">
+                                        <Btnloader />
+                                    </button>
+                                </div>
+                              :
+                                <button onClick={updatePhone} className='bg-primary-color w-full py-[16px] px-[32px] text-[#fff] rounded-[4px] mt-10'>Update</button>
+                        }
                     </div>
 
                     {/* <div className='mt-[60px]'>

@@ -11,11 +11,12 @@ import Btnloader from "../../components/loader/Btnloader";
 const ListProduct = ({baseUrl}) => {
 
     const [categoryNav,setCategoryNav] = useState(false)
-    const [currentCategory, setCurrentCategory] = useState('All Categories')
+    // const [currentCategory, setCurrentCategory] = useState('All Categories')
+    // const [currentCategoryArray, setCurrentCategoryArray] = useState(allCategoryArray)
+    // const computingCategoryArray = ['Laptops','Desktops','Printers','Accessories']
     // const AllCategoryArray = ['Automobile','Baby Product','Funiture','Electronics','Computing','Phones & Accessories','Gaming','Health','Musical','Office']
     const [allCategoryArray, setAllCategoryArray] = useState([])
-    const [currentCategoryArray, setCurrentCategoryArray] = useState(allCategoryArray)
-    const computingCategoryArray = ['Laptops','Desktops','Printers','Accessories']
+    const [categoryText, setCategoryText] = useState()
     
     const productConditionArray = ['new', 'used_like_new', 'used_like_good', 'used_like_fair']
     const [productCondition, setProductCondition] = useState(false)
@@ -89,7 +90,7 @@ const ListProduct = ({baseUrl}) => {
         formData.append('media_type', mediaType)
         formData.append('media', e.target.files[0])
         setFileUploadLoader(true)
-        const res = await fetch(`${baseUrl}/media`,{
+        const res = await fetch(`${baseUrl}/upload-product-media`,{
         method:"POST",
         headers:{
             Authorization:`Bearer ${user.data[0].access}`,
@@ -97,7 +98,7 @@ const ListProduct = ({baseUrl}) => {
         body: formData
         })
         const data = await res.json()
-        console.log(data);
+        console.log(res, data);
         if(res) {
             setFileUploadLoader(false)
             mediaType = ''
@@ -138,7 +139,7 @@ const ListProduct = ({baseUrl}) => {
         formData.append('media_type', mediaType)
         formData.append('media', e.target.files[0])
         setFileUploadLoader(true)
-        const res = await fetch(`${baseUrl}/media`,{
+        const res = await fetch(`${baseUrl}/upload-product-media`,{
         method:"POST",
         headers:{
             Authorization:`Bearer ${user.data[0].access}`,
@@ -187,7 +188,7 @@ const ListProduct = ({baseUrl}) => {
         formData.append('media_type', mediaType)
         formData.append('media', e.target.files[0])
         setFileUploadLoader(true)
-        const res = await fetch(`${baseUrl}/media`,{
+        const res = await fetch(`${baseUrl}/upload-product-media`,{
         method:"POST",
         headers:{
             Authorization:`Bearer ${user.data[0].access}`,
@@ -236,7 +237,7 @@ const ListProduct = ({baseUrl}) => {
     formData.append('media_type', mediaType)
     formData.append('media', e.target.files[0])
     setFileUploadLoader(true)
-    const res = await fetch(`${baseUrl}/media`,{
+    const res = await fetch(`${baseUrl}/upload-product-media`,{
       method:"POST",
       headers:{
         Authorization:`Bearer ${user.data[0].access}`,
@@ -285,7 +286,7 @@ const ListProduct = ({baseUrl}) => {
         formData.append('media_type', mediaType)
         formData.append('media', e.target.files[0])
         setFileUploadLoader(true)
-        const res = await fetch(`${baseUrl}/media`,{
+        const res = await fetch(`${baseUrl}/upload-product-media`,{
         method:"POST",
         headers:{
             Authorization:`Bearer ${user.data[0].access}`,
@@ -334,7 +335,7 @@ const ListProduct = ({baseUrl}) => {
         formData.append('media_type', mediaType)
         formData.append('media', e.target.files[0])
         setFileUploadLoader(true)
-        const res = await fetch(`${baseUrl}/media`,{
+        const res = await fetch(`${baseUrl}/upload-product-media`,{
         method:"POST",
         headers:{
             Authorization:`Bearer ${user.data[0].access}`,
@@ -383,7 +384,7 @@ async function handleCoverPhtotoUpload(e){
             formData.append('media_type', mediaType)
             formData.append('media', e.target.files[0])
             setFileUploadLoader(true)
-            const res = await fetch(`${baseUrl}/media`,{
+            const res = await fetch(`${baseUrl}/upload-product-media`,{
             method:"POST",
             headers:{
                 Authorization:`Bearer ${user.data[0].access}`,
@@ -446,7 +447,7 @@ const [category, setCategory] = useState('')
         setAlertType('error')
     }
     console.log(res, data);
-    console.log(JSON.stringify({category, coverPhotoId, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}));
+    console.log(JSON.stringify({category, product_cover_image:coverPhotoId, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}));
   }
 
 
@@ -590,8 +591,11 @@ const [category, setCategory] = useState('')
                 <input onChange={e => setName(e.target.value)} type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="Name of Product here" style={{ border:"1.5px solid #CCCCCC" }}/>
             </div>
             <div className="w-full">
-                <p>Categories</p>
+                <p>Category</p>
                 <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
+                    {/* {
+                        categoryText
+                    } */}
                     <input onChange={e => setCategory(e.target.value)} value={category} type="text" className="outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Choose Categories" />
                     <GoChevronRight color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} onClick={() => setCategoryNav(!categoryNav)}/>
                 </div>
@@ -743,16 +747,16 @@ const [category, setCategory] = useState('')
                         <input type="text" className="w-full outline-none" placeholder="Search For Categories"/>
                         <CiSearch fontSize={"20px"}/>
                     </div>
-                    <p className="mt-9">{currentCategory}</p>
+                    {/* <p className="mt-9">{currentCategory}</p> */}
                     <div className="border border-[#989898] px-5 mt-4 rounded">
                         {
                             allCategoryArray.map(category => (
                                 <div className="flex items-center gap-2 my-2 cursor-pointer" onClick={() => {
-                                    setCurrentCategory(category)
-                                    setCurrentCategoryArray(category)
+                                    // setCurrentCategory(category)
+                                    // setCurrentCategoryArray(category)
                                     setCategory(category.id)
+                                    setCategoryText(category.name)
                                     setCategoryNav(false)
-                                    console.log(category);
                                     }}>
                                     <p className="text-[#101010]">{category.name}</p>
                                     <IoChevronForwardOutline color="#B6B6B6"/>

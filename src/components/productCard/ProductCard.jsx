@@ -9,19 +9,19 @@ const ProductCard = ({ product }) => {
     const navigate = useNavigate()
 
   return (
-    <div onClick={() => navigate('/product-details')}>
+    <div onClick={() => navigate(`/product-details/${product.id}`)}>
         <div className="product-card">
             <div className="badge"><CiBookmark /></div>
             <div className="product-tumb">
-                <img src={product.img} alt="" />
+                <img src={product.product_cover_image?.media} alt="" />
             </div>
             <div className="product-details">
                 <div className="flex items-center justify-between">
-                    <h1>{product.productName}</h1>
+                    <h1>{product.name}</h1>
                 </div>
                 <div className="flex items-center gap-1 ml-[-3px]">
                     <CiLocationOn />
-                    <p className="text-[14px] py-1">{product.location}</p>
+                    <p className="text-[14px] py-1">{product.warranty_address}</p>
                 </div>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center reviews">
