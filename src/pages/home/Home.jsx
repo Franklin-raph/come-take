@@ -49,7 +49,7 @@ async function getAllProducts(){
     const res = await fetch(`${baseUrl}/products`,)
     const data = await res.json()
     setAllProducts(data.data)
-    console.log("Line 52 ===>", data);
+    console.log("Line 52 ===>", data.data);
 }
 
   const categoryArray = [
@@ -472,10 +472,10 @@ async function getAllProducts(){
             </div>
           </div>
 
-          <div className="hidden ">
+          <div className="hidden lg:block">
             <div className="lg:px-12 px-6 py-12">
               <div className="flex items-center justify-between mb-[20px]">
-              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
+              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products(Desktop)</h1>
               <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
                     <p>See all</p>
                     <GoArrowRight />
@@ -486,10 +486,10 @@ async function getAllProducts(){
           </div>
 
           {/* MOBILE DESIGN FOR NEWLY LISTED*/}
-          <div className="block">
+          <div className="block lg:hidden">
             <div className="lg:px-12 px-6 lg:py-8 py-6">
               <div className="flex items-center justify-between mb-[20px]">
-                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
+                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products(Mobile)</h1>
                 <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
                     <p>See all</p>
                     <GoArrowRight />
@@ -500,7 +500,7 @@ async function getAllProducts(){
           </div>
           {/* MOBILE DESIGN FOR NEWLY LISTED*/}
 
-          <div className="hidden ">
+          <div className="hidden lg:block">
             <div className="lg:px-12 px-6 py-8">
               <div className="flex items-center justify-between mb-[20px]">
                 <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Fairly Used Products</h1>
@@ -514,7 +514,7 @@ async function getAllProducts(){
           </div>
 
           {/* MOBILE DESIGN FOR FAIRLY USED*/}
-          <div className="block ">
+          <div className="block lg:hidden">
             <div className="lg:px-12 px-6 lg:py-8 py-6">
               <div className="flex items-center justify-between mb-[20px]">
                 <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Fairly Used Products</h1>
@@ -528,7 +528,7 @@ async function getAllProducts(){
           </div>
           {/* MOBILE DESIGN FOR FAIRLY USED*/}
 
-          <div className="hidden">
+          <div className="hidden lg:block">
             <div className="lg:px-12 px-6 py-8">
               <div className="flex items-center justify-between mb-[20px]">
                   <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products...</h1>
@@ -542,7 +542,7 @@ async function getAllProducts(){
           </div>
 
           {/* MOBILE DESIGN FOR BRANDED NEW*/}
-          <div className="block ">
+          <div className="block lg:hidden">
             <div className="lg:px-12 px-6 lg:py-8 py-6">
               <div className="flex items-center justify-between mb-[20px]">
                 <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products</h1>
