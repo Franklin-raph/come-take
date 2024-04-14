@@ -486,7 +486,7 @@ async function getAllProducts(){
           </div>
 
           {/* MOBILE DESIGN FOR NEWLY LISTED*/}
-          <div className="block lg:hidden">
+          <div className="block">
             <div className="lg:px-12 px-6 lg:py-8 py-6">
               <div className="flex items-center justify-between mb-[20px]">
                 <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products(Mobile)</h1>
