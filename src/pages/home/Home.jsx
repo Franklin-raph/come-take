@@ -37,6 +37,8 @@ import ProductCard from '../../components/productCard/ProductCard';
 import { RiVerifiedBadgeFill } from 'react-icons/ri';
 import { CiBookmark, CiLocationOn } from 'react-icons/ci';
 
+import Carousel from "react-elastic-carousel";
+
 const Home = ({baseUrl}) => {
 
   useEffect(() => {
@@ -155,6 +157,13 @@ const options = {
   },
 };
 
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 550, itemsToShow: 2 },
+  { width: 768, itemsToShow: 3 },
+  { width: 1200, itemsToShow: 4 },
+];
+
   return (
     <div>
         {/* <Swiper
@@ -241,7 +250,8 @@ const options = {
             {
               loader && <p className='text-2xl text-gray-900'>Loading...</p>
             }
-            {
+
+            {/* {
               allProducts &&
                 <OwlCarousel {...options} >
                 {allProducts.map(product => (
@@ -270,8 +280,36 @@ const options = {
                   </div>
                 ))}
             </OwlCarousel>
-            }
+            } */}
             {/* <TrendingProducts trendingProductsArray={trendingProductsArray}/> */}
+
+            <Carousel breakPoints={breakPoints}>
+              {allProducts.map(product => (
+                  <div onClick={() => navigate(`/product-details/${product.id}`)}>
+                    <div className="product-card">
+                        <div className="badge"><CiBookmark /></div>
+                        <div className="product-tumb">
+                            <img src={product.product_cover_image?.media} alt="" />
+                        </div>
+                        <div className="product-details">
+                            <div className="flex items-center justify-between">
+                                <h1>{product.name}</h1>
+                            </div>
+                            <div className="flex items-center gap-1 ml-[-3px]">
+                                <CiLocationOn />
+                                <p className="text-[14px] py-1">{product.warranty_address}</p>
+                            </div>
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center reviews">
+                                    <h1 className="text-[13px]">&#8358;{product.price}</h1>
+                                </div>
+                                <RiVerifiedBadgeFill color='#DF9007' fontSize={"20px"}/>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                ))}
+            </Carousel>
           </div>
 
         <div id="body">

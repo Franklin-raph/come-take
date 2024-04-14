@@ -13,6 +13,7 @@
     "@paystack/inline-js": "^2.14.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-elastic-carousel": "^0.11.5",
     "react-icons": "^5.0.1",
     "react-owl-carousel": "^2.3.3",
     "react-router-dom": "^6.16.0"
