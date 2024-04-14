@@ -48,7 +48,7 @@ const [allProducts, setAllProducts] = useState([])
 async function getAllProducts(){
     const res = await fetch(`${baseUrl}/products`,)
     const data = await res.json()
-    setAllProducts(data.data)
+    setAllProducts(data.data.slice(0, 4))
     console.log("Line 52 ===>", data.data);
 }
 
