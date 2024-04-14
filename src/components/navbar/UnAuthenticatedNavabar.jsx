@@ -36,7 +36,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
     async function getUserDetails(){
         const res = await fetch(`${baseUrl}/complete-registration`,{
           headers:{
-            Authorization:`Bearer ${user.data[0].access}`
+            Authorization:`Bearer ${user?.data[0]?.access}`
           }
         })
         const data = await res.json()

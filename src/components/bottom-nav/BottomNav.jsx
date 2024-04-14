@@ -20,7 +20,7 @@ const BottomNav = () => {
     async function getUserDetails(){
         const res = await fetch(`https://api.yamltech.com/complete-registration`,{
           headers:{
-            Authorization:`Bearer ${user.data[0].access}`
+            Authorization:`Bearer ${user?.data[0]?.access}`
           }
         })
         const data = await res.json()
