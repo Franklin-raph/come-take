@@ -241,8 +241,10 @@ const options = {
             {
               loader && <p className='text-2xl text-gray-900'>Loading...</p>
             }
+            {
+              allProducts &&
                 <OwlCarousel {...options} >
-                {allProducts && allProducts.map(product => (
+                {allProducts.map(product => (
                   <div onClick={() => navigate(`/product-details/${product.id}`)}>
                     <div className="product-card">
                         <div className="badge"><CiBookmark /></div>
@@ -259,14 +261,6 @@ const options = {
                             </div>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center reviews">
-                                    {/* <div className="flex items-center">
-                                        <IoMdStar color='#067604'/>
-                                        <IoMdStar color='#067604'/>
-                                        <IoMdStar color='#067604'/>
-                                        <IoMdStar color='#067604'/>
-                                        <IoMdStar color='#067604'/>
-                                    </div>
-                                    <span className="text-[11px] font-[500] text-[#6d6d6d] ml-2">{product.reviews}</span> */}
                                     <h1 className="text-[13px]">&#8358;{product.price}</h1>
                                 </div>
                                 <RiVerifiedBadgeFill color='#DF9007' fontSize={"20px"}/>
@@ -276,11 +270,12 @@ const options = {
                   </div>
                 ))}
             </OwlCarousel>
+            }
             {/* <TrendingProducts trendingProductsArray={trendingProductsArray}/> */}
           </div>
 
         <div id="body">
-          <div className="lg:px-12 px-6 lg:py-8 py-6">
+          {/* <div className="lg:px-12 px-6 lg:py-8 py-6">
             <div className="flex items-center justify-between mb-[20px]">
               <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Trending Products</h1>
               <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
@@ -292,7 +287,7 @@ const options = {
               loader && <p className='text-2xl text-gray-900'>Loading...</p>
             }
             <TrendingProducts allProducts={allProducts}/>
-          </div>
+          </div> */}
 
           <div className="lg:px-12 px-6 py-4 lg:py-8">
             <div className="flex items-center justify-between mb-[20px]">
