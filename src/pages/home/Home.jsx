@@ -44,13 +44,14 @@ const Home = ({baseUrl, setLoginModal}) => {
   useEffect(() => {
     // window.scrollTo(0, 0)
     getAllProducts()
-    setLoginModal(true)
+    setBugFixModal(true)
 },[])
 
 const user = JSON.parse(localStorage.getItem('user'))
 
 const [allProducts, setAllProducts] = useState([])
 const [loader, setLoader] = useState(false)
+const [bugFixModal, setBugFixModal] = useState(false)
 
 async function getAllProducts(){
     setLoader(true)
@@ -432,6 +433,9 @@ const breakPoints = [
 
           {/* <NewsLetter /> */}
         </div>
+        {
+          bugFixModal && <div className="h-full w-full absolute top-0 left-0 z-[-1000]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setBugFixModal(false)}></div>
+        }
     </div>
   )
 }
