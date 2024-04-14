@@ -116,22 +116,39 @@
   background-color: rgba(0, 0, 0, 0.797) !important;
 }
 
-.owl-carousel .owl-nav button.owl-next, .iWchow{
+.slick-arrow .slick-next, .slick-arrow .slick-prev{
+  background: red !important;
+  display: block;
+}
+
+.slick-list {margin: 0 -10px;}
+.slick-slide>div {padding: 0 10px;}
+
+.slick-prev {
+  left: 3% !important;
+  z-index: 1;
+}
+.slick-next {
+  right: 3% !important;
+  z-index: 1;
+}
+
+.owl-carousel .owl-nav button.owl-next{
   margin-right: 10px;
   margin-top: 12px;
 }
 
-.owl-carousel .owl-nav button.owl-prev, .iWchow{
+.owl-carousel .owl-nav button.owl-prev{
   margin-left: 10px;
   margin-top: 12px;
 }
 
-#body .owl-carousel .owl-nav button.owl-next, .iWchow{
+#body .owl-carousel .owl-nav button.owl-next{
   margin-right: -18px;
   margin-top: -42px;
 }
 
-#body .owl-carousel .owl-nav button.owl-prev, .iWchow{
+#body .owl-carousel .owl-nav button.owl-prev{
   margin-left: -18px;
   margin-top: -42px;
 }
@@ -221,14 +238,13 @@
   border-radius: 50px;
 }
 
-.owl-next, .owl-prev, .rec-arrow-right, .bqCWu {
+.owl-next,.owl-prev {
   opacity: 0;
 }
 
 
-.owl-carousel:hover .owl-prev, .owl-carousel:hover .owl-next, .rec-slider-container:hover .rec-arrow-right {
+.owl-carousel:hover .owl-prev, .owl-carousel:hover .owl-next {
   opacity: 1 !important;
-  display: block;
   transition: .7s;
 }
 
@@ -540,13 +556,6 @@
   }
 }
 
-.kvrXoZ{
-  display: none !important;
-}
-
-/* .iWchow{
-  display: no;
-} */
 
 @media screen and (max-width:960px) {
 .lady-part {
