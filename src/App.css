@@ -410,11 +410,12 @@
 
 .register-modal{
   overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 /* width */
 .register-modal::-webkit-scrollbar {
-  width: 5px;
+  display: none;
 }
 
 /* Track */

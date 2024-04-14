@@ -76,7 +76,6 @@ const Register = ({ setLoginModal, setRegisterModal, baseUrl }) => {
         if(res.ok){
           setMsg(data.message)
           setAlertType('success')
-          // toast.success(data.message)
           setFromRegister(true)
           setOtpModal(true)
         }
@@ -104,19 +103,22 @@ const Register = ({ setLoginModal, setRegisterModal, baseUrl }) => {
 
       inputFieldValue.forEach(value => {
         if(value === ""){
-          toast.error("Please fill in all fields")
+          setMsg("Please fill in all fields")
+          setAlertType('error')
         }
       })
       
       if(userData.password.length < 8){
-        toast.error("Password length must be equal or greater than 8 characters")
+        setMsg("Password length must be equal or greater than 8 characters")
+        setAlertType('error')
         return true
       }
       
       if(userData.password !== userData.confirmPassword){
         setConfirmPasswordError("Both password fields must match")
         setPasswordError("Both password fields must match")
-        toast.error("Please both password fields must match")
+        setMsg("Please both password fields must match")
+        setAlertType('error')
         return true
       }
     }
