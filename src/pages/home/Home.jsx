@@ -34,6 +34,8 @@ import rightArrow from "../../assets/arrow-right.svg"
 import { IoChevronBack } from "react-icons/io5";
 import NewsLetter from "../../components/news-letter/NewsLetter";
 import ProductCard from '../../components/productCard/ProductCard';
+import { RiVerifiedBadgeFill } from 'react-icons/ri';
+import { CiBookmark, CiLocationOn } from 'react-icons/ci';
 
 const Home = ({baseUrl}) => {
 
@@ -106,21 +108,51 @@ async function getAllProducts(){
     },
   ]
 
-  const options = {
-    margin: 0,
-    responsiveClass: true,
-    nav: true,
-    dots: true,
-    autoplay: true,
-    navText: true,
-    navText: ['<i class="ri-arrow-left-s-line"></i>','<i class="ri-arrow-right-s-line"></i>'],
-    smartSpeed: 1000,
-    loop:true,
-    responsive: {
-        0: {
-            items: 1,
-        }
-    },
+//   const options = {
+//     margin: 0,
+//     responsiveClass: true,
+//     nav: true,
+//     dots: true,
+//     autoplay: true,
+//     navText: true,
+//     navText: ['<i class="ri-arrow-left-s-line"></i>','<i class="ri-arrow-right-s-line"></i>'],
+//     smartSpeed: 1000,
+//     loop:true,
+//     responsive: {
+//         0: {
+//             items: 1,
+//         }
+//     },
+// };
+
+const options = {
+  margin: 20,
+  responsiveClass: true,
+  nav: true,
+  dots: true,
+  autoplay: false,
+  navText: true,
+  navText: ['<i class="ri-arrow-left-s-line"></i>','<i class="ri-arrow-right-s-line"></i>'],
+  smartSpeed: 1000,
+  loop:true,
+  responsive: {
+      0: {
+          items: 2,
+      },
+      400: {
+          items: 2,
+      },
+      600: {
+          items: 2,
+      },
+      700: {
+          items: 3,
+      },
+      1000: {
+          items: 4,
+
+      }
+  },
 };
 
   return (
@@ -211,7 +243,37 @@ async function getAllProducts(){
             }
                 <OwlCarousel {...options} >
                 {allProducts && allProducts.map(product => (
-                    <ProductCard product={product}/>
+                  <div onClick={() => navigate(`/product-details/${product.id}`)}>
+                    <div className="product-card">
+                        <div className="badge"><CiBookmark /></div>
+                        <div className="product-tumb">
+                            <img src={product.product_cover_image?.media} alt="" />
+                        </div>
+                        <div className="product-details">
+                            <div className="flex items-center justify-between">
+                                <h1>{product.name}</h1>
+                            </div>
+                            <div className="flex items-center gap-1 ml-[-3px]">
+                                <CiLocationOn />
+                                <p className="text-[14px] py-1">{product.warranty_address}</p>
+                            </div>
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center reviews">
+                                    {/* <div className="flex items-center">
+                                        <IoMdStar color='#067604'/>
+                                        <IoMdStar color='#067604'/>
+                                        <IoMdStar color='#067604'/>
+                                        <IoMdStar color='#067604'/>
+                                        <IoMdStar color='#067604'/>
+                                    </div>
+                                    <span className="text-[11px] font-[500] text-[#6d6d6d] ml-2">{product.reviews}</span> */}
+                                    <h1 className="text-[13px]">&#8358;{product.price}</h1>
+                                </div>
+                                <RiVerifiedBadgeFill color='#DF9007' fontSize={"20px"}/>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
                 ))}
             </OwlCarousel>
             {/* <TrendingProducts trendingProductsArray={trendingProductsArray}/> */}
