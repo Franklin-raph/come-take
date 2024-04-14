@@ -39,11 +39,12 @@ import { CiBookmark, CiLocationOn } from 'react-icons/ci';
 
 import Carousel from "react-elastic-carousel";
 
-const Home = ({baseUrl}) => {
+const Home = ({baseUrl, setLoginModal}) => {
 
   useEffect(() => {
     // window.scrollTo(0, 0)
     getAllProducts()
+    setLoginModal(true)
 },[])
 
 const user = JSON.parse(localStorage.getItem('user'))
@@ -283,7 +284,7 @@ const breakPoints = [
             } */}
             {/* <TrendingProducts trendingProductsArray={trendingProductsArray}/> */}
 
-            <Carousel breakPoints={breakPoints}>
+            {/* <Carousel breakPoints={breakPoints}>
               {allProducts.map(product => (
                   <div onClick={() => navigate(`/product-details/${product.id}`)}>
                     <div className="product-card">
@@ -309,7 +310,7 @@ const breakPoints = [
                     </div>
                   </div>
                 ))}
-            </Carousel>
+            </Carousel> */}
           </div>
 
         <div id="body">

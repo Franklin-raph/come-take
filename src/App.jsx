@@ -63,7 +63,7 @@ export default function App() {
       {/* <AuthenticatedNavbar /> */}
        <UnAuthenticatedNavabar setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} baseUrl={baseUrl}/>
         <Routes>
-          <Route path="/" element={<Home baseUrl={baseUrl}/>}/>
+          <Route path="/" element={<Home baseUrl={baseUrl} setLoginModal={setLoginModal}/>}/>
           <Route path="/signup" element={<Register baseUrl={baseUrl}/>}/>
           <Route path="/categories" element={<Categories />}/>
           <Route path="/product-details/:id" element={<ProductDescription baseUrl={baseUrl}/>}/>

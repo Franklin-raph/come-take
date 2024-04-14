@@ -3,7 +3,17 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import ProductCard from "../productCard/ProductCard";
 
-const TrendingProducts = ({trendingProductsArray}) => {
+import Carousel from "react-elastic-carousel";
+
+const TrendingProducts = ({allProducts}) => {
+
+    const breakPoints = [
+        { width: 1, itemsToShow: 2 },
+        { width: 400, itemsToShow: 2 },
+        { width: 600, itemsToShow: 2 },
+        { width: 700, itemsToShow: 3 },
+        { width: 1000, itemsToShow: 4 },
+      ];
 
     // console.log(allProducts);
 
@@ -39,11 +49,11 @@ const TrendingProducts = ({trendingProductsArray}) => {
 
 
   return (
-    <OwlCarousel {...options} >
-        {trendingProductsArray && trendingProductsArray.map(product => (
+    <Carousel breakPoints={breakPoints}>
+        {allProducts && allProducts.map(product => (
             <ProductCard product={product}/>
         ))}
-    </OwlCarousel>
+    </Carousel>
   )
 }
 
