@@ -46,11 +46,7 @@ const user = JSON.parse(localStorage.getItem('user'))
 const [allProducts, setAllProducts] = useState([])
 
 async function getAllProducts(){
-  const res = await fetch(`${baseUrl}/products`,{
-    headers:{
-        Authorization:`Bearer ${user.data[0].access}`,
-      },
-    })
+    const res = await fetch(`${baseUrl}/products`,)
     const data = await res.json()
     setAllProducts(data.data)
     console.log(data);

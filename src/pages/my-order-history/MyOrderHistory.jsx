@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import orderHistoryImage from "../../assets/history.png"
 import ProfileSideNav from '../../components/profile-side-nav/ProfileSideNav';
 import laptop1 from "../../assets/category-product-preview.png"
@@ -12,6 +12,24 @@ const MyOrder = () => {
 
     const [orderHistory, setOrderHistory] = useState(false)
     const [deleteItem, setDeleteItem] = useState(false)
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    useEffect(() => {
+        getMyShop()
+    },[])
+
+    async function getMyShop(){
+        const res = await fetch(`${baseUrl}/products/${id}`,{
+            headers:{
+                Authorization:`Bearer ${user.data[0].access}`,
+            }
+        })
+        const data = await res.json()
+        setSelectedImage(data.data.product_image[0].media)
+        setProduct(data.data)
+        console.log(data.data);
+    }
+
     const navigate = useNavigate()
 
   return (
@@ -22,7 +40,7 @@ const MyOrder = () => {
                 <div className='gap-[0rem] px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 password-reset w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <div className='flex justify-between items-center mb-8 '  style={{borderBottom:"1px solid #E6ECEA"}}>
                         <h1 className='text-[#003C2F] text-[24px] font-bold pb-3'>My Shop</h1>
-                        <button onClick={() => setOrderHistory(!orderHistory)}>Click me</button>
+                        <button onClick={() => setOrderHistory(!orderHistory)}>Click me!!</button>
                     </div>
                 {orderHistory &&
                     <div>

@@ -37,65 +37,57 @@ const ProductDescription = ({baseUrl}) => {
 
 
     async function getProductDescription(){
-        const res = await fetch(`${baseUrl}/products/${id}`,{
-            headers:{
-                Authorization:`Bearer ${user.data[0].access}`,
-            }
-        })
+        const res = await fetch(`${baseUrl}/products/${id}`)
         const data = await res.json()
-        setSelectedImage(data.data.product_image[0])
+        setSelectedImage(data.data.product_image[0].media)
         setProduct(data.data)
-        console.log(data);
+        console.log(data.data);
     }
 
     const [allProducts, setAllProducts] = useState([])
 
     async function getAllProducts(){
-    const res = await fetch(`${baseUrl}/products`,{
-        headers:{
-            Authorization:`Bearer ${user.data[0].access}`,
-        },
-        })
+        const res = await fetch(`${baseUrl}/products`)
         const data = await res.json()
         setAllProducts(data.data)
         console.log(data);
     }
 
 
-    const fairlyUsedProductsArray = [
-        {
-          img:laptopImage,
-          productName:`Macbook Pro 13"`,
-          price:"2m",
-          location:"Imo State",
-          rating:5,
-          reviews:"35 Reviews"
-        },
-        {
-          img:bagImage,
-          productName:`Hand Bag`,
-          price:"2m",
-          location:"Imo State",
-          rating:5,
-          reviews:"35 Reviews"
-        },
-        {
-          img:shoeImage,
-          productName:`Nike Sneakers`,
-          price:"2m",
-          location:"Imo State",
-          rating:5,
-          reviews:"35 Reviews"
-        },
-        {
-          img:phoneImage,
-          productName:`Iphone 13"`,
-          price:"2m",
-          location:"Imo State",
-          rating:5,
-          reviews:"35 Reviews"
-        }
-      ]
+    // const fairlyUsedProductsArray = [
+    //     {
+    //       img:laptopImage,
+    //       productName:`Macbook Pro 13"`,
+    //       price:"2m",
+    //       location:"Imo State",
+    //       rating:5,
+    //       reviews:"35 Reviews"
+    //     },
+    //     {
+    //       img:bagImage,
+    //       productName:`Hand Bag`,
+    //       price:"2m",
+    //       location:"Imo State",
+    //       rating:5,
+    //       reviews:"35 Reviews"
+    //     },
+    //     {
+    //       img:shoeImage,
+    //       productName:`Nike Sneakers`,
+    //       price:"2m",
+    //       location:"Imo State",
+    //       rating:5,
+    //       reviews:"35 Reviews"
+    //     },
+    //     {
+    //       img:phoneImage,
+    //       productName:`Iphone 13"`,
+    //       price:"2m",
+    //       location:"Imo State",
+    //       rating:5,
+    //       reviews:"35 Reviews"
+    //     }
+    //   ]
 
 
   return (
@@ -123,9 +115,14 @@ const ProductDescription = ({baseUrl}) => {
                             <div className='w-[309px] md:w-[40%] mx-auto md:block flex flex-col items-center justify-center'>
                                 <img src={selectedImage} alt="" className='w-[100%] h-[309px] mb-5 object-cover' />
                                 <div className='flex items-center gap-5 w-[100%] justify-center'>
-                                    <img src={laptop1} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop1)} />
-                                    <img src={laptop2} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop2)} />
-                                    <img src={laptop3} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop3) } />
+                                    {
+                                        product.product_image.map(img => (
+
+                                            <img src={img.media} alt="" className='w-[40px] h-[40px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(img.media)} />
+                                        ))
+                                    }
+                                    {/* <img src={laptop2} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop2)} />
+                                    <img src={laptop3} alt="" className='w-[70px] h-[70px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(laptop3) } /> */}
                                 </div>
                             </div>
 
@@ -158,7 +155,11 @@ const ProductDescription = ({baseUrl}) => {
                                 </div> */}
                                 <div className='h-[1px] bg-[#ccc] my-4 md:block hidden'></div>
                                 <div className='flex items-center gap-5 justify-between lg:justify-start'>
-                                    <p className='text-[35px]'>&#8358;{product.price}</p>
+                                    <p className='text-[25px]'>{product.price.toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
+                                    })}
+                                    </p>
                                     <p className='text-[#34343457] text-[20px]'>Non Negotibale</p>
                                 </div>
                                 <p className='text-[#ff3030] lg:block hidden capitalize'>{product.condition}</p>
