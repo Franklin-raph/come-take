@@ -5,8 +5,47 @@ import ProductCard from "../productCard/ProductCard";
 
 import Carousel from "react-elastic-carousel";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
+
 const TrendingProducts = ({allProducts}) => {
 
+    var settings = {
+        // dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        initialSlide: 0,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      };
     const breakPoints = [
         { width: 1, itemsToShow: 2 },
         { width: 400, itemsToShow: 2 },
@@ -49,11 +88,11 @@ const TrendingProducts = ({allProducts}) => {
 
 
   return (
-    <Carousel breakPoints={breakPoints}>
+    <Slider {...settings}>
         {allProducts && allProducts.map(product => (
             <ProductCard product={product}/>
         ))}
-    </Carousel>
+    </Slider>
   )
 }
 

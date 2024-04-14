@@ -283,7 +283,7 @@ const breakPoints = [
                 ))}
             </OwlCarousel>
             } */}
-            {/* <TrendingProducts trendingProductsArray={trendingProductsArray}/> */}
+            {/* <TrendingProducts allProducts={allProducts}/> */}
 
             {/* <Carousel breakPoints={breakPoints}>
               {allProducts.map(product => (
@@ -315,7 +315,7 @@ const breakPoints = [
           </div>
 
         <div id="body">
-          {/* <div className="lg:px-12 px-6 lg:py-8 py-6">
+          <div className="lg:px-12 px-6 lg:py-8 py-6">
             <div className="flex items-center justify-between mb-[20px]">
               <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Trending Products</h1>
               <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
@@ -327,7 +327,7 @@ const breakPoints = [
               loader && <p className='text-2xl text-gray-900'>Loading...</p>
             }
             <TrendingProducts allProducts={allProducts}/>
-          </div> */}
+          </div>
 
           <div className="lg:px-12 px-6 py-4 lg:py-8">
             <div className="flex items-center justify-between mb-[20px]">
@@ -436,6 +436,14 @@ const breakPoints = [
         {
           bugFixModal && <div className="h-full w-full fixed top-0 left-0 z-[-1000]" style={{ background:"transparent" }} onClick={() => setBugFixModal(false)}></div>
         }
+        <div data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
+          <div><h3>1</h3></div>
+          <div><h3>2</h3></div>
+          <div><h3>3</h3></div>
+          <div><h3>4</h3></div>
+          <div><h3>5</h3></div>
+          <div><h3>6</h3></div>
+        </div>
     </div>
   )
 }
