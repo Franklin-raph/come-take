@@ -9,10 +9,31 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
+import { IoIosArrowForward } from "react-icons/io";
+import { MdOutlineArrowBackIos } from "react-icons/md";
+
 
 const TrendingProducts = ({allProducts}) => {
 
-    var settings = {
+    const SampleNextArrow = (props) => {
+        const { onClick } = props;
+        return(
+          <div onClick={onClick} >
+            <IoIosArrowForward class="custom-arrow-next" style={{color:"black"}}/>
+          </div>
+        )
+    }
+      
+      function SamplePrevArrow(props) {
+        const { onClick } = props;
+        return(
+          <div onClick={onClick} >
+            <MdOutlineArrowBackIos class="custom-arrow-prev" style={{color:"black"}}/>
+          </div>
+        )
+      }
+
+    let settings = {
         dots: false,
         infinite: true,
         arrows:true,
@@ -22,6 +43,8 @@ const TrendingProducts = ({allProducts}) => {
         initialSlide: 0,
         autoplay: false,
         autoplaySpeed: 1000,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
         responsive: [
           {
             breakpoint: 1024,
@@ -49,7 +72,7 @@ const TrendingProducts = ({allProducts}) => {
           }
         ]
       };
-      
+
     const breakPoints = [
         { width: 1, itemsToShow: 2 },
         { width: 400, itemsToShow: 2 },

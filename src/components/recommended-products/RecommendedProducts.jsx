@@ -7,6 +7,13 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import ProductCard from "../productCard/ProductCard";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
+import { IoIosArrowForward } from "react-icons/io";
+import { MdOutlineArrowBackIos } from "react-icons/md";
+
 const RecommendedProducts = ({allProducts}) => {
     const options = {
         margin: 20,
@@ -38,41 +45,70 @@ const RecommendedProducts = ({allProducts}) => {
         },
     };
 
-  return (
-        <OwlCarousel {...options} >
-            {allProducts && allProducts.map(product => (
-                <ProductCard product={product}/>
-            //     <div className="product-card">
-            //     <div className="badge"><CiHeart /></div>
-            //     <div className="product-tumb">
-            //         <img src={product.img} alt="" />
-            //     </div>
-            //     <div className="product-details">
-            //         <div className="flex items-center justify-between">
-            //             <h1>{product.productName}</h1>
-            //             <h1 className="text-[13px]">{product.price}</h1>
-            //         </div>
-            //         <p className="text-[12px] py-2">{product.description}</p>
+    const SampleNextArrow = (props) => {
+        const { onClick } = props;
+        return(
+          <div onClick={onClick} >
+            <IoIosArrowForward class="custom-arrow-next" style={{color:"black"}}/>
+          </div>
+        )
+    }
+      
+      function SamplePrevArrow(props) {
+        const { onClick } = props;
+        return(
+          <div onClick={onClick} >
+            <MdOutlineArrowBackIos class="custom-arrow-prev" style={{color:"black"}}/>
+          </div>
+        )
+      }
 
-            //         <div className="flex items-center justify-between">
-            //                 <div className="flex items-center reviews">
-            //                     <div className="flex items-center">
-            //                         <IoMdStar color='#067604'/>
-            //                         <IoMdStar color='#067604'/>
-            //                         <IoMdStar color='#067604'/>
-            //                         <IoMdStar color='#067604'/>
-            //                         <IoMdStar color='#067604'/>
-            //                     </div>
-            //                     <span className="text-[11px] font-[500] text-[#6d6d6d] ml-2">{product.reviews}</span>
-            //                 </div>
-            //                 <div className="rounded-full" style={{ border:"1px solid gray", padding:"5px" }}>
-            //                     <BsCart3 color='#003C2F' repeatCount={4} fontSize={"18px"}/>
-            //                 </div>
-            //             </div>
-            //     </div>
-            // </div>
-            ))}
-        </OwlCarousel>
+    let settings = {
+        dots: false,
+        infinite: true,
+        arrows:true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        initialSlide: 0,
+        autoplay: false,
+        autoplaySpeed: 1000,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: false
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      };
+
+  return (
+    <Slider {...settings}>
+        {allProducts && allProducts.map(product => (
+            <ProductCard product={product}/>
+        ))}
+    </Slider>
   )
 }
 

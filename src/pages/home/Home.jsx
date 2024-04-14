@@ -44,14 +44,12 @@ const Home = ({baseUrl, setLoginModal}) => {
   useEffect(() => {
     // window.scrollTo(0, 0)
     getAllProducts()
-    setBugFixModal(true)
 },[])
 
 const user = JSON.parse(localStorage.getItem('user'))
 
 const [allProducts, setAllProducts] = useState([])
 const [loader, setLoader] = useState(false)
-const [bugFixModal, setBugFixModal] = useState(false)
 
 async function getAllProducts(){
     setLoader(true)
@@ -359,17 +357,6 @@ const breakPoints = [
           {/* MOBILE DESIGN FOR BRANDED NEW*/}
 
           {/* <NewsLetter /> */}
-        </div>
-        {
-          bugFixModal && <div className="h-full w-full fixed top-0 left-0 z-[-1000]" style={{ background:"transparent" }} onClick={() => setBugFixModal(false)}></div>
-        }
-        <div data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
-          <div><h3>1</h3></div>
-          <div><h3>2</h3></div>
-          <div><h3>3</h3></div>
-          <div><h3>4</h3></div>
-          <div><h3>5</h3></div>
-          <div><h3>6</h3></div>
         </div>
     </div>
   )
