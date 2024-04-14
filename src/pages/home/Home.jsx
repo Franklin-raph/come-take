@@ -44,10 +44,13 @@ const Home = ({baseUrl}) => {
 const user = JSON.parse(localStorage.getItem('user'))
 
 const [allProducts, setAllProducts] = useState([])
+const [loader, setLoader] = useState(false)
 
 async function getAllProducts(){
+    setLoader(true)
     const res = await fetch(`${baseUrl}/products`,)
     const data = await res.json()
+    if(res) setLoader(false)
     setAllProducts(data.data)
     console.log("Line 52 ===>", data.data);
 }
@@ -451,6 +454,9 @@ async function getAllProducts(){
                   <GoArrowRight />
               </div>
             </div>
+            {
+              loader && <p className='text-2xl text-gray-900'>Loading...</p>
+            }
             <TrendingProducts allProducts={allProducts}/>
           </div>
 
