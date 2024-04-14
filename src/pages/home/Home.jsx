@@ -33,6 +33,7 @@ import leftArrow from "../../assets/arrow-left.svg"
 import rightArrow from "../../assets/arrow-right.svg"
 import { IoChevronBack } from "react-icons/io5";
 import NewsLetter from "../../components/news-letter/NewsLetter";
+import ProductCard from '../../components/productCard/ProductCard';
 
 const Home = ({baseUrl}) => {
 
@@ -197,7 +198,7 @@ async function getAllProducts(){
           <TopCategories categoryArray={categoryArray} />
         </div>
 
-        {/* <div className="lg:px-12 px-6 lg:py-8 py-6">
+        <div className="lg:px-12 px-6 lg:py-8 py-6">
             <div className="flex items-center justify-between mb-[20px]">
               <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Trending Products(Test)</h1>
               <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
@@ -208,8 +209,13 @@ async function getAllProducts(){
             {
               loader && <p className='text-2xl text-gray-900'>Loading...</p>
             }
-            <TrendingProducts trendingProductsArray={trendingProductsArray}/>
-          </div> */}
+                <OwlCarousel {...options} >
+                {allProducts && allProducts.map(product => (
+                    <ProductCard product={product}/>
+                ))}
+            </OwlCarousel>
+            {/* <TrendingProducts trendingProductsArray={trendingProductsArray}/> */}
+          </div>
 
         <div id="body">
           <div className="lg:px-12 px-6 lg:py-8 py-6">
