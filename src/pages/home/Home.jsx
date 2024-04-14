@@ -84,273 +84,25 @@ async function getAllProducts(){
 
   const trendingProductsArray = [
     {
-      img:laptopImage,
-      productName:`Macbook Pro 13"`,
+      name:`Hand Bag`,
       price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
+      warranty_address:"Imo State",
     },
     {
-      img:bagImage,
-      productName:`Hand Bag`,
+      name:`Hand Bag`,
       price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
+      warranty_address:"Imo State",
     },
     {
-      img:shoeImage,
-      productName:`Nike Sneakers`,
+      name:`Hand Bag`,
       price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
+      warranty_address:"Imo State",
     },
     {
-      img:phoneImage,
-      productName:`Iphone 13"`,
+      name:`Hand Bag`,
       price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    }
-  ]
-
-  const recommendedProductsArray = [
-    {
-      img:gym,
-      productName:`Macbook Pro 13"`,
-      price:"4m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
+      warranty_address:"Imo State",
     },
-    {
-      img:stove,
-      productName:`Hand Bag`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:tripodStand,
-      productName:`Nike Sneakers`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:fridge,
-      productName:`Iphone 13"`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    }
-  ]
-
-  const newlyListedProductsArray = [
-    {
-      img:laptopImage,
-      productName:`Macbook Pro 13"`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:bagImage,
-      productName:`Hand Bag`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:shoeImage,
-      productName:`Nike Sneakers`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:phoneImage,
-      productName:`Iphone 13"`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:laptopImage,
-      productName:`Macbook Pro 13"`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:bagImage,
-      productName:`Hand Bag`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:shoeImage,
-      productName:`Nike Sneakers`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:phoneImage,
-      productName:`Iphone 13"`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    }
-  ]
-
-  const fairlyUsedProductsArray = [
-    {
-      img:laptopImage,
-      productName:`Macbook Pro 13"`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:bagImage,
-      productName:`Hand Bag`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:shoeImage,
-      productName:`Nike Sneakers`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:phoneImage,
-      productName:`Iphone 13"`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:laptopImage,
-      productName:`Macbook Pro 13"`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:bagImage,
-      productName:`Hand Bag`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:shoeImage,
-      productName:`Nike Sneakers`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:phoneImage,
-      productName:`Iphone 13"`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    }
-  ]
-
-  const brandNewProductsArray = [
-    {
-      img:laptopImage,
-      productName:`Macbook Pro 13"`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:bagImage,
-      productName:`Hand Bag`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:shoeImage,
-      productName:`Nike Sneakers`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:phoneImage,
-      productName:`Iphone 13"`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:laptopImage,
-      productName:`Macbook Pro 13"`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:bagImage,
-      productName:`Hand Bag`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    },
-    {
-      img:shoeImage,
-      productName:`Nike Sneakers`,
-      price:"&#83582m",
-      location:"Imo State",
-      rating:5,
-      reviews:"30 Reviews"
-    },
-    {
-      img:phoneImage,
-      productName:`Iphone 13"`,
-      price:"2m",
-      location:"Imo State",
-      rating:5,
-      reviews:"35 Reviews"
-    }
   ]
 
   const options = {
@@ -445,8 +197,22 @@ async function getAllProducts(){
           <TopCategories categoryArray={categoryArray} />
         </div>
 
+        <div className="lg:px-12 px-6 lg:py-8 py-6">
+            <div className="flex items-center justify-between mb-[20px]">
+              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Trending Products(Test)</h1>
+              <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                  <p>See all</p>
+                  <GoArrowRight />
+              </div>
+            </div>
+            {
+              loader && <p className='text-2xl text-gray-900'>Loading...</p>
+            }
+            <TrendingProducts trendingProductsArray={trendingProductsArray}/>
+          </div>
+
         <div id="body">
-          <div className="lg:px-12 px-6 lg:py-8 py-6">
+          {/* <div className="lg:px-12 px-6 lg:py-8 py-6">
             <div className="flex items-center justify-between mb-[20px]">
               <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Trending Products</h1>
               <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
@@ -458,7 +224,7 @@ async function getAllProducts(){
               loader && <p className='text-2xl text-gray-900'>Loading...</p>
             }
             <TrendingProducts allProducts={allProducts}/>
-          </div>
+          </div> */}
 
           <div className="lg:px-12 px-6 py-4 lg:py-8">
             <div className="flex items-center justify-between mb-[20px]">
