@@ -434,7 +434,7 @@ const breakPoints = [
           {/* <NewsLetter /> */}
         </div>
         {
-          bugFixModal && <div className="h-full w-full absolute top-0 left-0 z-[-1000]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setBugFixModal(false)}></div>
+          bugFixModal && <div className="h-full w-full fixed top-0 left-0 z-[-1000]" style={{ background:"transparent" }} onClick={() => setBugFixModal(false)}></div>
         }
     </div>
   )
