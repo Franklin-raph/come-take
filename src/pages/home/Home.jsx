@@ -49,7 +49,7 @@ async function getAllProducts(){
     const res = await fetch(`${baseUrl}/products`,)
     const data = await res.json()
     setAllProducts(data.data)
-    console.log(data);
+    console.log("Line 52 ===>", data);
 }
 
   const categoryArray = [
