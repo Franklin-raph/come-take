@@ -37,7 +37,7 @@ import NewsLetter from "../../components/news-letter/NewsLetter";
 const Home = ({baseUrl}) => {
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    // window.scrollTo(0, 0)
     getAllProducts()
 },[])
 
@@ -481,7 +481,7 @@ async function getAllProducts(){
           <div className="lg:block hidden">
             <div className="lg:px-12 px-6 py-12">
               <div className="flex items-center justify-between mb-[20px]">
-              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products(Desktop)</h1>
+              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
               <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
                     <p>See all</p>
                     <GoArrowRight />
@@ -495,7 +495,7 @@ async function getAllProducts(){
           <div className="block lg:hidden">
             <div className="lg:px-12 px-6 lg:py-8 py-6">
               <div className="flex items-center justify-between mb-[20px]">
-                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products(Mobile)</h1>
+                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
                 <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
                     <p>See all</p>
                     <GoArrowRight />
