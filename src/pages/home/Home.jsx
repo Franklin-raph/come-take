@@ -523,7 +523,7 @@ async function getAllProducts(){
                     <GoArrowRight />
                 </div>
               </div>
-              <TrendingProducts allProducts={allProducts}/>
+              <NewlyListedProducts allProducts={allProducts}/>
             </div>
           </div>
           {/* MOBILE DESIGN FOR FAIRLY USED*/}
@@ -551,7 +551,7 @@ async function getAllProducts(){
                     <GoArrowRight />
                 </div>
               </div>
-              <TrendingProducts allProducts={allProducts}/>
+              <NewlyListedProducts allProducts={allProducts}/>
             </div>
           </div>
           {/* MOBILE DESIGN FOR BRANDED NEW*/}
