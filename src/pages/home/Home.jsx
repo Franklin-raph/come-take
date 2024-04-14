@@ -472,7 +472,7 @@ async function getAllProducts(){
             </div>
           </div>
 
-          <div className="hidden lg:block">
+          <div className=" lg:block">
             <div className="lg:px-12 px-6 py-12">
               <div className="flex items-center justify-between mb-[20px]">
               <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products(Desktop)</h1>
@@ -495,12 +495,12 @@ async function getAllProducts(){
                     <GoArrowRight />
                 </div>
               </div>
-              <TrendingProducts allProducts={allProducts}/>
+              <NewlyListedProducts allProducts={allProducts}/>
             </div>
           </div>
           {/* MOBILE DESIGN FOR NEWLY LISTED*/}
 
-          <div className="hidden lg:block">
+          <div className=" lg:block">
             <div className="lg:px-12 px-6 py-8">
               <div className="flex items-center justify-between mb-[20px]">
                 <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Fairly Used Products</h1>
@@ -514,7 +514,7 @@ async function getAllProducts(){
           </div>
 
           {/* MOBILE DESIGN FOR FAIRLY USED*/}
-          <div className="block lg:hidden">
+          <div className="block lg:">
             <div className="lg:px-12 px-6 lg:py-8 py-6">
               <div className="flex items-center justify-between mb-[20px]">
                 <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Fairly Used Products</h1>
@@ -528,7 +528,7 @@ async function getAllProducts(){
           </div>
           {/* MOBILE DESIGN FOR FAIRLY USED*/}
 
-          <div className="hidden lg:block">
+          <div className=" lg:block">
             <div className="lg:px-12 px-6 py-8">
               <div className="flex items-center justify-between mb-[20px]">
                   <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products...</h1>
@@ -542,7 +542,7 @@ async function getAllProducts(){
           </div>
 
           {/* MOBILE DESIGN FOR BRANDED NEW*/}
-          <div className="block lg:hidden">
+          <div className="block lg:">
             <div className="lg:px-12 px-6 lg:py-8 py-6">
               <div className="flex items-center justify-between mb-[20px]">
                 <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products</h1>
