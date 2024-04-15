@@ -71,7 +71,7 @@ export default function App() {
           <Route path="/check-out" element={<Checkout />}/>
           <Route path="/my-profile" element={<MyProfile baseUrl={baseUrl}/>}/>
           <Route path="/password-reset" element={<PasswordReset baseUrl={baseUrl}/>}/>
-          <Route path="/my-shop" element={<MyOrder />}/>
+          <Route path="/my-shop" element={<MyOrder baseUrl={baseUrl}/>}/>
           <Route path="/order-item" element={<OrederdItem />}/>
           <Route path="/messages" element={<MessageInbox baseUrl={baseUrl}/>}/>
           <Route path="/message-content" element={<MessageContent />}/>

@@ -85,7 +85,7 @@ const BottomNav = () => {
 
         {
             categoryNav &&
-            <div className='absolute left-0 bg-white px-12 py-5 w-[25%] top-[65px] z-[9] rounded-[4px] h-[460px]'>
+            <div className='absolute left-0 bg-white px-12 py-5 w-[25%] top-[65px] z-[90] rounded-[4px] h-[460px]'>
                 <p className='text-black font-bold text-[20px] mb-2'>Categories</p>
                 {
                     categoryNavArray.map(item => (
@@ -97,7 +97,7 @@ const BottomNav = () => {
         {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType}/>}
         {
             singleCategoryNav &&
-            <div className='absolute left-[25.1%] bg-white px-12 pb-5 pt-[40px] w-[25%] top-[65px] z-[9] rounded-[4px] h-[460px]'>
+            <div className='absolute left-[25.1%] bg-white px-12 pb-5 pt-[40px] w-[25%] top-[65px] z-[90] rounded-[4px] h-[460px]'>
                 <p className='text-black font-bold text-[20px] mb-2'>Computer</p>
                 {
                     computerCategory.map(item => (
