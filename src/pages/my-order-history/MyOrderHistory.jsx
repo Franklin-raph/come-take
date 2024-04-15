@@ -7,13 +7,17 @@ import { SlTrash } from "react-icons/sl";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import { IoCloseOutline } from "react-icons/io5";
+import Btnloader from '../../components/loader/Btnloader';
 
 const MyOrder = ({baseUrl}) => {
 
-    const [orderHistory, setOrderHistory] = useState(false)
+    const [loader, setLoader] = useState(false)
     const [deleteItem, setDeleteItem] = useState(false)
     const [allMyProducts, setAllMyProducts] = useState([])
     const user = JSON.parse(localStorage.getItem('user'))
+
+    const [msg, setMsg] = useState(false)
+    const [alertType, setAlertType] = useState('')
 
     useEffect(() => {
         getMyShop()
@@ -29,6 +33,32 @@ const MyOrder = ({baseUrl}) => {
         // setSelectedImage(data.data.product_image[0].media)
         setAllMyProducts(data.data)
         console.log(data.data);
+    }
+
+    async function deleteProduct(){
+        setLoader(true)
+        console.log(`${baseUrl}/products/${deleteItem}`);
+        const res = await fetch(`${baseUrl}/products/${deleteItem}`,{
+            method:"PUT",
+            headers: {
+                Authorization:`Bearer ${user.data[0].access}`,
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({unlist:true})
+        })
+        const data = await res.json()
+        if(res) setLoader(false)
+        if(res.ok){
+            setDeleteItem(false)
+            setAlertType('success')
+            setMsg('Product deleted successfully')
+            getMyShop()
+        }
+        if(!res.ok){
+            setAlertType('error')
+            setMsg('Product was not successfully deleted')
+        }
+        console.log(res, data);
     }
 
     const navigate = useNavigate()
@@ -47,9 +77,9 @@ const MyOrder = ({baseUrl}) => {
                     <div>
                         {
                             allMyProducts.map(product => (
-                                <div className='pb-[0.5rem] mb-8 md:hidden' style={{borderBottom:"1px solid #DCDCDC"}}>
+                                <div key={product.id} className='pb-[0.5rem] mb-8 md:hidden' style={{borderBottom:"1px solid #DCDCDC"}}>
                                     <div className='flex items-center gap-[20px] w-full'>
-                                        <img src={laptop1} className='w-[15%]'/>
+                                        <img src={product?.product_cover_image?.media} alt='Product Image' className='w-[150px] h-[150px] object-contain'/>
                                         <div>
                                             <p className='text-[12px]'>{product.name}</p>
                                             <p className='text-[#898989] text-[12px] my-2'>Date Listed : 03/04/2024</p>
@@ -66,13 +96,13 @@ const MyOrder = ({baseUrl}) => {
                                                 <RiVerifiedBadgeFill color='#DF9007'/>
                                                 {/* <p className='text-[#4E4E4E] text-[12px]'>Advertise Item</p> */}
                                             </div>
-                                            <div className='flex items-center gap-2'>
+                                            <div className='flex items-center gap-2 cursor-pointer'>
                                                 <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}}>Unlist Item</p>
                                             </div>
                                         </div>
                                         <div className='flex items-center gap-3 mt-3 justify-end'>
-                                            <AiOutlineEdit fontSize={"24px"} color='#292D32'/>
-                                            <SlTrash fontSize={"18px"} color='#FF0505' cursor={"pointer"} onClick={() => setDeleteItem(true)}/>
+                                            <AiOutlineEdit fontSize={"24px"} cursor={"pointer"} color='#292D32'  onClick={() => navigate(`/product-detail/${product.id}`)} />
+                                            <SlTrash fontSize={"18px"} color='#FF0505' cursor={"pointer"} onClick={() => setDeleteItem(product.id)}/>
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +112,7 @@ const MyOrder = ({baseUrl}) => {
                             allMyProducts.map(product => (
                                 <div className='pb-[0.5rem] flex-[2] mb-8 items-start justify-between hidden md:flex' style={{borderBottom:"1px solid #DCDCDC"}}>
                                     <div className='flex items-center gap-[20px] w-full'>
-                                        <img src={laptop1} className='w-[15%]'/>
+                                        <img src={product?.product_cover_image?.media} alt='Product Image' className='w-[150px] h-[150px] object-contain'/>
                                         <div className='flex items-start justify-between w-full'>
                                             <div>
                                                 <p className='text-[12px]'>{product.name}</p>
@@ -99,13 +129,13 @@ const MyOrder = ({baseUrl}) => {
                                                         <RiVerifiedBadgeFill color='#DF9007'/>
                                                         {/* <p className='text-[#4E4E4E] text-[12px]'>Advertise Item</p> */}
                                                     </div>
-                                                    <div className='flex items-center gap-2'>
+                                                    <div className='flex items-center gap-2 cursor-pointer'>
                                                         <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}}>Unlist Item</p>
                                                     </div>
                                                 </div>
                                                 <div className='flex items-center gap-3 mt-3 justify-end'>
-                                                    <AiOutlineEdit fontSize={"24px"} color='#292D32'/>
-                                                    <SlTrash fontSize={"18px"} color='#FF0505' cursor={"pointer"} onClick={() => setDeleteItem(true)}/>
+                                                    <AiOutlineEdit fontSize={"24px"} cursor={"pointer"} color='#292D32'  onClick={() => navigate(`/product-detail/${product.id}`)}/>
+                                                    <SlTrash fontSize={"18px"} color='#FF0505' cursor={"pointer"} onClick={() => setDeleteItem(product.id)}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -141,10 +171,18 @@ const MyOrder = ({baseUrl}) => {
                         <p className='text-[#5C5C5C] md:m-8 m-4 text-center md:text-left text-[14px] md:text-[16px]'>
                             Are you sure you want to permanently remove this Product from your Product List?. Remember that this action cannot be reversed
                         </p>
-                        <div className='flex items-center justify-start md:ml-8 md:gap-[40px] md:flex-row flex-col-reverse gap-[10px]'>
-                            <button className='text-secondary-color px-8 py-2 rounded-full border border-secondary-color' onClick={() => setDeleteItem(false)}>No, Cancel</button>
-                            <button className='text-white bg-[#FF0000] px-8 py-2 rounded-full border-secondary-color'>Yes, Delete</button>
-                        </div>
+                        {
+                            loader?
+                            
+                            <div className='mt-[2rem]'>
+                                <Btnloader />
+                            </div>
+                        :    
+                            <div className='flex items-center justify-start md:ml-8 md:gap-[40px] md:flex-row flex-col-reverse gap-[10px]'>
+                                <button className='text-secondary-color px-8 py-2 rounded-full border border-secondary-color' onClick={() => setDeleteItem(false)}>No, Cancel</button>
+                                <button className='text-white bg-[#FF0000] px-8 py-2 rounded-full border-secondary-color' onClick={deleteProduct}>Yes, Delete</button>
+                            </div>
+                        }
                     </div>
                 </div>
             }
