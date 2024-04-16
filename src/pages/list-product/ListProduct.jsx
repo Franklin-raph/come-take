@@ -471,9 +471,9 @@ const [category, setCategory] = useState('')
         <img src={roundedImage} alt="" className="w-[30px]"/>
         <p className="text-[18px]">Product Information</p>
       </div>
-      <div className="ml-[3.2rem]">
+      <div className="sm:ml-[3.2rem] ml-0">
         <p className="text-[#101010] mb-2">Image/Videos</p>
-        <div className="flex items-center justify-between">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 md:grid-cols-6 items-center">
             <div className="relative h-[110px] w-[110px] rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
                 {
                     file1 ? 
@@ -585,7 +585,7 @@ const [category, setCategory] = useState('')
             Image needs to be between 500x500 and 2000x2000 pixels. White backgrounds are recommended. No watermarks. Maximum image 
             size 2.5Mb. Videos sizes Maximum 5MB
         </p>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 flex-col sm:flex-row">
             <div className="w-full">
                 <p>Name of Product</p>
                 <input onChange={e => setName(e.target.value)} type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="Name of Product here" style={{ border:"1.5px solid #CCCCCC" }}/>
@@ -601,7 +601,7 @@ const [category, setCategory] = useState('')
                 </div>
             </div>
         </div>
-        <div className="flex items-center gap-5 mt-5">
+        <div className="flex items-center gap-5 mt-5 flex-col sm:flex-row">
             <div className="w-full">
                 <p>Brand</p>
                 <input onChange={e => setBrandName(e.target.value)} type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="Product brand here" style={{ border:"1.5px solid #CCCCCC" }}/>
@@ -627,7 +627,7 @@ const [category, setCategory] = useState('')
                     }
             </div>
         </div>
-        <div className="flex items-center gap-5 mt-5">
+        <div className="flex items-center gap-5 mt-5 flex-col sm:flex-row">
             <div className="w-full">
                 <p>Price</p>
                 <input onChange={e => setPrice(e.target.value)} type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="#32,000" style={{ border:"1.5px solid #CCCCCC" }}/>
@@ -637,7 +637,7 @@ const [category, setCategory] = useState('')
                 <input onChange={e => setWeight(e.target.value)} type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="10Kg" style={{ border:"1.5px solid #CCCCCC" }}/>
             </div>
         </div>
-        <div className="flex items-center gap-5 mt-5">
+        <div className="flex items-center gap-5 mt-5 flex-col sm:flex-row">
             <div className="w-full relative">
                 <p>In Stock</p>
                 <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
@@ -688,8 +688,8 @@ const [category, setCategory] = useState('')
         <img src={roundedImage} alt="" className="w-[30px]"/>
         <p className="text-[18px]">Warranty Specification</p>
       </div>
-      <div className="ml-[3.2rem]">
-      <div className="flex items-center gap-5 mt-5">
+      <div className="sm:ml-[3.2rem] ml-0">
+      <div className="flex items-center gap-5 mt-5 flex-col sm:flex-row">
             <div className="w-full relative">
                 <p>Warranty Duration</p>
                 <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>

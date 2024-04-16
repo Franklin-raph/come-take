@@ -290,7 +290,10 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                             <BsClock className='text-[#292D32] text-[18px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>Pending Reviews</p>
                         </div>
-                        <div className='flex items-center gap-3 cursor-pointer'>
+                        <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
+                            navigate('/list-product')
+                            setMobileAccountDropDown(!mobileAccountDropDown)
+                        }} >
                             <CiShop className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>List Product</p>
                         </div>

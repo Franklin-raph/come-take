@@ -26,6 +26,15 @@ const ProductDetail = ({baseUrl}) => {
     const [name, setName] = useState('')
     const [category, setCategory] = useState('')
 
+    const [file1, setFile1] = useState(null)
+    const [file2, setFile2] = useState(null)
+    const [file3, setFile3] = useState(null)
+    const [file4, setFile4] = useState(null)
+    const [file5, setFile5] = useState(null)
+    const [file6, setFile6] = useState(null)
+    const [coverPhoto, setCoverPhoto] = useState(null)
+    const [coverPhotoId, setCoverPhotoId] = useState('')
+
     useEffect(() => {
         getProductDetail()
     },[])
@@ -46,6 +55,7 @@ const ProductDetail = ({baseUrl}) => {
             setPrice(data.data.price)
             setInStock(data.data.in_stock)
             setCondition(data.data.condition)
+            setCoverPhoto(data.data.product_cover_image.media)
         }
         console.log(res, data);
     }
@@ -80,14 +90,7 @@ const ProductDetail = ({baseUrl}) => {
     const user = JSON.parse(localStorage.getItem('user'))
     // const [mediaType, setMediaType] = useState('')
 
-    const [file1, setFile1] = useState(null)
-    const [file2, setFile2] = useState(null)
-    const [file3, setFile3] = useState(null)
-    const [file4, setFile4] = useState(null)
-    const [file5, setFile5] = useState(null)
-    const [file6, setFile6] = useState(null)
-    const [coverPhoto, setCoverPhoto] = useState(null)
-    const [coverPhotoId, setCoverPhotoId] = useState('')
+
 
     const [product_image, setProductImage] = useState([])
     let mediaType;
@@ -492,9 +495,9 @@ async function handleCoverPhtotoUpload(e){
         <img src={roundedImage} alt="" className="w-[30px]"/>
         <p className="text-[18px]">Product Information</p>
       </div>
-      <div className="ml-[3.2rem]">
+      <div className="sm:ml-[3.2rem] ml-0">
         <p className="text-[#101010] mb-2">Image/Videos</p>
-        <div className="flex items-center justify-between">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 md:grid-cols-6 items-center">
             <div className="relative h-[110px] w-[110px] rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
                 {
                     file1 ? 
@@ -596,6 +599,7 @@ async function handleCoverPhtotoUpload(e){
                     </div> 
                         :
                     <>
+                    {/* <img src={coverPhoto} alt="" /> */}
                         <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
                         <p>Cover Image</p>
                         <input type="file" onChange={handleCoverPhtotoUpload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" accept=".jpg, .png, .jpeg" />
@@ -606,7 +610,7 @@ async function handleCoverPhtotoUpload(e){
             Image needs to be between 500x500 and 2000x2000 pixels. White backgrounds are recommended. No watermarks. Maximum image 
             size 2.5Mb. Videos sizes Maximum 5MB
         </p>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 flex-col sm:flex-row">
             <div className="w-full">
                 <p>Name of Product</p>
                 <input value={name} onChange={e => setName(e.target.value)} type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="Name of Product here" style={{ border:"1.5px solid #CCCCCC" }}/>
@@ -619,7 +623,7 @@ async function handleCoverPhtotoUpload(e){
                 </div>
             </div>
         </div>
-        <div className="flex items-center gap-5 mt-5">
+        <div className="flex items-center gap-5 mt-5 flex-col sm:flex-row">
             <div className="w-full">
                 <p>Brand</p>
                 <input onChange={e => setBrandName(e.target.value)} value={brand_name} type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="Product brand here" style={{ border:"1.5px solid #CCCCCC" }}/>
@@ -645,7 +649,7 @@ async function handleCoverPhtotoUpload(e){
                     }
             </div>
         </div>
-        <div className="flex items-center gap-5 mt-5">
+        <div className="flex items-center gap-5 mt-5 flex-col sm:flex-row">
             <div className="w-full">
                 <p>Price</p>
                 <input value={price} onChange={e => setPrice(e.target.value)} type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="#32,000" style={{ border:"1.5px solid #CCCCCC" }}/>
@@ -655,7 +659,7 @@ async function handleCoverPhtotoUpload(e){
                 <input value={weight} onChange={e => setWeight(e.target.value)} type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="10Kg" style={{ border:"1.5px solid #CCCCCC" }}/>
             </div>
         </div>
-        <div className="flex items-center gap-5 mt-5">
+        <div className="flex items-center gap-5 mt-5 flex-col sm:flex-row">
             <div className="w-full relative">
                 <p>In Stock</p>
                 <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
@@ -706,8 +710,8 @@ async function handleCoverPhtotoUpload(e){
         <img src={roundedImage} alt="" className="w-[30px]"/>
         <p className="text-[18px]">Warranty Specification</p>
       </div>
-      <div className="ml-[3.2rem]">
-      <div className="flex items-center gap-5 mt-5">
+      <div className="sm:ml-[3.2rem] ml-0">
+      <div className="flex items-center gap-5 mt-5 flex-col sm:flex-row">
             <div className="w-full relative">
                 <p>Warranty Duration</p>
                 <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
