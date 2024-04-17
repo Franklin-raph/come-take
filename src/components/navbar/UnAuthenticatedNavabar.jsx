@@ -149,8 +149,8 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
 
         {
             mobileNav &&
-            <div className='fixed z-[999] w-full h-full' style={{ background:"rgba(0, 0, 0, 0.7)" }}>
-                <ul className='bg-white w-[50%] px-5 py-[20px] flex flex-col gap-[.8rem]'>
+            <div className='fixed z-[999] w-full h-full' style={{ background:"rgba(0, 0, 0, 0.7)" }} onClick={() => setMobileNav(false)}>
+                <ul className='bg-white w-[50%] px-5 py-[20px] h-full flex flex-col gap-[.8rem]'>
                     <li className='flex items-center justify-between mb-6'>
                         <p>Logo</p>
                         <MdClose color='#797979' fontSize={"25px"} cursor={"pointer"} onClick={() => setMobileNav(false)}/>
@@ -259,6 +259,8 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
         
 
         {mobileAccountDropDown && 
+        <>
+            <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setMobileAccountDropDown(false)}></div>
             <div className='fixed right-0 bg-white top-[63px] z-[999] border w-full'>
                 <div className='p-5'>
                     <div className='flex items-start gap-[20px] mb-7'>
@@ -328,6 +330,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                     </div>
                 </div>
             </div>
+        </>
         }
 
         <div className="bg-white pb-[62px] lg:pb-[70px]"></div>
