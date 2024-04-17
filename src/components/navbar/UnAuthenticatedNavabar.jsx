@@ -61,7 +61,10 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
             </div>
             <div className="mobile-nav flex items-center gap-5">
                 {/* <IoIosSearch cursor={"pointer"}/> */}
-                <IoNotificationsOutline cursor={"pointer"} fontWeight={"bold"} onClick={() => navigate('/messages')}/>
+                {
+                    user &&
+                    <IoNotificationsOutline cursor={"pointer"} fontWeight={"bold"} onClick={() => navigate('/messages')}/>
+                }
                 <FaRegCircleUser cursor={"pointer"} onClick={() => {
                     if(!user){
                         setLoginModal(true)
@@ -131,9 +134,12 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                         <p>(0)</p>
                     </div>
                 </li>
-                <li>
-                    <CiBellOn fontSize={"20px"} onClick={() => navigate('/messages')}/>
-                </li>
+                {
+                    user &&
+                    <li>
+                        <CiBellOn fontSize={"20px"} onClick={() => navigate('/messages')}/>
+                    </li>
+                }
                 <li className='bg-secondary-color px-3 py-1 rounded-full getApp'>
                     <HiOutlineDevicePhoneMobile />
                     <Link to="/get-app">Get App</Link>

@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import CategoriesProductPageDown from "../../components/categories-product-page-down/CategoriesProductPageDown";
 import { IoIosSearch } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
 
@@ -198,7 +199,7 @@ const Categories = () => {
       ]
 
       const productTypeArray = [
-        "New", "Fairly Used"
+        "Newly Listed", "Brand New", "Fairly Used"
       ]
 
       const priceRangeArray= [
@@ -212,17 +213,16 @@ const Categories = () => {
 
       const [showFilter, setShowFilter] = useState(false)
       const [showCategory, setShowCategory] = useState(false)
+      const navigate = useNavigate()
     
 
 
   return (
     <div>
         <div className="lg:flex items-center justify-start px-12 py-5 gap-4 hidden">
-            <p>Home</p>
+            <p className="cursor-pointer" onClick={() => navigate('/')}>Home</p>
             <MdKeyboardArrowRight />
             <p>Computing</p>
-            <MdKeyboardArrowRight />
-            <p>Laptops</p>
         </div>
 
         <div className="px-6 pb-8 pt-4">
@@ -258,7 +258,7 @@ const Categories = () => {
                         </div>
                     </div>
 
-                    <div className="mt-[40px]">
+                    {/* <div className="mt-[40px]">
                         <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Brand</p>
                         <div className="product-type text-gray-400">
                           {brandsArray.map(brand => (
@@ -280,7 +280,7 @@ const Categories = () => {
                           </div>
                           ))}
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="mt-[40px]">
                         <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Price Range</p>
@@ -363,7 +363,7 @@ const Categories = () => {
                             </div>
                         </div>
 
-                        <div className="mt-[40px]">
+                        {/* <div className="mt-[40px]">
                             <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Brand</p>
                             <div className="product-type text-gray-400">
                               {brandsArray.map(brand => (
@@ -385,7 +385,7 @@ const Categories = () => {
                               </div>
                               ))}
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="mt-[40px]">
                             <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Price Range</p>
@@ -436,7 +436,7 @@ const Categories = () => {
                 }
                 {/* END MOBILE FILTER*/}
 
-                <div className="w-[75%] ml-[2rem] category-right">
+                <div className="w-[75%] lg:ml-[2rem] ml-0 category-right">
                     <div className="flex bg-primary-color text-white items-center justify-between rounded-[4px] px-3 py-4 mb-8 mobile-filter">
                       <div className="flex items-center cursor-pointer">
                         <p>Category</p>

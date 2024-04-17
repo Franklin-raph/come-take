@@ -73,29 +73,29 @@ const Footer = () => {
 
   const serviceLinks = [
     {
-      label:"VTU-Services",
+      label:"Airtime Recharge",
       url:"#"
     },
-    // {
-    //   label:"Gift Card",
-    //   url:"#"
-    // },
-    // {
-    //   label:"Mobile App",
-    //   url:"#"
-    // },
-    // {
-    //   label:"Shipping and Delivery",
-    //   url:"#"
-    // },
+    {
+      label:"Data Subscription",
+      url:"#"
+    },
+    {
+      label:"Cable Subscription",
+      url:"#"
+    },
+    {
+      label:"Electricity Bill Payments",
+      url:"#"
+    },
     // {
     //   label:"Account Sign Up",
     //   url:"#"
     // },
-    // {
-    //   label:"Order Pick Up",
-    //   url:"#"
-    // }
+    {
+      label:"Others",
+      url:"#"
+    }
   ]
 
   const helpLinks = [
@@ -162,7 +162,7 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h1 className='font-bold text-[15px] md:text-[17px] text-primary-color mb-2'>Service</h1>
+            <h1 className='font-bold text-[15px] md:text-[17px] text-primary-color mb-2'>VTU Service</h1>
             <ul>
               {serviceLinks.map(link => (
                 <li className='py-1 text-[12px] md:text-[14px]'>

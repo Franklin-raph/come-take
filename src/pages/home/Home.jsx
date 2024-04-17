@@ -38,13 +38,16 @@ import { RiVerifiedBadgeFill } from 'react-icons/ri';
 import { CiBookmark, CiLocationOn } from 'react-icons/ci';
 
 import Carousel from "react-elastic-carousel";
+import { useNavigate } from 'react-router-dom';
 
 const Home = ({baseUrl, setLoginModal}) => {
 
   useEffect(() => {
-    // window.scrollTo(0, 0)
+    window.scrollTo(0, 0)
     getAllProducts()
 },[])
+
+const navigate = useNavigate()
 
 const user = JSON.parse(localStorage.getItem('user'))
 
@@ -229,7 +232,7 @@ const breakPoints = [
             <p className="text-primary-color mt-1 lg:mt-0">
              Shop from a wide range of products and enjoy fast, reliable delivery.
             </p>
-            <button className="bg-secondary-color mt-8 lg:mt-4 px-8 py-3 rounded-[7px] text-white">
+            <button className="bg-secondary-color mt-8 lg:mt-4 px-8 py-3 rounded-[7px] text-white" onClick={() => navigate('/categories')}>
               Shop Now
             </button>
           </div>
@@ -268,7 +271,7 @@ const breakPoints = [
           <div className="lady-part my-6">
             <div className="content lg:w-[60%] md:w-[70%] w-[100%] lg:px-12 px-3">
               <h1 className="font-[500] text-[18px] md:text-[24px]">A place to get all your dream Amazing deals. Click to shop.</h1>
-              <button className="bg-secondary-color mt-5 px-8 py-3 rounded-[7px]">Shop Now</button>
+              <button className="bg-secondary-color mt-5 px-8 py-3 rounded-[7px]" onClick={() => navigate('/categories')}>Shop Now</button>
             </div>
           </div>
 
