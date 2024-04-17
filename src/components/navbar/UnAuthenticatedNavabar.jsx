@@ -155,49 +155,49 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                         <p>Logo</p>
                         <MdClose color='#797979' fontSize={"25px"} cursor={"pointer"} onClick={() => setMobileNav(false)}/>
                     </li>
-                    <li className='text-[15px] mb-3'>
+                    <li className='text-[15px] mb-3 hover:bg-gray-300 px-3 py-2'>
                         <Link to="/" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
                             <TbHome fontSize={"20px"} color='#797979'/>
                             <p>Home</p>
                         </Link>
                     </li>
-                    <li className='text-[15px] mb-3'>
+                    <li className='text-[15px] mb-3 px-3 py-2 hover:bg-gray-300'>
                         <Link to="/categories" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
                             <BiCategory fontSize={"20px"} color='#797979'/>
                             <p>Categories</p>
                         </Link>
                     </li>
-                    <li className='text-[15px] mb-3'>
+                    <li className='text-[15px] mb-3 px-3 py-2 hover:bg-gray-300'>
                         <Link to="/saved-items" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
                             <CiHeart fontSize={"20px"} color='#797979'/>
                             <p>Saved Items</p>
                         </Link>
                     </li>
-                    <li className='text-[15px] mb-3'>
+                    <li className='text-[15px] mb-3 px-3 py-2 hover:bg-gray-300'>
                         <Link to="#" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
                             <GrVirtualStorage fontSize={"20px"} color='#797979'/>
                             <p>VTU</p>
                         </Link>
                     </li>
-                    <li className='text-[15px] mb-3'>
+                    <li className='text-[15px] mb-3 px-3 py-2 hover:bg-gray-300'>
                         <Link to="/shop-set-up" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
                             <IoCubeOutline fontSize={"20px"} color='#797979'/>
                             <p>Sell Product</p>
                         </Link>
                     </li>
-                    <li className='text-[15px] mb-3'>
+                    <li className='text-[15px] mb-3 px-3 py-2 hover:bg-gray-300'>
                         <Link to="/shop-set-up" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
                             <CiShop fontSize={"20px"} color='#797979'/>
                             <p>My Shop</p>
                         </Link>
                     </li>
-                    <li className='text-[15px] mb-3'>
+                    <li className='text-[15px] mb-3 px-3 py-2 hover:bg-gray-300'>
                         <Link to="/shop-set-up" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
                             <IoDownloadOutline fontSize={"20px"} color='#797979'/>
                             <p>Download App</p>
                         </Link>
                     </li>
-                    <li className='text-[15px]'>
+                    <li className='text-[15px] px-3 py-2 hover:bg-gray-300'>
                         <Link to="#" onClick={() => setMobileNav(false)}  className='flex items-center gap-3 text-[#333333]'>
                             <PiWarningCircleLight fontSize={"22px"} color='#797979' style={{ transform:"rotate(180deg)" }}/>
                             <p>About Us</p>
