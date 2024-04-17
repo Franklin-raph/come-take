@@ -206,10 +206,10 @@ const breakPoints = [
           <img src={img2} alt=""/>
           <div className="w-full absolute left-[50%] right-[50%] top-[50%] z-[10] translate-x-[-50%] translate-y-[-50%] text-center">
             <h1 className='text-white mb-5 text-[16px] sm:text-[25px] md:text-[40px] w-[55%] mx-auto'>Buy & Sell on Nigeria’s No1 Market Place</h1>
-            <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[70%] mx-auto'>
-                <IoIosSearch className='text-[22px] text-gray-500 mr-2'/>
-                <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color'/>
-                <button className='rounded-full md:py-2 md:px-6 px-3 text-center bg-secondary-color text-white'>Search</button>
+            <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[85%] md:w-[70%] mx-auto'>
+                <IoIosSearch className='text-[32px] text-gray-500 mr-2'/>
+                <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color text-[16px] md:text-[18px]'/>
+                <button className='rounded-full md:py-2 md:px-6 px-[22px] text-center bg-secondary-color text-white py-[8px]'>Search</button>
             </div>
           </div>
         </div>
