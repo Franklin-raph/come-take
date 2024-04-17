@@ -9,8 +9,8 @@ import Btnloader from "../loader/Btnloader";
 const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModal }) => {
 
   const navigate = useNavigate()
-  const [email, setEmail] = useState("igboekwulusifranklin@gmail.com")
-  const [password, setPassword] = useState("123456789")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPasswordError] = useState("")
   const [loading, setLoading] = useState(false)
@@ -19,6 +19,7 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
     e.preventDefault()
     if(!email){
       setEmailError("Please enter your email")
+      return;
     }else if(!password){
       setPasswordError("Please enter your password")
     }else if(email || password){
@@ -89,7 +90,7 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
                                   </div>
                                   <input onChange={e => setEmail(e.target.value)} className="w-full text-lg px-2 outline-none" type="email" placeholder="Email Address" />
                                 </div>
-                                {emailError && <span className='text-red-500 text-[13px]'>X {emailError}</span>}
+                                {emailError && <span className='text-red-500 text-[12px]'>{emailError}</span>}
                             </div>
 
                             <div className="mt-4 relative input-container">
@@ -108,7 +109,7 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
                                     cursor-pointer">
                                         Forgot Password?
                                     </p>
-                                    {passwordError && <span className='text-red-500 text-[12px]'>X {passwordError}</span>}
+                                    {passwordError && <span className='text-red-500 text-[12px]'>{passwordError}</span>}
                                 </div>
                             </div>
 

@@ -26,7 +26,7 @@ import FairlyUsedProducts from "../../components/fairly-used-products/FairlyUsed
 import BrandNewProducts from "../../components/brand-new-products/BrandNewProducts";
 import { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
-import img1 from '../../assets/Frame129.png'
+import img1 from '../../assets/landingPageBgImg.png'
 import img2 from '../../assets/Frame376.png'
 import img3 from '../../assets/Frame380.png'
 import leftArrow from "../../assets/arrow-left.svg"
@@ -200,7 +200,7 @@ const breakPoints = [
         </Swiper> */}
         <div id='home'>
           <div className='image-overlay'></div>
-          <img src={img2} alt="" />
+          <img src={img2} alt=""/>
           <div className="w-full absolute left-[50%] right-[50%] top-[50%] z-[10] translate-x-[-50%] translate-y-[-50%] text-center">
             <h1 className='text-white mb-5 text-[16px] sm:text-[25px] md:text-[40px] w-[55%] mx-auto'>Buy & Sell on Nigeria’s No1 Market Place</h1>
             <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[70%] mx-auto'>
@@ -251,7 +251,7 @@ const breakPoints = [
             {
               loader && <p className='text-2xl text-gray-900'>Loading...</p>
             }
-            <TrendingProducts allProducts={allProducts}/>
+            <TrendingProducts allProducts={allProducts} baseUrl={baseUrl}/>
           </div>
 
           <div className="lg:px-12 px-6 py-4 lg:py-8">

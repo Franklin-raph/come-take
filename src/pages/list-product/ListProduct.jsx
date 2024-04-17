@@ -787,7 +787,7 @@ const [category, setCategory] = useState('')
                     <Btnloader />
                 </button>
             : 
-            <button onClick={uploadProduct} className="bg-secondary-color py-[12px] mt-10 text-white w-full">Save Details</button>
+            <button onClick={uploadProduct} className="bg-secondary-color py-[12px] mt-10 text-white w-full sm:w-[228.43px] ml-auto rounded-[7.98px]">Submit</button>
           }
     </div>
   )

@@ -30,6 +30,7 @@ import OTPInput from "./components/otp-input/OTPInput"
 import ConfirmActivateAccountModal from "./components/confirmActivateAccountModal/ConfirmActivateAccountModal"
 import ResetPassword from "./components/reset-password/ResetPassword"
 import ProductDetail from "./pages/product-detail/ProductDetail"
+import VtuServices from "./pages/vtu-services/VtuServices"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -82,6 +83,7 @@ export default function App() {
           <Route path="/subscription-plan" element={<Subscription baseUrl={baseUrl}/>} />
           <Route path="/list-product" element={<ListProduct baseUrl={baseUrl}/>} />
           <Route path="/product-detail/:id" element={<ProductDetail baseUrl={baseUrl}/>} />
+          <Route path="/vtu-services" element={<VtuServices baseUrl={baseUrl}/>} />
         </Routes>
         <Footer />
         {loginModal && !registerModal &&

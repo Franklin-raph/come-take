@@ -809,7 +809,7 @@ async function handleCoverPhtotoUpload(e){
                     <Btnloader />
                 </button>
             : 
-            <button onClick={uploadProduct} className="bg-secondary-color py-[12px] mt-10 text-white w-full">Update Product</button>
+            <button onClick={uploadProduct} className="bg-secondary-color py-[12px] mt-10 text-white  w-full sm:w-[228.43px] ml-auto rounded-[7.98px]]">Sumbit</button>
           }
     </div>
   )

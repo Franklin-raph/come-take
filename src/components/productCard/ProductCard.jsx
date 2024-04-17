@@ -3,19 +3,43 @@ import { CiLocationOn } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom'
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { CiBookmark } from "react-icons/ci";
+import { useEffect, useState } from "react";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, baseUrl }) => {
 
+    const user = JSON.parse(localStorage.getItem('user'))
+    const [msg, setMsg] = useState(false)
+    const [alertType, setAlertType] = useState('')
+    const [userDetails, setUserDetails] = useState()
     const navigate = useNavigate()
 
+    // async function getUserDetails(){
+    //     const res = await fetch(`${baseUrl}/complete-registration`,{
+    //       headers:{
+    //         Authorization:`Bearer ${user?.data[0]?.access}`
+    //       }n
+    //     })
+    //     const data = await res.json()
+    //     setUserDetails(data.data)
+    //     console.log(res, data);
+    //   }
+
+    // useEffect(() => {
+    //     getUserDetails()
+    // },[])
+
+    function saveProduct(){
+        console.log(user)
+    }
+
   return (
-    <div onClick={() => navigate(`/product-details/${product.id}`)}>
+    <div>
         <div className="product-card">
-            <div className="badge"><CiBookmark /></div>
+            <div className="badge" onClick={() => saveProduct()} ><CiBookmark /></div>
             <div className="product-tumb">
                 <img src={product.product_cover_image?.media} alt="" />
             </div>
-            <div className="product-details">
+            <div className="product-details" onClick={() => navigate(`/product-details/${product.id}`)}>
                 <div className="flex items-center justify-between">
                     <h1>{product.name}</h1>
                 </div>
