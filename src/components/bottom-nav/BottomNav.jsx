@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IoChevronDown } from 'react-icons/io5';
 import { RxHamburgerMenu } from "react-icons/rx";
 import Alert from '../alert/Alert';
+import { IoIosArrowForward } from "react-icons/io";
+
 
 const BottomNav = () => {
 
@@ -82,20 +84,26 @@ const BottomNav = () => {
                 <Link to="/vtu-services">VTU</Link>
             </li>
         </ul>
-
+{/* top-[135px] */}
         {
             categoryNav &&
-            <div className='absolute left-0 bg-white px-12 py-5 w-[25%] top-[65px] z-[90] rounded-[4px] h-[460px]'>
-                <p className='text-black font-bold text-[20px] mb-2'>Categories</p>
-                {
-                    categoryNavArray.map(item => (
-                        <p className='text-[#1C1C1C] my-[8px] cursor-pointer' onClick={() => setSingleCategoryNav(!singleCategoryNav)} >{item}</p>
-                    ))
-                }
-            </div>
+            <>
+                <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setCategoryNav(false)}></div>
+                <div className='fixed left-0 bg-white px-12 py-5 w-[35%] top-[0] z-[100] rounded-[4px] h-[100vh]'>
+                    <p className='text-black font-bold text-[20px] mb-2'>Categories</p>
+                    {
+                        categoryNavArray.map(item => (
+                            <div className='flex items-center justify-between hover:bg-gray-300 px-3 py-2 my-[16px] cursor-pointer w-full'>
+                                <p className='text-[#1C1C1C]'>{item}</p>
+                                <IoIosArrowForward className='text-primary-color'/>
+                            </div>
+                        ))
+                    }
+                </div>
+            </>
         }
         {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType}/>}
-        {
+        {/* {
             singleCategoryNav &&
             <div className='absolute left-[25.1%] bg-white px-12 pb-5 pt-[40px] w-[25%] top-[65px] z-[90] rounded-[4px] h-[460px]'>
                 <p className='text-black font-bold text-[20px] mb-2'>Computer</p>
@@ -105,7 +113,7 @@ const BottomNav = () => {
                     ))
                 }
             </div>
-        }
+        } */}
     </div>
   )
 }

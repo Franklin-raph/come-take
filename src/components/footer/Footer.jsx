@@ -11,21 +11,21 @@ const Footer = () => {
       url:"#"
     },
     {
-      label:"News and blogs",
+      label:"Privacy Policy",
       url:"#"
     },
     {
-      label:"Help",
+      label:"Terms of use",
       url:"#"
     },
     {
-      label:"Press Center",
+      label:"Return Policy",
       url:"#"
     },
-    {
-      label:"Affiliate and partners",
-      url:"#"
-    }
+    // {
+    //   label:"Affiliate and partners",
+    //   url:"#"
+    // }
   ]
 
   const categoriesLinks = [
@@ -73,29 +73,29 @@ const Footer = () => {
 
   const serviceLinks = [
     {
-      label:"Gift Card",
+      label:"VTU-Services",
       url:"#"
     },
-    {
-      label:"Mobile App",
-      url:"#"
-    },
-    {
-      label:"VTU",
-      url:"#"
-    },
-    {
-      label:"Shipping and Delivery",
-      url:"#"
-    },
-    {
-      label:"Account Sign Up",
-      url:"#"
-    },
-    {
-      label:"Order Pick Up",
-      url:"#"
-    }
+    // {
+    //   label:"Gift Card",
+    //   url:"#"
+    // },
+    // {
+    //   label:"Mobile App",
+    //   url:"#"
+    // },
+    // {
+    //   label:"Shipping and Delivery",
+    //   url:"#"
+    // },
+    // {
+    //   label:"Account Sign Up",
+    //   url:"#"
+    // },
+    // {
+    //   label:"Order Pick Up",
+    //   url:"#"
+    // }
   ]
 
   const helpLinks = [
@@ -126,7 +126,7 @@ const Footer = () => {
     <div>
       {/* <div className='h-[1px] bg-[#ccc] my-4 lg:mx-12'></div> */}
       <NewsLetter />
-      <div className='flex items-start justify-between md:flex-row flex-col gap-[2rem] mt-[2rem] mb-[3rem] lg:px-12 px-8'>
+      <div className='flex items-start justify-between md:flex-row flex-col gap-[5rem] mt-[2rem] mb-[3rem] lg:px-12 px-8'>
         <div className='w-full'>
           <Link to="/" className='mb-5 block'>
             Logo.
@@ -136,11 +136,11 @@ const Footer = () => {
             aspernatur vitae beatae impedit neque nesciunt provident, quam itaque aliquid optio 
             pariatur quos dolorum sequi excepturi ut necessitatibus! Dolore.
           </p>
-          <h1 className='font-bold text-[17px] text-primary-color mt-9 mb-4'>Accepted Payments</h1>
-          <img src={footerImage} alt="" />
+          {/* <h1 className='font-bold text-[17px] text-primary-color mt-9 mb-4'>Accepted Payments</h1>
+          <img src={footerImage} alt="" /> */}
         </div>
-        <div className='grid lg:grid-cols-4 grid-cols-2 gap-[2rem] w-full text-[14px]'>
-          <div>
+        <div className='grid grid-cols-2 gap-[2rem] w-full text-[14px]'>
+          {/* <div>
             <h1 className='font-bold text-[15px] md:text-[17px] text-primary-color mb-2'>Categories</h1>
             <ul>
               {categoriesLinks.map(link => (
@@ -150,7 +150,7 @@ const Footer = () => {
               ))}
               
             </ul>
-          </div>
+          </div> */}
           <div>
             <h1 className='font-bold text-[15px] md:text-[17px] text-primary-color mb-2'>About Us</h1>
             <ul>
@@ -171,7 +171,7 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          <div>
+          {/* <div>
             <h1 className='font-bold text-[15px] md:text-[17px] text-primary-color mb-2'>Help</h1>
             <ul>
               {helpLinks.map(link => (
@@ -180,7 +180,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

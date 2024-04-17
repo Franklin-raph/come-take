@@ -242,7 +242,7 @@ const breakPoints = [
         <div id="body">
           <div className="lg:px-12 px-6 lg:py-8 py-6">
             <div className="flex items-center justify-between mb-[20px]">
-              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Trending Products</h1>
+              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
               <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
                   <p>See all</p>
                   <GoArrowRight />
@@ -254,7 +254,7 @@ const breakPoints = [
             <TrendingProducts allProducts={allProducts} baseUrl={baseUrl}/>
           </div>
 
-          <div className="lg:px-12 px-6 py-4 lg:py-8">
+          {/* <div className="lg:px-12 px-6 py-4 lg:py-8">
             <div className="flex items-center justify-between mb-[20px]">
               <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Recommended Products</h1>
               <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
@@ -263,7 +263,7 @@ const breakPoints = [
                 </div>
             </div>
             <RecommendedProducts allProducts={allProducts}/>
-          </div>
+          </div> */}
 
           <div className="lady-part my-6">
             <div className="content lg:w-[60%] md:w-[70%] w-[100%] lg:px-12 px-3">
@@ -272,7 +272,7 @@ const breakPoints = [
             </div>
           </div>
 
-          <div className="lg:block hidden">
+          {/* <div className="lg:block hidden">
             <div className="lg:px-12 px-6 py-12">
               <div className="flex items-center justify-between mb-[20px]">
               <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
@@ -283,10 +283,10 @@ const breakPoints = [
               </div>
               <NewlyListedProducts allProducts={allProducts}/>
             </div>
-          </div>
+          </div> */}
 
           {/* MOBILE DESIGN FOR NEWLY LISTED*/}
-          <div className="block lg:hidden">
+          {/* <div className="block lg:hidden">
             <div className="lg:px-12 px-6 lg:py-8 py-6">
               <div className="flex items-center justify-between mb-[20px]">
                 <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
@@ -297,8 +297,36 @@ const breakPoints = [
               </div>
               <NewlyListedProducts allProducts={allProducts}/>
             </div>
-          </div>
+          </div> */}
           {/* MOBILE DESIGN FOR NEWLY LISTED*/}
+
+          <div className="lg:block hidden">
+            <div className="lg:px-12 px-6 py-8">
+              <div className="flex items-center justify-between mb-[20px]">
+                  <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products</h1>
+                  <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                        <p>See all</p>
+                        <GoArrowRight />
+                  </div>
+                </div>
+              <BrandNewProducts allProducts={allProducts}/>
+            </div>
+          </div>
+
+          {/* MOBILE DESIGN FOR BRANDED NEW*/}
+          <div className="block lg:hidden">
+            <div className="lg:px-12 px-6 lg:py-8 py-6">
+              <div className="flex items-center justify-between mb-[20px]">
+                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products</h1>
+                <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                    <p>See all</p>
+                    <GoArrowRight />
+                </div>
+              </div>
+              <NewlyListedProducts allProducts={allProducts}/>
+            </div>
+          </div>
+          {/* MOBILE DESIGN FOR BRANDED NEW*/}
 
           <div className="lg:block hidden">
             <div className="lg:px-12 px-6 py-8">
@@ -327,34 +355,6 @@ const breakPoints = [
             </div>
           </div>
           {/* MOBILE DESIGN FOR FAIRLY USED*/}
-
-          <div className="lg:block hidden">
-            <div className="lg:px-12 px-6 py-8">
-              <div className="flex items-center justify-between mb-[20px]">
-                  <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products...</h1>
-                  <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
-                        <p>See all</p>
-                        <GoArrowRight />
-                  </div>
-                </div>
-              <BrandNewProducts allProducts={allProducts}/>
-            </div>
-          </div>
-
-          {/* MOBILE DESIGN FOR BRANDED NEW*/}
-          <div className="block lg:hidden">
-            <div className="lg:px-12 px-6 lg:py-8 py-6">
-              <div className="flex items-center justify-between mb-[20px]">
-                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products</h1>
-                <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
-                    <p>See all</p>
-                    <GoArrowRight />
-                </div>
-              </div>
-              <NewlyListedProducts allProducts={allProducts}/>
-            </div>
-          </div>
-          {/* MOBILE DESIGN FOR BRANDED NEW*/}
 
           {/* <NewsLetter /> */}
         </div>

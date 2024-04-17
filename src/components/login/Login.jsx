@@ -1,4 +1,4 @@
-import { GoShieldCheck } from "react-icons/go";
+import { GoEye, GoEyeClosed, GoShieldCheck } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import SignInuserImg from "../../assets/Sign in user img.png"
@@ -14,6 +14,7 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPasswordError] = useState("")
   const [loading, setLoading] = useState(false)
+  const [passwordType, setPasswordType] = useState("password")
 
   async function handleUserSignIn(e){
     e.preventDefault()
@@ -54,7 +55,7 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
   return (
     <div>
       <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setLoginModal(false)}></div>
-          <div className="bg-white w-[450px] h-[580px] fixed top-[50%] left-[50%] py-[35px] px-[2rem] rounded-[20px] z-[100] login-modal" style={{ transform: "translate(-50%, -50%)" }}>
+          <div className="bg-white w-[450px] h-[600px] fixed top-[50%] left-[50%] pt-[25px] md:pt-[35px] pb-[35px] px-[2rem] rounded-[20px] z-[100] login-modal" style={{ transform: "translate(-50%, -50%)" }}>
             <div className="flex items-center justify-between">
               <p className="text-[22px]">Welcome</p>
               <div  className="border border-gray-300 rounded-full p-1 flex items-center justify-center">
@@ -93,7 +94,27 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
                                 {emailError && <span className='text-red-500 text-[12px]'>{emailError}</span>}
                             </div>
 
-                            <div className="mt-4 relative input-container">
+                            <div className="relative input-container mt-4">
+                              <label>Password</label>
+                                <div className='w-full p-[2px] border border-gray-300 flex items-center justify-between gap-2'>
+                                  <div className='w-full p-[2px] flex items-center gap-2'>
+                                    <div className="bg-primary-color p-2 rounded-sm text-2xl text-white">
+                                      <GoShieldCheck />
+                                    </div>
+                                    <input name='password' onChange={e => setPassword(e.target.value)} className="w-full text-lg px-2 focus:outline-none" type={passwordType} placeholder="********" />
+                                  </div>
+                                  <p className='mr-2'>
+                                    {passwordType === "password" ?
+                                      <GoEye color='gray' fontSize={"20px"} cursor={"pointer"} onClick={() => setPasswordType("text")}/>
+                                      : 
+                                      <GoEyeClosed color='gray' fontSize={"20px"} cursor={"pointer"} onClick={() => setPasswordType("password")}/>
+                                    }
+                                  </p>
+                                </div>
+                                {passwordError && <span className='text-red-500 text-[13px]'>{passwordError}</span>}
+                            </div>
+
+                            {/* <div className="mt-4 relative input-container">
                                 <label className="password-label text-[14px]">Password</label>
                                 <div className='w-full p-[2px] border border-gray-300 flex items-center gap-2'>
                                   <div className="bg-primary-color p-2 rounded-sm text-2xl text-white">
@@ -111,11 +132,11 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
                                     </p>
                                     {passwordError && <span className='text-red-500 text-[12px]'>{passwordError}</span>}
                                 </div>
-                            </div>
+                            </div> */}
 
                             {
                               loading ?
-                              <div className="mt-7">
+                              <div className="mt-5">
                                 <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
                                 font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
                                 shadow-sm transition-all cursor-not-allowed">
@@ -123,7 +144,7 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
                                 </button>
                               </div> 
                             : 
-                              <div className="mt-7">
+                              <div className="mt-5">
                                 <button className="bg-[#EDEDED] text-primary-color px-4 py-3 w-full rounded-sm tracking-wide
                                 font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
                                 shadow-sm transition-all" type="submit">
