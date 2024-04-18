@@ -20,6 +20,8 @@ const IdVerification = ({baseUrl}) => {
   const [fileBackUploadSuccess, setFileBackUploadSuccess] = useState(null)
   const [fileUploadLoader, setFileUploadLoader] = useState(false)
 
+  const [rejectVerification, setRejectVerification] = useState(false)
+
   const [msg, setMsg] = useState(false)
   const [alertType, setAlertType] = useState('')
   const user = JSON.parse(localStorage.getItem('user'))
@@ -32,6 +34,11 @@ const IdVerification = ({baseUrl}) => {
     })
     const data = await res.json()
     setUserDetails(data.data)
+    if(res.ok){
+      if(data.data.kyc_status === 'rejected'){
+        setRejectVerification(true)
+      }
+    }
     console.log(res, data);
   }
 
@@ -262,7 +269,7 @@ const IdVerification = ({baseUrl}) => {
           userDetails && userDetails.kyc_status === 'pending' ? <AwaitingVerification /> : ""
         }
         {
-          userDetails && userDetails.kyc_status === 'rejected' ? <RejectSellerVerification /> : ""
+          userDetails && rejectVerification ? <RejectSellerVerification setRejectVerification={setRejectVerification} /> : ""
         }
         
     </div>

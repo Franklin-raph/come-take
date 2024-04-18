@@ -22,9 +22,10 @@ import CategoriesProductPageDown from "../../components/categories-product-page-
 import { IoIosSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-const Categories = () => {
+const Categories = ({baseUrl}) => {
 
   useEffect(() => {
+    getAllProducts()
     window.scrollTo(0, 0)
 },[])
 
@@ -214,6 +215,19 @@ const Categories = () => {
       const [showFilter, setShowFilter] = useState(false)
       const [showCategory, setShowCategory] = useState(false)
       const navigate = useNavigate()
+
+      const [allProducts, setAllProducts] = useState([])
+      const [allCategoryArray, setAllCategoryArray] = useState([])
+      const [loader, setLoader] = useState(false)
+
+      async function getAllProducts(){
+        setLoader(true)
+        const res = await fetch(`${baseUrl}/products`,)
+        const data = await res.json()
+        if(res) setLoader(false)
+        setAllProducts(data.data)
+        console.log("Line 52 ===>", data.data);
+    }
     
 
 
@@ -468,7 +482,7 @@ const Categories = () => {
 
                         </div>
                     </div>
-                    <CategoryProductPageCard categoryProductsArray={categoryProductsArray}/>
+                    <CategoryProductPageCard allProducts={allProducts}/>
                 </div>
             </div>
           </div>
@@ -481,7 +495,7 @@ const Categories = () => {
               <GoArrowRight />
             </div>
           </div>
-          <CategoriesProductPageDown categoryProductsArray={categoryProductsArray}/>
+          <CategoriesProductPageDown allProducts={allProducts}/>
         </div>
     </div>
   )

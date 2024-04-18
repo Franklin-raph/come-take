@@ -51,15 +51,28 @@ const ShopSetUp = ({baseUrl}) => {
         setAlertType('error')
       }
       if(res.ok){
-        navigate('/subscription-plan')
         setMsg('Success')
         setAlertType('success')
+        navigate('/list-product')
       }
     }
   }
 
+  async function getMyShop(){
+    const res = await fetch(`${baseUrl}/seller/dashboard/my-products`,{
+        headers:{
+            Authorization:`Bearer ${user.data[0].access}`,
+        }
+    })
+    const data = await res.json()
+    // setSelectedImage(data.data.product_image[0].media)
+    // setAllMyProducts(data.data)
+    console.log(data.data);
+}
+
   useEffect(() => {
     getStates()
+    getMyShop()
   },[])
 
   async function getStates(){

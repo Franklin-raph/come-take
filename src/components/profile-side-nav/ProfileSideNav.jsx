@@ -3,12 +3,29 @@ import { LuMessagesSquare, LuUserX2 } from 'react-icons/lu';
 import { TiDocumentText } from 'react-icons/ti';
 import { BsClock } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const ProfileSideNav = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
-    console.log(location.pathname);
+    const [userDetails, setUserDetails] = useState()
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    async function getUserDetails(){
+        const res = await fetch(`https://api.yamltech.com/complete-registration`,{
+          headers:{
+            Authorization:`Bearer ${user?.data[0]?.access}`
+          }
+        })
+        const data = await res.json()
+        setUserDetails(data.data)
+        console.log(res, data);
+      }
+
+    useEffect(() => {
+        getUserDetails()
+    },[])
 
   return (
         <div className='flex flex-[0.6] w-[100%] items-center px-5 lg:py-0 h-full profile-side-nav' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
@@ -25,15 +42,30 @@ const ProfileSideNav = () => {
                         {location.pathname === "/messages" ? <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/messages')}>Notification</li>:<li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/messages')}>Notification</li>}
                     </ul>
                 </div>
-                <div className='mt-10'>
-                    <div className='flex items-center gap-2 mb-3'>
-                        <TiDocumentText color='#292D32' fontSize={"18px"}/>
-                        <p className='text-[18px] font-[500]'>My Shop</p>
+                {
+                    userDetails && userDetails.is_seller === true ?
+                    // <div className='w-full'>
+                    //     <div className='flex items-center gap-2 mb-3'>
+                    //         <LuMessagesSquare color='#292D32' fontSize={"18px"}/>
+                    //         <p className='text-[18px] font-[500]'>My Order History</p>
+                    //     </div>
+                    //     <ul className='ml-3 grid gap-2 w-full'>
+                    //         <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/my-order-history')}>My Order History</li>
+                    //     </ul>
+                    // </div>
+                    <div className='mt-10'>
+                        <div className='flex items-center gap-2 mb-3'>
+                            <TiDocumentText color='#292D32' fontSize={"18px"}/>
+                            <p className='text-[18px] font-[500]'>My Shop</p>
+                        </div>
+                        <ul className='ml-3 grid gap-2'>
+                            {location.pathname === "/my-shop" ? <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/my-shop')}>My Shop</li>:<li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/my-shop')}>My Shop</li>}
+                        </ul>
                     </div>
-                    <ul className='ml-3 grid gap-2'>
-                        {location.pathname === "/my-shop" ? <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/my-shop')}>My Shop</li>:<li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/my-shop')}>My Shop</li>}
-                    </ul>
-                </div>
+                    :
+                    ""
+                }
+
                 <div className='mt-10'>
                     <div className='flex items-center gap-2 mb-3'>
                         <BsClock color='#292D32' fontSize={"18px"}/>

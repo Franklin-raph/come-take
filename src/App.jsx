@@ -67,7 +67,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home baseUrl={baseUrl} setLoginModal={setLoginModal}/>}/>
           <Route path="/signup" element={<Register baseUrl={baseUrl}/>}/>
-          <Route path="/categories" element={<Categories />}/>
+          <Route path="/categories" element={<Categories baseUrl={baseUrl}/>}/>
           <Route path="/product-details/:id" element={<ProductDescription baseUrl={baseUrl}/>}/>
           <Route path="/shoping-cart" element={<ShoppingCart />}/>
           <Route path="/check-out" element={<Checkout />}/>

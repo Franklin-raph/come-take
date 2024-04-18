@@ -10,14 +10,15 @@ const BottomNav = () => {
 
     const [categoryNav, setCategoryNav] = useState(false)
     const [singleCategoryNav, setSingleCategoryNav] = useState(false)
-    const categoryNavArray = ['Computing','Property','Vehicle','Home and kitchen','Mobile Phones & Tablets','Electronics','Health & Beauty',
-    'Fashion','Sports','Pets','Baby Products','Agriculture']
-    const computerCategory = ["Laptops","Desktop","Printers","Accessories"]
+    // const categoryNavArray = ['Computing','Property','Vehicle','Home and kitchen','Mobile Phones & Tablets','Electronics','Health & Beauty',
+    // 'Fashion','Sports','Pets','Baby Products','Agriculture']
+    // const computerCategory = ["Laptops","Desktop","Printers","Accessories"]
     const user = JSON.parse(localStorage.getItem('user'))
     const [msg, setMsg] = useState(false)
     const [alertType, setAlertType] = useState('')
     const [userDetails, setUserDetails] = useState()
     const navigate = useNavigate()
+    const [allCategoryArray, setAllCategoryArray] = useState([])
 
     async function getUserDetails(){
         const res = await fetch(`https://api.yamltech.com/complete-registration`,{
@@ -30,34 +31,62 @@ const BottomNav = () => {
         console.log(res, data);
       }
 
+      async function getCatgories(){
+        const res = await fetch(`https://api.yamltech.com/categories`,{
+            headers:{
+                Authorization:`Bearer ${user.data[0].access}`,
+            },
+        })
+        const data = await res.json()
+        setAllCategoryArray(data.data)
+        console.log(data);
+      }
+
     useEffect(() => {
         getUserDetails()
+        getCatgories()
     },[])
 
     function checkIsSellerVerified(){
         if(!user){
             setMsg("You have to be logged in to perform this operation")
-        }
-        if(userDetails.kyc_status === 'pending'){
+        }if(userDetails.kyc_status === 'not_set'){
+            setMsg("You have to be verified as a seller to continue with this operation")
+            navigate('/verify-id')
+        }else if(userDetails.kyc_status === 'pending'){
             navigate('/verify-id')
         }else if(userDetails.kyc_status === 'rejected'){
             navigate('/verify-id')
         }else{
-            navigate('/shop-set-up')
+            if(JSON.parse(localStorage.getItem('my-sub')) === null){
+                setMsg("You don't have an active subscription plan at the moment, please subscribe in order to continue with this operation")
+                navigate('/subscription-plan')
+            }else{
+                navigate('/shop-set-up')
+            }
         }
     }
 
     function checkSellersSub(){
-        // getUserDetails()
-        console.log(JSON.parse(localStorage.getItem('my-sub')));
         if(!user){
             setMsg("You have to be logged in to perform this operation")
-        }
-        if(JSON.parse(localStorage.getItem('my-sub')) === null){
-            setMsg("You don't have an active subscription plan at the moment, please subscribe in order to continue with this operation")
-            navigate('/subscription-plan')
+        }if(userDetails.kyc_status === 'not_set'){
+            setMsg("You have to be verified as a seller to continue with this operation")
+            navigate('/verify-id')
+        }else if(userDetails.kyc_status === 'pending'){
+            navigate('/verify-id')
+        }else if(userDetails.kyc_status === 'rejected'){
+            navigate('/verify-id')
         }else{
-            navigate('/list-product')
+            if(JSON.parse(localStorage.getItem('my-sub')) === null){
+                setMsg("You don't have an active subscription plan at the moment, please subscribe in order to continue with this operation")
+                navigate('/subscription-plan')
+            }else if(userDetails.updated_store === false){
+                setMsg("You have to set up your shop before you can list a product..")
+                navigate('/shop-set-up')
+            }else{
+                navigate('/list-product')
+            }
         }
     }
 
@@ -93,9 +122,12 @@ const BottomNav = () => {
                 <div className='fixed left-0 bg-white px-12 py-5 w-[35%] top-[0] z-[100] rounded-[4px] h-[100vh]'>
                     <p className='text-black font-bold text-[20px] mb-2'>Categories</p>
                     {
-                        categoryNavArray.map(item => (
-                            <div className='flex items-center justify-between hover:bg-gray-300 px-3 py-2 my-[16px] cursor-pointer w-full'>
-                                <p className='text-[#1C1C1C]'>{item}</p>
+                        allCategoryArray && allCategoryArray.map(item => (
+                            <div className='flex items-center justify-between hover:bg-gray-300 px-3 py-2 my-[16px] cursor-pointer w-full' onClick={() => {
+                                navigate('/categories')
+                                setCategoryNav(false)
+                            }}>
+                                <p className='text-[#1C1C1C]'>{item.name}</p>
                                 <IoIosArrowForward className='text-primary-color'/>
                             </div>
                         ))

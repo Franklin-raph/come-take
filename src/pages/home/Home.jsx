@@ -45,6 +45,7 @@ const Home = ({baseUrl, setLoginModal}) => {
   useEffect(() => {
     window.scrollTo(0, 0)
     getAllProducts()
+    getCatgories()
 },[])
 
 const navigate = useNavigate()
@@ -52,6 +53,7 @@ const navigate = useNavigate()
 const user = JSON.parse(localStorage.getItem('user'))
 
 const [allProducts, setAllProducts] = useState([])
+const [allCategoryArray, setAllCategoryArray] = useState([])
 const [loader, setLoader] = useState(false)
 
 async function getAllProducts(){
@@ -61,6 +63,17 @@ async function getAllProducts(){
     if(res) setLoader(false)
     setAllProducts(data.data)
     console.log("Line 52 ===>", data.data);
+}
+
+async function getCatgories(){
+  const res = await fetch(`${baseUrl}/categories`,{
+      headers:{
+          Authorization:`Bearer ${user.data[0].access}`,
+      },
+  })
+  const data = await res.json()
+  setAllCategoryArray(data.data)
+  console.log(data);
 }
 
   const categoryArray = [
