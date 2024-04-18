@@ -44,6 +44,7 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
       if(res.ok){
         setLoginModal(false)
         localStorage.setItem('user', JSON.stringify(data))
+        localStorage.setItem('my-sub', JSON.stringify(data.data[1].subscription_plan))
         window.location.href = '/'
       }
     }

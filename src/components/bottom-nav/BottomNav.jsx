@@ -48,11 +48,12 @@ const BottomNav = () => {
     }
 
     function checkSellersSub(){
-        console.log(userDetails);
+        // getUserDetails()
+        console.log(JSON.parse(localStorage.getItem('my-sub')));
         if(!user){
             setMsg("You have to be logged in to perform this operation")
         }
-        if(userDetails.subscription_plan === null){
+        if(JSON.parse(localStorage.getItem('my-sub')) === null){
             setMsg("You don't have an active subscription plan at the moment, please subscribe in order to continue with this operation")
             navigate('/subscription-plan')
         }else{
