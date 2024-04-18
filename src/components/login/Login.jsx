@@ -111,6 +111,16 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
                                     }
                                   </p>
                                 </div>
+                                <div className="flex flex-row-reverse justify-between mt-1" onClick={() => {
+                                  setForgotPasswordModal(true)
+                                  setLoginModal(false)
+                                  }}>
+                                    <p className="text-xs text-right font-display text-secondary-color hover:text-primary-color
+                                    cursor-pointer">
+                                        Forgot Password?
+                                    </p>
+                                    {passwordError && <span className='text-red-500 text-[12px]'>{passwordError}</span>}
+                                </div>
                                 {passwordError && <span className='text-red-500 text-[13px]'>{passwordError}</span>}
                             </div>
 
