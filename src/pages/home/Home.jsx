@@ -39,6 +39,7 @@ import { CiBookmark, CiLocationOn } from 'react-icons/ci';
 
 import Carousel from "react-elastic-carousel";
 import { useNavigate } from 'react-router-dom';
+import SkeletonLoader from '../../components/skeleton-loader/SkeletonLoader';
 
 const Home = ({baseUrl, setLoginModal}) => {
 
@@ -256,16 +257,24 @@ const breakPoints = [
         </div>
 
         <div id="body">
+          
           <div className="lg:px-12 px-6 lg:py-8 py-6">
             <div className="flex items-center justify-between mb-[20px]">
               <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
-              <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" onClick={() => navigate} style={{ border:"1px solid gray" }}>
+              <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" onClick={() => navigate('/categories')} style={{ border:"1px solid gray" }}>
                   <p>See all</p>
                   <GoArrowRight />
               </div>
             </div>
             {
-              loader && <p className='text-2xl text-gray-900'>Loading...</p>
+              loader && 
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
+                {
+                  [1,1,1,1].map(() => (
+                    <SkeletonLoader />
+                  ))
+                }
+              </div>
             }
             <TrendingProducts allProducts={allProducts} baseUrl={baseUrl}/>
           </div>
@@ -326,6 +335,16 @@ const breakPoints = [
                   </div>
                 </div>
               <BrandNewProducts allProducts={allProducts}/>
+              {
+                loader && 
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
+                    {
+                      [1,1,1,1,1].map(() => (
+                        <SkeletonLoader />
+                      ))
+                    }
+                  </div>
+              }
             </div>
           </div>
 
@@ -340,6 +359,16 @@ const breakPoints = [
                 </div>
               </div>
               <NewlyListedProducts allProducts={allProducts}/>
+              {
+                loader && 
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
+                  {
+                    [1,1].map(() => (
+                      <SkeletonLoader />
+                    ))
+                  }
+                </div>
+              }
             </div>
           </div>
           {/* MOBILE DESIGN FOR BRANDED NEW*/}
@@ -354,6 +383,16 @@ const breakPoints = [
                     </div>
                 </div>
                 <FairlyUsedProducts allProducts={allProducts}/>
+                {
+                  loader && 
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
+                    {
+                      [1,1,1,1,1].map(() => (
+                        <SkeletonLoader />
+                      ))
+                    }
+                  </div>
+                }
             </div>
           </div>
 
@@ -368,6 +407,16 @@ const breakPoints = [
                 </div>
               </div>
               <NewlyListedProducts allProducts={allProducts}/>
+              {
+                loader && 
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
+                  {
+                    [1,1].map(() => (
+                      <SkeletonLoader />
+                    ))
+                  }
+                </div>
+              }
             </div>
           </div>
           {/* MOBILE DESIGN FOR FAIRLY USED*/}

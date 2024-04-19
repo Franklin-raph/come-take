@@ -22,6 +22,7 @@ import { BiSolidPhoneCall } from "react-icons/bi";
 import { IoDownloadOutline } from "react-icons/io5";
 import { BiCategory } from "react-icons/bi";
 import { GrVirtualStorage } from "react-icons/gr";
+import Alert from '../alert/Alert';
 
 
 const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) => {
@@ -32,6 +33,9 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
     const [mobileNav, setMobileNav] = useState(false)
     const navigate = useNavigate()
     const [userDetails, setUserDetails] = useState()
+
+    const [msg, setMsg] = useState(false)
+    const [alertType, setAlertType] = useState('')
 
     async function getUserDetails(){
         const res = await fetch(`${baseUrl}/complete-registration`,{
@@ -48,6 +52,51 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
         // alert("helo")
         getUserDetails()
       },[])
+
+      function checkSellersSub(){
+        if(!user){
+            setMsg("You have to be logged in to perform this operation")
+        }if(userDetails.kyc_status === 'not_set'){
+            setMsg("You have to be verified as a seller to continue with this operation")
+            navigate('/verify-id')
+        }else if(userDetails.kyc_status === 'pending'){
+            navigate('/verify-id')
+        }else if(userDetails.kyc_status === 'rejected'){
+            navigate('/verify-id')
+        }else{
+            if(JSON.parse(localStorage.getItem('my-sub')) === null){
+                setMsg("You don't have an active subscription plan at the moment, please subscribe in order to continue with this operation")
+                navigate('/subscription-plan')
+            }else if(userDetails.updated_store === false){
+                setMsg("You have to set up your shop before you can list a product..")
+                navigate('/shop-set-up')
+            }else{
+                navigate('/list-product')
+            }
+        }
+
+    }
+
+    function checkIsSellerVerified(){
+        if(!user){
+            setMsg("You have to be logged in to perform this operation")
+            return;
+        }if(userDetails?.kyc_status === 'not_set'){
+            setMsg("You have to be verified as a seller to continue with this operation")
+            navigate('/verify-id')
+        }else if(userDetails?.kyc_status === 'pending'){
+            navigate('/verify-id')
+        }else if(userDetails?.kyc_status === 'rejected'){
+            navigate('/verify-id')
+        }else{
+            if(JSON.parse(localStorage.getItem('my-sub')) === null){
+                setMsg("You don't have an active subscription plan at the moment, please subscribe in order to continue with this operation")
+                navigate('/subscription-plan')
+            }else{
+                navigate('/shop-set-up')
+            }
+        }
+    }
 
   return (
     <div>
@@ -179,20 +228,25 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                             <p>VTU</p>
                         </Link>
                     </li>
-                    <li className='text-[15px] mb-3 px-3 py-2 hover:bg-gray-300'>
-                        <Link to="/shop-set-up" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
+                    <li className='text-[15px] mb-3 px-3 py-2 hover:bg-gray-300 cursor-pointer' onClick={checkIsSellerVerified}>
+                        <p onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
                             <IoCubeOutline fontSize={"20px"} color='#797979'/>
                             <p>Sell Product</p>
-                        </Link>
+                        </p>
                     </li>
+                    {
+                        userDetails && userDetails.is_seller === true ?
+                        <li className='text-[15px] mb-3 px-3 py-2 hover:bg-gray-300'>
+                            <Link to="/shop-set-up" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
+                                <CiShop fontSize={"20px"} color='#797979'/>
+                                <p>My Shop</p>
+                            </Link>
+                        </li>
+                        :
+                        ""
+                    }
                     <li className='text-[15px] mb-3 px-3 py-2 hover:bg-gray-300'>
-                        <Link to="/shop-set-up" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
-                            <CiShop fontSize={"20px"} color='#797979'/>
-                            <p>My Shop</p>
-                        </Link>
-                    </li>
-                    <li className='text-[15px] mb-3 px-3 py-2 hover:bg-gray-300'>
-                        <Link to="/shop-set-up" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
+                        <Link to="#" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
                             <IoDownloadOutline fontSize={"20px"} color='#797979'/>
                             <p>Download App</p>
                         </Link>
@@ -299,19 +353,24 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                             <p className='text-[16px] text-[#6C6C6C]'>Pending Reviews</p>
                         </div>
                         <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
-                            navigate('/list-product')
+                            checkSellersSub()
                             setMobileAccountDropDown(!mobileAccountDropDown)
                         }} >
                             <CiShop className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>List Product</p>
                         </div>
-                        <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
-                            setMobileAccountDropDown(!mobileAccountDropDown)
-                            navigate('/my-shop')
-                        }}>
-                            <CiShop className='text-[#292D32] text-[20px] font-[700]'/>
-                            <p className='text-[16px] text-[#6C6C6C]'>My Shop</p>
-                        </div>
+                        {
+                            userDetails && userDetails.is_seller === true ? 
+                                <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
+                                    setMobileAccountDropDown(!mobileAccountDropDown)
+                                    navigate('/my-shop')
+                                }}>
+                                    <CiShop className='text-[#292D32] text-[20px] font-[700]'/>
+                                    <p className='text-[16px] text-[#6C6C6C]'>My Shop</p>
+                                </div>
+                            :
+                                ""
+                        }
                         <div className='flex items-center gap-3 cursor-pointer'>
                             <BiSolidPhoneCall className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>Contact Us</p>
@@ -340,6 +399,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
             <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color'/>
             <button className='rounded-full py-2 px-6 bg-secondary-color text-white'>Search</button>
         </div> */}
+        {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
     </div>
   )
 }

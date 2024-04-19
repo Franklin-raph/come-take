@@ -44,15 +44,6 @@ const ProfileSideNav = () => {
                 </div>
                 {
                     userDetails && userDetails.is_seller === true ?
-                    // <div className='w-full'>
-                    //     <div className='flex items-center gap-2 mb-3'>
-                    //         <LuMessagesSquare color='#292D32' fontSize={"18px"}/>
-                    //         <p className='text-[18px] font-[500]'>My Order History</p>
-                    //     </div>
-                    //     <ul className='ml-3 grid gap-2 w-full'>
-                    //         <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/my-order-history')}>My Order History</li>
-                    //     </ul>
-                    // </div>
                     <div className='mt-10'>
                         <div className='flex items-center gap-2 mb-3'>
                             <TiDocumentText color='#292D32' fontSize={"18px"}/>

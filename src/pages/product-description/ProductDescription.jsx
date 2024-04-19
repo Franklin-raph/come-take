@@ -20,6 +20,7 @@ import { GoClock } from "react-icons/go";
 import { FaRegBookmark } from "react-icons/fa6";
 import { CiUser } from "react-icons/ci";
 import { useParams } from 'react-router-dom'
+import moment from 'moment';
 
 
 const ProductDescription = ({baseUrl}) => {
@@ -136,7 +137,7 @@ const ProductDescription = ({baseUrl}) => {
                                 </div>
                                 <div className='flex items-center justify-start gap-1 mt-2'>
                                     <GoClock color='#6C6C6C' />
-                                    <p className='text-[#1C1C1C]'>Posted 3hrs Ago</p>
+                                    <p className='text-[#1C1C1C]'>Posted {moment(product.created_at).fromNow()}</p>
                                 </div>
                                 <div className='flex items-center justify-start gap-1 mt-2'>
                                     <IoEyeOutline color='#6C6C6C' fontSize="20px"/>
@@ -188,10 +189,10 @@ const ProductDescription = ({baseUrl}) => {
                                 <h1 className="font-[500] text-[18px] lg:text-[20px] mb-3 text-primary-color">Seller Information</h1>
                                 <div>
                                     <div className='flex items-start justify-between'>
-                                        <p className='mb-5'>{product.seller.first_name} {product.seller.last_name}</p>
+                                        <p className='mb-5'>{product.seller.first_name} {product.seller?.last_name}</p>
                                         <div className='flex items-center gap-2 mb-5'>
                                             <CiLocationOn fontSize={"20px"} className='text-primary-color'/>
-                                            <p className='text-secondary-color text-[10px]'>{product.seller.state} State</p>
+                                            <p className='text-secondary-color text-[10px]'>{product.seller?.state} State</p>
                                         </div>
                                     </div>
                                     <div>
@@ -201,7 +202,7 @@ const ProductDescription = ({baseUrl}) => {
                                         </div>
                                         <div className='flex items-center gap-2'>
                                             <CiUser fontSize={"20px"} className='text-[#B6B6B6]' />
-                                            <p className='text-secondary-color text-[12px]'>2 months User</p>
+                                            <p className='text-secondary-color text-[12px]'>Joined {moment(product?.seller?.date_joined).fromNow()}</p>
                                         </div>
                                     </div>
                                 </div>
