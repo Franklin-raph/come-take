@@ -57,7 +57,10 @@ const ProductCard = ({ product, baseUrl }) => {
                             <IoMdStar color='#067604'/>
                         </div>
                         <span className="text-[11px] font-[500] text-[#6d6d6d] ml-2">{product.reviews}</span> */}
-                        <h1 className="text-[13px]">&#8358;{product.price}</h1>
+                        <h1 className="text-[13px]">{product.price.toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
+                                    })}</h1>
                     </div>
                     <RiVerifiedBadgeFill color='#DF9007' fontSize={"20px"}/>
                 </div>

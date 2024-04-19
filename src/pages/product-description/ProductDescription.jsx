@@ -39,7 +39,7 @@ const ProductDescription = ({baseUrl}) => {
     async function getProductDescription(){
         const res = await fetch(`${baseUrl}/products/${id}`)
         const data = await res.json()
-        setSelectedImage(data.data.product_image[0].media)
+        setSelectedImage(data.data.product_image[0]?.media)
         setProduct(data.data)
         console.log(data.data);
     }
@@ -116,7 +116,7 @@ const ProductDescription = ({baseUrl}) => {
                                 <img src={selectedImage} alt="" className='w-[100%] h-[309px] mb-5 object-cover' />
                                 <div className='flex items-center gap-5 w-[100%] justify-center'>
                                     {
-                                        product.product_image.map(img => (
+                                        product.product_image?.map(img => (
 
                                             <img src={img.media} alt="" className='w-[40px] h-[40px] border border-gray-200 px-2 py-1 cursor-pointer' onClick={() => setSelectedImage(img.media)} />
                                         ))
