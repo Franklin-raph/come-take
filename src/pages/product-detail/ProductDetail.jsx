@@ -35,6 +35,9 @@ const ProductDetail = ({baseUrl}) => {
     const [coverPhoto, setCoverPhoto] = useState(null)
     const [coverPhotoId, setCoverPhotoId] = useState('')
 
+    const [product_image, setProductImage] = useState([])
+    const [product_cover_image, setProductCoverImage] = useState()
+
     useEffect(() => {
         getProductDetail()
     },[])
@@ -45,7 +48,7 @@ const ProductDetail = ({baseUrl}) => {
         if(res.ok){
             setBrandName(data.data.brand_name)
             setName(data.data.name)
-            setCategory(data.data.category.name)
+            setCategory(data.data.category.id)
             setWeight(data.data.weight)
             setDescription(data.data.description)
             setColor(data.data.color)
@@ -55,7 +58,16 @@ const ProductDetail = ({baseUrl}) => {
             setPrice(data.data.price)
             setInStock(data.data.in_stock)
             setCondition(data.data.condition)
-            setCoverPhoto(data.data.product_cover_image.media)
+            setFile1(data.data.product_image[0]?.media)
+            setFile2(data.data.product_image[1]?.media)
+            setFile3(data.data.product_image[2]?.media)
+            setFile4(data.data.product_image[3]?.media)
+            setFile5(data.data.product_image[4]?.media)
+            setFile6(data.data.product_image[5]?.media)
+            setCoverPhoto(data.data.product_cover_image?.media)
+
+            setProductImage(data.data.product_image)
+            setProductCoverImage(data.data.product_cover_image?.id)
         }
         console.log(res, data);
     }
@@ -92,7 +104,7 @@ const ProductDetail = ({baseUrl}) => {
 
 
 
-    const [product_image, setProductImage] = useState([])
+    // const [product_image, setProductImage] = useState([])
     let mediaType;
 
     async function getCatgories(){
@@ -129,6 +141,7 @@ const ProductDetail = ({baseUrl}) => {
         }
 
         setFile1(selectedFile);
+        console.log(selectedFile);
         const formData = new FormData()
         formData.append('media_type', mediaType)
         formData.append('media', e.target.files[0])
@@ -151,6 +164,7 @@ const ProductDetail = ({baseUrl}) => {
             setProductImage([...product_image, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
+            setFile1(data.data.media)
         }
         if(!res.ok){
             setMsg('File upload was not successfull, please try again')
@@ -457,21 +471,22 @@ async function handleCoverPhtotoUpload(e){
 // const [product_image, setProductImage] = useState([])
 
 
-  async function uploadProduct(){
-    console.log("Cover photo ID while uploading product ====> ", coverPhotoId);
+  async function updateProduct(){
+    console.log(JSON.stringify({category, product_cover_image, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}));
     setLoader(true)
-    const res = await fetch(`${baseUrl}/products`, {
-        method:"POST",
-        body: JSON.stringify({category, product_cover_image:coverPhotoId, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}),
+    const res = await fetch(`${baseUrl}/products/${id}`, {
+        method:"PUT",
+        body: JSON.stringify({category, product_cover_image, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}),
         headers: {
             'Content-Type':'application/json',
             Authorization:`Bearer ${user.data[0].access}`
         }
     })
     const data = await res.json()
+    console.log(res, data);
     if(res) setLoader(false)
     if(res.ok){
-        setMsg("Product successfully uploaded")
+        setMsg("Product successfully updated")
         setAlertType('success')
     }
     if(!res.ok){
@@ -502,9 +517,11 @@ async function handleCoverPhtotoUpload(e){
                 {
                     file1 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <p>File Uploaded Succesfully</p>
-                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
-                        </div> 
+                            {/* <p>File Uploaded Succesfully</p>
+                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p> */}
+                            <img src={file1} alt="" />
+                            <input type="file" onChange={handleFile1Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-1" />
+                        </div>
                             :
                         <div className="text-center flex items-center justify-center flex-col">
                             <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
@@ -596,6 +613,8 @@ async function handleCoverPhtotoUpload(e){
                     <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
                         <p>File Uploaded Succesfully</p>
                         <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                        <img src={coverPhoto} alt="" />
+                        <input type="file" onChange={handleCoverPhtotoUpload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-1" accept=".jpg, .png, .jpeg" />
                     </div> 
                         :
                     <>
@@ -809,7 +828,7 @@ async function handleCoverPhtotoUpload(e){
                     <Btnloader />
                 </button>
             : 
-            <button onClick={uploadProduct} className="bg-secondary-color py-[12px] mt-10 text-white  w-full sm:w-[228.43px] ml-auto rounded-[7.98px]]">Sumbit</button>
+            <button onClick={updateProduct} className="bg-secondary-color py-[12px] mt-10 text-white  w-full sm:w-[228.43px] ml-auto rounded-[7.98px]]">Update Product</button>
           }
     </div>
   )

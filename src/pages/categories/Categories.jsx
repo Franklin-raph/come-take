@@ -200,11 +200,57 @@ const Categories = ({baseUrl}) => {
       ]
 
       const productTypeArray = [
-        "Newly Listed", "Brand New", "Fairly Used"
+        {
+          label:'Brand New',
+          value:'brand_new'
+        },
+        {
+          label:'Fairly Used',
+          value:'fairly_used'
+        }
       ]
 
       const priceRangeArray= [
-        "Below 50,000","#50,000 - #100,000","#110,000 - #160,000","#170,000 - #220,000","#230,000 - #280,000","#290,000 and Above"
+        {
+          label:'Below ₦50,000',
+          maxVal:50000,
+          minVal:0,
+        },
+        {
+          label:'₦50,000 - ₦100,000',
+          priceRange: {
+            min: 50000,
+            max: 100000,
+          }
+        },
+        {
+          label:'₦110,000 - ₦160,000',
+          priceRange: {
+            min: 110000,
+            max: 160000,
+          }
+        },
+        {
+          label:'₦170,000 - ₦220,000',
+          priceRange: {
+            min: 170000,
+            max: 220000,
+          }
+        },
+        {
+          label:'₦230,000 - ₦280,000',
+          priceRange: {
+            min: 230000,
+            max: 280000,
+          }
+        },
+        {
+          label:'₦290,000 and Above',
+          priceRange:{
+            min: 290000,
+            max: 9000000,
+          }
+        }
       ]
 
       const sortArray = ["Newest Arrival", "Verified", "Price: Low to High", "Price: High to low"]
@@ -228,6 +274,21 @@ const Categories = ({baseUrl}) => {
         setAllProducts(data.data)
         console.log("Line 52 ===>", data.data);
     }
+
+    const [condition, setCondition] = useState('')
+    const [minPrice, setMinPrice] = useState('')
+    const [maxPrice, setMaxPrice] = useState('')
+    const [priceRange, setPriceRange] = useState({})
+    const [searchText, setSearchText] = useState('')
+
+    async function filterProducts(){
+      setLoader(true)
+      const res = await fetch(`${baseUrl}/products?price_below=${priceRange.min}&price_above=${priceRange.max}&condition=${condition}`)
+      const data = await res.json()
+      if(res) setLoader(false)
+      setAllProducts(data.data)
+      console.log(res, data);
+    }
     
 
 
@@ -243,19 +304,19 @@ const Categories = ({baseUrl}) => {
             <div className="flex gap-[rem]">
               {/* DESKTOP FILTER*/}
                 <div className="w-[20%] sticky z-[10] h-full bg-white left-0 category-left border border-[#EDEDED] py-8 px-4">
-                  <div className="border border-[#B6B6B6] px-3 py-2 flex items-center justify-between rounded-full">
+                  {/* <div className="border border-[#B6B6B6] px-3 py-2 flex items-center justify-between rounded-full">
                     <input type="text" placeholder="Search" className="outline-none w-[100%]"/>
                     <IoIosSearch className="text-[#B6B6B6] text-[22px]"/>
-                  </div>
+                  </div> */}
                     <p className="font-[700] text-[18px] text-primary-color mt-[16px]">Categories</p>
                     <div className="mt-[]">
-                        <p className="font-[700] text-[18px] text-primary-color my-[10px]">Laptops</p>
+                        {/* <p className="font-[700] text-[18px] text-primary-color my-[10px]">Laptops</p> */}
                         <div className="product-type text-gray-400">
                         {productTypeArray.map(type => (
                           <div>
                             <div class="inline-flex items-center my-[5px]">
                             <label class="relative flex items-center px-2 rounded-full cursor-pointer" htmlFor="check">
-                              <input type="checkbox" value={type}
+                              <input type="checkbox" onChange={() => setCondition(type.value)} 
                                 class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:bg-transparent checked:border-secondary-color"
                                 id="check" />
                               <span
@@ -264,7 +325,7 @@ const Categories = ({baseUrl}) => {
                               </span>
                             </label>
                             <label class="mt-px font-light text-gray-700 cursor-pointer select-none" htmlFor="check">
-                              {type}
+                              {type.label}
                             </label>
                             </div>
                           </div>
@@ -303,7 +364,7 @@ const Categories = ({baseUrl}) => {
                           <div>
                             <div class="inline-flex items-center my-[5px]">
                             <label class="relative flex items-center px-2 rounded-full cursor-pointer" htmlFor="check">
-                              <input type="checkbox" value={price}
+                              <input type="checkbox" onChange={() => setPriceRange(price.priceRange)}
                                 class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:bg-transparent checked:border-secondary-color"
                                 id="check" />
                               <span
@@ -312,7 +373,7 @@ const Categories = ({baseUrl}) => {
                               </span>
                             </label>
                             <label class="mt-px font-light text-gray-700 cursor-pointer select-none" htmlFor="check">
-                              {price}
+                              {price.label}
                             </label>
                             </div>
                           </div>
@@ -323,22 +384,24 @@ const Categories = ({baseUrl}) => {
                     <div className="mt-[30px]">
                         <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Custom Price Range</p>
                         <div className="product-type text-gray-400 flex items-center gap-3">
-                            <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer" style={{ border: "1px solid gray" }}>
-                                <p>#Min</p>
+                            <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer w-full justify-between" style={{ border: "1px solid gray" }}>
+                                {/* <p>#Min</p>
                                 <div>
                                     <MdKeyboardArrowUp />
                                     <MdKeyboardArrowDown />
-                                </div>
+                                </div> */}
+                                <input type="text" className="w-full outline-none py-1" placeholder="Min" />
                             </div>
-                            <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer" style={{ border: "1px solid gray" }}>
-                                <p>#Max</p>
+                            <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer w-full justify-between" style={{ border: "1px solid gray" }}>
+                                {/* <p>#Max</p>
                                 <div>
                                     <MdKeyboardArrowUp />
                                     <MdKeyboardArrowDown />
-                                </div>
+                                </div> */}
+                                <input type="text" className="w-full outline-none py-1" placeholder="Max" />
                             </div>
-                            <button className="px-2 py-1 rounded-[4px]" style={{ border: "1px solid gray" }}>Go</button>
                         </div>
+                        <button onClick={filterProducts} className="px-2 py-1 rounded-[4px] w-full mt-5" style={{ border: "1px solid gray" }}>Go..</button>
                     </div>
                 </div>
                 {/* END DESKTOP FILTER*/}
@@ -442,8 +505,8 @@ const Categories = ({baseUrl}) => {
                                         <MdKeyboardArrowDown />
                                     </div>
                                 </div>
-                                <button className="px-2 py-1 rounded-[4px]" style={{ border: "1px solid gray" }}>Go</button>
                             </div>
+                            <button className="px-2 py-1 rounded-[4px]" style={{ border: "1px solid gray" }}>Go</button>
                         </div>
                     </div>
                   </div>
@@ -468,7 +531,7 @@ const Categories = ({baseUrl}) => {
                     <div className="flex items-center justify-between desktop-filter">
                         <h1 className="font-[600] text-[24px] mb-4 text-primary-color">All Products</h1>
                         <div className="flex items-center gap-1 py-1 px-2 rounded-full cursor-pointer text-[12px] relative" >
-                          <p>Sort By: <span>{selectedSort}</span> </p>
+                          {/* <p>Sort By: <span>{selectedSort}</span> </p>
                           <MdKeyboardArrowDown fontSize={"20px"} onClick={() => setShowSort(!showSort)}/>
 
                           {showSort &&
@@ -478,11 +541,15 @@ const Categories = ({baseUrl}) => {
                               setShowSort(false)
                               }}>{item}</p>))}
                             </div>
-                          }
-
+                          } */}
+                          <div className="border border-[#B6B6B6] px-3 py-2 flex items-center justify-between rounded-full">
+                            <input type="text" placeholder="Search" className="outline-none w-[100%]" onChange={e => setSearchText(e.target.value)} />
+                            {/* <input type="text" placeholder="Search" className="outline-none w-[100%]"/> */}
+                            <IoIosSearch className="text-[#B6B6B6] text-[22px]"/>
+                          </div>
                         </div>
                     </div>
-                    <CategoryProductPageCard allProducts={allProducts}/>
+                    <CategoryProductPageCard allProducts={allProducts} searchText={searchText}/>
                 </div>
             </div>
           </div>

@@ -89,6 +89,7 @@ const MyProfile = ({baseUrl}) => {
 
     async function updatePhone(){
         setLoader3(true)
+        console.log(JSON.stringify({phone}));
         const res = await fetch(`${baseUrl}/update-profile`,{
             method:"PUT",
             headers: {
@@ -98,10 +99,15 @@ const MyProfile = ({baseUrl}) => {
             body: JSON.stringify({phone})
         })
         const data = await res.json()
+        console.log(res, data);
         if(res) setLoader3(false)
         if(res.ok){
             setMsg(data.message)
             setAlertType('success')
+        }
+        if(!res.ok){
+            setMsg(data.message.phone)
+            setAlertType('error')
         }
         console.log(res, data);
     }

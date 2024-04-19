@@ -18,7 +18,7 @@ const ListProduct = ({baseUrl}) => {
     const [allCategoryArray, setAllCategoryArray] = useState([])
     const [categoryText, setCategoryText] = useState()
     
-    const productConditionArray = ['new', 'used_like_new', 'used_like_good', 'used_like_fair']
+    const productConditionArray = ['brand_new', 'fairly_used']
     const [productCondition, setProductCondition] = useState(false)
 
     const inStockArray = [true, false]
@@ -108,6 +108,7 @@ const ListProduct = ({baseUrl}) => {
             setProductImage([...product_image, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
+            setFile1(data.data.media)
         }
         if(!res.ok){
             setMsg('File upload was not successfull, please try again')
@@ -157,6 +158,7 @@ const ListProduct = ({baseUrl}) => {
             setProductImage([...product_image, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
+            setFile2(data.data.media)
         }
         if(!res.ok){
             setMsg('File upload was not successfull, please try again')
@@ -206,6 +208,7 @@ const ListProduct = ({baseUrl}) => {
             setProductImage([...product_image, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
+            setFile3(data.data.media)
         }
         if(!res.ok){
             setMsg('File upload was not successfull, please try again')
@@ -233,34 +236,35 @@ const ListProduct = ({baseUrl}) => {
             }
     
             setFile4(selectedFile)
-    const formData = new FormData()
-    formData.append('media_type', mediaType)
-    formData.append('media', e.target.files[0])
-    setFileUploadLoader(true)
-    const res = await fetch(`${baseUrl}/upload-product-media`,{
-      method:"POST",
-      headers:{
-        Authorization:`Bearer ${user.data[0].access}`,
-      },
-      body: formData
-    })
-    const data = await res.json()
-    console.log(data);
-    if(res) {
-        setFileUploadLoader(false)
-        mediaType = ''
-    }
-    if(res.ok){
-        const fileId = data.data.id;
-        setProductImage([...product_image, fileId]);
-        setMsg('File successfully uploaded')
-        setAlertType('success')
-    }
-    if(!res.ok){
-        setMsg('File upload was not successfull, please try again')
-        setAlertType('error')
-    }
-}
+            const formData = new FormData()
+            formData.append('media_type', mediaType)
+            formData.append('media', e.target.files[0])
+            setFileUploadLoader(true)
+            const res = await fetch(`${baseUrl}/upload-product-media`,{
+            method:"POST",
+            headers:{
+                Authorization:`Bearer ${user.data[0].access}`,
+            },
+            body: formData
+            })
+            const data = await res.json()
+            console.log(data);
+            if(res) {
+                setFileUploadLoader(false)
+                mediaType = ''
+            }
+            if(res.ok){
+                const fileId = data.data.id;
+                setProductImage([...product_image, fileId]);
+                setMsg('File successfully uploaded')
+                setAlertType('success')
+                setFile4(data.data.media)
+            }
+            if(!res.ok){
+                setMsg('File upload was not successfull, please try again')
+                setAlertType('error')
+            }
+        }
   }
 
   async function handleFile5Upload(e) {
@@ -304,6 +308,7 @@ const ListProduct = ({baseUrl}) => {
             setProductImage([...product_image, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
+            setFile5(data.data.media)
         }
         if(!res.ok){
             setMsg('File upload was not successfull, please try again')
@@ -353,6 +358,7 @@ const ListProduct = ({baseUrl}) => {
             setProductImage([...product_image, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
+            setFile6(data.data.media)
         }
         if(!res.ok){
             setMsg('File upload was not successfull, please try again')
@@ -478,14 +484,14 @@ const [category, setCategory] = useState('')
                 {
                     file1 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <p>File Uploaded Succesfully</p>
-                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                            <img src={file1} className="h-[110px] w-[110px] overflow-hidden" alt="" />
+                            <input type="file" onChange={handleFile1Upload} className="absolute h-full rounded-[10px] cursor-pointer w-full opacity-0 top-0" />
                         </div> 
                             :
                         <div className="text-center flex items-center justify-center flex-col">
                             <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
                             <p>Main Image</p>
-                            <input type="file" onChange={handleFile1Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" />
+                            <input type="file" onChange={handleFile1Upload} className="absolute h-full rounded-[10px] cursor-pointer w-full opacity-0" />
                         </div>
                 }
             </div>
@@ -494,9 +500,9 @@ const [category, setCategory] = useState('')
                 {
                     file2 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <p>File Uploaded Succesfully</p>
-                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
-                        </div> 
+                            <img src={file2} className="h-[110px] w-[110px] overflow-hidden" alt="" />
+                            <input type="file" onChange={handleFile2Upload} className="absolute h-full rounded-[10px] cursor-pointer w-full opacity-0 top-0" />
+                        </div>
                             :
                         <>
                             <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
@@ -509,9 +515,9 @@ const [category, setCategory] = useState('')
             {
                 file3 ? 
                     <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                        <p>File Uploaded Succesfully</p>
-                        <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
-                    </div> 
+                        <img src={file3} className="h-[110px] w-[110px] overflow-hidden" alt="" />
+                        <input type="file" onChange={handleFile3Upload} className="absolute h-full rounded-[10px] cursor-pointer w-full opacity-0 top-0" />
+                    </div>
                         :
                     <>
                         <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
@@ -524,9 +530,9 @@ const [category, setCategory] = useState('')
                 {
                     file4 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <p>File Uploaded Succesfully</p>
-                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
-                        </div> 
+                            <img src={file4} className="h-[110px] w-[110px] overflow-hidden" alt="" />
+                            <input type="file" onChange={handleFile4Upload} className="absolute h-full rounded-[10px] cursor-pointer w-full opacity-0 top-0" />
+                        </div>
                             :
                         <>
                             <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
@@ -539,8 +545,8 @@ const [category, setCategory] = useState('')
                 {
                     file5 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <p>File Uploaded Succesfully</p>
-                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                            <img src={file5} className="h-[110px] w-[110px] overflow-hidden" alt="" />
+                            <input type="file" onChange={handleFile5Upload} className="absolute h-full rounded-[10px] cursor-pointer w-full opacity-0 top-0" />
                         </div> 
                             :
                         <>
@@ -554,9 +560,9 @@ const [category, setCategory] = useState('')
                 {
                     file6 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <p>File Uploaded Succesfully</p>
-                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
-                        </div> 
+                            <img src={file6} className="h-[110px] w-[110px] overflow-hidden" alt="" />
+                            <input type="file" onChange={handleFile6Upload} className="absolute h-full rounded-[10px] cursor-pointer w-full opacity-0 top-0" />
+                        </div>
                             :
                         <>
                             <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />

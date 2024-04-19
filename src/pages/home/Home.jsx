@@ -259,7 +259,7 @@ const breakPoints = [
           <div className="lg:px-12 px-6 lg:py-8 py-6">
             <div className="flex items-center justify-between mb-[20px]">
               <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
-              <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+              <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" onClick={() => navigate} style={{ border:"1px solid gray" }}>
                   <p>See all</p>
                   <GoArrowRight />
               </div>
