@@ -109,12 +109,12 @@ const Categories = ({baseUrl}) => {
   const [condition, setCondition] = useState('')
   const [minPrice, setMinPrice] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
-  const [priceRange, setPriceRange] = useState({})
+  // const [priceRange, setPriceRange] = useState({})
   const [searchText, setSearchText] = useState('')
 
   async function filterProducts(){
     setLoader(true)
-    const res = await fetch(`${baseUrl}/products?price_below=${priceRange.min}&price_above=${priceRange.max}&condition=${condition}`)
+    const res = await fetch(`${baseUrl}/products?price_below=${minPrice}&price_above=${maxPrice}&condition=${condition}`)
     const data = await res.json()
     if(res) {
       setShowFilter(false)
@@ -191,7 +191,7 @@ const Categories = ({baseUrl}) => {
                         </div>
                     </div> */}
 
-                    <div className="mt-[40px]">
+                    {/* <div className="mt-[40px]">
                         <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Price Range</p>
                         <div className="product-type text-gray-400">
                           {priceRangeArray.map(price => (
@@ -213,26 +213,16 @@ const Categories = ({baseUrl}) => {
                           </div>
                           ))}
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="mt-[30px]">
                         <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Custom Price Range</p>
                         <div className="product-type text-gray-400 flex items-center gap-3">
                             <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer w-full justify-between" style={{ border: "1px solid gray" }}>
-                                {/* <p>#Min</p>
-                                <div>
-                                    <MdKeyboardArrowUp />
-                                    <MdKeyboardArrowDown />
-                                </div> */}
-                                <input type="text" className="w-full outline-none py-1" placeholder="Min" />
+                                <input type="text" className="w-full outline-none py-1" placeholder="Min" onChange={e => setMinPrice(e.target.value)} />
                             </div>
                             <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer w-full justify-between" style={{ border: "1px solid gray" }}>
-                                {/* <p>#Max</p>
-                                <div>
-                                    <MdKeyboardArrowUp />
-                                    <MdKeyboardArrowDown />
-                                </div> */}
-                                <input type="text" className="w-full outline-none py-1" placeholder="Max" />
+                                <input type="text" className="w-full outline-none py-1" placeholder="Max" onChange={e => setMaxPrice(e.target.value)} />
                             </div>
                         </div>
                         <button onClick={filterProducts} className="px-2 py-1 rounded-[4px] w-full mt-5" style={{ border: "1px solid gray" }}>Go..</button>
@@ -279,7 +269,7 @@ const Categories = ({baseUrl}) => {
                               </div>
                           </div>
 
-                          <div className="mt-[40px]">
+                          {/* <div className="mt-[40px]">
                               <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Price Range</p>
                               <div className="product-type text-gray-400">
                                 {priceRangeArray.map(price => (
@@ -301,28 +291,20 @@ const Categories = ({baseUrl}) => {
                                 </div>
                                 ))}
                               </div>
-                          </div>
+                          </div> */}
 
-                          <div className="mt-[30px]">
-                              <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Custom Price Range</p>
-                              <div className="product-type text-gray-400 flex items-center gap-3">
-                                  <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer" style={{ border: "1px solid gray" }}>
-                                      <p>#Min</p>
-                                      <div>
-                                          <MdKeyboardArrowUp />
-                                          <MdKeyboardArrowDown />
-                                      </div>
-                                  </div>
-                                  <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer" style={{ border: "1px solid gray" }}>
-                                      <p>#Max</p>
-                                      <div>
-                                          <MdKeyboardArrowUp />
-                                          <MdKeyboardArrowDown />
-                                      </div>
-                                  </div>
+                        <div className="mt-[30px]">
+                          <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Custom Price Range</p>
+                          <div className="product-type text-gray-400 flex items-center gap-3">
+                              <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer w-full justify-between" style={{ border: "1px solid gray" }}>
+                                  <input type="text" className="w-full outline-none py-1" onChange={e => setMinPrice(e.target.value)} placeholder="Min" />
                               </div>
-                              <button onClick={filterProducts} className="px-2 py-1 rounded-[4px]" style={{ border: "1px solid gray" }}>Go</button>
+                              <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer w-full justify-between" style={{ border: "1px solid gray" }}>
+                                  <input type="text" className="w-full outline-none py-1" onChange={e => setMaxPrice(e.target.value)} placeholder="Max" />
+                              </div>
                           </div>
+                          <button onClick={filterProducts} className="px-2 py-1 rounded-[4px] w-full mt-5" style={{ border: "1px solid gray" }}>Go.</button>
+                        </div>
                       </div>
                     </div>
                   </>

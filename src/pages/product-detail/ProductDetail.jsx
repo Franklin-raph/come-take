@@ -37,6 +37,7 @@ const ProductDetail = ({baseUrl}) => {
 
     const [product_image, setProductImage] = useState([])
     const [product_cover_image, setProductCoverImage] = useState()
+    const [productOldImagesId, setProductOldImagesId] = useState([])
 
     useEffect(() => {
         getProductDetail()
@@ -46,6 +47,7 @@ const ProductDetail = ({baseUrl}) => {
         const res = await fetch(`${baseUrl}/products/${id}`)
         const data = await res.json()
         if(res.ok){
+            setProductOldImagesId(data.data.product_image.map(object => object.id))
             setBrandName(data.data.brand_name)
             setName(data.data.name)
             setCategory(data.data.category.id)
@@ -69,8 +71,10 @@ const ProductDetail = ({baseUrl}) => {
             setProductImage(data.data.product_image)
             setProductCoverImage(data.data.product_cover_image?.id)
         }
-        console.log(res, data);
+        console.log(res, data, productOldImagesId);
     }
+
+    console.log(productOldImagesId);
 
     const [categoryNav,setCategoryNav] = useState(false)
     // const [currentCategory, setCurrentCategory] = useState('All Categories')
@@ -115,7 +119,7 @@ const ProductDetail = ({baseUrl}) => {
         })
         const data = await res.json()
         setAllCategoryArray(data.data)
-        console.log(data);
+        // console.log(data);
     }
 
     useEffect(() => {
@@ -123,6 +127,7 @@ const ProductDetail = ({baseUrl}) => {
     },[])
 
     async function handleFile1Upload(e) {
+        console.log(product_image[0].id);
     if (e.target.files && e.target.files.length > 0) {
       // Update file state with the selected file
         const selectedFile = e.target.files[0];
@@ -211,7 +216,7 @@ const ProductDetail = ({baseUrl}) => {
         }
         if(res.ok){
             const fileId = data.data.id;
-            setProductImage([...product_image, fileId]);
+            setProductOldImagesId([...productOldImagesId, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
         }
@@ -290,34 +295,34 @@ const ProductDetail = ({baseUrl}) => {
             }
     
             setFile4(selectedFile)
-    const formData = new FormData()
-    formData.append('media_type', mediaType)
-    formData.append('media', e.target.files[0])
-    setFileUploadLoader(true)
-    const res = await fetch(`${baseUrl}/upload-product-media`,{
-      method:"POST",
-      headers:{
-        Authorization:`Bearer ${user.data[0].access}`,
-      },
-      body: formData
-    })
-    const data = await res.json()
-    console.log(data);
-    if(res) {
-        setFileUploadLoader(false)
-        mediaType = ''
-    }
-    if(res.ok){
-        const fileId = data.data.id;
-        setProductImage([...product_image, fileId]);
-        setMsg('File successfully uploaded')
-        setAlertType('success')
-    }
-    if(!res.ok){
-        setMsg('File upload was not successfull, please try again')
-        setAlertType('error')
-    }
-}
+            const formData = new FormData()
+            formData.append('media_type', mediaType)
+            formData.append('media', e.target.files[0])
+            setFileUploadLoader(true)
+            const res = await fetch(`${baseUrl}/upload-product-media`,{
+            method:"POST",
+            headers:{
+                Authorization:`Bearer ${user.data[0].access}`,
+            },
+            body: formData
+            })
+            const data = await res.json()
+            console.log(data);
+            if(res) {
+                setFileUploadLoader(false)
+                mediaType = ''
+            }
+            if(res.ok){
+                const fileId = data.data.id;
+                setProductImage([...product_image, fileId]);
+                setMsg('File successfully uploaded')
+                setAlertType('success')
+            }
+            if(!res.ok){
+                setMsg('File upload was not successfull, please try again')
+                setAlertType('error')
+            }
+        }
   }
 
   async function handleFile5Upload(e) {
@@ -472,11 +477,11 @@ async function handleCoverPhtotoUpload(e){
 
 
   async function updateProduct(){
-    console.log(JSON.stringify({category, product_cover_image, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}));
+    console.log(JSON.stringify({category, product_cover_image, product_image:productOldImagesId, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}));
     setLoader(true)
     const res = await fetch(`${baseUrl}/products/${id}`, {
         method:"PUT",
-        body: JSON.stringify({category, product_cover_image, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}),
+        body: JSON.stringify({category, product_cover_image, product_image:productOldImagesId, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}),
         headers: {
             'Content-Type':'application/json',
             Authorization:`Bearer ${user.data[0].access}`
@@ -497,6 +502,70 @@ async function handleCoverPhtotoUpload(e){
     console.log(JSON.stringify({category, product_cover_image:coverPhotoId, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}));
   }
 
+  async function deleteImage1(id){
+    const res = await fetch(`${baseUrl}/delete-media/${id}`,{
+        method:"DELETE",
+        headers: {
+            Authorization:`Bearer ${user.data[0].access}`
+        }
+    })
+    console.log(res);
+    if(res.ok){
+        getProductDetail()
+        setMsg("Image successfully deleted")
+        setAlertType('success')
+    }
+  }
+
+  async function deleteImage2(id){
+    const res = await fetch(`${baseUrl}/delete-media/${id}`,{
+        method:"DELETE",
+        headers: {
+            Authorization:`Bearer ${user.data[0].access}`
+        }
+    })
+    console.log(res);
+  }
+
+  async function deleteImage3(id){
+    const res = await fetch(`${baseUrl}/delete-media/${id}`,{
+        method:"DELETE",
+        headers: {
+            Authorization:`Bearer ${user.data[0].access}`
+        }
+    })
+    console.log(res);
+  }
+
+  async function deleteImage4(id){
+    const res = await fetch(`${baseUrl}/delete-media/${id}`,{
+        method:"DELETE",
+        headers: {
+            Authorization:`Bearer ${user.data[0].access}`
+        }
+    })
+    console.log(res);
+  }
+
+  async function deleteImage5(id){
+    const res = await fetch(`${baseUrl}/delete-media/${id}`,{
+        method:"DELETE",
+        headers: {
+            Authorization:`Bearer ${user.data[0].access}`
+        }
+    })
+    console.log(res);
+  }
+
+  async function deleteImage6(id){
+    const res = await fetch(`${baseUrl}/delete-media/${id}`,{
+        method:"DELETE",
+        headers: {
+            Authorization:`Bearer ${user.data[0].access}`
+        }
+    })
+    console.log(res);
+  }
 
 
 
@@ -513,60 +582,66 @@ async function handleCoverPhtotoUpload(e){
       <div className="sm:ml-[3.2rem] ml-0">
         <p className="text-[#101010] mb-2">Image/Videos</p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 md:grid-cols-6 items-center">
-            <div className="relative h-[110px] w-[110px] rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
-                {
-                    file1 ? 
-                        <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            {/* <p>File Uploaded Succesfully</p>
-                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p> */}
-                            <img src={file1} alt="" />
-                            <input type="file" onChange={handleFile1Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-1" />
-                        </div>
-                            :
-                        <div className="text-center flex items-center justify-center flex-col">
-                            <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
-                            <p>Main Image</p>
-                            <input type="file" onChange={handleFile1Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" />
-                        </div>
-                }
+            <div className="text-center">
+                <div className="relative h-[110px] w-[120px] rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+                    {
+                        file1 ? 
+                            <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
+                                <img src={file1} alt="" />
+                                <button onClick={() => deleteImage1(product_image[0].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
+                            </div>
+                                :
+                                <div className="text-center flex items-center justify-center flex-col">
+                                <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
+                                <p>Main Image</p>
+                                <input type="file" onChange={handleFile1Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" />
+                            </div>
+                    }
+                </div>
             </div>
 
-            <div className="relative h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+            <div className="text-center">
+                <div className="relative h-[110px] w-[120px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+                    {
+                        file2 ? 
+                            <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
+                                <img src={file2} alt="" />
+                                <button onClick={() => deleteImage2(product_image[1].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
+                            </div> 
+                                :
+                            <>
+                                <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
+                                <p>Main Image</p>
+                                <input type="file" onChange={handleFile2Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" />
+                            </>
+                    }
+                </div>
+            </div>
+
+            <div className="text-center">
+                <div className="relative h-[110px] w-[120px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
                 {
-                    file2 ? 
+                    file3 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <p>File Uploaded Succesfully</p>
-                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                            <img src={file3} alt="" />
+                            <button onClick={() => deleteImage3(product_image[3].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                         </div> 
                             :
                         <>
                             <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
                             <p>Main Image</p>
-                            <input type="file" onChange={handleFile2Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" />
+                            <input type="file" onChange={handleFile3Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" />
                         </>
                 }
+                </div>
             </div>
-            <div className="relative h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
-            {
-                file3 ? 
-                    <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                        <p>File Uploaded Succesfully</p>
-                        <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
-                    </div> 
-                        :
-                    <>
-                        <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
-                        <p>Main Image</p>
-                        <input type="file" onChange={handleFile3Upload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" />
-                    </>
-            }
-            </div>
+
             <div className="relative h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
                 {
                     file4 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <p>File Uploaded Succesfully</p>
-                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                            <img src={file4} alt="" />
+                            <button onClick={() => deleteImage4(product_image[3].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                         </div> 
                             :
                         <>
@@ -580,8 +655,8 @@ async function handleCoverPhtotoUpload(e){
                 {
                     file5 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <p>File Uploaded Succesfully</p>
-                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                            <img src={file5} alt="" />
+                            <button onClick={() => deleteImage5(product_image[4].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                         </div> 
                             :
                         <>
@@ -595,8 +670,8 @@ async function handleCoverPhtotoUpload(e){
                 {
                     file6 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <p>File Uploaded Succesfully</p>
-                            <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
+                            <img src={file6} alt="" />
+                            <button onClick={() => deleteImage6(product_image[5].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                         </div> 
                             :
                         <>
@@ -611,14 +686,11 @@ async function handleCoverPhtotoUpload(e){
             {
                 coverPhoto ?
                     <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                        <p>File Uploaded Succesfully</p>
-                        <p><i class="ri-checkbox-circle-fill text-green-500 text-2xl"></i></p>
-                        <img src={coverPhoto} alt="" />
-                        <input type="file" onChange={handleCoverPhtotoUpload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-1" accept=".jpg, .png, .jpeg" />
+                        <img src={coverPhoto} alt="" className="h-[100px]" />
+                        {/* <input type="file" onChange={handleCoverPhtotoUpload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-1" accept=".jpg, .png, .jpeg" /> */}
                     </div> 
                         :
                     <>
-                    {/* <img src={coverPhoto} alt="" /> */}
                         <CiCirclePlus color="#96BF47" fontSize={"22px"} className="mb-1" />
                         <p>Cover Image</p>
                         <input type="file" onChange={handleCoverPhtotoUpload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-0" accept=".jpg, .png, .jpeg" />
