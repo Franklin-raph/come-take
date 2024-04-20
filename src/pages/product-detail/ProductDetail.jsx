@@ -39,6 +39,9 @@ const ProductDetail = ({baseUrl}) => {
     const [product_cover_image, setProductCoverImage] = useState()
     const [productOldImagesId, setProductOldImagesId] = useState([])
 
+    const [removeImageModal, setRemoveImageModal] = useState(false)
+    const [deleteLoader, setDeleteLoader] = useState(false)
+
     useEffect(() => {
         getProductDetail()
     },[])
@@ -502,7 +505,8 @@ async function handleCoverPhtotoUpload(e){
     console.log(JSON.stringify({category, product_cover_image:coverPhotoId, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}));
   }
 
-  async function deleteImage1(id){
+  async function deleteImage(id){
+    setDeleteLoader(true)
     const res = await fetch(`${baseUrl}/delete-media/${id}`,{
         method:"DELETE",
         headers: {
@@ -510,6 +514,7 @@ async function handleCoverPhtotoUpload(e){
         }
     })
     console.log(res);
+    if(res) setDeleteLoader(false)
     if(res.ok){
         getProductDetail()
         setMsg("Image successfully deleted")
@@ -517,55 +522,55 @@ async function handleCoverPhtotoUpload(e){
     }
   }
 
-  async function deleteImage2(id){
-    const res = await fetch(`${baseUrl}/delete-media/${id}`,{
-        method:"DELETE",
-        headers: {
-            Authorization:`Bearer ${user.data[0].access}`
-        }
-    })
-    console.log(res);
-  }
+//   async function deleteImage2(id){
+//     const res = await fetch(`${baseUrl}/delete-media/${id}`,{
+//         method:"DELETE",
+//         headers: {
+//             Authorization:`Bearer ${user.data[0].access}`
+//         }
+//     })
+//     console.log(res);
+//   }
 
-  async function deleteImage3(id){
-    const res = await fetch(`${baseUrl}/delete-media/${id}`,{
-        method:"DELETE",
-        headers: {
-            Authorization:`Bearer ${user.data[0].access}`
-        }
-    })
-    console.log(res);
-  }
+//   async function deleteImage3(id){
+//     const res = await fetch(`${baseUrl}/delete-media/${id}`,{
+//         method:"DELETE",
+//         headers: {
+//             Authorization:`Bearer ${user.data[0].access}`
+//         }
+//     })
+//     console.log(res);
+//   }
 
-  async function deleteImage4(id){
-    const res = await fetch(`${baseUrl}/delete-media/${id}`,{
-        method:"DELETE",
-        headers: {
-            Authorization:`Bearer ${user.data[0].access}`
-        }
-    })
-    console.log(res);
-  }
+//   async function deleteImage4(id){
+//     const res = await fetch(`${baseUrl}/delete-media/${id}`,{
+//         method:"DELETE",
+//         headers: {
+//             Authorization:`Bearer ${user.data[0].access}`
+//         }
+//     })
+//     console.log(res);
+//   }
 
-  async function deleteImage5(id){
-    const res = await fetch(`${baseUrl}/delete-media/${id}`,{
-        method:"DELETE",
-        headers: {
-            Authorization:`Bearer ${user.data[0].access}`
-        }
-    })
-    console.log(res);
-  }
+//   async function deleteImage5(id){
+//     const res = await fetch(`${baseUrl}/delete-media/${id}`,{
+//         method:"DELETE",
+//         headers: {
+//             Authorization:`Bearer ${user.data[0].access}`
+//         }
+//     })
+//     console.log(res);
+//   }
 
-  async function deleteImage6(id){
-    const res = await fetch(`${baseUrl}/delete-media/${id}`,{
-        method:"DELETE",
-        headers: {
-            Authorization:`Bearer ${user.data[0].access}`
-        }
-    })
-    console.log(res);
-  }
+//   async function deleteImage6(id){
+//     const res = await fetch(`${baseUrl}/delete-media/${id}`,{
+//         method:"DELETE",
+//         headers: {
+//             Authorization:`Bearer ${user.data[0].access}`
+//         }
+//     })
+//     console.log(res);
+//   }
 
 
 
@@ -588,7 +593,7 @@ async function handleCoverPhtotoUpload(e){
                         file1 ? 
                             <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
                                 <img src={file1} alt="" />
-                                <button onClick={() => deleteImage1(product_image[0].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
+                                <button onClick={() => setRemoveImageModal(product_image[0].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                             </div>
                                 :
                                 <div className="text-center flex items-center justify-center flex-col">
@@ -606,7 +611,7 @@ async function handleCoverPhtotoUpload(e){
                         file2 ? 
                             <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
                                 <img src={file2} alt="" />
-                                <button onClick={() => deleteImage2(product_image[1].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
+                                <button onClick={() => setRemoveImageModal(product_image[1].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                             </div> 
                                 :
                             <>
@@ -624,7 +629,7 @@ async function handleCoverPhtotoUpload(e){
                     file3 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
                             <img src={file3} alt="" />
-                            <button onClick={() => deleteImage3(product_image[3].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
+                            <button onClick={() => setRemoveImageModal(product_image[3].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                         </div> 
                             :
                         <>
@@ -641,7 +646,7 @@ async function handleCoverPhtotoUpload(e){
                     file4 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
                             <img src={file4} alt="" />
-                            <button onClick={() => deleteImage4(product_image[3].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
+                            <button onClick={() => setRemoveImageModal(product_image[3].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                         </div> 
                             :
                         <>
@@ -656,7 +661,7 @@ async function handleCoverPhtotoUpload(e){
                     file5 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
                             <img src={file5} alt="" />
-                            <button onClick={() => deleteImage5(product_image[4].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
+                            <button onClick={() => setRemoveImageModal(product_image[4].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                         </div> 
                             :
                         <>
@@ -671,7 +676,7 @@ async function handleCoverPhtotoUpload(e){
                     file6 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
                             <img src={file6} alt="" />
-                            <button onClick={() => deleteImage6(product_image[5].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
+                            <button onClick={() => setRemoveImageModal(product_image[5].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                         </div> 
                             :
                         <>
@@ -881,6 +886,36 @@ async function handleCoverPhtotoUpload(e){
             </div>
       }
       {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
+      
+      {
+        removeImageModal &&
+            <>
+            <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setRemoveImageModal(false)}></div>
+                <div className="fixed top-[50%] left-[50%] z-[99] flex items-center justify-center translate-x-[-50%] translate-y-[-50%]">
+                    <div className="bg-white md:w-[450px] w-[300px] rounded-[18px] py-7">
+                        <div className="flex items-center justify-between mt-[1rem] px-[2rem] mb-[2rem] flex-col">
+                            {/* <img src='./loader.gif' className='h-10 w-10 mt-3 mb-5'/> */}
+                            <p className='text-gray-500 text-[15px] mb-2 text-center'>Are you sure you want to delete this image</p>
+                        </div>
+                        <div>
+                            {
+                                deleteLoader ?
+                                
+                                <div className='mt-[2rem]'>
+                                    <Btnloader />
+                                </div>
+                            :    
+                                <div className='flex items-center justify-start md:ml-8 md:gap-[40px] md:flex-row flex-col-reverse gap-[10px]'>
+                                    <button className='text-secondary-color px-8 py-2 rounded-full border border-secondary-color' onClick={() => setRemoveImageModal(false)}>No, Cancel</button>
+                                    <button className='text-white bg-[#FF0000] px-8 py-2 rounded-full border-secondary-color' onClick={() => deleteImage(removeImageModal)}>Yes, Continue</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </>
+      }
+
       {
             fileUploadLoader &&
             <div className="fixed h-full w-full top-0 left-0 z-[99] flex items-center justify-center" style={{ background:"rgba(18, 18, 18, 0.8)" }}>
