@@ -73,11 +73,12 @@ const ProductDetail = ({baseUrl}) => {
 
             setProductImage(data.data.product_image)
             setProductCoverImage(data.data.product_cover_image?.id)
+            setCoverPhotoId(data.data.product_cover_image.id)
         }
-        console.log(res, data, productOldImagesId);
+        console.log(res, data, productOldImagesId, product_cover_image);
     }
 
-    console.log(productOldImagesId);
+    console.log(product_cover_image);
 
     const [categoryNav,setCategoryNav] = useState(false)
     // const [currentCategory, setCurrentCategory] = useState('All Categories')
@@ -107,6 +108,8 @@ const ProductDetail = ({baseUrl}) => {
     const [msg, setMsg] = useState(false)
     const [alertType, setAlertType] = useState('')
     const user = JSON.parse(localStorage.getItem('user'))
+
+    const [categorySearchText, setCategorySearchText] = useState('')
     // const [mediaType, setMediaType] = useState('')
 
 
@@ -122,7 +125,7 @@ const ProductDetail = ({baseUrl}) => {
         })
         const data = await res.json()
         setAllCategoryArray(data.data)
-        // console.log(data);
+        console.log(data);
     }
 
     useEffect(() => {
@@ -169,7 +172,7 @@ const ProductDetail = ({baseUrl}) => {
         }
         if(res.ok){
             const fileId = data.data.id;
-            setProductImage([...product_image, fileId]);
+            setProductOldImagesId([...productOldImagesId, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
             setFile1(data.data.media)
@@ -268,7 +271,7 @@ const ProductDetail = ({baseUrl}) => {
         }
         if(res.ok){
             const fileId = data.data.id;
-            setProductImage([...product_image, fileId]);
+            setProductOldImagesId([...productOldImagesId, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
         }
@@ -317,7 +320,7 @@ const ProductDetail = ({baseUrl}) => {
             }
             if(res.ok){
                 const fileId = data.data.id;
-                setProductImage([...product_image, fileId]);
+                setProductOldImagesId([...productOldImagesId, fileId]);
                 setMsg('File successfully uploaded')
                 setAlertType('success')
             }
@@ -366,7 +369,7 @@ const ProductDetail = ({baseUrl}) => {
         }
         if(res.ok){
             const fileId = data.data.id;
-            setProductImage([...product_image, fileId]);
+            setProductOldImagesId([...productOldImagesId, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
         }
@@ -415,7 +418,7 @@ const ProductDetail = ({baseUrl}) => {
         }
         if(res.ok){
             const fileId = data.data.id;
-            setProductImage([...product_image, fileId]);
+            setProductOldImagesId([...productOldImagesId, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
         }
@@ -484,7 +487,7 @@ async function handleCoverPhtotoUpload(e){
     setLoader(true)
     const res = await fetch(`${baseUrl}/products/${id}`, {
         method:"PUT",
-        body: JSON.stringify({category, product_cover_image, product_image:productOldImagesId, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}),
+        body: JSON.stringify({category, product_cover_image:coverPhotoId, product_image:productOldImagesId, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}),
         headers: {
             'Content-Type':'application/json',
             Authorization:`Bearer ${user.data[0].access}`
@@ -502,7 +505,7 @@ async function handleCoverPhtotoUpload(e){
         setAlertType('error')
     }
     console.log(res, data);
-    console.log(JSON.stringify({category, product_cover_image:coverPhotoId, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}));
+    console.log(JSON.stringify({category, product_cover_image, product_image, name, in_stock, brand_name, color, description, condition, warranty_duration, warranty_address, warranty_duration_type, weight, price}));
   }
 
   async function deleteImage(id){
@@ -519,6 +522,7 @@ async function handleCoverPhtotoUpload(e){
         getProductDetail()
         setMsg("Image successfully deleted")
         setAlertType('success')
+        setRemoveImageModal(false)
     }
   }
 
@@ -692,6 +696,7 @@ async function handleCoverPhtotoUpload(e){
                 coverPhoto ?
                     <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
                         <img src={coverPhoto} alt="" className="h-[100px]" />
+                        <button onClick={() => setRemoveImageModal(product_cover_image)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                         {/* <input type="file" onChange={handleCoverPhtotoUpload} className="absolute h-[110px] cursor-pointer w-[110px] opacity-1" accept=".jpg, .png, .jpeg" /> */}
                     </div> 
                         :
@@ -711,12 +716,46 @@ async function handleCoverPhtotoUpload(e){
                 <p>Name of Product</p>
                 <input value={name} onChange={e => setName(e.target.value)} type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="Name of Product here" style={{ border:"1.5px solid #CCCCCC" }}/>
             </div>
-            <div className="w-full">
+            <div className="w-full relative">
                 <p>Category</p>
                 <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
                     <input onChange={e => setCategory(e.target.value)} value={category} type="text" className="outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Choose Categories" />
                     <GoChevronRight color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} onClick={() => setCategoryNav(!categoryNav)}/>
                 </div>
+                {
+                    categoryNav &&
+                        <>
+                            <div className="absolute top-[90px] bg-white w-full rounded-[6px] py-3 px-4 z-10">
+                                <div className="bg-white w-full h-[400px] border border-gray-500 rounded-[6px] pb-6 absolute right-0 top-0 px-5 overflow-y-scroll">
+                                    {/* <IoIosCloseCircleOutline className="absolute right-[10px] text-[20px] cursor-pointer top-[20px]" onClick={() => setCategoryNav(false)}/> */}
+                                    {/* <p className="text-[#101010] mt-[65px] text-[24px] pb-2" style={{ borderBottom:"1px solid #E6ECEA" }}>Categories</p> */}
+                                    <div className="border border-[#989898] rounded-full flex items-center justify-between mt-5 px-3 py-[7px]">
+                                        <input type="text" className="w-full outline-none" placeholder="Search For Categories" onChange={e => setCategorySearchText(e.target.value)}/>
+                                        <CiSearch fontSize={"20px"} />
+                                    </div>
+                                    {/* <p className="mt-9">{currentCategory}</p> */}
+                                    <div className="border border-[#989898] px-5 mt-4 rounded">
+                                        {
+                                            allCategoryArray && allCategoryArray.filter((item) => {
+                                                if (categorySearchText === "") return item
+                                                else if (item.name.toLowerCase().includes(categorySearchText.toLowerCase())) return item
+                                            })
+                                            .map(category => (
+                                                <div className="flex items-center gap-2 my-2 cursor-pointer justify-between" onClick={() => {
+                                                    setCategory(category.id)
+                                                    setCategoryText(category.name)
+                                                    setCategoryNav(false)
+                                                    }}>
+                                                    <p className="text-[#101010]">{category.name}</p>
+                                                    <IoChevronForwardOutline color="#B6B6B6"/>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                }
             </div>
         </div>
         <div className="flex items-center gap-5 mt-5 flex-col sm:flex-row">
@@ -855,44 +894,46 @@ async function handleCoverPhtotoUpload(e){
         </div>
       </div>
 
-      {
+      {/* {
         categoryNav &&
-            <div className="fixed h-full w-full top-0 left-0 z-[99] flex items-center justify-center" style={{ background:"rgba(18, 18, 18, 0.8)" }}>
-                <div className="bg-white w-[400px] h-[600px] absolute right-0 top-0 px-5 overflow-y-scroll">
-                    <IoIosCloseCircleOutline className="absolute right-[10px] text-[20px] cursor-pointer top-[20px]" onClick={() => setCategoryNav(false)}/>
-                    <p className="text-[#101010] mt-[65px] text-[24px] pb-2" style={{ borderBottom:"1px solid #E6ECEA" }}>Categories</p>
-                    <div className="border border-[#989898] rounded-full flex items-center justify-between mt-5 px-3 py-[7px]">
-                        <input type="text" className="w-full outline-none" placeholder="Search For Categories"/>
-                        <CiSearch fontSize={"20px"}/>
-                    </div>
-                    {/* <p className="mt-9">{currentCategory}</p> */}
-                    <div className="border border-[#989898] px-5 mt-4 rounded">
-                        {
-                            allCategoryArray.map(category => (
-                                <div className="flex items-center gap-2 my-2 cursor-pointer" onClick={() => {
-                                    // setCurrentCategory(category)
-                                    // setCurrentCategoryArray(category)
-                                    setCategory(category.id)
-                                    setCategoryText(category.name)
-                                    setCategoryNav(false)
-                                    }}>
-                                    <p className="text-[#101010]">{category.name}</p>
-                                    <IoChevronForwardOutline color="#B6B6B6"/>
-                                </div>
-                            ))
-                        }
+            <>
+                
+                <div className="fixed h-full w-full top-0 left-0 z-[99] flex items-center justify-center" style={{ background:"rgba(18, 18, 18, 0.8)" }}>
+                    <div className="bg-white w-[400px] h-[600px] absolute right-0 top-0 px-5 overflow-y-scroll">
+                        <IoIosCloseCircleOutline className="absolute right-[10px] text-[20px] cursor-pointer top-[20px]" onClick={() => setCategoryNav(false)}/>
+                        <p className="text-[#101010] mt-[65px] text-[24px] pb-2" style={{ borderBottom:"1px solid #E6ECEA" }}>Categories</p>
+                        <div className="border border-[#989898] rounded-full flex items-center justify-between mt-5 px-3 py-[7px]">
+                            <input type="text" className="w-full outline-none" placeholder="Search For Categories"/>
+                            <CiSearch fontSize={"20px"}/>
+                        </div>
+                        <div className="border border-[#989898] px-5 mt-4 rounded">
+                            {
+                                allCategoryArray.map(category => (
+                                    <div className="flex items-center gap-2 my-2 cursor-pointer" onClick={() => {
+                                        setCategory(category.id)
+                                        setCategoryText(category.name)
+                                        setCategoryNav(false)
+                                        }}>
+                                        <p className="text-[#101010]">{category.name}</p>
+                                        <IoChevronForwardOutline color="#B6B6B6"/>
+                                    </div>
+                                ))
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-      }
+            </>
+      } */}
+
       {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
       
       {
         removeImageModal &&
             <>
-            <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setRemoveImageModal(false)}></div>
+                <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setRemoveImageModal(false)}></div>
                 <div className="fixed top-[50%] left-[50%] z-[99] flex items-center justify-center translate-x-[-50%] translate-y-[-50%]">
                     <div className="bg-white md:w-[450px] w-[300px] rounded-[18px] py-7">
+            {/* <p>{product_cover_image}...</p> */}
                         <div className="flex items-center justify-between mt-[1rem] px-[2rem] mb-[2rem] flex-col">
                             {/* <img src='./loader.gif' className='h-10 w-10 mt-3 mb-5'/> */}
                             <p className='text-gray-500 text-[15px] mb-2 text-center'>Are you sure you want to delete this image</p>
@@ -905,7 +946,7 @@ async function handleCoverPhtotoUpload(e){
                                     <Btnloader />
                                 </div>
                             :    
-                                <div className='flex items-center justify-start md:ml-8 md:gap-[40px] md:flex-row flex-col-reverse gap-[10px]'>
+                                <div className='flex items-center justify-center md:ml-8 md:gap-[30px] md:flex-row flex-col-reverse gap-[10px]'>
                                     <button className='text-secondary-color px-8 py-2 rounded-full border border-secondary-color' onClick={() => setRemoveImageModal(false)}>No, Cancel</button>
                                     <button className='text-white bg-[#FF0000] px-8 py-2 rounded-full border-secondary-color' onClick={() => deleteImage(removeImageModal)}>Yes, Continue</button>
                                 </div>

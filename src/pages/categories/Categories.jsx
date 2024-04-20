@@ -316,18 +316,18 @@ const Categories = ({baseUrl}) => {
 
                 <div className="w-[75%] lg:ml-[2rem] ml-0 category-right">
                     <div className="flex bg-primary-color text-white items-center justify-between rounded-[4px] px-3 py-4 mb-8 mobile-filter">
-                      <div className="flex items-center cursor-pointer">
+                      {/* <div className="flex items-center cursor-pointer">
                         <p>Category</p>
                         <MdKeyboardArrowDown fontSize={"22px"}/>
-                      </div>
+                      </div> */}
                       <div className="flex items-center cursor-pointer" onClick={() => setShowFilter(true)}>
                         <BsFilterLeft fontSize={"22px"}/>
                         <p>Filter</p>
                       </div>
-                      <div className="flex items-center cursor-pointer">
+                      {/* <div className="flex items-center cursor-pointer">
                         <p>New Arivals</p>
                         <MdKeyboardArrowDown fontSize={"22px"}/>
-                      </div>
+                      </div> */}
                     </div>
                     <div className="flex items-center justify-between desktop-filter">
                         <h1 className="font-[600] text-[24px] mb-4 text-primary-color">All Products</h1>

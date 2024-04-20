@@ -36,35 +36,32 @@ const ProductCard = ({ product, baseUrl }) => {
     <div>
         <div className="product-card">
             <div className="badge" onClick={() => saveProduct()} ><CiBookmark /></div>
-            <div className="product-tumb">
-                <img src={product.product_cover_image?.media} alt="" />
-            </div>
-            <div className="product-details" onClick={() => navigate(`/product-details/${product.id}`)}>
-                <div className="flex items-center justify-between">
-                    <h1>{product.name}</h1>
+            
+            <div className="" onClick={() => navigate(`/product-details/${product.id}`)}>
+
+                <div className="product-tumb">
+                    <img src={product.product_cover_image?.media} alt="" />
                 </div>
-                <div className="flex items-center gap-1 ml-[-3px]">
-                    <CiLocationOn />
-                    <p className="text-[14px] py-1">{product.warranty_address}</p>
-                </div>
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center reviews">
-                        {/* <div className="flex items-center">
-                            <IoMdStar color='#067604'/>
-                            <IoMdStar color='#067604'/>
-                            <IoMdStar color='#067604'/>
-                            <IoMdStar color='#067604'/>
-                            <IoMdStar color='#067604'/>
-                        </div>
-                        <span className="text-[11px] font-[500] text-[#6d6d6d] ml-2">{product.reviews}</span> */}
-                        <h1 className="text-[13px]">{product.price.toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
-                                    })}</h1>
+                <div className="product-details">
+                    <div className="flex items-center justify-between">
+                        <h1>{product.name}</h1>
                     </div>
-                    <RiVerifiedBadgeFill color='#DF9007' fontSize={"20px"}/>
+                    <div className="flex items-center gap-1 ml-[-3px]">
+                        <CiLocationOn />
+                        <p className="text-[14px] py-1">{product.warranty_address}</p>
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center reviews">
+                            <h1 className="text-[13px]">{product.price.toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
+                                        })}</h1>
+                        </div>
+                        <RiVerifiedBadgeFill color='#DF9007' fontSize={"20px"}/>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
   )

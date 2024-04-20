@@ -7,7 +7,7 @@ import './index.css'
 // axios.defaults.baseURL = "https://cometake.pythonanywhere.com"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )
