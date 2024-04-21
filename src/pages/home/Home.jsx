@@ -181,40 +181,10 @@ const breakPoints = [
   { width: 1200, itemsToShow: 4 },
 ];
 
+const [seachString, setSeachString] = useState('')
+
   return (
     <div>
-        {/* <Swiper
-        spaceBetween={0}
-        centeredSlides={true}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true
-        }}
-        loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
-      >
-          <SwiperSlide>
-            <div className="img-slider1">
-              <img src={img1} className="h-full w-full object-contain" alt="" />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="img-slider2">
-              <img src={img2} className="h-full w-full object-contain" alt="" />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="img-slider3">
-              <img src={img3} className="h-full w-full object-contain" alt="" />
-            </div>
-          </SwiperSlide>
-        </Swiper> */}
         <div id='home'>
           <div className='image-overlay'></div>
           <img src={img2} alt=""/>
@@ -222,22 +192,11 @@ const breakPoints = [
             <h1 className='text-white mb-5 text-[16px] sm:text-[25px] md:text-[40px] w-[55%] mx-auto'>Buy & Sell on Nigeria’s No1 Market Place</h1>
             <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[85%] md:w-[70%] mx-auto'>
                 <IoIosSearch className='text-[32px] text-gray-500 mr-2'/>
-                <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color text-[16px] md:text-[18px]'/>
-                <button className='rounded-full md:py-2 md:px-6 px-[22px] text-center bg-secondary-color text-white py-[8px]'>Search</button>
+                <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color text-[16px] md:text-[18px]' onChange={e => setSeachString(e.target.value)}/>
+                <button className='rounded-full md:py-2 md:px-6 px-[22px] text-center bg-secondary-color text-white py-[8px]' onClick={() => navigate(`/search?product_name=${seachString}`)} >Search</button>
             </div>
           </div>
         </div>
-        {/* <OwlCarousel {...options} id="home"> */}
-            {/* <div className="img-slider3">
-              <img src={img1} className="h-full w-full object-contain" alt="" />
-            </div> */}
-            {/* <div className="img-slider3">
-              <img src={img2} className="h-full w-full object-contain" alt="" />
-            </div> */}
-            {/* <div className="img-slider3">
-              <img src={img3} className="h-full w-full object-contain" alt="" />
-            </div> */}
-        {/* </OwlCarousel> */}
         <div className="flex flex-col lg:flex-row justify-between py-[20px] lg:px-12 px-6 bg-[#F5F9ED]">
           <h1 className="font-[600] text-primary-color lg:text-[30px] text-[22px] w-full lg:w-[40%]">
             Discover the ultimate online shopping experience
@@ -279,17 +238,6 @@ const breakPoints = [
             <TrendingProducts allProducts={allProducts} baseUrl={baseUrl}/>
           </div>
 
-          {/* <div className="lg:px-12 px-6 py-4 lg:py-8">
-            <div className="flex items-center justify-between mb-[20px]">
-              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Recommended Products</h1>
-              <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
-                  <p>See all</p>
-                  <GoArrowRight />
-                </div>
-            </div>
-            <RecommendedProducts allProducts={allProducts}/>
-          </div> */}
-
           <div className="lady-part my-6">
             <div className="content lg:w-[60%] md:w-[70%] w-[100%] lg:px-12 px-3">
               <h1 className="font-[500] text-[18px] md:text-[24px]">A place to get all your dream Amazing deals. Click to shop.</h1>
@@ -297,39 +245,13 @@ const breakPoints = [
             </div>
           </div>
 
-          {/* <div className="lg:block hidden">
-            <div className="lg:px-12 px-6 py-12">
-              <div className="flex items-center justify-between mb-[20px]">
-              <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
-              <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
-                    <p>See all</p>
-                    <GoArrowRight />
-                  </div>
-              </div>
-              <NewlyListedProducts allProducts={allProducts}/>
-            </div>
-          </div> */}
-
-          {/* MOBILE DESIGN FOR NEWLY LISTED*/}
-          {/* <div className="block lg:hidden">
-            <div className="lg:px-12 px-6 lg:py-8 py-6">
-              <div className="flex items-center justify-between mb-[20px]">
-                <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Newly Listed Products</h1>
-                <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
-                    <p>See all</p>
-                    <GoArrowRight />
-                </div>
-              </div>
-              <NewlyListedProducts allProducts={allProducts}/>
-            </div>
-          </div> */}
           {/* MOBILE DESIGN FOR NEWLY LISTED*/}
 
           <div className="lg:block hidden">
             <div className="lg:px-12 px-6 py-8">
               <div className="flex items-center justify-between mb-[20px]">
                   <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products</h1>
-                  <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                  <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }} onClick={() => navigate('/categories')}>
                         <p>See all</p>
                         <GoArrowRight />
                   </div>
@@ -353,7 +275,7 @@ const breakPoints = [
             <div className="lg:px-12 px-6 lg:py-8 py-6">
               <div className="flex items-center justify-between mb-[20px]">
                 <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Brand New Products</h1>
-                <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }} onClick={() => navigate('/categories')}>
                     <p>See all</p>
                     <GoArrowRight />
                 </div>
@@ -377,7 +299,7 @@ const breakPoints = [
             <div className="lg:px-12 px-6 py-8">
               <div className="flex items-center justify-between mb-[20px]">
                 <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Fairly Used Products</h1>
-                <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }} onClick={() => navigate('/categories')}>
                       <p>See all</p>
                       <GoArrowRight />
                     </div>
@@ -401,7 +323,7 @@ const breakPoints = [
             <div className="lg:px-12 px-6 lg:py-8 py-6">
               <div className="flex items-center justify-between mb-[20px]">
                 <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Fairly Used Products</h1>
-                <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }} onClick={() => navigate('/categories')}>
                     <p>See all</p>
                     <GoArrowRight />
                 </div>

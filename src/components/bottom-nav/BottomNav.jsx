@@ -124,7 +124,7 @@ const BottomNav = () => {
                     {
                         allCategoryArray && allCategoryArray.map(item => (
                             <div className='flex items-center justify-between hover:bg-gray-300 px-3 py-2 my-[16px] cursor-pointer w-full' onClick={() => {
-                                navigate('/categories')
+                                navigate(`/search-product-category?product_category=${item.name}`)
                                 setCategoryNav(false)
                             }}>
                                 <p className='text-[#1C1C1C]'>{item.name}</p>

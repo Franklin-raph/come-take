@@ -7,13 +7,16 @@ import { useEffect, useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import CategoriesProductPageDown from "../../components/categories-product-page-down/CategoriesProductPageDown";
 import { IoIosSearch } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import SkeletonLoader from "../../components/skeleton-loader/SkeletonLoader";
-import Btnloader from "../../components/loader/Btnloader";
 
-const Categories = ({baseUrl}) => {
+const CategoryQuery = ({baseUrl}) => {
+
+  const [searchParams] = useSearchParams();
+  const name = searchParams.get("product_name");
 
   useEffect(() => {
+    console.log(name);
     getAllProducts()
     window.scrollTo(0, 0)
 },[])
@@ -78,11 +81,10 @@ const Categories = ({baseUrl}) => {
 
     const [allProducts, setAllProducts] = useState([])
     const [loader, setLoader] = useState(false)
-    const [filterLoader, setFilterLoader] = useState(false)
 
     async function getAllProducts(){
       setLoader(true)
-      const res = await fetch(`${baseUrl}/products`,)
+      const res = await fetch(`${baseUrl}/products?product_name=${name}`,)
       const data = await res.json()
       if(res) setLoader(false)
       setAllProducts(data.data)
@@ -95,19 +97,16 @@ const Categories = ({baseUrl}) => {
   const [searchText, setSearchText] = useState('')
 
   async function filterProducts(){
-    setFilterLoader(true)
     setLoader(true)
     const res = await fetch(`${baseUrl}/products?price_below=${minPrice}&price_above=${maxPrice}&condition=${condition}`)
     const data = await res.json()
     if(res) {
       setShowFilter(false)
       setLoader(false)
-      setFilterLoader(false)
     }
     setAllProducts(data.data)
     console.log(res, data);
   }
-    
 
 
   return (
@@ -115,7 +114,7 @@ const Categories = ({baseUrl}) => {
         <div className="lg:flex items-center justify-start px-12 py-5 gap-4 hidden">
             <p className="cursor-pointer" onClick={() => navigate('/')}>Home</p>
             <MdKeyboardArrowRight />
-            {/* <p>Computing</p> */}
+            <p>Computing</p>
         </div>
 
         <div className="px-6 pb-8 pt-4">
@@ -150,20 +149,13 @@ const Categories = ({baseUrl}) => {
                         <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Custom Price Range</p>
                         <div className="product-type text-gray-400 flex items-center gap-3">
                             <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer w-full justify-between" style={{ border: "1px solid gray" }}>
-                                <input type="number" className="w-full outline-none py-1" placeholder="Min" onChange={e => setMinPrice(e.target.value)} />
+                                <input type="text" className="w-full outline-none py-1" placeholder="Min" onChange={e => setMinPrice(e.target.value)} />
                             </div>
                             <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer w-full justify-between" style={{ border: "1px solid gray" }}>
-                                <input type="number" className="w-full outline-none py-1" placeholder="Max" onChange={e => setMaxPrice(e.target.value)} />
+                                <input type="text" className="w-full outline-none py-1" placeholder="Max" onChange={e => setMaxPrice(e.target.value)} />
                             </div>
                         </div>
-                          {
-                            filterLoader ?
-                            <button className="px-2 py-1 rounded-[4px] w-full mt-5" style={{ border: "1px solid gray" }}>
-                              <Btnloader />
-                            </button>
-                            :
-                            <button onClick={filterProducts} className="px-2 py-1 rounded-[4px] w-full mt-5" style={{ border: "1px solid gray" }}>Go</button>
-                          }
+                        <button onClick={filterProducts} className="px-2 py-1 rounded-[4px] w-full mt-5" style={{ border: "1px solid gray" }}>Go..</button>
                     </div>
                 </div>
                 {/* END DESKTOP FILTER*/}
@@ -209,26 +201,20 @@ const Categories = ({baseUrl}) => {
                           <p className="font-[700] text-[18px] text-primary-color mt-[16px] mb-[10px]">Custom Price Range</p>
                           <div className="product-type text-gray-400 flex items-center gap-3">
                               <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer w-full justify-between" style={{ border: "1px solid gray" }}>
-                                  <input type="text" className="w-full outline-none py-1" onChange={e => setMinPrice(e.target.value)} placeholder="Min" />
+                                  <input type="number" className="w-full outline-none py-1" onChange={e => setMinPrice(e.target.value)} placeholder="Min" />
                               </div>
                               <div className="flex items-center gap-3 px-2 rounded-[4px] cursor-pointer w-full justify-between" style={{ border: "1px solid gray" }}>
-                                  <input type="text" className="w-full outline-none py-1" onChange={e => setMaxPrice(e.target.value)} placeholder="Max" />
+                                  <input type="number" className="w-full outline-none py-1" onChange={e => setMaxPrice(e.target.value)} placeholder="Max" />
                               </div>
                           </div>
-                          {
-                            filterLoader ?
-                            <button className="px-2 py-1 rounded-[4px] w-full mt-5" style={{ border: "1px solid gray" }}>
-                              <Btnloader />
-                            </button>
-                            :
-                            <button onClick={filterProducts} className="px-2 py-1 rounded-[4px] w-full mt-5" style={{ border: "1px solid gray" }}>Go</button>
-                          }
+                          <button onClick={filterProducts} className="px-2 py-1 rounded-[4px] w-full mt-5" style={{ border: "1px solid gray" }}>Go.</button>
                         </div>
                       </div>
                     </div>
                   </>
                 }
                 {/* END MOBILE FILTER*/}
+
 
                 <div className="w-[75%] lg:ml-[2rem] ml-0 category-right">
                     <div className="flex bg-primary-color text-white items-center justify-between rounded-[4px] px-3 py-4 mb-8 mobile-filter">
@@ -243,7 +229,7 @@ const Categories = ({baseUrl}) => {
                     </div>
                     <div className="flex items-center justify-between desktop-filter">
                         <h1 className="font-[600] text-[24px] mb-4 text-primary-color">All Products</h1>
-                        <div className="flex items-center gap-1 py-1 px-2 rounded-full cursor-pointer text-[12px] relative" >
+                        <div className="flex items-center gap-1 py-1 px-2 rounded-full cursor-pointer text-[12px] relative">
                           <div className="border border-[#B6B6B6] px-3 py-2 flex items-center justify-between rounded-full">
                             <input type="text" placeholder="Search" className="outline-none w-[100%]" onChange={e => setSearchText(e.target.value)} />
                             <IoIosSearch className="text-[#B6B6B6] text-[22px]"/>
@@ -268,7 +254,7 @@ const Categories = ({baseUrl}) => {
         <div className="lg:px-12 px-6 py-4 lg:py-8" id="body">
           <div className="flex items-center justify-between">
             <h1 className="font-[600] text-[24px] mb-4 mt-5 text-primary-color">You might also like</h1>
-            <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+            <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }} onClick={() => navigate('/categories')}>
               <p>See all</p>
               <GoArrowRight />
             </div>
@@ -279,4 +265,4 @@ const Categories = ({baseUrl}) => {
   )
 }
 
-export default Categories
+export default CategoryQuery

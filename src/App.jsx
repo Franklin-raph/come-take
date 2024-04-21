@@ -31,6 +31,8 @@ import ConfirmActivateAccountModal from "./components/confirmActivateAccountModa
 import ResetPassword from "./components/reset-password/ResetPassword"
 import ProductDetail from "./pages/product-detail/ProductDetail"
 import VtuServices from "./pages/vtu-services/VtuServices"
+import CategoryQuery from "./pages/categoryQuery/CategoryQuery"
+import CategoryNavQuery from "./pages/categoryNavQuery/CategoryNavQuery"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -83,6 +85,8 @@ export default function App() {
           <Route path="/subscription-plan" element={<Subscription baseUrl={baseUrl}/>} />
           <Route path="/list-product" element={<ListProduct baseUrl={baseUrl}/>} />
           <Route path="/product-detail/:id" element={<ProductDetail baseUrl={baseUrl}/>} />
+          <Route path="/search" element={<CategoryQuery baseUrl={baseUrl}/>} />
+          <Route path="/search-product-category" element={<CategoryNavQuery baseUrl={baseUrl}/>} />
           <Route path="/vtu-services" element={<VtuServices baseUrl={baseUrl}/>} />
         </Routes>
         <Footer />
