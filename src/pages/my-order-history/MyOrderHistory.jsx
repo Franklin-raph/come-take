@@ -14,8 +14,10 @@ const MyOrder = ({baseUrl}) => {
     const [deleteItem, setDeleteItem] = useState(false)
     const [unlistItem, setUnlistItem] = useState(false)
     const [listItem, setListItem] = useState(false)
-    const [allMyProducts, setAllMyProducts] = useState([])
+    const [allMyProducts, setAllMyProducts] = useState()
     const user = JSON.parse(localStorage.getItem('user'))
+    const [desktoploader, setDesktopLoader] = useState(false)
+    const [mobileLoader, setMobileLoader] = useState(false)
 
     const [msg, setMsg] = useState(false)
     const [alertType, setAlertType] = useState('')
@@ -25,13 +27,17 @@ const MyOrder = ({baseUrl}) => {
     },[])
 
     async function getMyShop(){
-        setLoader(true)
+        setDesktopLoader(true)
+        setMobileLoader(true)
         const res = await fetch(`${baseUrl}/seller/dashboard/my-products`,{
             headers:{
                 Authorization:`Bearer ${user.data[0].access}`,
             }
         })
-        if(res) setLoader(false)
+        if(res) {
+            setDesktopLoader(false)
+            setMobileLoader(false)
+        }
         const data = await res.json()
         setAllMyProducts(data.data)
         console.log(data.data);
@@ -124,69 +130,131 @@ const MyOrder = ({baseUrl}) => {
                     <div className='flex justify-between items-center mb-8 '  style={{borderBottom:"1px solid #E6ECEA"}}>
                         <h1 className='text-[#003C2F] text-[24px] font-bold pb-3'>My Shop</h1>
                     </div>
-                {allMyProducts && allMyProducts.length > 0 ?
-                    <div>
-                        {
-                            allMyProducts.map(product => (
-                                <div key={product.id} className='pb-[0.5rem] mb-8 md:hidden' style={{borderBottom:"1px solid #DCDCDC"}}>
-                                    <div className='flex items-center gap-[20px] w-full'>
-                                        <img src={product?.product_cover_image?.media} alt='Product Image' className='w-[150px] h-[150px] object-contain'/>
-                                        <div onClick={() => navigate(`/product-details/${product.id}`)}>
-                                            <p className='text-[12px]'>{product.name}</p>
-                                            <p className='text-[#898989] text-[12px] my-2'>Date Listed : 03/04/2024</p>
-                                            <p className='text-[#898989] text-[12px]'>Price: {product.price.toLocaleString('en-US', {
-                                                style: 'currency',
-                                                currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
-                                            })} 
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className='flex items-center justify-between w-full mt-5'>
-                                        <div className='flex items-center gap-3'>
-                                            <div className='flex items-center gap-2 cursor-pointer'>
-                                                <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}}>Unlist Item</p>
-                                            </div>
-                                        </div>
-                                        <div className='flex items-center gap-3 mt-3 justify-end'>
-                                            <AiOutlineEdit fontSize={"24px"} cursor={"pointer"} color='#292D32'  onClick={() => navigate(`/product-detail/${product.id}`)} />
-                                            <SlTrash fontSize={"18px"} color='#FF0505' cursor={"pointer"} onClick={() => setDeleteItem(product.id)}/>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                        {
-                            allMyProducts && allMyProducts.map(product => (
-                                <div className='pb-[0.5rem] flex-[2] mb-8 items-start justify-between hidden md:flex' style={{borderBottom:"1px solid #DCDCDC"}}>
-                                    <div className='flex items-center gap-[20px] w-full'>
-                                        <img src={product?.product_cover_image?.media} alt='Product Image' className='w-[150px] h-[150px] object-contain'/>
-                                        <div className='flex items-start justify-between w-full'>
-                                            <div className='cursor-pointer' onClick={() => navigate(`/product-details/${product.id}`)}>
-                                                <p className='text-[12px]'>{product.name}</p>
-                                                <p className='text-[#898989] text-[12px] my-2'>Date Listed : {new Date(product.created_at).toDateString()}</p>
-                                                <p className='text-[#898989] text-[12px]'>Price: {product.price.toLocaleString('en-US', {
-                                                    style: 'currency',
-                                                    currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
-                                                })}
-                                                </p>
-                                            </div>
-                                            <div>
-                                                <div className='flex items-center gap-3'>
-                                                    {
-                                                        product.unlist === false ?
-                                                            <div className='flex items-center gap-2 cursor-pointer'>
-                                                                <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}} onClick={() => setUnlistItem(product.id)}>Unlist Item.</p>
-                                                            </div>
-                                                        :
-                                                            <div className='flex items-center gap-2 cursor-pointer'>
-                                                                <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}} onClick={() => setListItem(product.id)}>List Item.</p>
-                                                            </div>
-                                                    }
 
+                        {
+                            // Mobile
+                            allMyProducts && 
+                            <div>
+                                
+                                {
+                                    allMyProducts.length > 0 && allMyProducts.map(product => (
+                                        <div key={product.id} className='pb-[0.5rem] mb-8 md:hidden' style={{borderBottom:"1px solid #DCDCDC"}}>
+                                            <div className='flex items-center gap-[20px] w-full'>
+                                                <img src={product?.product_cover_image?.media} alt='Product Image' className='w-[150px] h-[150px] object-contain'/>
+                                                <div onClick={() => navigate(`/product-details/${product.id}`)}>
+                                                    <p className='text-[12px]'>{product.name}</p>
+                                                    <p className='text-[#898989] text-[12px] my-2'>Date Listed : 03/04/2024</p>
+                                                    <p className='text-[#898989] text-[12px]'>Price: {product.price.toLocaleString('en-US', {
+                                                        style: 'currency',
+                                                        currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
+                                                    })} 
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className='flex items-center justify-between w-full mt-5'>
+                                                <div className='flex items-center gap-3'>
+                                                    <div className='flex items-center gap-2 cursor-pointer'>
+                                                        <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}}>Unlist Item</p>
+                                                    </div>
                                                 </div>
                                                 <div className='flex items-center gap-3 mt-3 justify-end'>
-                                                    <AiOutlineEdit fontSize={"24px"} cursor={"pointer"} color='#292D32'  onClick={() => navigate(`/product-detail/${product.id}`)}/>
+                                                    <AiOutlineEdit fontSize={"24px"} cursor={"pointer"} color='#292D32'  onClick={() => navigate(`/product-detail/${product.id}`)} />
                                                     <SlTrash fontSize={"18px"} color='#FF0505' cursor={"pointer"} onClick={() => setDeleteItem(product.id)}/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                                :
+                                {
+                                    allMyProducts.length === 0 &&
+                                    <div>
+                                        <div className='flex items-center justify-center flex-col'>
+                                            <img src={orderHistoryImage} className='w-[23%] mx-auto mt-9' alt="" />
+                                            <p className='text-[#2B5D52] text-[24px] font-[700] mt-10'>No Item Here yet</p>
+                                            <p className='text-[#6C6C6C] text-[20px] text-center'>all your Listed Items will appear here</p>
+                                            <button className='py-3 px-8 bg-secondary-color rounded-[8px] text-white mt-6' onClick={() => navigate('/list-product')}>List a product</button>
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                        }
+                    
+                        {allMyProducts &&
+                            <div>   
+                                {
+                                    // Desktop
+                                    allMyProducts.length > 0 && allMyProducts.map(product => (
+                                        <div className='pb-[0.5rem] flex-[2] mb-8 items-start justify-between hidden md:flex' style={{borderBottom:"1px solid #DCDCDC"}}>
+                                            <div className='flex items-center gap-[20px] w-full'>
+                                                <img src={product?.product_cover_image?.media} alt='Product Image' className='w-[150px] h-[150px] object-contain'/>
+                                                <div className='flex items-start justify-between w-full'>
+                                                    <div className='cursor-pointer' onClick={() => navigate(`/product-details/${product.id}`)}>
+                                                        <p className='text-[12px]'>{product.name}</p>
+                                                        <p className='text-[#898989] text-[12px] my-2'>Date Listed : {new Date(product.created_at).toDateString()}</p>
+                                                        <p className='text-[#898989] text-[12px]'>Price: {product.price.toLocaleString('en-US', {
+                                                            style: 'currency',
+                                                            currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
+                                                        })}
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <div className='flex items-center gap-3'>
+                                                            {
+                                                                product.unlist === false ?
+                                                                    <div className='flex items-center gap-2 cursor-pointer'>
+                                                                        <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}} onClick={() => setUnlistItem(product.id)}>Unlist Item.</p>
+                                                                    </div>
+                                                                :
+                                                                    <div className='flex items-center gap-2 cursor-pointer'>
+                                                                        <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}} onClick={() => setListItem(product.id)}>List Item.</p>
+                                                                    </div>
+                                                            }
+
+                                                        </div>
+                                                        <div className='flex items-center gap-3 mt-3 justify-end'>
+                                                            <AiOutlineEdit fontSize={"24px"} cursor={"pointer"} color='#292D32'  onClick={() => navigate(`/product-detail/${product.id}`)}/>
+                                                            <SlTrash fontSize={"18px"} color='#FF0505' cursor={"pointer"} onClick={() => setDeleteItem(product.id)}/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    ))
+                                }
+                            :
+                                {
+                                    allMyProducts.length === 0 &&
+                                    <div>
+                                        <div className='flex items-center justify-center flex-col'>
+                                            <img src={orderHistoryImage} className='w-[23%] mx-auto mt-9' alt="" />
+                                            <p className='text-[#2B5D52] text-[24px] font-[700] mt-10'>No Item Here yet</p>
+                                            <p className='text-[#6C6C6C] text-[20px] text-center'>all your Listed Items will appear here</p>
+                                            <button className='py-3 px-8 bg-secondary-color rounded-[8px] text-white mt-6' onClick={() => navigate('/list-product')}>List a product</button>
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                        }
+
+                        {
+                            desktoploader &&
+                            [1,2,3].map(() => (
+                                <div className='animate-pulse pb-[0.5rem] flex-[2] mb-8 items-start justify-between hidden md:flex' style={{borderBottom:"1px solid #DCDCDC"}}>
+                                    <div className='flex items-center gap-[20px] w-full'>
+                                        <div alt='Product Image' className='w-[150px] h-[120px] bg-slate-200 rounded-[10px]'/>
+                                        <div className='flex items-start justify-between w-full'>
+                                            <div className='cursor-pointer'>
+                                                <p className='text-[12px] bg-slate-200 h-[14px] w-[100px] rounded-full'></p>
+                                                <p className='text-[#898989] text-[12px] my-2 bg-slate-200 h-[14px] w-[130px] rounded-full'></p>
+                                                <p className='text-[#898989] text-[12px] bg-slate-200 h-[14px] w-[150px] rounded-full'></p>
+                                            </div>
+                                            <div>
+                                                <div className='flex flex-col items-end justify-end gap-2 cursor-pointer'>
+                                                    <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px] bg-slate-200 h-[14px] w-[70px]'></p>
+                                                    <p  className='flex items-center gap-3 justify-end rounded-full text-[12px] bg-slate-200 h-[14px] w-[50px]'></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -194,44 +262,32 @@ const MyOrder = ({baseUrl}) => {
                                 </div> 
                             ))
                         }
-                    </div>
-                    :
-                    [1,2,3].map(() => (
-                        <div className='animate-pulse pb-[0.5rem] flex-[2] mb-8 items-start justify-between hidden md:flex' style={{borderBottom:"1px solid #DCDCDC"}}>
-                            <div className='flex items-center gap-[20px] w-full'>
-                                <div alt='Product Image' className='w-[150px] h-[120px] bg-slate-200 rounded-[10px]'/>
-                                <div className='flex items-start justify-between w-full'>
-                                    <div className='cursor-pointer'>
-                                        <p className='text-[12px] bg-slate-200 h-[14px] w-[100px] rounded-full'></p>
-                                        <p className='text-[#898989] text-[12px] my-2 bg-slate-200 h-[14px] w-[130px] rounded-full'></p>
-                                        <p className='text-[#898989] text-[12px] bg-slate-200 h-[14px] w-[150px] rounded-full'></p>
+
+                        {
+                            mobileLoader &&
+                            [1,2,3].map(() => (
+                                <div className='pb-[0.5rem] mb-8 md:hidden animate-pulse' style={{borderBottom:"1px solid #DCDCDC"}}>
+                                    <div className='flex items-center gap-[20px] w-full'>
+                                        <div alt='Product Image' className='w-[150px] h-[150px] object-contain bg-slate-200 rounded-[10px]'/>
+                                        <div className='cursor-pointer'>
+                                            <p className='text-[12px] bg-slate-200 h-[14px] w-[100px] rounded-full'></p>
+                                            <p className='text-[#898989] text-[12px] my-2 bg-slate-200 h-[14px] w-[130px] rounded-full'></p>
+                                            <p className='text-[#898989] text-[12px] bg-slate-200 h-[14px] w-[150px] rounded-full'></p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <div className='flex flex-col items-end justify-end gap-2 cursor-pointer'>
+                                    <div className='flex items-center justify-between w-full mt-5'>
+                                        <div className='flex items-center gap-3'>
+                                            <div className='flex items-center gap-2 cursor-pointer'>
+                                                <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px] bg-slate-200 h-[14px] w-[70px]'></p>
+                                            </div>
+                                        </div>
+                                        <div className='flex items-center gap-3 mt-3 justify-end'>
                                             <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px] bg-slate-200 h-[14px] w-[70px]'></p>
-                                            <p  className='flex items-center gap-3 justify-end rounded-full text-[12px] bg-slate-200 h-[14px] w-[50px]'></p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div> 
-                    ))
-                }
-
-                {
-                    allMyProducts && allMyProducts.length === 0?
-                    <div>
-                        <div className='flex items-center justify-center flex-col'>
-                            <img src={orderHistoryImage} className='w-[23%] mx-auto mt-9' alt="" />
-                            <p className='text-[#2B5D52] text-[24px] font-[700] mt-10'>No Item Here yet</p>
-                            <p className='text-[#6C6C6C] text-[20px] text-center'>all your Listed Items will appear here</p>
-                            <button className='py-3 px-8 bg-secondary-color rounded-[8px] text-white mt-6' onClick={() => navigate('/list-product')}>List a product</button>
-                        </div>
-                    </div>
-                    :
-                    ""
-                }
-
+                            ))
+                        }
                 </div>
             </div>
         </div>
@@ -327,35 +383,6 @@ const MyOrder = ({baseUrl}) => {
             {
                 msg && <Alert msg={msg} setMsg={setMsg} alertType={alertType}/>
             }
-
-            {
-                !loader &&
-                [1,2,3].map(() => (
-                    <div className='pb-[0.5rem] mb-8 md:hidden' style={{borderBottom:"1px solid #DCDCDC"}}>
-                        <div className='flex items-center gap-[20px] w-full'>
-                            <img alt='Product Image' className='w-[150px] h-[150px] object-contain bg-slate-400 rounded-[10px]'/>
-                            <div>
-                                <p className='text-[12px]'></p>
-                                <p className='text-[#898989] text-[12px] my-2'>Date Listed : 03/04/2024</p>
-                                <p className='text-[#898989] text-[12px]'></p>
-                            </div>
-                        </div>
-                        <div className='flex items-center justify-between w-full mt-5'>
-                            <div className='flex items-center gap-3'>
-                                <div className='flex items-center gap-2 cursor-pointer'>
-                                    <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}}>Unlist Item</p>
-                                </div>
-                            </div>
-                            <div className='flex items-center gap-3 mt-3 justify-end'>
-                                <AiOutlineEdit fontSize={"24px"} cursor={"pointer"} color='#292D32'  onClick={() => navigate(`/product-detail/${product.id}`)} />
-                                <SlTrash fontSize={"18px"} color='#FF0505' cursor={"pointer"} onClick={() => setDeleteItem(product.id)}/>
-                            </div>
-                        </div>
-                    </div>
-                ))
-            }
-
-            
     </div>
   )
 }
