@@ -7,7 +7,7 @@ import AwaitingVerification from '../../../components/awaitingVerifircation/Awai
 import RejectSellerVerification from '../../../components/rejectSellerVerification/RejectSellerVerification';
 
 const IdVerification = ({baseUrl}) => {
-  const idTypeArray = ["drivers_licence", "national_id_card", "international_passport", "voters_card", "others"];
+  const idTypeArray = ["drivers_licence", "national_id_card", "international_passport", "voters_card"];
   const [idTypeDropDown, setIdTypeDropDown] = useState(false);
   const [selectedIdType, setSelectedIdType] = useState(idTypeArray[0]);
   const [fileFront, setFileFront] = useState(null);
@@ -178,17 +178,9 @@ const IdVerification = ({baseUrl}) => {
                 <input onChange={e => setIdCardNumber(e.target.value)} type="text" style={{ border: "1px solid #DCDCDC" }} className='w-full p-2 rounded-[6px]' placeholder={`${selectedIdType} Number`} />
               </div>
             </div>
-            <div className='mt-5 flex items-center gap-[15px] lg:gap-[30px] w-full'>
+            <div className='mt-5 flex flex-col md:flex-row items-center gap-[15px] lg:gap-[30px] w-full'>
               <div className='w-full'>
                 <p className='mb-[5px]'>Upload {selectedIdType}</p>
-                {/* {
-                  fileFrontUploadSuccess ? 
-                      <div className='flex items-center justify-between border border-[#DCDCDC] p-[10px] rounded-[6px]'>
-                        <p className='text-[12px] text-gray-500'>File Upload was successfull</p>
-                        <IoCheckmarkCircle className='text-green-500'/>
-                      </div>
-                    : */}
-                      {/* } */}
                       <div className="flex flex-row items-center rounded-[6px]" style={{ border: "1px solid #DCDCDC" }}>
                         <input
                           type="file"
@@ -211,14 +203,6 @@ const IdVerification = ({baseUrl}) => {
 
               <div className='w-full'>
                 <p className='mb-[5px]'>Upload {selectedIdType}</p>
-                {/* {
-                  fileBackUploadSuccess ? 
-                      <div className='flex items-center justify-between border border-[#DCDCDC] p-[10px] rounded-[6px]'>
-                        <p className='text-[12px] text-gray-500'>File Upload was successfull</p>
-                        <IoCheckmarkCircle className='text-green-500'/>
-                      </div>
-                    : */}
-                  {/* } */}
                   <div className="flex flex-row items-center rounded-[6px]" style={{ border: "1px solid #DCDCDC" }}>
                     <input
                       type="file"

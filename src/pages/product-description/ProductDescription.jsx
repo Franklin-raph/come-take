@@ -148,7 +148,6 @@ const ProductDescription = ({baseUrl}) => {
                                 </div>
                                 <div className='flex items-center justify-start gap-1 mt-2'>
                                     <IoEyeOutline color='#6C6C6C' fontSize="20px"/>
-                                    <p className='text-[#898989]'>963 views</p>
                                 </div>
                                 <p className='text-[#898989] mt-2'>Availability: {product.in_stock.toString()}</p>
                                 {/* <div className="flex items-center">
