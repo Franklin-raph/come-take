@@ -165,7 +165,7 @@ const MyOrder = ({baseUrl}) => {
                                         </div>
                                     ))
                                 }
-                                :
+                                
                                 {
                                     allMyProducts.length === 0 &&
                                     <div>
@@ -223,7 +223,7 @@ const MyOrder = ({baseUrl}) => {
                                         </div> 
                                     ))
                                 }
-                            :
+                            
                                 {
                                     allMyProducts.length === 0 &&
                                     <div>
