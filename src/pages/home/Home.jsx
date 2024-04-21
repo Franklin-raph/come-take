@@ -4,7 +4,6 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 import TopCategories from "../../components/top-categories/TopCategories";
 import TrendingProducts from "../../components/trending-products/TrendingProducts";
-import RecommendedProducts from "../../components/recommended-products/RecommendedProducts";
 
 import furnitureImage from "../../assets/furniture.png"
 import fashionImage from "../../assets/fashion.png"
@@ -12,32 +11,14 @@ import ElectronicsImage from "../../assets/electronics.png"
 import PhonesImage from "../../assets/phone.png"
 import sportsImage from "../../assets/sports.png"
 import computingImage from "../../assets/computing.png"
-import laptopImage from "../../assets/laptop.png"
-import bagImage from "../../assets/bag.png"
-import shoeImage from "../../assets/shoe.png"
-import phoneImage from "../../assets/iphone.png"
-import tripodStand from "../../assets/tripod-stand.png"
-import fridge from "../../assets/fridge.png"
-import gym from "../../assets/gym.png"
-import stove from "../../assets/stove.png"
 import { GoArrowRight } from "react-icons/go";
 import NewlyListedProducts from "../../components/newly-listed-products/NewlyListedProducts";
 import FairlyUsedProducts from "../../components/fairly-used-products/FairlyUsedProducts";
 import BrandNewProducts from "../../components/brand-new-products/BrandNewProducts";
 import { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
-import img1 from '../../assets/landingPageBgImg.png'
-import img2 from '../../assets/Frame376.png'
-import img3 from '../../assets/Frame380.png'
-import leftArrow from "../../assets/arrow-left.svg"
-import rightArrow from "../../assets/arrow-right.svg"
-import { IoChevronBack } from "react-icons/io5";
-import NewsLetter from "../../components/news-letter/NewsLetter";
-import ProductCard from '../../components/productCard/ProductCard';
-import { RiVerifiedBadgeFill } from 'react-icons/ri';
-import { CiBookmark, CiLocationOn } from 'react-icons/ci';
+import img2 from '../../assets/landingPageBgImg.png'
 
-import Carousel from "react-elastic-carousel";
 import { useNavigate } from 'react-router-dom';
 import SkeletonLoader from '../../components/skeleton-loader/SkeletonLoader';
 
@@ -104,82 +85,6 @@ async function getCatgories(){
     },
   ]
 
-  const trendingProductsArray = [
-    {
-      name:`Hand Bag`,
-      price:"2m",
-      warranty_address:"Imo State",
-    },
-    {
-      name:`Hand Bag`,
-      price:"2m",
-      warranty_address:"Imo State",
-    },
-    {
-      name:`Hand Bag`,
-      price:"2m",
-      warranty_address:"Imo State",
-    },
-    {
-      name:`Hand Bag`,
-      price:"2m",
-      warranty_address:"Imo State",
-    },
-  ]
-
-//   const options = {
-//     margin: 0,
-//     responsiveClass: true,
-//     nav: true,
-//     dots: true,
-//     autoplay: true,
-//     navText: true,
-//     navText: ['<i class="ri-arrow-left-s-line"></i>','<i class="ri-arrow-right-s-line"></i>'],
-//     smartSpeed: 1000,
-//     loop:true,
-//     responsive: {
-//         0: {
-//             items: 1,
-//         }
-//     },
-// };
-
-const options = {
-  margin: 20,
-  responsiveClass: true,
-  nav: true,
-  dots: true,
-  autoplay: false,
-  navText: true,
-  navText: ['<i class="ri-arrow-left-s-line"></i>','<i class="ri-arrow-right-s-line"></i>'],
-  smartSpeed: 1000,
-  loop:true,
-  responsive: {
-      0: {
-          items: 2,
-      },
-      400: {
-          items: 2,
-      },
-      600: {
-          items: 2,
-      },
-      700: {
-          items: 3,
-      },
-      1000: {
-          items: 4,
-
-      }
-  },
-};
-
-const breakPoints = [
-  { width: 1, itemsToShow: 1 },
-  { width: 550, itemsToShow: 2 },
-  { width: 768, itemsToShow: 3 },
-  { width: 1200, itemsToShow: 4 },
-];
 
 const [seachString, setSeachString] = useState('')
 
