@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import orderHistoryImage from "../../assets/history.png"
 import ProfileSideNav from '../../components/profile-side-nav/ProfileSideNav';
-import laptop1 from "../../assets/category-product-preview.png"
-import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { SlTrash } from "react-icons/sl";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
@@ -27,13 +25,14 @@ const MyOrder = ({baseUrl}) => {
     },[])
 
     async function getMyShop(){
+        setLoader(true)
         const res = await fetch(`${baseUrl}/seller/dashboard/my-products`,{
             headers:{
                 Authorization:`Bearer ${user.data[0].access}`,
             }
         })
+        if(res) setLoader(false)
         const data = await res.json()
-        // setSelectedImage(data.data.product_image[0].media)
         setAllMyProducts(data.data)
         console.log(data.data);
     }
@@ -124,7 +123,6 @@ const MyOrder = ({baseUrl}) => {
                 <div className='gap-[0rem] px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 password-reset w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <div className='flex justify-between items-center mb-8 '  style={{borderBottom:"1px solid #E6ECEA"}}>
                         <h1 className='text-[#003C2F] text-[24px] font-bold pb-3'>My Shop</h1>
-                        {/* <button onClick={() => setOrderHistory(!orderHistory)}>Click me!!</button> */}
                     </div>
                 {allMyProducts && allMyProducts.length > 0 ?
                     <div>
@@ -145,9 +143,6 @@ const MyOrder = ({baseUrl}) => {
                                     </div>
                                     <div className='flex items-center justify-between w-full mt-5'>
                                         <div className='flex items-center gap-3'>
-                                            {/* <div className='flex items-center gap-2 py-1 px-2 rounded-full' style={{border:"1px solid #B6B6B6"}}>
-                                                <RiVerifiedBadgeFill color='#DF9007'/>
-                                            </div> */}
                                             <div className='flex items-center gap-2 cursor-pointer'>
                                                 <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}}>Unlist Item</p>
                                             </div>
@@ -177,9 +172,6 @@ const MyOrder = ({baseUrl}) => {
                                             </div>
                                             <div>
                                                 <div className='flex items-center gap-3'>
-                                                    {/* <div className='flex items-center gap-2 py-1 px-2 rounded-full' style={{border:"1px solid #B6B6B6"}}>
-                                                        <RiVerifiedBadgeFill color='#DF9007'/>
-                                                    </div> */}
                                                     {
                                                         product.unlist === false ?
                                                             <div className='flex items-center gap-2 cursor-pointer'>
@@ -214,8 +206,6 @@ const MyOrder = ({baseUrl}) => {
                     </div>
                 }
 
-                {/* {!orderHistory &&
-                } */}
                 </div>
             </div>
         </div>
@@ -224,7 +214,6 @@ const MyOrder = ({baseUrl}) => {
             {deleteItem &&
             <>
                 <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setDeleteItem(false)}></div>
-                {/* // <div className="bg-white w-[500px] flex items-center justify-center fixed top-[50%] left-[50%] py-[50px] px-[2rem] z-[100] login-modal" style={{ transform: "translate(-50%, -50%)" }}></div> */}
                     <div className="fixed top-[50%] left-[50%] z-[99] flex items-center justify-center" style={{ transform: "translate(-50%, -50%)" }}>
                         <div className="bg-white md:w-[550px] w-[300px] md:h-[250px] h-[280px] rounded-[8px]">
                             <div className='flex items-center justify-between border-b border-[#DCDCDC] md:mx-8 md:px-0 px-3 md:mt-5 mt-3'>
@@ -283,7 +272,6 @@ const MyOrder = ({baseUrl}) => {
             {listItem &&
             <>
                 <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setListItem(false)}></div>
-                {/* // <div className="bg-white w-[500px] flex items-center justify-center fixed top-[50%] left-[50%] py-[50px] px-[2rem] z-[100] login-modal" style={{ transform: "translate(-50%, -50%)" }}></div> */}
                     <div className="fixed top-[50%] left-[50%] z-[99] flex items-center justify-center" style={{ transform: "translate(-50%, -50%)" }}>
                         <div className="bg-white md:w-[550px] w-[300px] md:h-[250px] h-[280px] rounded-[8px]">
                             <div className='flex items-center justify-between border-b border-[#DCDCDC] md:mx-8 md:px-0 px-3 md:mt-5 mt-3'>

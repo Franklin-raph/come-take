@@ -21,6 +21,7 @@ import { FaRegBookmark } from "react-icons/fa6";
 import { CiUser } from "react-icons/ci";
 import { useParams } from 'react-router-dom'
 import moment from 'moment';
+import SkeletonLoader from '../../components/skeleton-loader/SkeletonLoader'
 
 
 const ProductDescription = ({baseUrl}) => {
@@ -29,6 +30,8 @@ const ProductDescription = ({baseUrl}) => {
     const { id } = useParams()
     const [product, setProduct] = useState()
     const user = JSON.parse(localStorage.getItem('user'))
+    const [loader, setLoader] = useState(false)
+    const [allProductsLoader, setAllProductsLoader] = useState(false)
 
     useEffect(() => {
         getProductDescription()
@@ -38,8 +41,10 @@ const ProductDescription = ({baseUrl}) => {
 
 
     async function getProductDescription(){
+        setLoader(true)
         const res = await fetch(`${baseUrl}/products/${id}`)
         const data = await res.json()
+        if(res) setLoader(false)
         setSelectedImage(data.data.product_image[0]?.media)
         setProduct(data.data)
         console.log(data.data);
@@ -48,8 +53,10 @@ const ProductDescription = ({baseUrl}) => {
     const [allProducts, setAllProducts] = useState([])
 
     async function getAllProducts(){
+        setAllProductsLoader(true)
         const res = await fetch(`${baseUrl}/products`)
         const data = await res.json()
+        if(res) setAllProductsLoader(false)
         setAllProducts(data.data)
         console.log(data);
     }
@@ -165,17 +172,6 @@ const ProductDescription = ({baseUrl}) => {
                                 </div>
                                 <p className='text-[#ff3030] lg:block hidden capitalize'>{product.condition}</p>
                                 <div className='h-[1px] bg-[#ccc] my-4'></div>
-                                {/* <div className="flex items-center gap-4 justify-between">
-                                    <p className='text-[#ff3030] lg:hidden block'>Fairly Used</p>
-                                    <div className="flex items-center gap-4 mt-2">
-                                        <p className='text-[#898989]'>Quantity</p>
-                                        <div className='flex items-center justify-center gap-2 border border-[#B5AEAE] rounded-[4px] w-[120px] text-center h-[30px]'>
-                                            <p style={{ borderRight:"1px solid gray" }} className='flex-1 px-2 text-[#B5AEAE] cursor-pointer h-full'>-</p>
-                                            <p className='flex-1'>1</p>
-                                            <p style={{ borderLeft:"1px solid gray" }} className='flex-1 px-2 text-[#B5AEAE] cursor-pointer h-full'>+</p>
-                                        </div>
-                                    </div>
-                                </div> */}
                                 <div className="flex items-center gap-[15px] mt-6">
                                     <a href={`https://wa.me/${product.seller.phone}`} className='rounded-[5px] bg-primary-color text-white md:px-[35px] px-[20px] py-[8px] w-[50%] text-center' target='_blank' >Message Seller</a>
                                     <a className='rounded-[5px] text-primary-color border border-primary-color px-[20px] md:px-[35px] py-[8px] w-[50%] text-center' target='_blank' href={`tel:${product.seller.phone}`}>Call Seller</a>
@@ -441,6 +437,16 @@ const ProductDescription = ({baseUrl}) => {
                     </div>
                 </div>
                 <FairlyUsedProducts allProducts={allProducts}/>
+                {
+                    allProductsLoader && 
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
+                    {
+                        [1,1,1].map(() => (
+                        <SkeletonLoader />
+                        ))
+                    }
+                    </div>
+              }
             </div>
         </div>
 
@@ -454,6 +460,16 @@ const ProductDescription = ({baseUrl}) => {
                     </div>
                 </div>
                 <FairlyUsedProducts allProducts={allProducts}/>
+                {
+                    allProductsLoader && 
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
+                    {
+                        [1,1,1].map(() => (
+                        <SkeletonLoader />
+                        ))
+                    }
+                    </div>
+              }
             </div>
         </div>
     </div>

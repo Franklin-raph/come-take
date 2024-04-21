@@ -285,7 +285,7 @@ const [seachString, setSeachString] = useState('')
                 loader && 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
                   {
-                    [1,1].map(() => (
+                    [1,1,1].map(() => (
                       <SkeletonLoader />
                     ))
                   }
@@ -333,7 +333,7 @@ const [seachString, setSeachString] = useState('')
                 loader && 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
                   {
-                    [1,1].map(() => (
+                    [1,1,1].map(() => (
                       <SkeletonLoader />
                     ))
                   }

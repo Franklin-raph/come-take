@@ -1,7 +1,7 @@
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import roundedImage from "../../assets/rounded.png"
 import { CiCirclePlus, CiSearch } from "react-icons/ci";
-import { GoChevronRight } from "react-icons/go";
+import { GoChevronDown } from "react-icons/go";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useEffect, useState } from "react";
@@ -598,13 +598,41 @@ const [category, setCategory] = useState('')
             </div>
             <div className="w-full">
                 <p>Category</p>
-                <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
-                    {/* {
-                        categoryText
-                    } */}
-                    <input onChange={e => setCategory(e.target.value)} value={category} type="text" className="outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Choose Categories" />
-                    <GoChevronRight color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} onClick={() => setCategoryNav(!categoryNav)}/>
+                <div onClick={() => setCategoryNav(!categoryNav)} className="cursor-pointer flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
+                    <input onChange={e => setCategory(e.target.value)} value={category} type="text" className="cursor-pointer outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Choose Categories" />
+                    <GoChevronDown color="#B6B6B6" fontSize={"20px"} cursor={"pointer"}/>
                 </div>
+                {
+                    categoryNav &&
+                        <>
+                            <div className="absolute top-[90px] bg-white w-full rounded-[6px] py-3 px-4 z-10">
+                                <div className="bg-white w-full h-[400px] border border-gray-500 rounded-[6px] pb-6 absolute right-0 top-0 px-5 overflow-y-scroll">
+                                    <div className="border border-[#989898] rounded-full flex items-center justify-between mt-5 px-3 py-[7px]">
+                                        <input type="text" className="w-full outline-none" placeholder="Search For Categories" onChange={e => setCategorySearchText(e.target.value)}/>
+                                        <CiSearch fontSize={"20px"} />
+                                    </div>
+                                    <div className="border border-[#989898] px-5 mt-4 rounded">
+                                        {
+                                            allCategoryArray && allCategoryArray.filter((item) => {
+                                                if (categorySearchText === "") return item
+                                                else if (item.name.toLowerCase().includes(categorySearchText.toLowerCase())) return item
+                                            })
+                                            .map(category => (
+                                                <div className="flex items-center gap-2 my-2 cursor-pointer justify-between" onClick={() => {
+                                                    setCategory(category.id)
+                                                    setCategoryText(category.name)
+                                                    setCategoryNav(false)
+                                                    }}>
+                                                    <p className="text-[#101010]">{category.name}</p>
+                                                    <IoChevronForwardOutline color="#B6B6B6"/>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                }
             </div>
         </div>
         <div className="flex items-center gap-5 mt-5 flex-col sm:flex-row">
@@ -614,9 +642,9 @@ const [category, setCategory] = useState('')
             </div>
             <div className="w-full relative">
                 <p>Product Color</p>
-                <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
-                    <input value={color} onChange={e => setColor(e.target.value)} type="text" className="outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Product Color" />
-                    <GoChevronRight color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} onClick={() => setProductColor(!productColor)}/>
+                <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2 cursor-pointer" style={{ border:"1.5px solid #CCCCCC" }} onClick={() => setProductColor(!productColor)}>
+                    <input value={color} onChange={e => setColor(e.target.value)} type="text" className="cursor-pointer outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Product Color" />
+                    <GoChevronDown color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} />
                 </div>
                     {
                         productColor &&
@@ -646,9 +674,9 @@ const [category, setCategory] = useState('')
         <div className="flex items-center gap-5 mt-5 flex-col sm:flex-row">
             <div className="w-full relative">
                 <p>In Stock</p>
-                <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
-                    <input value={in_stock} onChange={e => setInStock(e.target.value)} type="text" className="outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Product in stock?" />
-                    <GoChevronRight color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} onClick={() => setInStockDropDown(!inStockDropDown)}/>
+                <div onClick={() => setInStockDropDown(!inStockDropDown)} className="cursor-pointer flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
+                    <input value={in_stock} onChange={e => setInStock(e.target.value)} type="text" className="cursor-pointer outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Product in stock?" />
+                    <GoChevronDown color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} />
                 </div>
                     {
                         inStockDropDown &&
@@ -666,9 +694,9 @@ const [category, setCategory] = useState('')
             </div>
             <div className="w-full relative">
                 <p>Condition</p>
-                <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
-                    <input value={condition} onChange={e => setCondition(e.target.value)} type="text" className="outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Product Condition" />
-                    <GoChevronRight color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} onClick={() => setProductCondition(!productCondition)}/>
+                <div onClick={() => setProductCondition(!productCondition)} className="cursor-pointer flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
+                    <input onChange={e => setCondition(e.target.value)} value={condition} type="text" className="cursor-pointer outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Product Condition" />
+                    <GoChevronDown color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} />
                 </div>
                     {
                         productCondition &&
@@ -698,9 +726,9 @@ const [category, setCategory] = useState('')
       <div className="flex items-center gap-5 mt-5 flex-col sm:flex-row">
             <div className="w-full relative">
                 <p>Warranty Duration</p>
-                <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
-                    <input value={warranty_duration} onChange={e => setWarrantyDuration(e.target.value)} type="text" className="outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Warranty Duration" />
-                    <GoChevronRight color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} onClick={() => setWarrantyDurationDropDown(!warrantyDurationDropDown)}/>
+                <div onClick={() => setWarrantyDurationDropDown(!warrantyDurationDropDown)} className="cursor-pointer flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
+                    <input onChange={e => setWarrantyDuration(e.target.value)} value={warranty_duration} type="text" className="cursor-pointer outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Warranty Duration" />
+                    <GoChevronDown color="#B6B6B6" fontSize={"20px"} cursor={"pointer"}/>
                 </div>
                     {
                         warrantyDurationDropDown &&
@@ -718,9 +746,9 @@ const [category, setCategory] = useState('')
             </div>
             <div className="w-full relative">
                 <p>Warranty Type</p>
-                <div className="flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
-                    <input value={warranty_duration_type} onChange={e => setWarrantyDurationType(e.target.value)} type="text" className="outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Type of warranty Service Available" />
-                    <GoChevronRight color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} onClick={() => setWarrantyType(!warrantyType)}/>
+                <div onClick={() => setWarrantyType(!warrantyType)} className="cursor-pointer flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
+                    <input onChange={e => setWarrantyDurationType(e.target.value)} value={warranty_duration_type} type="text" className="cursor-pointer outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Type of warranty Service Available" />
+                    <GoChevronDown color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} />
                 </div>
                     {
                         warrantyType &&
@@ -742,37 +770,6 @@ const [category, setCategory] = useState('')
             <input type="text" onChange={e => setWarrantyAddress(e.target.value)} className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="Address of warranty service" style={{ border:"1.5px solid #CCCCCC" }}/>
         </div>
       </div>
-
-      {
-        categoryNav &&
-            <div className="fixed h-full w-full top-0 left-0 z-[99] flex items-center justify-center" style={{ background:"rgba(18, 18, 18, 0.8)" }}>
-                <div className="bg-white w-[400px] h-[600px] absolute right-0 top-0 px-5 overflow-y-scroll">
-                    <IoIosCloseCircleOutline className="absolute right-[10px] text-[20px] cursor-pointer top-[20px]" onClick={() => setCategoryNav(false)}/>
-                    <p className="text-[#101010] mt-[65px] text-[24px] pb-2" style={{ borderBottom:"1px solid #E6ECEA" }}>Categories</p>
-                    <div className="border border-[#989898] rounded-full flex items-center justify-between mt-5 px-3 py-[7px]">
-                        <input type="text" className="w-full outline-none" placeholder="Search For Categories"/>
-                        <CiSearch fontSize={"20px"}/>
-                    </div>
-                    {/* <p className="mt-9">{currentCategory}</p> */}
-                    <div className="border border-[#989898] px-5 mt-4 rounded">
-                        {
-                            allCategoryArray.map(category => (
-                                <div className="flex items-center gap-2 my-2 cursor-pointer" onClick={() => {
-                                    // setCurrentCategory(category)
-                                    // setCurrentCategoryArray(category)
-                                    setCategory(category.id)
-                                    setCategoryText(category.name)
-                                    setCategoryNav(false)
-                                    }}>
-                                    <p className="text-[#101010]">{category.name}</p>
-                                    <IoChevronForwardOutline color="#B6B6B6"/>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-            </div>
-      }
       {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
       {
             fileUploadLoader &&
