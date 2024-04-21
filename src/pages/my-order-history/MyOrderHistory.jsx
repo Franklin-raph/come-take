@@ -218,7 +218,7 @@ const MyOrder = ({baseUrl}) => {
                     ))
                 }
 
-                {/* {
+                {
                     allMyProducts && allMyProducts.length === 0?
                     <div>
                         <div className='flex items-center justify-center flex-col'>
@@ -230,12 +230,7 @@ const MyOrder = ({baseUrl}) => {
                     </div>
                     :
                     ""
-                } */}
-
-                {/* {
-                    loader &&
-                    
-                } */}
+                }
 
                 </div>
             </div>
