@@ -199,7 +199,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
         {
             mobileNav &&
             <div className='fixed z-[999] w-full h-full' style={{ background:"rgba(0, 0, 0, 0.7)" }} onClick={() => setMobileNav(false)}>
-                <ul className='bg-white w-[50%] px-5 py-[20px] h-full flex flex-col gap-[.8rem]'>
+                <ul className='bg-white md:w-[50%] w-[70%] px-5 py-[20px] h-full flex flex-col gap-[.8rem]'>
                     <li className='flex items-center justify-between mb-6'>
                         <p>Logo</p>
                         <MdClose color='#797979' fontSize={"25px"} cursor={"pointer"} onClick={() => setMobileNav(false)}/>

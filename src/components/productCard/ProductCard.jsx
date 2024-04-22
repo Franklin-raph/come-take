@@ -46,9 +46,9 @@ const ProductCard = ({ product, baseUrl }) => {
                     <div className="flex items-center justify-between">
                         <h1>{product.name}</h1>
                     </div>
-                    <div className="flex items-center gap-1 ml-[-3px]">
-                        <CiLocationOn />
-                        <p className="text-[14px] py-1">{product.warranty_address}</p>
+                    <div className="flex items-start gap-1 ml-[-3px] my-2">
+                        <CiLocationOn className="mt-1"/>
+                        <p className="text-[12px] md:text-[14px]">{product.warranty_address}</p>
                     </div>
                     <div className="flex items-center justify-between">
                         <div className="flex items-center reviews">

@@ -143,7 +143,7 @@ const MyOrder = ({baseUrl}) => {
                                                 <img src={product?.product_cover_image?.media} alt='Product Image' className='w-[150px] h-[150px] object-contain'/>
                                                 <div onClick={() => navigate(`/product-details/${product.id}`)}>
                                                     <p className='text-[12px]'>{product.name}</p>
-                                                    <p className='text-[#898989] text-[12px] my-2'>Date Listed : 03/04/2024</p>
+                                                    <p className='text-[#898989] text-[12px] my-2'>Date Listed : {new Date(product.created_at).toDateString()}</p>
                                                     <p className='text-[#898989] text-[12px]'>Price: {product.price.toLocaleString('en-US', {
                                                         style: 'currency',
                                                         currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
@@ -154,7 +154,17 @@ const MyOrder = ({baseUrl}) => {
                                             <div className='flex items-center justify-between w-full mt-5'>
                                                 <div className='flex items-center gap-3'>
                                                     <div className='flex items-center gap-2 cursor-pointer'>
-                                                        <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}}>Unlist Item</p>
+                                                        {
+                                                            product.unlist === false ?
+                                                                <div className='flex items-center gap-2 cursor-pointer'>
+                                                                    <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}} onClick={() => setUnlistItem(product.id)}>Unlist Item.</p>
+                                                                </div>
+                                                            :
+                                                                <div className='flex items-center gap-2 cursor-pointer'>
+                                                                    <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}} onClick={() => setListItem(product.id)}>List Item.</p>
+                                                                </div>
+                                                        }
+                                                        {/* <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}}>Unlist Item</p> */}
                                                     </div>
                                                 </div>
                                                 <div className='flex items-center gap-3 mt-3 justify-end'>
@@ -176,7 +186,6 @@ const MyOrder = ({baseUrl}) => {
                                             <button className='py-3 px-8 bg-secondary-color rounded-[8px] text-white mt-6' onClick={() => navigate('/list-product')}>List a product</button>
                                         </div>
                                     </div>
-
                                 }
                             </div>
                         }
@@ -211,7 +220,6 @@ const MyOrder = ({baseUrl}) => {
                                                                         <p className='text-[#4E4E4E] py-1 px-2 rounded-full text-[12px]' style={{border:"1px solid #B6B6B6"}} onClick={() => setListItem(product.id)}>List Item.</p>
                                                                     </div>
                                                             }
-
                                                         </div>
                                                         <div className='flex items-center gap-3 mt-3 justify-end'>
                                                             <AiOutlineEdit fontSize={"24px"} cursor={"pointer"} color='#292D32'  onClick={() => navigate(`/product-detail/${product.id}`)}/>
