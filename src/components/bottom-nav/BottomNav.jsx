@@ -104,9 +104,14 @@ const BottomNav = () => {
             <li onClick={() => checkSellersSub()}>
                 List Product
             </li>
-            <li onClick={() => checkIsSellerVerified()}>
-                Sell Products
-            </li>
+            {
+                userDetails?.updated_store ?
+                ""
+                :
+                <li onClick={() => checkIsSellerVerified()}>
+                    Sell Products
+                </li>
+            }
             {/* <li>
                 <Link to="#">Trending Products</Link>
             </li> */}

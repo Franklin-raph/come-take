@@ -8,12 +8,18 @@ import bagImage from "../../assets/bag.png"
 import shoeImage from "../../assets/shoe.png"
 import phoneImage from "../../assets/iphone.png"
 import SkeletonLoader from '../../components/skeleton-loader/SkeletonLoader';
+import { CiBookmark, CiLocationOn } from 'react-icons/ci';
+import { RiVerifiedBadgeFill } from 'react-icons/ri';
+import Alert from '../../components/alert/Alert';
 
 const SavedItems = () => {
 
-    const [savedItems, setSavedItems] = useState([])
+    const [savedItems, setSavedItems] = useState()
     const user = JSON.parse(localStorage.getItem('user'))
     const [loader, setLoader] = useState(false)
+
+    const [msg, setMsg] = useState(false)
+    const [alertType, setAlertType] = useState('')
 
     const savedItemsArray = [
         {
@@ -78,6 +84,30 @@ const SavedItems = () => {
       console.log(res,data)
   }
 
+  async function unSaveProduct(productId){
+    console.log(JSON.stringify({
+        product:productId,
+        user:user.data[1].id
+    }));
+    const res = await fetch(`https://api.yamltech.com/seller/dashboard/un-save-item/${productId}`,{
+        method:"DELETE",
+        headers:{
+            Authorization:`Bearer ${user?.data[0]?.access}`
+        }
+    })
+    if(res.ok){
+        setMsg("Product has been unsaved")
+        setAlertType('success')
+        getMySavedProducts()
+    }
+    if(!res.ok){
+        setMsg("An error occured")
+        setAlertType('error')
+    }
+    // console.log(res, data);
+    console.log(res, data)
+}
+
   return (
     <div>
         <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20 mb-8">
@@ -89,7 +119,7 @@ const SavedItems = () => {
                         {/* <button onClick={() => setSavedItems(!savedItems)}>Click me</button> */}
                     </div>
 
-                {savedItems.length === 0 &&
+                {savedItems && savedItems.length === 0 &&
                     <div>
                         <div className='flex items-center justify-center flex-col'>
                             <img src={orderHistoryImage} className='w-[23%] mx-auto mt-9' alt="" />
@@ -103,8 +133,46 @@ const SavedItems = () => {
                   <div>
                       <div className='grid grid-cols-3 gap-5'>
                           {savedItems && savedItems.map(product => (
-                              <ProductCard product={product.product}/>
-                          ))}
+                            <div>
+                                <div className="product-card">
+                                    {/* {
+                                        user && 
+                                        <>
+                                        {
+                                            product.product.current_user_saved_product === true ?
+                                                :
+                                                <div className="badge" onClick={() => saveProduct(product.id)} ><CiBookmark /></div>
+                                        }
+                                        </>
+                                    } */}
+                                    <div className="badge bg-secondary-color text-white" onClick={() => unSaveProduct(product.id)} ><CiBookmark /></div>
+                                    <div className="" onClick={() => navigate(`/product-details/${product.product.id}`)}>
+                                        <div className="product-tumb">
+                                            <img src={product.product.product_cover_image?.media} alt="" />
+                                        </div>
+                                        <div className="product-details">
+                                            <div className="flex items-center justify-between">
+                                                <h1>{product.product.name}</h1>
+                                            </div>
+                                            <div className="flex items-start gap-1 ml-[-3px] my-2">
+                                                <CiLocationOn className="mt-1"/>
+                                                <p className="text-[12px] md:text-[14px]">{product.product.warranty_address}</p>
+                                            </div>
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center reviews">
+                                                    <h1 className="text-[13px]">{product.product.price.toLocaleString('en-US', {
+                                                                    style: 'currency',
+                                                                    currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
+                                                                })}</h1>
+                                                </div>
+                                                <RiVerifiedBadgeFill color='#DF9007' fontSize={"20px"}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                              // <ProductCard product={product.product}/>
+                              ))}
                       </div>
                   </div>
                 }
@@ -115,14 +183,15 @@ const SavedItems = () => {
                   {
                     [1,1,1,1].map(() => (
                       <SkeletonLoader />
-                    ))
-                  }
+                      ))
+                    }
                 </div>
               }
 
                 </div>
             </div>
         </div>
+        {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
     </div>
   )
 }

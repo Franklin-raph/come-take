@@ -35,15 +35,10 @@ const ForgotPassword = ({ setForgotPasswordModal, setEmailForOTP, setLoginModal,
             const data = await res.json()
             console.log(res, data);
             if(!res.ok){
-                // setEmailError(data.message)
-                // toast.error(data.message)
                 setAlertType('error')
                 setMsg(data.message)
             }
             if(res.ok){
-                // toast.success()
-                // setAlertType('success')
-                // setMsg(data.message)
                 setOtpInput(true)
                 setForgotPasswordModal(false)
             }

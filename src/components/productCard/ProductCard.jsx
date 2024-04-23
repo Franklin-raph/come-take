@@ -30,6 +30,10 @@ const ProductCard = ({ product, baseUrl }) => {
     // },[])
 
     async function saveProduct(productId){
+        console.log(JSON.stringify({
+            product:productId,
+            user:user.data[1].id
+        }));
         const res = await fetch(`https://api.yamltech.com/seller/dashboard/save-item`,{
             method:"POST",
             headers:{
@@ -54,11 +58,45 @@ const ProductCard = ({ product, baseUrl }) => {
         console.log(res, data)
     }
 
+    async function unSaveProduct(productId){
+        console.log(JSON.stringify({
+            product:productId,
+            user:user.data[1].id
+        }));
+        const res = await fetch(`https://api.yamltech.com/seller/dashboard/save-item/${productId}`,{
+            method:"DELETE",
+            headers:{
+                Authorization:`Bearer ${user?.data[0]?.access}`
+            }
+        })
+        if(res.ok){
+            setMsg(data.message)
+            setAlertType('success')
+        }
+        if(!res.ok){
+            setMsg(data.message)
+            setAlertType('error')
+        }
+        // console.log(res, data);
+        console.log(res, data)
+    }
+
   return (
     <div>
         <div className="product-card">
             {
-                user && <div className="badge" onClick={() => saveProduct(product.id)} ><CiBookmark /></div>
+                user && 
+                <>
+                {
+                    product.current_user_saved_product === true ?
+                        <div className="badge bg-secondary-color text-white" onClick={() => {
+                            setAlertType('warning')
+                            setMsg('To delete an item, pls visit the saved items page')
+                        }} ><CiBookmark /></div>
+                        :
+                        <div className="badge" onClick={() => saveProduct(product.id)} ><CiBookmark /></div>
+                }
+                </>
             }
             <div className="" onClick={() => navigate(`/product-details/${product.id}`)}>
                 <div className="product-tumb">

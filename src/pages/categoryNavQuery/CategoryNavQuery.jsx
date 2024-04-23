@@ -84,7 +84,7 @@ const CategoryNavQuery = ({baseUrl}) => {
   
       async function getAllProducts(){
         setLoader(true)
-        const res = await fetch(`${baseUrl}/products?product_category=${category}`,)
+        const res = await fetch(`${baseUrl}/products?category=${category}`,)
         const data = await res.json()
         if(res) setLoader(false)
         setAllProducts(data.data)
