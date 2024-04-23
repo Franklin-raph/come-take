@@ -149,9 +149,9 @@ const ProductDescription = ({baseUrl}) => {
                                             currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
                                         })}
                                         </p>
-                                        <p className='text-[#34343457] text-[20px]'>Non Negotibale</p>
+                                        {/* <p className='text-[#34343457] text-[20px]'>Non Negotibale</p> */}
                                     </div>
-                                    <p className='text-[#ff3030] lg:block hidden capitalize'>{product.condition}</p>
+                                    <p className='text-[#ff3030] lg:block hidden capitalize'>{product.condition.replace(/[^a-zA-Z0-9]/g, ' ')}</p>
                                     <div className='h-[1px] bg-[#ccc] my-4'></div>
                                     <div className="flex items-center gap-[15px] mt-6">
                                         <a href={`https://wa.me/${product.seller.phone}`} className='rounded-[5px] bg-primary-color text-white md:px-[35px] px-[20px] py-[8px] w-[50%] text-center' target='_blank' >Message Seller</a>

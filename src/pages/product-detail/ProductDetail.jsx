@@ -131,6 +131,7 @@ const ProductDetail = ({baseUrl}) => {
         getCatgories()
     },[])
 
+    const [file1NewlyUploaded, setFile1NewlyUploaded] = useState()
     async function handleFile1Upload(e) {
         console.log(product_image[0].id);
     if (e.target.files && e.target.files.length > 0) {
@@ -174,7 +175,7 @@ const ProductDetail = ({baseUrl}) => {
             setProductOldImagesId([...productOldImagesId, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
-            setFile1(data.data.media)
+            setFile1NewlyUploaded(data.data.media)
         }
         if(!res.ok){
             setMsg('File upload was not successfull, please try again')
@@ -183,6 +184,7 @@ const ProductDetail = ({baseUrl}) => {
     }
 }
 
+  const [file2NewlyUploaded, setFile2NewlyUploaded] = useState()
   async function handleFile2Upload(e) {
     if (e.target.files && e.target.files.length > 0) {
     // Update file state with the selected file
@@ -224,6 +226,7 @@ const ProductDetail = ({baseUrl}) => {
             setProductOldImagesId([...productOldImagesId, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
+            setFile2NewlyUploaded(data.data.media)
         }
         if(!res.ok){
             setMsg('File upload was not successfull, please try again')
@@ -232,6 +235,7 @@ const ProductDetail = ({baseUrl}) => {
     }
   }
 
+  const [file3NewlyUploaded, setFile3NewlyUploaded] = useState()
   async function handleFile3Upload(e) {
     if (e.target.files && e.target.files.length > 0) {
     // Update file state with the selected file
@@ -273,6 +277,7 @@ const ProductDetail = ({baseUrl}) => {
             setProductOldImagesId([...productOldImagesId, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
+            setFile3NewlyUploaded(data.data.media)
         }
         if(!res.ok){
             setMsg('File upload was not successfull, please try again')
@@ -281,6 +286,7 @@ const ProductDetail = ({baseUrl}) => {
     }
 }
 
+  const [file4NewlyUploaded, setFile4NewlyUploaded] = useState()
   async function handleFile4Upload(e) {
     if (e.target.files && e.target.files.length > 0) {
         // Update file state with the selected file
@@ -322,6 +328,7 @@ const ProductDetail = ({baseUrl}) => {
                 setProductOldImagesId([...productOldImagesId, fileId]);
                 setMsg('File successfully uploaded')
                 setAlertType('success')
+                setFile4NewlyUploaded(data.data.media)
             }
             if(!res.ok){
                 setMsg('File upload was not successfull, please try again')
@@ -330,6 +337,7 @@ const ProductDetail = ({baseUrl}) => {
         }
   }
 
+  const [file5NewlyUploaded, setFile5NewlyUploaded] = useState()
   async function handleFile5Upload(e) {
     if (e.target.files && e.target.files.length > 0) {
     // Update file state with the selected file
@@ -371,6 +379,7 @@ const ProductDetail = ({baseUrl}) => {
             setProductOldImagesId([...productOldImagesId, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
+            setFile5NewlyUploaded(data.data.media)
         }
         if(!res.ok){
             setMsg('File upload was not successfull, please try again')
@@ -379,6 +388,7 @@ const ProductDetail = ({baseUrl}) => {
     }
 }
 
+  const [file6NewlyUploaded, setFile6NewlyUploaded] = useState()
   async function handleFile6Upload(e) {
     if (e.target.files && e.target.files.length > 0) {
     // Update file state with the selected file
@@ -420,6 +430,7 @@ const ProductDetail = ({baseUrl}) => {
             setProductOldImagesId([...productOldImagesId, fileId]);
             setMsg('File successfully uploaded')
             setAlertType('success')
+            setFile6NewlyUploaded(data.data.media)
         }
         if(!res.ok){
             setMsg('File upload was not successfull, please try again')
@@ -545,7 +556,7 @@ const navigate = useNavigate()
                     {
                         file1 ? 
                             <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                                <img src={file1} alt="" />
+                                <img src={file1NewlyUploaded ? file1NewlyUploaded : file1} alt="" />
                                 <button onClick={() => setRemoveImageModal(product_image[0].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                             </div>
                                 :
@@ -563,7 +574,7 @@ const navigate = useNavigate()
                     {
                         file2 ? 
                             <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                                <img src={file2} alt="" />
+                                <img src={file2NewlyUploaded ? file2NewlyUploaded : file2} alt="" />
                                 <button onClick={() => setRemoveImageModal(product_image[1].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                             </div> 
                                 :
@@ -581,7 +592,7 @@ const navigate = useNavigate()
                 {
                     file3 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <img src={file3} alt="" />
+                            <img src={file3NewlyUploaded ? file3NewlyUploaded : file3} alt="" />
                             <button onClick={() => setRemoveImageModal(product_image[3].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                         </div> 
                             :
@@ -594,11 +605,11 @@ const navigate = useNavigate()
                 </div>
             </div>
 
-            <div className="relative h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+            <div className="relative h-[110px] w-[120px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
                 {
                     file4 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <img src={file4} alt="" />
+                            <img src={file4NewlyUploaded ? file4NewlyUploaded : file4} alt="" />
                             <button onClick={() => setRemoveImageModal(product_image[3].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                         </div> 
                             :
@@ -609,11 +620,11 @@ const navigate = useNavigate()
                         </>
                 }
             </div>
-            <div className="relative h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+            <div className="relative h-[110px] w-[120px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
                 {
                     file5 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <img src={file5} alt="" />
+                            <img src={file5NewlyUploaded ? file5NewlyUploaded : file5} alt="" />
                             <button onClick={() => setRemoveImageModal(product_image[4].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                         </div> 
                             :
@@ -624,11 +635,11 @@ const navigate = useNavigate()
                         </>
                 }
             </div>
-            <div className="relative h-[110px] w-[110px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
+            <div className="relative h-[110px] w-[120px] cursor-pointer rounded-[10px] flex flex-col items-center justify-center text-[#6C6C6C]" style={{ border:"1px solid #96BF47" }}>
                 {
                     file6 ? 
                         <div className='text-[13px] text-gray-500 flex items-center justify-between flex-col text-center p-2 rounded mt-1'>
-                            <img src={file6} alt="" />
+                            <img src={file6NewlyUploaded ? file6NewlyUploaded : file6} alt="" />
                             <button onClick={() => setRemoveImageModal(product_image[5].id)} className="text-[14px] text-center w-full hover:bg-[rgba(0,0,0,0.5)] absolute h-full top-0 rounded-[10px] text-white">Remove Image</button>
                         </div> 
                             :
@@ -916,14 +927,14 @@ const navigate = useNavigate()
         }
         {
             loader ?
-                <button className="bg-[#EDEDED] text-primary-color py-[12px] mt-10 w-full rounded-sm tracking-wide
+                <button className="bg-[#EDEDED] text-primary-color py-[12px] mt-10 w-full sm:w-[228.43px] ml-auto rounded-[7.98px] tracking-wide
                 font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
                 shadow-sm transition-all cursor-not-allowed">
                     <Btnloader />
                 </button>
             : 
-            <button onClick={updateProduct} className="bg-secondary-color py-[12px] mt-10 text-white  w-full sm:w-[228.43px] ml-auto rounded-[7.98px]]">Update Product</button>
-          }
+            <button onClick={updateProduct} className="bg-secondary-color py-[12px] mt-10 text-white w-full sm:w-[228.43px] ml-auto rounded-[7.98px]">Update Product</button>
+        }
     </div>
   )
 }

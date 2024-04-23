@@ -110,7 +110,7 @@ const MyOrder = ({baseUrl}) => {
         if(res.ok){
             setAlertType('success')
             setMsg('Product listed successfully')
-            setUnlistItem(false)
+            setListItem(false)
             getMyShop()
         }
         if(!res.ok){
@@ -367,7 +367,7 @@ const MyOrder = ({baseUrl}) => {
                             :    
                                 <div className='flex items-center justify-start md:ml-8 md:gap-[40px] md:flex-row flex-col-reverse gap-[10px]'>
                                     <button className='text-secondary-color px-8 py-2 rounded-full border border-secondary-color' onClick={() => setListItem(false)}>No, Cancel</button>
-                                    <button className='text-white bg-secondary-color px-8 py-2 rounded-full border-secondary-color' onClick={listProduct}>Yes, Unlist</button>
+                                    <button className='text-white bg-secondary-color px-8 py-2 rounded-full border-secondary-color' onClick={listProduct}>Yes, List Item</button>
                                 </div>
                             }
                         </div>

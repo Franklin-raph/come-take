@@ -7,6 +7,7 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useEffect, useState } from "react";
 import Alert from "../../components/alert/Alert";
 import Btnloader from "../../components/loader/Btnloader";
+import { useNavigate } from "react-router-dom";
 
 const ListProduct = ({baseUrl}) => {
 
@@ -466,11 +467,12 @@ const [category, setCategory] = useState('')
     //         console.log(currentCategoryArray);
     //     }
     // },[currentCategoryArray])
+    const navigate = useNavigate()
 
   return (
     <div className="w-[100%] lg:w-[845px] flex flex-col items-left justify-center mx-auto mt-[5rem] pt-[30px] pb-[50px] px-[30px]" style={{boxShadow:"0 11px 40px -17px #00000024"}}>
       <div className="flex items-center gap-2">
-        <HiArrowNarrowLeft fontSize={"25px"} />
+        <HiArrowNarrowLeft fontSize={"25px"} cursor={'pointer'} onClick={() => navigate('/')}/>
         <p className='text-[26px]'>List Products</p>
       </div>
       <div className="flex items-center mb-[30px] gap-[20px] mt-[35px]">
@@ -784,7 +786,7 @@ const [category, setCategory] = useState('')
         }
         {
             loader ?
-                <button className="bg-[#EDEDED] text-primary-color py-[12px] mt-10 w-full rounded-sm tracking-wide
+                <button className="bg-[#EDEDED] text-primary-color py-[12px] mt-10 w-full sm:w-[228.43px] ml-auto rounded-[7.98px] tracking-wide
                 font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
                 shadow-sm transition-all cursor-not-allowed">
                     <Btnloader />
