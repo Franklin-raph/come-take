@@ -28,7 +28,7 @@ const BottomNav = () => {
         })
         const data = await res.json()
         setUserDetails(data.data)
-        console.log(res, data);
+        // console.log(res, data);
       }
 
       async function getCatgories(){
@@ -39,7 +39,7 @@ const BottomNav = () => {
         })
         const data = await res.json()
         setAllCategoryArray(data.data)
-        console.log(data);
+        // console.log(data);
       }
 
     useEffect(() => {

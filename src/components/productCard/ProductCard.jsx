@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { CiBookmark } from "react-icons/ci";
 import { useEffect, useState } from "react";
+import Alert from "../alert/Alert";
 
 const ProductCard = ({ product, baseUrl }) => {
 
@@ -28,17 +29,38 @@ const ProductCard = ({ product, baseUrl }) => {
     //     getUserDetails()
     // },[])
 
-    function saveProduct(){
-        console.log(user)
+    async function saveProduct(productId){
+        const res = await fetch(`https://api.yamltech.com/seller/dashboard/save-item`,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                Authorization:`Bearer ${user?.data[0]?.access}`
+            },
+            body:JSON.stringify({
+                product:productId,
+                user:user.data[1].id
+            })
+        })
+        const data = await res.json()
+        if(res.ok){
+            setMsg(data.message)
+            setAlertType('success')
+        }
+        if(!res.ok){
+            setMsg(data.message)
+            setAlertType('error')
+        }
+        // console.log(res, data);
+        console.log(res, data)
     }
 
   return (
     <div>
         <div className="product-card">
-            <div className="badge" onClick={() => saveProduct()} ><CiBookmark /></div>
-            
+            {
+                user && <div className="badge" onClick={() => saveProduct(product.id)} ><CiBookmark /></div>
+            }
             <div className="" onClick={() => navigate(`/product-details/${product.id}`)}>
-
                 <div className="product-tumb">
                     <img src={product.product_cover_image?.media} alt="" />
                 </div>
@@ -61,7 +83,7 @@ const ProductCard = ({ product, baseUrl }) => {
                     </div>
                 </div>
             </div>
-
+            {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
         </div>
     </div>
   )

@@ -20,7 +20,7 @@ const ProfileSideNav = () => {
         })
         const data = await res.json()
         setUserDetails(data.data)
-        console.log(res, data);
+        // console.log(res, data);
       }
 
     useEffect(() => {
@@ -51,13 +51,14 @@ const ProfileSideNav = () => {
                         </div>
                         <ul className='ml-3 grid gap-2'>
                             {location.pathname === "/my-shop" ? <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/my-shop')}>My Shop</li>:<li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/my-shop')}>My Shop</li>}
+                            {location.pathname === "/update-shop" ? <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/update-shop')}>Update Shop</li>:<li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/update-shop')}>Update Shop</li>}
                         </ul>
                     </div>
                     :
                     ""
                 }
 
-                <div className='mt-10'>
+                {/* <div className='mt-10'>
                     <div className='flex items-center gap-2 mb-3'>
                         <BsClock color='#292D32' fontSize={"18px"}/>
                         <p className='text-[18px] font-[500]'>Reviews</p>
@@ -65,14 +66,14 @@ const ProfileSideNav = () => {
                     <ul className='ml-3 grid gap-2'>
                         <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>Pending Reviews</li>
                     </ul>
-                </div>
+                </div> */}
                 <div className='mt-10'>
                     <div className='flex items-center gap-2 mb-3'>
                         <LuUserX2 color='#292D32' fontSize={"18px"}/>
-                        <p className='text-[18px] font-[500]'>Delete Account</p>
+                        <p className='text-[18px] font-[500]'>Deactivate Account</p>
                     </div>
                     <ul className='ml-3 grid gap-2'>
-                        <li className='text-[#FF0505] text-[16px] cursor-pointer'>Delete Account</li>
+                        <li className='text-[#FF0505] text-[16px] cursor-pointer'>Deactivate Account</li>
                     </ul>
                 </div>
             </div>

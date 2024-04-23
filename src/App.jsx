@@ -33,6 +33,7 @@ import ProductDetail from "./pages/product-detail/ProductDetail"
 import VtuServices from "./pages/vtu-services/VtuServices"
 import CategoryQuery from "./pages/categoryQuery/CategoryQuery"
 import CategoryNavQuery from "./pages/categoryNavQuery/CategoryNavQuery"
+import UpdateShop from "./pages/updateShop/UpdateShop"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -87,6 +88,7 @@ export default function App() {
           <Route path="/product-detail/:id" element={<ProductDetail baseUrl={baseUrl}/>} />
           <Route path="/search" element={<CategoryQuery baseUrl={baseUrl}/>} />
           <Route path="/search-product-category" element={<CategoryNavQuery baseUrl={baseUrl}/>} />
+          <Route path="/update-shop" element={<UpdateShop baseUrl={baseUrl}/>} />
           <Route path="/vtu-services" element={<VtuServices baseUrl={baseUrl}/>} />
         </Routes>
         <Footer />

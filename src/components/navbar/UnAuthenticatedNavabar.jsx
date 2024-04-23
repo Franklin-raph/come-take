@@ -45,7 +45,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
         })
         const data = await res.json()
         setUserDetails(data.data)
-        console.log(res, data);
+        // console.log(res, data);
       }
     
       useEffect(() =>{

@@ -236,15 +236,15 @@ const Categories = ({baseUrl}) => {
                         <BsFilterLeft fontSize={"22px"}/>
                         <p>Filter</p>
                       </div>
-                      <div className="border border-[#B6B6B6] px-3 py-2 flex items-center justify-between rounded-full">
-                        <input type="text" placeholder="Search" className="outline-none w-[100%] bg-transparent" onChange={e => setSearchText(e.target.value)} />
+                      <div className="border border-[#B6B6B6] px-3 py-2 flex items-center justify-between rounded-full w-[40%]">
+                        <input type="text" placeholder="Search.." className="outline-none w-[100%] bg-transparent" onChange={e => setSearchText(e.target.value)} />
                         <IoIosSearch className="text-[#B6B6B6] text-[22px]"/>
                       </div>
                     </div>
-                    <div className="flex items-center justify-between desktop-filter">
-                        <h1 className="font-[600] text-[24px] mb-4 text-primary-color">All Products</h1>
-                        <div className="flex items-center gap-1 py-1 px-2 rounded-full cursor-pointer text-[12px] relative" >
-                          <div className="border border-[#B6B6B6] px-3 py-2 flex items-center justify-between rounded-full">
+                    <div className="flex items-center justify-between desktop-filter mb-4">
+                        <h1 className="font-[600] text-[24px] text-primary-color">All Products</h1>
+                        <div className="flex items-center gap-1 py-1 px-2 rounded-full cursor-pointer text-[12px] relative  w-[40%]">
+                          <div className="border border-[#B6B6B6] px-3 py-2 flex items-center justify-between rounded-full w-full">
                             <input type="text" placeholder="Search" className="outline-none w-[100%]" onChange={e => setSearchText(e.target.value)} />
                             <IoIosSearch className="text-[#B6B6B6] text-[22px]"/>
                           </div>
@@ -253,7 +253,7 @@ const Categories = ({baseUrl}) => {
                     <CategoryProductPageCard allProducts={allProducts} searchText={searchText}/>
                     {
                       loader && 
-                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
+                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
                         {
                           [1,1,1,1,1].map(() => (
                             <SkeletonLoader />
@@ -274,6 +274,16 @@ const Categories = ({baseUrl}) => {
             </div>
           </div>
           <CategoriesProductPageDown allProducts={allProducts}/>
+          {
+              loader && 
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
+                {
+                  [1,1,1,1,1].map(() => (
+                    <SkeletonLoader />
+                  ))
+                }
+              </div>
+            }
         </div>
     </div>
   )

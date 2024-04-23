@@ -231,19 +231,6 @@ const MyOrder = ({baseUrl}) => {
                                         </div> 
                                     ))
                                 }
-                            
-                                {
-                                    allMyProducts.length === 0 &&
-                                    <div>
-                                        <div className='flex items-center justify-center flex-col'>
-                                            <img src={orderHistoryImage} className='w-[23%] mx-auto mt-9' alt="" />
-                                            <p className='text-[#2B5D52] text-[24px] font-[700] mt-10'>No Item Here yet</p>
-                                            <p className='text-[#6C6C6C] text-[20px] text-center'>all your Listed Items will appear here</p>
-                                            <button className='py-3 px-8 bg-secondary-color rounded-[8px] text-white mt-6' onClick={() => navigate('/list-product')}>List a product</button>
-                                        </div>
-                                    </div>
-
-                                }
                             </div>
                         }
 

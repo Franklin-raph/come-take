@@ -1,20 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import orderHistoryImage from "../../assets/history.png"
 import ProfileSideNav from '../../components/profile-side-nav/ProfileSideNav';
-import laptop1 from "../../assets/category-product-preview.png"
-import { RiVerifiedBadgeFill } from "react-icons/ri";
-import { SlTrash } from "react-icons/sl";
-import { AiOutlineEdit } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import ProductCard from '../../components/productCard/ProductCard';
 import laptopImage from "../../assets/laptop.png"
 import bagImage from "../../assets/bag.png"
 import shoeImage from "../../assets/shoe.png"
 import phoneImage from "../../assets/iphone.png"
+import SkeletonLoader from '../../components/skeleton-loader/SkeletonLoader';
 
 const SavedItems = () => {
 
-    const [savedItems, setSavedItems] = useState(false)
+    const [savedItems, setSavedItems] = useState([])
+    const user = JSON.parse(localStorage.getItem('user'))
+    const [loader, setLoader] = useState(false)
 
     const savedItemsArray = [
         {
@@ -54,6 +53,31 @@ const SavedItems = () => {
       
     const navigate = useNavigate()
 
+    useEffect(() => {
+      window.scrollTo(0, 0)
+      getMySavedProducts()
+    },[])
+
+    async function getMySavedProducts(){
+      setLoader(true)
+      const res = await fetch(`https://api.yamltech.com/seller/dashboard/save-item`,{
+        headers:{
+              Authorization:`Bearer ${user?.data[0]?.access}`
+          }
+      })
+      const data = await res.json()
+      if(res) setLoader(false)
+      if(res.ok){
+        setSavedItems(data.data)
+      }
+      if(!res.ok){
+          setMsg(data.message)
+          setAlertType('error')
+      }
+      // console.log(res, data);
+      console.log(res,data)
+  }
+
   return (
     <div>
         <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20 mb-8">
@@ -62,9 +86,10 @@ const SavedItems = () => {
                 <div className='gap-[0rem] px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 password-reset w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <div className='flex justify-between items-center mb-8 '  style={{borderBottom:"1px solid #E6ECEA"}}>
                         <h1 className='text-[#003C2F] text-[24px] font-bold pb-3'>Saved Items</h1>
-                        <button onClick={() => setSavedItems(!savedItems)}>Click me</button>
+                        {/* <button onClick={() => setSavedItems(!savedItems)}>Click me</button> */}
                     </div>
-                {savedItems &&
+
+                {savedItems.length === 0 &&
                     <div>
                         <div className='flex items-center justify-center flex-col'>
                             <img src={orderHistoryImage} className='w-[23%] mx-auto mt-9' alt="" />
@@ -74,18 +99,28 @@ const SavedItems = () => {
                     </div>
                 }
 
-                {!savedItems &&
-                <div>
-                    <div className='grid grid-cols-3 gap-5'>
-                        {savedItemsArray && savedItemsArray.map(product => (
-                            <ProductCard product={product}/>
-                        ))}
-                    </div>
-
-                </div>
+                {savedItems &&
+                  <div>
+                      <div className='grid grid-cols-3 gap-5'>
+                          {savedItems && savedItems.map(product => (
+                              <ProductCard product={product.product}/>
+                          ))}
+                      </div>
+                  </div>
                 }
-                </div>
 
+              {
+                loader && 
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
+                  {
+                    [1,1,1,1].map(() => (
+                      <SkeletonLoader />
+                    ))
+                  }
+                </div>
+              }
+
+                </div>
             </div>
         </div>
     </div>

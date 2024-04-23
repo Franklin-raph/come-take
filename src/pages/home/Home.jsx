@@ -132,7 +132,7 @@ const [seachString, setSeachString] = useState('')
             </div>
             {
               loader && 
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
                 {
                   [1,1,1,1].map(() => (
                     <SkeletonLoader />
@@ -164,7 +164,7 @@ const [seachString, setSeachString] = useState('')
               <BrandNewProducts allProducts={allProducts}/>
               {
                 loader && 
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
                     {
                       [1,1,1,1,1].map(() => (
                         <SkeletonLoader />
@@ -188,7 +188,7 @@ const [seachString, setSeachString] = useState('')
               <NewlyListedProducts allProducts={allProducts}/>
               {
                 loader && 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
                   {
                     [1,1,1].map(() => (
                       <SkeletonLoader />
@@ -212,7 +212,7 @@ const [seachString, setSeachString] = useState('')
                 <FairlyUsedProducts allProducts={allProducts}/>
                 {
                   loader && 
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
                     {
                       [1,1,1,1,1].map(() => (
                         <SkeletonLoader />
@@ -236,7 +236,7 @@ const [seachString, setSeachString] = useState('')
               <NewlyListedProducts allProducts={allProducts}/>
               {
                 loader && 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-10 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
                   {
                     [1,1,1].map(() => (
                       <SkeletonLoader />

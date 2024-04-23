@@ -95,13 +95,6 @@ const ShopSetUp = ({baseUrl}) => {
           <p className='text-[28px] text-primary-color text-center'>Set Up Your Shop</p>
           <div>
             <p className='text-[20px] text-black mt-[2rem] pb-1' style={{borderBottom:"1px solid #DCDCDC"}}>Shop Details</p>
-            {/* <div className='mt-5'>
-              <p className='mb-[5px]'>Shipping Info</p>
-              <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                <p className='text-[#B6B6B6]'>All States</p>
-                <GoChevronDown className="cursor-pointer"/>
-              </div>
-            </div> */}
             <div className='mt-5'>
               <p className='mb-[5px]'>Shop Name</p>
               <input type="text" onChange={e => setStoreName(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-full p-2 rounded-[6px]' placeholder='Shop Name' />
@@ -117,8 +110,7 @@ const ShopSetUp = ({baseUrl}) => {
               <div className='w-full'>
                 <p className='mb-[5px]'>Country</p>
                 <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                  <p className='text-[#B6B6B6]'>Nigeria</p>
-                  <GoChevronDown className="cursor-pointer"/>
+                  <p className='text-[#000]'>Nigeria</p>
                 </div>
               </div>
               <div className='w-full'>
@@ -147,7 +139,7 @@ const ShopSetUp = ({baseUrl}) => {
               <div className='w-full relative'>
                 <p className='mb-[5px]'>State</p>
                 <div onClick={e => setShowStates(!showStates)} className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                  <p className='text-[#B6B6B6]'>{store_state ? store_state : 'Anambra'}</p>
+                  <p className='text-[#000]'>{store_state ? store_state : 'Anambra'}</p>
                   <GoChevronDown className="cursor-pointer"/>
                 </div>
                 {
@@ -169,7 +161,7 @@ const ShopSetUp = ({baseUrl}) => {
               <div className='w-full relative'>
                 <p className='mb-[5px]'>City</p>
                 <div onClick={e => setShowCities(!showCities)} className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                  <p className='text-[#B6B6B6]'>{store_city ? store_city : 'Awka'}</p>
+                  <p className='text-[#000]'>{store_city ? store_city : 'Awka'}</p>
                   <GoChevronDown className="cursor-pointer"/>
                 </div>
                 {
