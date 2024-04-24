@@ -24,9 +24,35 @@ const ProductDescription = ({baseUrl}) => {
 
     useEffect(() => {
         getProductDescription()
-        getAllProducts()
         window.scrollTo(0, 0)
+        if(user){
+            getAllProducts()
+          }else{
+            getAllUnauthenticatedProducts()
+          }
     },[])
+
+    async function getAllProducts(){
+        setLoader(true)
+        const res = await fetch(`${baseUrl}/products`,{
+          headers:{
+              Authorization:`Bearer ${user.data[0].access}`,
+          },
+      })
+        const data = await res.json()
+        if(res) setLoader(false)
+        setAllProducts(data.data)
+        console.log("Line 52 ===>", data.data);
+    }
+    
+    async function getAllUnauthenticatedProducts(){
+      setLoader(true)
+      const res = await fetch(`${baseUrl}/products`)
+      const data = await res.json()
+      if(res) setLoader(false)
+      setAllProducts(data.data)
+      console.log("Line 52 ===>", data.data);
+    }
 
 
     async function getProductDescription(){

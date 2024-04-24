@@ -24,15 +24,21 @@ import SkeletonLoader from '../../components/skeleton-loader/SkeletonLoader';
 
 const Home = ({baseUrl, setLoginModal}) => {
 
+  const user = JSON.parse(localStorage.getItem('user'))
+
   useEffect(() => {
     window.scrollTo(0, 0)
-    getAllProducts()
+    if(user){
+      getAllProducts()
+    }else{
+      getAllUnauthenticatedProducts()
+    }
+    
     getCatgories()
 },[])
 
 const navigate = useNavigate()
 
-const user = JSON.parse(localStorage.getItem('user'))
 
 const [allProducts, setAllProducts] = useState([])
 const [allCategoryArray, setAllCategoryArray] = useState([])
@@ -40,11 +46,24 @@ const [loader, setLoader] = useState(false)
 
 async function getAllProducts(){
     setLoader(true)
-    const res = await fetch(`${baseUrl}/products`,)
+    const res = await fetch(`${baseUrl}/products`,{
+      headers:{
+          Authorization:`Bearer ${user.data[0].access}`,
+      },
+  })
     const data = await res.json()
     if(res) setLoader(false)
     setAllProducts(data.data)
     console.log("Line 52 ===>", data.data);
+}
+
+async function getAllUnauthenticatedProducts(){
+  setLoader(true)
+  const res = await fetch(`${baseUrl}/products`)
+  const data = await res.json()
+  if(res) setLoader(false)
+  setAllProducts(data.data)
+  console.log("Line 52 ===>", data.data);
 }
 
 async function getCatgories(){

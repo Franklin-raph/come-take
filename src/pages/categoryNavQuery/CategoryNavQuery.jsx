@@ -14,12 +14,16 @@ const CategoryNavQuery = ({baseUrl}) => {
 
     const [searchParams] = useSearchParams();
     const category = searchParams.get("product_category");
+    const user = JSON.parse(localStorage.getItem('user'))
   
     useEffect(() => {
-      console.log(category);
-      getAllProducts()
-      window.scrollTo(0, 0)
-  },[])
+        window.scrollTo(0, 0)
+        if(user){
+          getAllProducts()
+        }else{
+          getAllUnauthenticatedProducts()
+        }
+    },[])
   
   
       const productTypeArray = [
@@ -84,12 +88,38 @@ const CategoryNavQuery = ({baseUrl}) => {
   
       async function getAllProducts(){
         setLoader(true)
-        const res = await fetch(`${baseUrl}/products?category=${category}`,)
+        const res = await fetch(`${baseUrl}/products?category=${category}`,{
+          headers:{
+              Authorization:`Bearer ${user.data[0].access}`,
+          },
+      })
         const data = await res.json()
         if(res) setLoader(false)
         setAllProducts(data.data)
         console.log("Line 52 ===>", data.data);
     }
+
+  //   async function getAllProducts(){
+  //     setLoader(true)
+  //     const res = await fetch(`${baseUrl}/products`,{
+  //       headers:{
+  //           Authorization:`Bearer ${user.data[0].access}`,
+  //       },
+  //   })
+  //     const data = await res.json()
+  //     if(res) setLoader(false)
+  //     setAllProducts(data.data)
+  //     console.log("Line 52 ===>", data.data);
+  // }
+  
+  async function getAllUnauthenticatedProducts(){
+    setLoader(true)
+    const res = await fetch(`${baseUrl}/products?category=${category}`)
+    const data = await res.json()
+    if(res) setLoader(false)
+    setAllProducts(data.data)
+    console.log("Line 52 ===>", data.data);
+  }
   
     const [condition, setCondition] = useState('')
     const [minPrice, setMinPrice] = useState(0)

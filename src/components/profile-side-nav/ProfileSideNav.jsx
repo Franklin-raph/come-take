@@ -70,10 +70,10 @@ const ProfileSideNav = () => {
                 <div className='mt-10'>
                     <div className='flex items-center gap-2 mb-3'>
                         <LuUserX2 color='#292D32' fontSize={"18px"}/>
-                        <p className='text-[18px] font-[500]'>Deactivate Account</p>
+                        <p className='text-[18px] font-[500]'>Delete Account</p>
                     </div>
                     <ul className='ml-3 grid gap-2'>
-                        <li className='text-[#FF0505] text-[16px] cursor-pointer'>Deactivate Account</li>
+                        <li className='text-[#FF0505] text-[16px] cursor-pointer'>Delete Account</li>
                     </ul>
                 </div>
             </div>

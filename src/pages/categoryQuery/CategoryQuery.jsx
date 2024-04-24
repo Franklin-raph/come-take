@@ -14,11 +14,15 @@ const CategoryQuery = ({baseUrl}) => {
 
   const [searchParams] = useSearchParams();
   const name = searchParams.get("product_name");
+  const user = JSON.parse(localStorage.getItem('user'))
 
   useEffect(() => {
-    console.log(name);
-    getAllProducts()
     window.scrollTo(0, 0)
+    if(user){
+      getAllProducts()
+    }else{
+      getAllUnauthenticatedProducts()
+    }
 },[])
 
 
@@ -84,11 +88,24 @@ const CategoryQuery = ({baseUrl}) => {
 
     async function getAllProducts(){
       setLoader(true)
-      const res = await fetch(`${baseUrl}/products?product_name=${name}`,)
+      const res = await fetch(`${baseUrl}/products?product_name=${name}`,{
+        headers:{
+            Authorization:`Bearer ${user.data[0].access}`,
+        },
+    })
       const data = await res.json()
       if(res) setLoader(false)
       setAllProducts(data.data)
       console.log("Line 52 ===>", data.data);
+  }
+  
+  async function getAllUnauthenticatedProducts(){
+    setLoader(true)
+    const res = await fetch(`${baseUrl}/products?product_name=${name}`)
+    const data = await res.json()
+    if(res) setLoader(false)
+    setAllProducts(data.data)
+    console.log("Line 52 ===>", data.data);
   }
 
   const [condition, setCondition] = useState('')
