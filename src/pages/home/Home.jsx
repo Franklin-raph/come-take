@@ -33,7 +33,7 @@ const Home = ({baseUrl, setLoginModal}) => {
     }else{
       getAllUnauthenticatedProducts()
     }
-    
+
     getCatgories()
 },[])
 

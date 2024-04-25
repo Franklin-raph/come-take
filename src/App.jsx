@@ -70,7 +70,6 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home baseUrl={baseUrl} setLoginModal={setLoginModal}/>}/>
           <Route path="/signup" element={<Register baseUrl={baseUrl}/>}/>
-          <Route path="/categories" element={<Categories baseUrl={baseUrl}/>}/>
           <Route path="/product-details/:id" element={<ProductDescription baseUrl={baseUrl}/>}/>
           <Route path="/shoping-cart" element={<ShoppingCart />}/>
           <Route path="/check-out" element={<Checkout />}/>
@@ -86,8 +85,11 @@ export default function App() {
           <Route path="/subscription-plan" element={<Subscription baseUrl={baseUrl}/>} />
           <Route path="/list-product" element={<ListProduct baseUrl={baseUrl}/>} />
           <Route path="/product-detail/:id" element={<ProductDetail baseUrl={baseUrl}/>} />
+
+          <Route path="/categories" element={<Categories baseUrl={baseUrl}/>}/>
           <Route path="/search" element={<CategoryQuery baseUrl={baseUrl}/>} />
           <Route path="/search-product-category" element={<CategoryNavQuery baseUrl={baseUrl}/>} />
+          
           <Route path="/update-shop" element={<UpdateShop baseUrl={baseUrl}/>} />
           <Route path="/vtu-services" element={<VtuServices baseUrl={baseUrl}/>} />
         </Routes>
