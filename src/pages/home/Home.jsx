@@ -41,6 +41,9 @@ const navigate = useNavigate()
 
 
 const [allProducts, setAllProducts] = useState([])
+const [newlyListedProducts, setNewlyListedProducts] = useState([])
+const [brandNewProducts, setBrandNewProducts] = useState([])
+const [fairlyUsedProducts, setFairlyUsedProducts] = useState([])
 const [allCategoryArray, setAllCategoryArray] = useState([])
 const [loader, setLoader] = useState(false)
 
@@ -54,8 +57,12 @@ async function getAllProducts(){
     const data = await res.json()
     if(res) setLoader(false)
     setAllProducts(data.data)
+    setBrandNewProducts(data.data.filter(product => product.condition === 'new'))
+    setFairlyUsedProducts(data.data.filter(product => product.condition === 'fairly_used'))
     console.log("Line 52 ===>", data.data);
 }
+
+console.log(fairlyUsedProducts);
 
 async function getAllUnauthenticatedProducts(){
   setLoader(true)
@@ -63,6 +70,8 @@ async function getAllUnauthenticatedProducts(){
   const data = await res.json()
   if(res) setLoader(false)
   setAllProducts(data.data)
+  setBrandNewProducts(data.data.filter(product => product.condition === 'new'))
+  setFairlyUsedProducts(data.data.filter(product => product.condition === 'fairly_used'))
   console.log("Line 52 ===>", data.data);
 }
 
@@ -159,7 +168,7 @@ const [seachString, setSeachString] = useState('')
                 }
               </div>
             }
-            <TrendingProducts allProducts={allProducts} baseUrl={baseUrl}/>
+            <TrendingProducts allProducts={allProducts.slice(0, 5)} baseUrl={baseUrl}/>
           </div>
 
           <div className="lady-part my-6">
@@ -180,7 +189,7 @@ const [seachString, setSeachString] = useState('')
                         <GoArrowRight />
                   </div>
                 </div>
-              <BrandNewProducts allProducts={allProducts}/>
+              <BrandNewProducts brandNewProducts={brandNewProducts}/>
               {
                 loader && 
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
@@ -204,7 +213,7 @@ const [seachString, setSeachString] = useState('')
                     <GoArrowRight />
                 </div>
               </div>
-              <NewlyListedProducts allProducts={allProducts}/>
+              <BrandNewProducts brandNewProducts={brandNewProducts}/>
               {
                 loader && 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
@@ -228,7 +237,7 @@ const [seachString, setSeachString] = useState('')
                       <GoArrowRight />
                     </div>
                 </div>
-                <FairlyUsedProducts allProducts={allProducts}/>
+                <FairlyUsedProducts fairlyUsedProducts={fairlyUsedProducts}/>
                 {
                   loader && 
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
@@ -252,7 +261,7 @@ const [seachString, setSeachString] = useState('')
                     <GoArrowRight />
                 </div>
               </div>
-              <NewlyListedProducts allProducts={allProducts}/>
+              <FairlyUsedProducts fairlyUsedProducts={fairlyUsedProducts}/>
               {
                 loader && 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">

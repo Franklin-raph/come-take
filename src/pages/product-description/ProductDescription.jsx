@@ -11,6 +11,7 @@ import { CiUser } from "react-icons/ci";
 import { useParams } from 'react-router-dom'
 import moment from 'moment';
 import SkeletonLoader from '../../components/skeleton-loader/SkeletonLoader'
+import Alert from '../../components/alert/Alert';
 
 
 const ProductDescription = ({baseUrl}) => {
@@ -21,6 +22,10 @@ const ProductDescription = ({baseUrl}) => {
     const user = JSON.parse(localStorage.getItem('user'))
     const [loader, setLoader] = useState(false)
     const [allProductsLoader, setAllProductsLoader] = useState(false)
+
+    const [msg, setMsg] = useState(false)
+    const [alertType, setAlertType] = useState('')
+
 
     useEffect(() => {
         getProductDescription()
@@ -74,6 +79,35 @@ const ProductDescription = ({baseUrl}) => {
         if(res) setAllProductsLoader(false)
         setAllProducts(data.data)
         console.log(data);
+    }
+
+    async function saveProduct(){
+        console.log(JSON.stringify({
+            product:id,
+            user:user.data[1].id
+        }));
+        const res = await fetch(`${baseUrl}/seller/dashboard/save-item`,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                Authorization:`Bearer ${user?.data[0]?.access}`
+            },
+            body:JSON.stringify({
+                product:id,
+                user:user.data[1].id
+            })
+        })
+        const data = await res.json()
+        if(res.ok){
+            setMsg(data.message)
+            setAlertType('success')
+        }
+        if(!res.ok){
+            setMsg(data.message)
+            setAlertType('error')
+        }
+        // console.log(res, data);
+        console.log(res, data)
     }
 
 
@@ -161,7 +195,9 @@ const ProductDescription = ({baseUrl}) => {
                                     </p>
                                     <div className='flex items-center justify-between mt-3'>
                                         <p className='text-[#898989]'>Brand: {product.brand_name}</p>
-                                        <FaRegBookmark color='#6C6C6C' />
+                                        {
+                                            user && <FaRegBookmark cursor='pointer' color='#6C6C6C' onClick={saveProduct}/>
+                                        }
                                     </div>
                                     <div className='flex items-center justify-start gap-1 mt-2'>
                                         <GoClock color='#6C6C6C' />
@@ -194,7 +230,7 @@ const ProductDescription = ({baseUrl}) => {
                                             <p className='mb-5'>{product.seller.first_name} {product.seller?.last_name}</p>
                                             <div className='flex items-center gap-2 mb-5'>
                                                 <CiLocationOn fontSize={"20px"} className='text-primary-color'/>
-                                                <p className='text-secondary-color text-[10px]'>{product.seller?.state} State</p>
+                                                <p className='text-secondary-color text-[10px]'>Anambra{product.seller?.state} State</p>
                                             </div>
                                         </div>
                                         <div>
@@ -288,6 +324,7 @@ const ProductDescription = ({baseUrl}) => {
               }
             </div>
         </div>
+        {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
     </div>
   )
 }

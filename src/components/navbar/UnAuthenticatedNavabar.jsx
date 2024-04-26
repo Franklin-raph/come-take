@@ -223,7 +223,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                         </Link>
                     </li>
                     <li className='text-[15px] mb-3 px-3 py-2 hover:bg-gray-300'>
-                        <Link to="#" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
+                        <Link to="/vtu-services" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
                             <GrVirtualStorage fontSize={"20px"} color='#797979'/>
                             <p>VTU</p>
                         </Link>
@@ -237,7 +237,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                     {
                         userDetails && userDetails.is_seller === true ?
                         <li className='text-[15px] mb-3 px-3 py-2 hover:bg-gray-300'>
-                            <Link to="/shop-set-up" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
+                            <Link to="/my-shop" onClick={() => setMobileNav(false)} className='flex items-center gap-3 text-[#333333]'>
                                 <CiShop fontSize={"20px"} color='#797979'/>
                                 <p>My Shop</p>
                             </Link>

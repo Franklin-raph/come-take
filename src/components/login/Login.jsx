@@ -1,7 +1,7 @@
 import { GoEye, GoEyeClosed, GoShieldCheck } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import SignInuserImg from "../../assets/Sign in user img.png"
+import { GoogleLogin } from '@react-oauth/google';
 import { useEffect, useState } from "react";
 import { IoCloseOutline, IoMailOutline } from "react-icons/io5";
 import Btnloader from "../loader/Btnloader";
