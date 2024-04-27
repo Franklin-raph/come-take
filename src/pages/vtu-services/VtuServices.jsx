@@ -55,7 +55,7 @@ const VtuServices = () => {
             </div>
         </div>
         {
-          !airtimeModal &&
+          airtimeModal &&
           <>
                 <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setAirtimeModal(false)}></div>
                     <div className="fixed top-[50%] left-[50%] z-[99] flex items-center justify-center" style={{ transform: "translate(-50%, -50%)" }}>
