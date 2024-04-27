@@ -168,7 +168,7 @@ const [seachString, setSeachString] = useState('')
                 }
               </div>
             }
-            <TrendingProducts allProducts={allProducts.slice(0, 5)} baseUrl={baseUrl}/>
+            <TrendingProducts allProducts={allProducts} baseUrl={baseUrl}/>
           </div>
 
           <div className="lady-part my-6">
