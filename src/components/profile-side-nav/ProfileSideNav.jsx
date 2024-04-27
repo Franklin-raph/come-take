@@ -58,15 +58,18 @@ const ProfileSideNav = () => {
                     ""
                 }
 
-                {/* <div className='mt-10'>
+                <div className='mt-10'>
                     <div className='flex items-center gap-2 mb-3'>
                         <BsClock color='#292D32' fontSize={"18px"}/>
-                        <p className='text-[18px] font-[500]'>Reviews</p>
+                        <p className='text-[18px] font-[500]'>VTU Services</p>
                     </div>
                     <ul className='ml-3 grid gap-2'>
-                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>Pending Reviews</li>
+                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>Buy Airtime</li>
+                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>Buy Data</li>
+                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>TV Subsription</li>
+                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>Electricity Bill</li>
                     </ul>
-                </div> */}
+                </div>
                 <div className='mt-10'>
                     <div className='flex items-center gap-2 mb-3'>
                         <LuUserX2 color='#292D32' fontSize={"18px"}/>
