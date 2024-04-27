@@ -33,7 +33,7 @@ const VtuServices = () => {
     <div>
         <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20">
             <div className='flex items-start gap-[2rem] flex-col-reverse lg:flex-row'>
-                <ProfileSideNav />
+                <ProfileSideNav setAirtimeModal={setAirtimeModal}/>
                 {/* {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> } */}
                 <div className='gap-[0rem] px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <div>

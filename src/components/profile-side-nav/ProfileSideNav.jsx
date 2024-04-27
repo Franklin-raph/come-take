@@ -5,7 +5,7 @@ import { BsClock } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const ProfileSideNav = () => {
+const ProfileSideNav = ({ setAirtimeModal }) => {
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -64,8 +64,8 @@ const ProfileSideNav = () => {
                         <p className='text-[18px] font-[500]'>VTU Services</p>
                     </div>
                     <ul className='ml-3 grid gap-2'>
-                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>Buy Airtime</li>
-                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>Buy Data</li>
+                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => setAirtimeModal(true)} >Buy Airtime</li>
+                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => setAirtimeModal(true)} >Buy Data</li>
                         <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>TV Subsription</li>
                         <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>Electricity Bill</li>
                     </ul>
