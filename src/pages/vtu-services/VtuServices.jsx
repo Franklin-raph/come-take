@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import VtuSidenav from '../../components/vtu-side-nav/VtuSidenav'
-import Alert from '../../components/alert/Alert'
+import React, { useEffect, useState } from 'react'
 import ProfileSideNav from '../../components/profile-side-nav/ProfileSideNav'
 import { IoCloseOutline } from 'react-icons/io5'
+import { useNavigate, useParams } from 'react-router-dom'
 
 
 const VtuServices = () => {
@@ -27,7 +26,7 @@ const VtuServices = () => {
     }
   ]
 
-  const [chosenNetwork, setChosenNetwork] = useState(null)
+  const navigate = useNavigate()
 
   return (
     <div>
@@ -68,32 +67,17 @@ const VtuServices = () => {
                               {
                                 networks.map((network, index) => {
                                   return (
-                                    <div key={index} className='flex items-center justify-center cursor-pointer' onClick={() => setChosenNetwork(network.label)}>
-                                      <img src={network.img} alt={network.label} />
-                                      {/* <p className='text-[#5C5C5C] text-[14px]'>{network.label}</p> */}
+                                    <div key={index} className='flex items-center justify-center cursor-pointer' onClick={() => {
+                                      // setChosenNetwork(network.label)
+                                      setAirtimeModal(false)
+                                      navigate(`/airtime-purchase/${network.label}/${network.img}`)
+                                    }}>
+                                      <img src={network.img} alt={network.label}/>
                                     </div>
                                   )
                                 })
                               }
-                              {/* <img src="/mtn.png" className='w-full' alt="" />
-                              <img src="/airtel.png" className='w-full' alt="" />
-                              <div className='bg-gray-200 rounded-[10px] h-[108px]'>
-                                <img src="/9Mobile.png" className='w-full' alt="" />
-                              </div>
-                              <img src="/glo.png" className='w-full' alt="" /> */}
                             </div>
-                            {/* {
-                                loader?
-                                
-                                <div className='mt-[2rem]'>
-                                    <Btnloader />
-                                </div>
-                            :    
-                                <div className='flex items-center justify-start md:ml-8 md:gap-[40px] md:flex-row flex-col-reverse gap-[10px]'>
-                                    <button className='text-secondary-color px-8 py-2 rounded-full border border-secondary-color' onClick={() => setListItem(false)}>No, Cancel</button>
-                                    <button className='text-white bg-secondary-color px-8 py-2 rounded-full border-secondary-color' onClick={listProduct}>Yes, List Item</button>
-                                </div>
-                            } */}
                         </div>
                     </div>
             </>

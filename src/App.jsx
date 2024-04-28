@@ -34,6 +34,9 @@ import VtuServices from "./pages/vtu-services/VtuServices"
 import CategoryQuery from "./pages/categoryQuery/CategoryQuery"
 import CategoryNavQuery from "./pages/categoryNavQuery/CategoryNavQuery"
 import UpdateShop from "./pages/updateShop/UpdateShop"
+import ServicePurchase from "./pages/service-purchase/ServicePurchase"
+import VtuService from "./pages/vtu-service/VtuService"
+import MyWallet from "./pages/my-wallet/MyWallet"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -92,6 +95,9 @@ export default function App() {
           
           <Route path="/update-shop" element={<UpdateShop baseUrl={baseUrl}/>} />
           <Route path="/vtu-services" element={<VtuServices baseUrl={baseUrl}/>} />
+          <Route path="/vtu-service/:service" element={<VtuService baseUrl={baseUrl}/>} />
+          <Route path="/my-wallet" element={<MyWallet baseUrl={baseUrl}/>} />
+          <Route path="/:service/:network" element={<ServicePurchase baseUrl={baseUrl}/>} />
         </Routes>
         <Footer />
         {loginModal && !registerModal &&

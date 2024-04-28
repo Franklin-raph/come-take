@@ -20,7 +20,7 @@ const VtuSidenav = () => {
         <li className='py-3 pl-3'>
           <Link to="/notifications" className='flex items-center gap-4'>
             <PiNotification />
-            <p>Notification</p>
+            <p>My Wallet</p>
           </Link>
         </li>
         <li className='py-3 pl-3'>

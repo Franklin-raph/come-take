@@ -346,7 +346,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                             navigate('/messages')
                         }}>
                             <CiBellOn className='text-[#292D32] text-[20px] font-[700]'/>
-                            <p className='text-[16px] text-[#6C6C6C]'>Notifications</p>
+                            <p className='text-[16px] text-[#6C6C6C]'>My Wallet</p>
                         </div>
                         <div className='flex items-center gap-3 cursor-pointer'>
                             <BsClock className='text-[#292D32] text-[18px] font-[700]'/>

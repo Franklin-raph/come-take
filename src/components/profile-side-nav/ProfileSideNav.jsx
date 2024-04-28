@@ -4,13 +4,35 @@ import { TiDocumentText } from 'react-icons/ti';
 import { BsClock } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { IoCloseOutline } from "react-icons/io5";
 
-const ProfileSideNav = ({ setAirtimeModal }) => {
+const ProfileSideNav = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
     const [userDetails, setUserDetails] = useState()
+    const [vtuServices, setVtuServices] = useState([])
     const user = JSON.parse(localStorage.getItem('user'))
+    const [airtimeModal, setAirtimeModal] = useState(false)
+
+    const networks = [
+        {
+          img:'mtn.png',
+          label:'MTN'
+        },
+        {
+          img:'glo.png',
+          label:'GLO'
+        },
+        {
+          img:'9Mobile.png',
+          label:'9Mobile'
+        },
+        {
+          img:'airtel.png',
+          label:'airtel'
+        }
+      ]
 
     async function getUserDetails(){
         const res = await fetch(`https://api.yamltech.com/complete-registration`,{
@@ -25,7 +47,19 @@ const ProfileSideNav = ({ setAirtimeModal }) => {
 
     useEffect(() => {
         getUserDetails()
+        getVtuServices()
     },[])
+
+    async function getVtuServices(){
+        const res = await fetch(`https://api.yamltech.com/vtu/get-services`,{
+          headers: {
+            Authorization: `Bearer ${user.data[0].access}`
+          },
+        })
+        const data = await res.json()
+        setVtuServices(data.data[1].content.slice(0, 4))
+        console.log(data.data[1].content.slice(0, 4));
+      }
 
   return (
         <div className='flex flex-[0.6] w-[100%] items-center px-5 lg:py-0 h-full profile-side-nav' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
@@ -39,7 +73,7 @@ const ProfileSideNav = ({ setAirtimeModal }) => {
                         {location.pathname === "/my-profile" ? <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/my-profile')}>Account Information</li>:<li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/my-profile')}>Account Information</li>}
                         {location.pathname === "/password-reset" ? <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/password-reset')}>Security Settings</li>:<li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/password-reset')}>Security Settings</li>}
                         {location.pathname === "/saved-items" ? <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/saved-items')}>Saved Items</li>:<li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/saved-items')}>Saved Items</li>}
-                        {location.pathname === "/messages" ? <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/messages')}>Notification</li>:<li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/messages')}>Notification</li>}
+                        {location.pathname === "/my-wallet" ? <li className='text-[#6C6C6C] text-[16px] cursor-pointer bg-[#D4E5B4] rounded-[5px] px-[10px] w-full py-[7px]' onClick={() => navigate('/my-wallet')}>My Wallet</li>:<li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate('/my-wallet')}>My Wallet</li>}
                     </ul>
                 </div>
                 {
@@ -64,10 +98,17 @@ const ProfileSideNav = ({ setAirtimeModal }) => {
                         <p className='text-[18px] font-[500]'>VTU Services</p>
                     </div>
                     <ul className='ml-3 grid gap-2'>
-                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => setAirtimeModal(true)} >Buy Airtime</li>
-                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => setAirtimeModal(true)} >Buy Data</li>
+                        {
+                            vtuServices.map(service => (
+                                <li key={service.identifier} className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate(`/vtu-service/${service.identifier}`)} >{service.name}</li>
+                            ))
+                        }
+                        {/* <li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => {
+                            setAirtimeModal(true)
+                            navigate('/vtu-service/airtime')
+                        }} >Buy Airtime</li>
                         <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>TV Subsription</li>
-                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>Electricity Bill</li>
+                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>Electricity Bill</li> */}
                     </ul>
                 </div>
                 <div className='mt-10'>
@@ -80,6 +121,35 @@ const ProfileSideNav = ({ setAirtimeModal }) => {
                     </ul>
                 </div>
             </div>
+            {
+                airtimeModal &&
+                <>
+                        <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setAirtimeModal(false)}></div>
+                            <div className="fixed top-[50%] left-[50%] z-[99] flex items-center justify-center" style={{ transform: "translate(-50%, -50%)" }}>
+                                <div className="bg-white md:w-[550px] w-[300px] md:h-[250px] h-[280px] rounded-[8px]">
+                                    <div className='flex items-center justify-between border-b border-[#DCDCDC] md:mx-8 md:px-0 px-3 md:mt-5 mt-3'>
+                                        <p className='text-[#333333] text-[20px]'>Choose Network</p>
+                                        <IoCloseOutline className='text-[#333333] text-[20px] cursor-pointer' onClick={() => setAirtimeModal(false)}/>
+                                    </div>
+                                    <div className="grid lg:grid-cols-4 gap-5 md:grid-cols-2 grid-cols-1 p-5">
+                                    {
+                                        networks.map((network, index) => {
+                                        return (
+                                            <div key={index} className='flex items-center justify-center cursor-pointer' onClick={() => {
+                                            // setChosenNetwork(network.label)
+                                            setAirtimeModal(false)
+                                            navigate(`/airtime-purchase/${network.label}/${network.img}`)
+                                            }}>
+                                            <img src={network.img} alt={network.label}/>
+                                            </div>
+                                        )
+                                        })
+                                    }
+                                    </div>
+                                </div>
+                            </div>
+                    </>
+        }
         </div>
   )
 }
