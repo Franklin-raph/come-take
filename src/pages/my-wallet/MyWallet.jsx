@@ -123,6 +123,7 @@ const MyWallet = ({baseUrl}) => {
                         </p>
                     </div>
                 </div>
+
                 {
                     walletTransactions && walletTransactions.length === 0 &&
                     <div className='text-center'>
@@ -199,7 +200,7 @@ const MyWallet = ({baseUrl}) => {
                                 <div className='my-3 border-b py-3'>
                                     <div className='flex items-center justify-between mb-2'>
                                         <p className='text-gray-600 text-[16px]'>{transaction.description}</p>
-                                        <p className={`text-[14px] ${transaction.transaction_type === 'credit' ? 'text-green-500' : (transaction.transaction_type === 'debit' ? 'text-red-500' : 'text-gray-500')}`}>
+                                        <p className={`text-[14px] font-[600] ${transaction.transaction_type === 'credit' ? 'text-green-500' : (transaction.transaction_type === 'debit' ? 'text-red-500' : 'text-gray-500')}`}>
                                             {transaction.amount.toLocaleString('en-US', {
                                                 style: 'currency',
                                                 currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
