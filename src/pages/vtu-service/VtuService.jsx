@@ -57,7 +57,7 @@ const VtuService = ({baseUrl}) => {
                     <div>
                         <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Cometake VTU</h1>
                     </div>
-                    <div className="grid lg:grid-cols-5 gap-5 md:grid-cols-3 grid-cols-1 p-5 place-content-center items-center place-items-center">
+                    <div className="grid lg:grid-cols-5 gap-5 md:grid-cols-3 grid-cols-2 p-5 place-content-center items-center place-items-center">
                       {
                         vtuService && vtuService.map((network, index) => {
                           return (

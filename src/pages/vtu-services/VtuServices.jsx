@@ -38,17 +38,17 @@ const VtuServices = () => {
                     <div>
                         <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Cometake VTU</h1>
                     </div>
-                    <div className='flex item-center justify-between'>
-                      <div className='w-[45%]'>
+                    <div className='flex item-center justify-between flex-col-reverse md:flex-row'>
+                      <div className='w-[100%] md:w-[45%]'>
                         <div className='h-[18px] w-[306px] bg-secondary-color rounded-full mt-[3rem] mb-[10px]'></div>
-                        <p className='font-[700] text-[40px] text-primary-color'>
+                        <p className='font-[700] text-[40px] md:text-[30px] text-primary-color '>
                           Enjoy seamless and easy bills payment on COMETAKE VTU
                         </p>
                         <p className='text-[#434343]'>
                           Top up phone airtime or internet data. Pay electricity bills; renew TV subscriptions and lots more on our platform
                         </p>
                       </div>
-                      <img src="/smile2.png" alt="" />
+                      <img src="/vtu.png" alt="" className='w-auto'/>
                     </div>
                 </div>
             </div>

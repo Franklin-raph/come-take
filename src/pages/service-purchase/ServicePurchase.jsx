@@ -259,7 +259,7 @@ const ServicePurchase = ({baseUrl}) => {
                     {
                       service === 'airtime' &&
                       <>
-                        <div className='flex items-center gap-[2rem] mt-10'>
+                        <div className='flex flex-col md:flex-row items-center gap-[2rem] mt-10'>
                             <div className='w-full'>
                                 <p className='mb-[5px]'>Phone<sup className='text-red-500'>*</sup></p>
                                 <input type="text" onChange={e => setPhone(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-full p-2 rounded-[6px] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' placeholder='Phone Number' />
@@ -284,7 +284,7 @@ const ServicePurchase = ({baseUrl}) => {
 
                     {
                       dataPlans &&
-                      <table class="w-full text-sm text-left rtl:text-left shoppingCartTable">
+                      <table class="w-full text-sm text-left rtl:text-left shoppingCartTable mt-5">
                           <thead class="text-[14px] bg-[#D4E5B4]" style={{boxShadow:"0 11px 40px -17px #00000024", borderRadius:"10px"}}>
                               <tr>
                                   <th scope="col" class="px-6 py-3">
@@ -294,7 +294,7 @@ const ServicePurchase = ({baseUrl}) => {
                                       Price
                                   </th>
                                   <th scope="col" class="px-6 py-3">
-                                      Amount
+                                      
                                   </th>
                               </tr>
                           </thead>
