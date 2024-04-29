@@ -602,7 +602,8 @@ const [category, setCategory] = useState('')
             <div className="w-full relative">
                 <p>Category</p>
                 <div onClick={() => setCategoryNav(!categoryNav)} className="cursor-pointer flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
-                    <input onChange={e => setCategory(e.target.value)} value={category} type="text" className="cursor-pointer outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Choose Categories" />
+                    <p>{categoryText}</p>
+                    <input onChange={e => setCategory(e.target.value)} value={category} type="text" className="opacity-0 cursor-pointer outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Choose Categories" />
                     <GoChevronDown color="#B6B6B6" fontSize={"20px"} cursor={"pointer"}/>
                 </div>
                 {

@@ -53,6 +53,7 @@ const ProductDetail = ({baseUrl}) => {
             setBrandName(data.data.brand_name)
             setName(data.data.name)
             setCategory(data.data.category.id)
+            setCategoryText(data.data.category.name)
             setWeight(data.data.weight)
             setDescription(data.data.description)
             setColor(data.data.color)
@@ -679,7 +680,8 @@ const navigate = useNavigate()
             <div className="w-full relative">
                 <p>Category</p>
                 <div className="cursor-pointer flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }} onClick={() => setCategoryNav(!categoryNav)}>
-                    <input onChange={e => setCategory(e.target.value)} value={category} type="text" className="cursor-pointer outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Choose Categories" />
+                    <p>{categoryText}</p>
+                    <input onChange={e => setCategory(e.target.value)} value={category} type="text" className="opacity-0 cursor-pointer outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Choose Categories" />
                     <GoChevronDown color="#B6B6B6" fontSize={"20px"} cursor={"pointer"} />
                 </div>
                 {
