@@ -109,9 +109,9 @@ const MyWallet = ({baseUrl}) => {
     <div className="lg:px-12 px-0 lg:mt-10 mt-2 gap-20 mb-8">
         <div className='flex items-start gap-[2rem] flex-col-reverse lg:flex-row'>
             <ProfileSideNav />
-            <div className='gap-[0rem] px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 password-reset w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
-                <div className='flex justify-between items-center mb-5 '  style={{borderBottom:"1px solid #E6ECEA"}}>
-                    <h1 className='text-[#003C2F] text-[24px] font-bold pb-3'>My Wallet</h1>
+            <div className='gap-[0rem] px-5 md:px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 password-reset w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <div className='flex justify-between items-center mb-5 pb-2'  style={{borderBottom:"1px solid #E6ECEA"}}>
+                    <h1 className='text-[#003C2F] text-[18px] font-bold md:text-[24px]'>My Wallet</h1>
                     <div className='flex items-center gap-2'>
                         <div className='flex items-center gap-1'>
                             <IoWalletOutline />:
@@ -134,47 +134,88 @@ const MyWallet = ({baseUrl}) => {
                         <button className='mt-7 bg-primary-color text-white px-10 py-3 rounded-[6px]' onClick={() => setFundWalletModal(true)} >Fund Wallet</button>
                     </div>
                 }
+
                 <div class="relative overflow-x-auto">
-                    <div className='flex items-center justify-between mb-4'>
+                    <div className='flex items-center justify-center mb-4'>
                         <p></p>
-                        <button className='mt-1 bg-primary-color text-white px-10 py-3 rounded-[6px]' onClick={() => setFundWalletModal(true)}>Top Up Wallet</button>
+                        <div className='text-center'>
+                            <button className='mt-1 bg-primary-color text-white px-10 py-3 rounded-[6px]' onClick={() => setFundWalletModal(true)}>Top Up Wallet</button>
+                        </div>
                     </div>
-                    <table class="w-full text-sm text-left rtl:text-left shoppingCartTable">
-                        <thead class="text-[14px] bg-[#D4E5B4]" style={{boxShadow:"0 11px 40px -17px #00000024", borderRadius:"10px"}}>
-                            <tr>
-                                <th scope="col" class="px-6 py-3 th1">
-                                    Description
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Transaction Type
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Amount
-                                </th>
-                                <th scope="col" class="px-6 py-3 th2">
-                                    Date
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
+
+                    {/* DATA SUB FOR DESKTOP SCREEN BEGINS */}
+                    <div className='hidden md:block'>
+                        <table class="w-full text-sm text-left rtl:text-left shoppingCartTable">
+                            <thead class="text-[14px] bg-[#D4E5B4]" style={{boxShadow:"0 11px 40px -17px #00000024", borderRadius:"10px"}}>
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 th1">
+                                        Description
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Transaction Type
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Amount
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 th2">
+                                        Date
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                walletTransactions.map(transaction => (
+                                    <tr style={{borderBottom:"1px solid #dcdcdc"}}>
+                                        <td class="px-6 py-6">
+                                            {transaction.description}
+                                        </td>
+                                        <td className={`py-4 px-6 font-bold capitalize ${transaction.transaction_type === 'credit' ? 'text-green-500' : (transaction.transaction_type === 'debit' ? 'text-red-500' : 'text-gray-500')}`}>
+                                            {transaction.transaction_type}
+                                        </td>
+                                        <td className={`py-4 px-6 font-bold ${transaction.transaction_type === 'credit' ? 'text-green-500' : (transaction.transaction_type === 'debit' ? 'text-red-500' : 'text-gray-500')}`}>
+                                            {transaction.amount.toLocaleString('en-US', {
+                                                style: 'currency',
+                                                currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
+                                            })}
+                                        </td>
+                                        <td class="px-6 py-4">{new Date(transaction.created_at).toLocaleDateString()}</td>
+                                    </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    {/* DATA SUB FOR DESKTOP SCREEN ENDS */}
+
+
+                    {/* DATA SUB FOR MOBILE SCREEN BEGINS */}
+                    <div className='md:hidden block'>
+                        <div className='flex items-center justify-between'>
+                            <p className='text-primary-color font-[600] text-[18px]'>Transaction Type</p>
+                            <p className='text-primary-color font-[600] text-[18px]'>Amount</p>
+                        </div>
                         {
                             walletTransactions.map(transaction => (
-                                <tr style={{borderBottom:"1px solid #dcdcdc"}}>
-                                    <td class="px-6 py-6">
-                                        {transaction.description}
-                                    </td>
-                                    <td className={`py-4 px-6 font-bold capitalize ${transaction.transaction_type === 'credit' ? 'text-green-500' : (transaction.transaction_type === 'debit' ? 'text-red-500' : 'text-gray-500')}`}>
-                                        {transaction.transaction_type}
-                                    </td>
-                                    <td className={`py-4 px-6 font-bold ${transaction.transaction_type === 'credit' ? 'text-green-500' : (transaction.transaction_type === 'debit' ? 'text-red-500' : 'text-gray-500')}`}>
-                                        {transaction.amount}
-                                    </td>
-                                    <td class="px-6 py-4">{new Date(transaction.created_at).toLocaleDateString()}</td>
-                                </tr>
-                                ))
-                            }
-                        </tbody>
-                    </table>
+                                <div className='my-3 border-b py-3'>
+                                    <div className='flex items-center justify-between mb-2'>
+                                        <p className='text-gray-600 text-[16px]'>{transaction.description}</p>
+                                        <p className={`text-[14px] ${transaction.transaction_type === 'credit' ? 'text-green-500' : (transaction.transaction_type === 'debit' ? 'text-red-500' : 'text-gray-500')}`}>
+                                            {transaction.amount.toLocaleString('en-US', {
+                                                style: 'currency',
+                                                currency: 'NGN' // Change to your desired currency code (e.g., 'EUR', 'GBP', 'JPY', etc.)
+                                            })}
+                                        </p>
+                                    </div>
+                                    <div className='flex items-center justify-between'>
+                                        <p className={`font-bold capitalize ${transaction.transaction_type === 'credit' ? 'text-green-500' : (transaction.transaction_type === 'debit' ? 'text-red-500' : 'text-gray-500')}`}>{transaction.transaction_type}</p>
+                                        <p className='text-gray-600 text-[14px]'>{new Date(transaction.created_at).toLocaleDateString()}</p>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                    {/* DATA SUB FOR MOBILE SCREEN ENDS */}
+                    
                 </div>
             </div>
         </div>

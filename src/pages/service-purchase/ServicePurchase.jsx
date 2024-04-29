@@ -30,6 +30,7 @@ const ServicePurchase = ({baseUrl}) => {
     const [customerName, setCustomerName] = useState('')
     const [address, setAddress] = useState('')
     const [verifyMeterLoader, setVerifyMeterLoader] = useState(false)
+    
 
     const networks = [
         {
@@ -66,13 +67,14 @@ const ServicePurchase = ({baseUrl}) => {
       },[])
 
       async function getVtuDataServices(){
-        console.log('called');
+        
         const res = await fetch(`${baseUrl}/vtu/services/data/${network}`,{
           headers: {
             Authorization: `Bearer ${user.data[0].access}`
           },
         })
         const data = await res.json()
+        
         console.log(data.data.content.varations);
         setDataPlans(data.data.content.varations)
       }
@@ -241,15 +243,15 @@ const ServicePurchase = ({baseUrl}) => {
             <div className='flex items-start gap-[2rem] flex-col-reverse lg:flex-row'>
                 <ProfileSideNav />
                 {/* {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> } */}
-                <div className='gap-[0rem] px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
+                <div className='gap-[0rem] px-[20px] md:px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <div>
                         <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Cometake VTU</h1>
                     </div>
                     <div className='flex item-center justify-between'>
                       <div className='w-[75%] flex items-center gap-[1.5rem]'>
                         {/* <img src={networkLogo} alt="" className='w-[130px]'/> */}
-                        <div>
-                            <p className='font-[700] text-[40px] text-primary-color capitalize'>{network} VTU</p>
+                        <div className='mb-10'>
+                            <p className='font-[700] text-[30px] md:text-[40px] text-primary-color capitalize'>{network} VTU</p>
                             <p className='text-[#434343]'>
                                 {network} - Get instant top up
                             </p>
@@ -282,77 +284,117 @@ const ServicePurchase = ({baseUrl}) => {
                       </>
                     }
 
+                    {/* DATA SUB FOR DESKTOP SCREEN BEGINS */}
+                    <div className='hidden md:block'>
+                      {
+                        dataPlans &&
+                        <table class="w-full text-sm text-left rtl:text-left shoppingCartTable mt-5">
+                            <thead class="text-[14px] bg-[#D4E5B4]" style={{boxShadow:"0 11px 40px -17px #00000024", borderRadius:"10px"}}>
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Service Name
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Price
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                dataPlans.map(plan => (
+                                    <tr style={{borderBottom:"1px solid #dcdcdc"}}>
+                                        <td class="px-6 py-6">
+                                            {plan.name}
+                                        </td>
+                                        <td class="px-6 py-6 text-[#434343]">
+                                          ₦{plan.variation_amount}
+                                        </td>
+                                        <td class="px-6 py-3 my-3 text-white rounded-sm mx-6 cursor-pointer bg-primary-color inline-block" onClick={() => setDataModal(plan)}>
+                                          Buy
+                                        </td>
+                                    </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                      }
+                    </div>
+                    {/* DATA SUB FOR DESKTOP SCREEN ENDS */}
+
+                    {/* DATA SUB FOR MOBILE SCREEN BEGINS */}
+                    <div className='md:hidden block'>
                     {
                       dataPlans &&
-                      <table class="w-full text-sm text-left rtl:text-left shoppingCartTable mt-5">
-                          <thead class="text-[14px] bg-[#D4E5B4]" style={{boxShadow:"0 11px 40px -17px #00000024", borderRadius:"10px"}}>
-                              <tr>
-                                  <th scope="col" class="px-6 py-3">
-                                      Service Name
-                                  </th>
-                                  <th scope="col" class="px-6 py-3">
-                                      Price
-                                  </th>
-                                  <th scope="col" class="px-6 py-3">
-                                      
-                                  </th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                          {
-                              dataPlans.map(plan => (
-                                  <tr style={{borderBottom:"1px solid #dcdcdc"}}>
-                                      <td class="px-6 py-6">
-                                          {plan.name}
-                                      </td>
-                                      <td class="px-6 py-6">
-                                          {plan.variation_amount}
-                                      </td>
-                                      <td class="px-6 py-3 my-3 text-white rounded-sm mx-6 cursor-pointer bg-primary-color inline-block" onClick={() => setDataModal(plan)}>
-                                        Buy
-                                      </td>
-                                  </tr>
-                                  ))
-                              }
-                          </tbody>
-                      </table>
+                      dataPlans.map(plan => (
+                        <div className='border-t py-3'>
+                          <p>{plan.name}</p>
+                          <div className='flex items-center justify-between text-[#434343]'>
+                            <p>₦{plan.variation_amount}</p>
+                            <button class="px-6 py-1 text-white rounded-sm mx-6 cursor-pointer bg-primary-color inline-block" onClick={() => setDataModal(plan)}>Buy</button>
+                          </div>
+                        </div>
+                      ))
                     }
+                    </div>
+                    {/* DATA SUB FOR MOBILE SCREEN ENDS */}
 
-                    {
-                      tvPlans &&
-                      <table class="w-full text-sm text-left rtl:text-left shoppingCartTable">
-                          <thead class="text-[14px] bg-[#D4E5B4]" style={{boxShadow:"0 11px 40px -17px #00000024", borderRadius:"10px"}}>
-                              <tr>
-                                  <th scope="col" class="px-6 py-3">
-                                      Service Name
-                                  </th>
-                                  <th scope="col" class="px-6 py-3">
-                                      Price
-                                  </th>
-                                  <th scope="col" class="px-6 py-3">
-                                      Amount
-                                  </th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                            {
-                              tvPlans.map(plan => (
-                                  <tr style={{borderBottom:"1px solid #dcdcdc"}}>
-                                      <td class="px-6 py-6">
-                                          {plan.name}
-                                      </td>
-                                      <td class="px-6 py-6">
-                                          {plan.variation_amount}
-                                      </td>
-                                      <td class="px-6 py-3 my-3 text-white rounded-sm mx-6 cursor-pointer bg-primary-color inline-block" onClick={() => setTvSubModal(plan)}>
-                                        Buy..
-                                      </td>
-                                  </tr>
-                                  ))
-                              }
-                          </tbody>
-                      </table>
-                    }
+                    {/* TV SUB FOR DESKTOP SCREEN BEGINS */}
+                    <div className='hidden md:block'>
+                      {
+                        tvPlans &&
+                        <table class="w-full text-sm text-left rtl:text-left shoppingCartTable">
+                            <thead class="text-[14px] bg-[#D4E5B4]" style={{boxShadow:"0 11px 40px -17px #00000024", borderRadius:"10px"}}>
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Service Name
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Price
+                                    </th>
+                                    <th scope="col" class="px-6 py-3"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              {
+                                tvPlans.map(plan => (
+                                    <tr style={{borderBottom:"1px solid #dcdcdc"}}>
+                                        <td class="px-6 py-6">
+                                            {plan.name}
+                                        </td>
+                                        <td class="px-6 py-6">
+                                            {plan.variation_amount}
+                                        </td>
+                                        <td class="px-6 py-3 my-3 text-white rounded-sm mx-6 cursor-pointer bg-primary-color inline-block" onClick={() => setTvSubModal(plan)}>
+                                          Buy
+                                        </td>
+                                    </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                      }
+                    </div>
+                    {/* TV SUB FOR DESKTOP SCREEN BEGINS */}
+
+                    {/* TV PLAN FOR MOBILE SCREEN BEGINS */}
+                    <div className='md:hidden block'>
+                      {
+                        tvPlans &&
+                        tvPlans.map(plan => (
+                          <div className='border-t py-3'>
+                            <p>{plan.name}</p>
+                            <div className='flex items-center justify-between text-[#434343]'>
+                              <p>₦{plan.variation_amount}</p>
+                              <button class="px-6 py-1 text-white rounded-sm mx-6 cursor-pointer bg-primary-color inline-block" onClick={() => setTvSubModal(plan)}>Buy</button>
+                            </div>
+                          </div>
+                        ))
+                      }
+                    </div>
+                    {/* TV PLAN FOR MOBILE SCREEN ENDS */}
 
         {
           network.includes('electric') &&
@@ -394,7 +436,7 @@ const ServicePurchase = ({baseUrl}) => {
                             address &&
                             <>
                               <p className='my-5 text-left self-start'> <span className='text-gray-400'>Address:</span> {address}</p>
-                              <div className="flex items-center jsutify-between w-full gap-9">
+                              <div className="flex items-center jsutify-between w-full flex-col gap-5 md:flex-row md:gap-9">
                                 <div className="flex w-full gap-2">
                                   <p className='text-gray-400'>Customer Name:</p>
                                   <p className=''>{customerName}</p>
