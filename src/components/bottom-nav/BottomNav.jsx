@@ -115,8 +115,15 @@ const BottomNav = () => {
             {/* <li>
                 <Link to="#">Trending Products</Link>
             </li> */}
-            <li>
-                <Link to="/vtu-services">VTU</Link>
+            <li onClick={() => {
+                if(!user){
+                    setMsg("You have to be logged in to perform this operation")
+                    return;
+                }else{
+                    navigate("/vtu-services")
+                }
+            }}>
+                VTU
             </li>
         </ul>
 {/* top-[135px] */}

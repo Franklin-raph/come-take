@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 const ListProduct = ({baseUrl}) => {
 
     const [categoryNav,setCategoryNav] = useState(false)
+    const [categorySearchText, setCategorySearchText] = useState('')
     // const [currentCategory, setCurrentCategory] = useState('All Categories')
     // const [currentCategoryArray, setCurrentCategoryArray] = useState(allCategoryArray)
     // const computingCategoryArray = ['Laptops','Desktops','Printers','Accessories']
@@ -598,7 +599,7 @@ const [category, setCategory] = useState('')
                 <p>Name of Product</p>
                 <input onChange={e => setName(e.target.value)} type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="Name of Product here" style={{ border:"1.5px solid #CCCCCC" }}/>
             </div>
-            <div className="w-full">
+            <div className="w-full relative">
                 <p>Category</p>
                 <div onClick={() => setCategoryNav(!categoryNav)} className="cursor-pointer flex items-center justify-between px-4 py-3 rounded-[6px] mt-2" style={{ border:"1.5px solid #CCCCCC" }}>
                     <input onChange={e => setCategory(e.target.value)} value={category} type="text" className="cursor-pointer outline-none w-full placeholder:text-[#B6B6B6]" placeholder="Choose Categories" />

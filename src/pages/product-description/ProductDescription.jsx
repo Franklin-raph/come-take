@@ -8,7 +8,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import { GoClock } from "react-icons/go";
 import { FaRegBookmark } from "react-icons/fa6";
 import { CiUser } from "react-icons/ci";
-import { useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import moment from 'moment';
 import SkeletonLoader from '../../components/skeleton-loader/SkeletonLoader'
 import Alert from '../../components/alert/Alert';
@@ -22,6 +22,7 @@ const ProductDescription = ({baseUrl}) => {
     const user = JSON.parse(localStorage.getItem('user'))
     const [loader, setLoader] = useState(false)
     const [allProductsLoader, setAllProductsLoader] = useState(false)
+    const navigate = useNavigate()
 
     const [msg, setMsg] = useState(false)
     const [alertType, setAlertType] = useState('')
@@ -31,11 +32,13 @@ const ProductDescription = ({baseUrl}) => {
         getProductDescription()
         window.scrollTo(0, 0)
         if(user){
+            console.log('user');
             getAllProducts()
           }else{
+            console.log('no user');
             getAllUnauthenticatedProducts()
           }
-    },[])
+    },[id])
 
     async function getAllProducts(){
         setLoader(true)
@@ -47,7 +50,7 @@ const ProductDescription = ({baseUrl}) => {
         const data = await res.json()
         if(res) setLoader(false)
         setAllProducts(data.data)
-        console.log("Line 52 ===>", data.data);
+        console.log("Line 50 ===>", data.data);
     }
     
     async function getAllUnauthenticatedProducts(){
@@ -56,7 +59,7 @@ const ProductDescription = ({baseUrl}) => {
       const data = await res.json()
       if(res) setLoader(false)
       setAllProducts(data.data)
-      console.log("Line 52 ===>", data.data);
+      console.log("Line 59 ===>", data.data);
     }
 
 
@@ -72,14 +75,14 @@ const ProductDescription = ({baseUrl}) => {
 
     const [allProducts, setAllProducts] = useState([])
 
-    async function getAllProducts(){
-        setAllProductsLoader(true)
-        const res = await fetch(`${baseUrl}/products`)
-        const data = await res.json()
-        if(res) setAllProductsLoader(false)
-        setAllProducts(data.data)
-        console.log(data);
-    }
+    // async function getAllProducts(){
+    //     setAllProductsLoader(true)
+    //     const res = await fetch(`${baseUrl}/products`)
+    //     const data = await res.json()
+    //     if(res) setAllProductsLoader(false)
+    //     setAllProducts(data.data)
+    //     console.log(data);
+    // }
 
     async function saveProduct(){
         console.log(JSON.stringify({
@@ -267,7 +270,7 @@ const ProductDescription = ({baseUrl}) => {
                         <div className='lg:w-[80%] w-full px-5 lg:px-10 lg:h-[320px] lg:pt-[2rem] pb-[10px]' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                             <div className='flex items-center gap-8'>
                                 <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Product Details</h1>
-                                <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Reviews</h1>
+                                {/* <h1 className='font-[600] text-[18px] lg:text-[20px] mb-5 text-primary-color'>Reviews</h1> */}
                             </div>
                             <p className='text-[15px] text-[#414141]' style={{lineHeight:'1.7'}}>
                                 {product.description}
@@ -283,12 +286,12 @@ const ProductDescription = ({baseUrl}) => {
             <div className='p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <div className="flex items-center justify-between mb-[20px]">
                     <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">More Items From Seller</h1>
-                    <div className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
+                    <div onClick={() => navigate('/categories')} className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
                         <p>See all</p>
                         <GoArrowRight />
                     </div>
                 </div>
-                <FairlyUsedProducts allProducts={allProducts}/>
+                <FairlyUsedProducts fairlyUsedProducts={allProducts}/>
                 {
                     allProductsLoader && 
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
@@ -302,7 +305,7 @@ const ProductDescription = ({baseUrl}) => {
             </div>
         </div>
 
-        <div className="lg:px-12 py-8">
+        {/* <div className="lg:px-12 py-8">
             <div className='p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <div className="flex items-center justify-between mb-[20px]">
                     <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">Recently Viewed</h1>
@@ -323,7 +326,7 @@ const ProductDescription = ({baseUrl}) => {
                     </div>
               }
             </div>
-        </div>
+        </div> */}
         {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
     </div>
   )

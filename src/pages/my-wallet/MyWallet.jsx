@@ -59,7 +59,7 @@ const MyWallet = ({baseUrl}) => {
       },[])
 
       async function fundWallet(){
-        // setLoader(true)
+        setLoader(true)
         const res = await fetch(`${baseUrl}/wallet/fund`,{
             method:'POST',
             headers: {
@@ -234,7 +234,7 @@ const MyWallet = ({baseUrl}) => {
                                 <input type="number" onChange={e => setAmount(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-[80%] mt-5 p-2 rounded-[6px] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' placeholder='Amount' />
                                 {
                                     loader ?
-                                        <button className="bg-[#EDEDED] text-primary-color py-[12px] mt-7 w-full sm:w-[201px] rounded-[6px] tracking-wide
+                                        <button className="bg-[#EDEDED] text-primary-color py-[12px] mt-7 w-[80%] sm:w-[201px] rounded-[6px] tracking-wide
                                         font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
                                         shadow-sm transition-all cursor-not-allowed">
                                             <Btnloader />
