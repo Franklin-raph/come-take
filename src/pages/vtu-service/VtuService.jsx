@@ -67,8 +67,9 @@ const VtuService = ({baseUrl}) => {
                       {
                         vtuService && vtuService.map((network, index) => {
                           return (
-                            <Link key={index} className='flex items-center justify-center cursor-pointer' to={`/${service}/${network.serviceID}`} >
+                            <Link key={index} className='flex items-center flex-col justify-center cursor-pointer' to={`/${service}/${network.serviceID}`} >
                               <img src={network.image} alt={network.name} className='w-[100px]'/>
+                              <p className='text-[12px] text-gray-400 text-center'>{network.name}</p>
                             </Link>
                           )
                         })

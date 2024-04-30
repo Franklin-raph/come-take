@@ -171,11 +171,11 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                     <FaRegCircleUser fontSize={"20px"}/>
                 </li>
                 }
-                <li className='help flex items-center'>
+                {/* <li className='help flex items-center'>
                     <PiWarningCircle fontSize={"20px"}/>
                     <Link to="/help">Help</Link>
                     <IoChevronDown fontSize={"20px"} />
-                </li>
+                </li> */}
                 <li onClick={() => navigate('/saved-items')}>
                     <div className='cursor-pointer flex'>
                         <p>Saved</p>
@@ -343,7 +343,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                         </div>
                         <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
                             setMobileAccountDropDown(!mobileAccountDropDown)
-                            navigate('/messages')
+                            navigate('/my-wallet')
                         }}>
                             <CiBellOn className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>My Wallet</p>

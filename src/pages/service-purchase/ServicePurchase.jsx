@@ -195,11 +195,12 @@ const ServicePurchase = ({baseUrl}) => {
           body:JSON.stringify({billersCode, subscription_type})
         })
         const data = await res.json()
+        console.log(data);
         if(res) setVerifyMeterLoader(false)
         if(res.ok){
           setMsg("Valid Meter Number")
           setAlertType('success')
-          setMeterNumber(data.data.content.Meter_Number)
+          setMeterNumber(billersCode)
           setCustomerName(data.data.content.Customer_Name)
           setAddress(data.data.content.Address)
         }
@@ -214,6 +215,7 @@ const ServicePurchase = ({baseUrl}) => {
 
       async function purchaseElectricSub(){
         setLoader(true)
+        console.log(({phone, amount, variation_code:subscription_type, billersCode:meterNumber}));
         const res = await fetch(`${baseUrl}/vtu/services/electric-sub/purchase/${network}`,{
           method:"POST",
           headers:{
@@ -223,6 +225,7 @@ const ServicePurchase = ({baseUrl}) => {
           body:JSON.stringify({phone, amount, variation_code:subscription_type, billersCode:meterNumber})
         })
         const data = await res.json()
+        console.log(data);
         if(res) setLoader(false)
         if(res.ok){
           setMsg(data.data.token)
