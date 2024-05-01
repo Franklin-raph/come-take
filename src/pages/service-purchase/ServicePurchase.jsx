@@ -171,6 +171,11 @@ const ServicePurchase = ({baseUrl}) => {
       }
 
       async function purchaseTvSub(plan){
+        if(!quantity || !subscription_type || !phone || !amount || !billersCode){
+          setMsg("Please fill in all fields")
+          setAlertType('error')
+          return
+        }
         setLoader(true)
         const res = await fetch(`${baseUrl}/vtu/services/tv-sub/${network}`,{
           method:"POST",
@@ -181,6 +186,7 @@ const ServicePurchase = ({baseUrl}) => {
           body:JSON.stringify({phone, amount, subscription_type, quantity, billersCode, variation_code:plan.variation_code})
         })
         const data = await res.json()
+        console.log(res, data);
         if(res) setLoader(false)
         if(res.ok){
           setMsg("Successfully purchased tv subscription")
@@ -190,7 +196,6 @@ const ServicePurchase = ({baseUrl}) => {
           setMsg(data.data.content.error)
           setAlertType('error')
         }
-        console.log(res, data);
         console.log(JSON.stringify({phone, amount, subscription_type, quantity, billersCode, variation_code:plan.variation_code}));
         console.log(plan);
       }
@@ -555,10 +560,10 @@ const ServicePurchase = ({baseUrl}) => {
                                 }
                               </div>
                               <input type="number" onChange={e => setAmount(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-[80%] mt-8 p-2 rounded-[6px] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' placeholder='Amount (Optional)' />
-                              {
+                              <input type="number" value={quantity} onChange={e => setQuantity(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-[80%] mt-8 p-2 rounded-[6px] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' placeholder='Duration (Months)' />
+                              {/* {
                                 subscription_type === "change" &&
-                                <input type="number" onChange={e => setQuantity(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-[80%] mt-8 p-2 rounded-[6px] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' placeholder='Duration (Months)' />
-                              }
+                              } */}
                               {
                                   loader ?
                                       <button className="bg-[#EDEDED] text-primary-color py-[12px] mt-7 w-full sm:w-[201px] rounded-[6px] tracking-wide
