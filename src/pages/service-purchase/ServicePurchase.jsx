@@ -138,6 +138,7 @@ const ServicePurchase = ({baseUrl}) => {
 
       async function purchaseData(plan){
         console.log(plan);
+        setLoader(true)
         console.log(JSON.stringify({
           service_id:network,
           phone,
@@ -155,12 +156,22 @@ const ServicePurchase = ({baseUrl}) => {
             variation_code:plan.variation_code
           })
         })
+        if(res) setLoader(false)
         const data = await res.json()
+        if(res.ok){
+          setMsg("Successfully purchased data subscription")
+          setAlertType('success')
+        }
+        if(!res.ok){
+          setMsg(data.data.content.error)
+          setAlertType('error')
+        }
         console.log(res, data);
         console.log(plan);
       }
 
       async function purchaseTvSub(plan){
+        setLoader(true)
         const res = await fetch(`${baseUrl}/vtu/services/tv-sub/${network}`,{
           method:"POST",
           headers:{
@@ -170,6 +181,15 @@ const ServicePurchase = ({baseUrl}) => {
           body:JSON.stringify({phone, amount, subscription_type, quantity, billersCode, variation_code:plan.variation_code})
         })
         const data = await res.json()
+        if(res) setLoader(false)
+        if(res.ok){
+          setMsg("Successfully purchased tv subscription")
+          setAlertType('success')
+        }
+        if(!res.ok){
+          setMsg(data.data.content.error)
+          setAlertType('error')
+        }
         console.log(res, data);
         console.log(JSON.stringify({phone, amount, subscription_type, quantity, billersCode, variation_code:plan.variation_code}));
         console.log(plan);
@@ -180,36 +200,36 @@ const ServicePurchase = ({baseUrl}) => {
         setAddress()
         setMeterNumber()
         setCustomerName()
-        // if(!subscription_type || !meterNumber){
-        //   setMsg("Please fill in all fields")
-        //   setAlertType('error')
-        // }else{
-        // }
-        setVerifyMeterLoader(true)
-        const res = await  fetch(`${baseUrl}/vtu/services/electric-sub/verify-meter-number/${network}`,{
-          method:"POST",
-          headers:{
-            'Content-Type':'application/json',
-            Authorization:`Bearer ${user?.data[0]?.access}`
-          },
-          body:JSON.stringify({billersCode, subscription_type})
-        })
-        const data = await res.json()
-        console.log(data);
-        if(res) setVerifyMeterLoader(false)
-        if(res.ok){
-          setMsg("Valid Meter Number")
-          setAlertType('success')
-          setMeterNumber(billersCode)
-          setCustomerName(data.data.content.Customer_Name)
-          setAddress(data.data.content.Address)
-        }
-        if(!res.ok){
-          setMsg(data.data.content.error)
+        if(!subscription_type || !billersCode){
+          setMsg("Please fill in all fields")
           setAlertType('error')
+        }else{
+          setVerifyMeterLoader(true)
+          const res = await  fetch(`${baseUrl}/vtu/services/electric-sub/verify-meter-number/${network}`,{
+            method:"POST",
+            headers:{
+              'Content-Type':'application/json',
+              Authorization:`Bearer ${user?.data[0]?.access}`
+            },
+            body:JSON.stringify({billersCode, subscription_type})
+          })
+          const data = await res.json()
+          console.log(data);
+          if(res) setVerifyMeterLoader(false)
+          if(res.ok){
+            setMsg("Valid Meter Number")
+            setAlertType('success')
+            setMeterNumber(billersCode)
+            setCustomerName(data.data.content.Customer_Name)
+            setAddress(data.data.content.Address)
+          }
+          if(!res.ok){
+            setMsg(data.data.content.error)
+            setAlertType('error')
+          }
+          console.log(res, data.data.content);
+          console.log(JSON.stringify({billersCode, subscription_type}));
         }
-        console.log(res, data.data.content);
-        console.log(JSON.stringify({billersCode, subscription_type}));
         
       }
 
@@ -515,7 +535,7 @@ const ServicePurchase = ({baseUrl}) => {
                             </div>
                             <div className="flex items-center justify-center flex-col">
                               <input type="number" onChange={e => setPhone(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-[80%] mt-8 p-2 rounded-[6px] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' placeholder='Phone' />
-                              <input type="text" onChange={e => setBillersCode(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-[80%] mt-8 p-2 rounded-[6px] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' placeholder='Biller Code' />
+                              <input type="text" onChange={e => setBillersCode(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-[80%] mt-8 p-2 rounded-[6px] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' placeholder='Decoder Number' />
                               <div className='w-[80%]'>
                                 <div style={{border:"1px solid #DCDCDC"}} className='w-full mt-8 p-2 rounded-[6px] flex items-center justify-between'>
                                 <input type="text" value={subscription_type} onChange={e => subscription_type(e.target.value)} className='outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' placeholder='Subscription Type' />
@@ -536,7 +556,7 @@ const ServicePurchase = ({baseUrl}) => {
                               </div>
                               <input type="number" onChange={e => setAmount(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-[80%] mt-8 p-2 rounded-[6px] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' placeholder='Amount (Optional)' />
                               {
-                                subscription_type === "renew" &&
+                                subscription_type === "change" &&
                                 <input type="number" onChange={e => setQuantity(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-[80%] mt-8 p-2 rounded-[6px] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' placeholder='Duration (Months)' />
                               }
                               {
