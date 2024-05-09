@@ -78,16 +78,16 @@ const VtuService = ({baseUrl}) => {
                       </div>
                       {vtuServiceSideBar &&
                         <ul className='ml-3 grid gap-2 absolute bg-white z-[99] right-0 p-3 border'>
-                        {
-                            vtuServices.map(service => (
-                                <li key={service.identifier} className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => {
-                                  navigate(`/vtu-service/${service.identifier}`)
-                                  setVtuServiceSideBar(false)
-                                }} >{service.name}</li>
-                            ))
+                          {
+                              vtuServices.map(service => (
+                                  <li key={service.identifier} className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => {
+                                    navigate(`/vtu-service/${service.identifier}`)
+                                    setVtuServiceSideBar(false)
+                                  }} >{service.name}</li>
+                              ))
+                          }
+                      </ul>
                         }
-                    </ul>
-                      }
                     </div>
                     {
                       serviceLoader && <img src='./loader.gif' className='h-[50px] w-[50px] mx-auto'/>
