@@ -103,12 +103,6 @@ const ProfileSideNav = () => {
                                 <li key={service.identifier} className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => navigate(`/vtu-service/${service.identifier}`)} >{service.name}</li>
                             ))
                         }
-                        {/* <li className='text-[#6C6C6C] text-[16px] cursor-pointer' onClick={() => {
-                            setAirtimeModal(true)
-                            navigate('/vtu-service/airtime')
-                        }} >Buy Airtime</li>
-                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>TV Subsription</li>
-                        <li className='text-[#6C6C6C] text-[16px] cursor-pointer'>Electricity Bill</li> */}
                     </ul>
                 </div>
                 <div className='mt-10'>

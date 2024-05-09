@@ -273,7 +273,7 @@ const ServicePurchase = ({baseUrl}) => {
                 {/* {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> } */}
                 <div className='gap-[0rem] px-[20px] md:px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <div>
-                        <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Cometake VTU</h1>
+                        <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Cometake VTU123</h1>
                     </div>
                     <div className='flex item-center justify-between'>
                       <div className='w-[75%] flex items-center gap-[1.5rem]'>
