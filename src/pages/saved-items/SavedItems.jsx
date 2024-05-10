@@ -105,7 +105,7 @@ const SavedItems = () => {
         setAlertType('error')
     }
     // console.log(res, data);
-    console.log(res, data)
+    console.log(res)
 }
 
   return (
