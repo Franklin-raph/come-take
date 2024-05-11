@@ -28,6 +28,7 @@ const VtuService = ({baseUrl}) => {
   const { service } = useParams()
 
   async function getServiceInfo(){
+    console.log(service);
     setServiceLoader(true)
     const res = await fetch(`${baseUrl}/vtu/services/${service}`,{
       headers: {
