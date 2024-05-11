@@ -47,7 +47,7 @@ const IdVerification = ({baseUrl}) => {
   },[])
 
   async function verifyId() {
-    if(!fileFront || !fileBack || !selectedIdType || !id_card_number){
+    if(!fileFront || !selectedIdType || !id_card_number){
       setMsg('Please make sure to fill in all fields and ensure to upload a valid Id')
       setAlertType('error')
     }else{
@@ -201,27 +201,30 @@ const IdVerification = ({baseUrl}) => {
                       </div>
               </div>
 
-              <div className='w-full'>
-                <p className='mb-[5px]'>Upload {selectedIdType}</p>
-                  <div className="flex flex-row items-center rounded-[6px]" style={{ border: "1px solid #DCDCDC" }}>
-                    <input
-                      type="file"
-                      id="custom-input-back"
-                      onChange={e => setFileBack(e.target.files[0])}
-                      hidden
-                    />
-                    <label
-                      htmlFor="custom-input-back"
-                      className="block mr-4 py-2 px-4
-                      border-0 text-sm bg-gray-200
-                      text-[#B6B6B6] hover:bg-gray-300 cursor-pointer"
-                      style={{ borderRadius: "6px 0 0 6px" }}
-                    >
-                      Backside
-                    </label>
-                    <label className="text-[12px] text-slate-500">{fileBack ? fileBack.name : "No file chosen"}</label>
-                  </div>
-              </div>
+              {
+                selectedIdType !== "international_passport" &&
+                <div className='w-full'>
+                  <p className='mb-[5px]'>Upload {selectedIdType}</p>
+                    <div className="flex flex-row items-center rounded-[6px]" style={{ border: "1px solid #DCDCDC" }}>
+                      <input
+                        type="file"
+                        id="custom-input-back"
+                        onChange={e => setFileBack(e.target.files[0])}
+                        hidden
+                      />
+                      <label
+                        htmlFor="custom-input-back"
+                        className="block mr-4 py-2 px-4
+                        border-0 text-sm bg-gray-200
+                        text-[#B6B6B6] hover:bg-gray-300 cursor-pointer"
+                        style={{ borderRadius: "6px 0 0 6px" }}
+                      >
+                        Backside
+                      </label>
+                      <label className="text-[12px] text-slate-500">{fileBack ? fileBack.name : "No file chosen"}</label>
+                    </div>
+                </div>
+              }
 
             </div>
           </div>
