@@ -37,8 +37,18 @@ const VtuService = ({baseUrl}) => {
     })
     const data = await res.json()
     if(res) setServiceLoader(false)
-    const filteredServices = data.data[1].content.filter(service => service.serviceID !== 'foreign-airtime');
-    setVtuService(filteredServices);
+    if(service === 'airtime'){
+      // setVtuService(data.data[1].content.slice(0,2));
+      setVtuService(data.data[1].content.filter(service => service.serviceID !== 'foreign-airtime'));
+      return
+    }
+    if(service === 'data'){
+      setVtuService(data.data[1].content.filter(service => service.serviceID !== 'smile-direct' && service.serviceID !== 'spectranet'))
+      return
+    }else{
+      setVtuService(data.data[1].content)
+      return
+    }
     console.log(data);
   }
 
