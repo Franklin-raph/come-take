@@ -24,25 +24,6 @@ const VtuService = ({baseUrl}) => {
       console.log(data.data[1].content.slice(0, 4));
     }
 
-    const networks = [
-        {
-          img:'mtn.png',
-          label:'MTN'
-        },
-        {
-          img:'glo.png',
-          label:'GLO'
-        },
-        {
-          img:'9Mobile.png',
-          label:'9Mobile'
-        },
-        {
-          img:'airtel.png',
-          label:'airtel'
-        }
-      ]
-
   const navigate = useNavigate()
   const { service } = useParams()
 
@@ -55,7 +36,8 @@ const VtuService = ({baseUrl}) => {
     })
     const data = await res.json()
     if(res) setServiceLoader(false)
-    setVtuService(data.data[1].content);
+    const filteredServices = data.data[1].content.filter(service => service.serviceID !== 'foreign-airtime');
+    setVtuService(filteredServices);
     console.log(data);
   }
 
