@@ -37,6 +37,7 @@ import UpdateShop from "./pages/updateShop/UpdateShop"
 import ServicePurchase from "./pages/service-purchase/ServicePurchase"
 import VtuService from "./pages/vtu-service/VtuService"
 import MyWallet from "./pages/my-wallet/MyWallet"
+import UpdateUserSocailName from "./components/update-user-social-name/UpdateUserSocailName"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -51,7 +52,7 @@ export default function App() {
   const baseUrl = "https://api.yamltech.com"
   const user = JSON.parse(localStorage.getItem('user'))
   const [userDetails, setUserDetails] = useState()
-  const [checkUser, setCheckUser] = useState(false)
+  const [userSocialLoginModal, setUserSocialLoginModal] = useState(false)
 
   async function getUserDetails(){
     const res = await fetch(`${baseUrl}/complete-registration`,{
@@ -101,11 +102,11 @@ export default function App() {
         </Routes>
         <Footer />
         {loginModal && !registerModal &&
-          <Login setLoginModal={setLoginModal} setForgotPasswordModal={setForgotPasswordModal} baseUrl={baseUrl} setRegisterModal={setRegisterModal} loginModal={loginModal}/>
+          <Login setLoginModal={setLoginModal} setUserSocialLoginModal={setUserSocialLoginModal} setForgotPasswordModal={setForgotPasswordModal} baseUrl={baseUrl} setRegisterModal={setRegisterModal} loginModal={loginModal}/>
         }
         {
           registerModal && !loginModal && 
-          <Register setLoginModal={setLoginModal} baseUrl={baseUrl} setRegisterModal={setRegisterModal} registerModal={registerModal}/>
+          <Register setLoginModal={setLoginModal} setUserSocialLoginModal={setUserSocialLoginModal} baseUrl={baseUrl} setRegisterModal={setRegisterModal} registerModal={registerModal}/>
         }
         {
           forgotPasswodModal && (
@@ -121,6 +122,9 @@ export default function App() {
       
         {
           resetPasswordModal && <ResetPassword otp={otp} emailForOTP={emailForOTP} setResetPasswordModal={setResetPasswordModal} setLoginModal={setLoginModal} setOtpInput={setOtpInput} baseUrl={baseUrl} />
+        }
+        {
+          userSocialLoginModal && <UpdateUserSocailName baseUrl={baseUrl} setUserSocialLoginModal={setUserSocialLoginModal}/>
         }
       </HashRouter>
     </>

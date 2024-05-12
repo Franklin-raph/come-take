@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { IoCloseOutline, IoMailOutline } from "react-icons/io5";
 import Btnloader from "../loader/Btnloader";
 
-const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModal }) => {
+const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModal, setUserSocialLoginModal }) => {
 
   const navigate = useNavigate()
   const [email, setEmail] = useState("")
@@ -48,9 +48,39 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
         window.location.href = '/'
       }
     }
-    // localStorage.setItem("user", 1)
-    // setLoginModal(false)
-    // navigate("/")
+  }
+
+  function googleResponseMessage(response){
+    if(response.credential){
+      handleGoogleSignIn(response.credential)
+    }
+  }
+
+  async function handleGoogleSignIn(jwt){
+    // console.log(jwt);
+    const res = await fetch('https://api.yamltech.com/social-login',{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify({
+        social_type:"google",
+        token:jwt
+      })
+    })
+    const data = await res.json()
+    console.log(data.data[0].completed);
+    console.log(res, data.data[1]);
+    if(data.data[0].completed === false){
+      localStorage.setItem('googleAuthToken', JSON.stringify(data.data[1].token.access))
+      setUserSocialLoginModal(true)
+      setLoginModal(false)
+    }
+    if(data.data[0].completed === true){
+      localStorage.setItem('user', JSON.stringify(data))
+      localStorage.setItem('my-sub', JSON.stringify(data.data[1].subscription_plan))
+      window.location.href = '/'
+    }
   }
 
   return (
@@ -77,10 +107,20 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
                       }}>Register</p>
                     </div>
                   </div>
-                  <button className="flex items-center gap-3 border border-gray-300 hover:bg-gray-200 w-full rounded text-sm mt-7 py-[9px] justify-center">
+
+                  <div className="flex items-center gap-3 w-full rounded text-sm mt-7 py-[9px] justify-center">
+                    <GoogleLogin
+                      onSuccess={googleResponseMessage}
+                      onError={() => {
+                          console.log('Login Failed');
+                      }}
+                      />
+                  </div>
+
+                  {/* <button className="flex items-center gap-3 border border-gray-300 hover:bg-gray-200 w-full rounded text-sm mt-7 py-[9px] justify-center">
                     <FcGoogle fontSize={"22px"}/>
                     Continue with Google
-                  </button>
+                  </button> */}
                   <p className="text-center text-[#B6B6B6] mt-5">Or</p>
                     <div className="">
                         <form onSubmit={handleUserSignIn}>
@@ -163,9 +203,6 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
                                 </button>
                               </div>
                             }
-                            
-                            
-                            
                         </form>
                         <div className="mt-5 text-sm font-display font-semibold text-gray-700 text-center">
                             Don't have an account ? <button className="cursor-pointer text-secondary-color hover:text-green-800" onClick={() => {

@@ -11,8 +11,9 @@ import { GoEyeClosed } from "react-icons/go";
 import OTPInput from '../otp-input/OTPInput'
 import loaderImg from '../../assets/loader.gif'
 import Alert from '../alert/Alert'
+import { GoogleLogin } from '@react-oauth/google';
 
-const Register = ({ setLoginModal, setRegisterModal, baseUrl }) => {
+const Register = ({ setLoginModal, setRegisterModal, baseUrl, setUserSocialLoginModal }) => {
 
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
@@ -123,6 +124,39 @@ const Register = ({ setLoginModal, setRegisterModal, baseUrl }) => {
       }
     }
 
+    function googleResponseMessage(response){
+      if(response.credential){
+        handleGoogleSignIn(response.credential)
+      }
+    }
+  
+    async function handleGoogleSignIn(jwt){
+      // console.log(jwt);
+      const res = await fetch('https://api.yamltech.com/social-login',{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+          social_type:"google",
+          token:jwt
+        })
+      })
+      const data = await res.json()
+      console.log(data.data[0].completed);
+      console.log(res, data.data[1]);
+      if(data.data[0].completed === false){
+        localStorage.setItem('googleAuthToken', JSON.stringify(data.data[1].token.access))
+        setUserSocialLoginModal(true)
+        setRegisterModal(false)
+      }
+      if(data.data[0].completed === true){
+        localStorage.setItem('user', JSON.stringify(data))
+        localStorage.setItem('my-sub', JSON.stringify(data.data[1].subscription_plan))
+        window.location.href = '/'
+      }
+    }
+
   return (
   <div>
     <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setRegisterModal(false)}></div>
@@ -148,7 +182,15 @@ const Register = ({ setLoginModal, setRegisterModal, baseUrl }) => {
           </div>
             <div className="">
                 <form onSubmit={handleUserSignUp}>
-                  <div className="relative input-container mt-8">
+                <div className="flex items-center gap-3 w-full rounded text-sm mt-7 py-[9px] justify-center">
+                    <GoogleLogin
+                      onSuccess={googleResponseMessage}
+                      onError={() => {
+                          console.log('Login Failed');
+                      }}
+                      />
+                  </div>
+                  <div className="relative input-container">
                     <label>First Name</label>
                         <div className='w-full p-[2px] border border-gray-300 flex items-center gap-2'>
                           <div className="bg-primary-color p-2 rounded-sm text-2xl text-white">
