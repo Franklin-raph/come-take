@@ -56,8 +56,9 @@ const Subscription = ({baseUrl}) => {
 
   function subscribe(subTitle, id, price) {
     console.log(subTitle, id, price);
-    if(subTitle === 'Basic'){
-      subscribeUser(id, price, 6)
+    if(subTitle === 'free'){
+      subscribeUser(id, price, 3)
+      return
     }else{
       payWithPayStack(id, price, 6)
     }
@@ -84,7 +85,7 @@ const Subscription = ({baseUrl}) => {
   }
 
   async function subscribeUser (plan, amount, duration) {
-    console.log(JSON.stringify({plan, amount, duration}));
+    console.log(JSON.stringify({amount_paid:amount, subscription_duration_months:duration, subscription_plan:plan}));
     setLoader(true)
     const res = await fetch(`${baseUrl}/seller/subscription/my-plan`,{
       method:'POST',
