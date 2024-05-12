@@ -127,7 +127,11 @@ const Subscription = ({baseUrl}) => {
               <p className='text-[#1C1C1C] font-[700] text-[22px] mb-3 capitalize'>{sub.title}</p>
               <p className='text-[#1C1C1C] font-[700] text-[16px] py-4' style={{ borderTop:"1px solid #DCDCDC", borderBottom:"1px solid #DCDCDC" }}>#{sub.price}</p>
               <ul className='text-left grid gap-2 text-[#6C6C6C] pt-5 sub_list'>
-                <p>{sub.plan_description}</p>
+                {
+                  sub.plan_description && sub.plan_description.map(desc => (
+                    <li>{desc.body}</li>
+                  ))
+                }
               </ul>
               {
                 sub.title === 'basic' ? 
