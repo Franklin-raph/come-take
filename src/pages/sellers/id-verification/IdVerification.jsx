@@ -12,6 +12,7 @@ const IdVerification = ({baseUrl}) => {
   const [selectedIdType, setSelectedIdType] = useState(idTypeArray[0]);
   const [fileFront, setFileFront] = useState(null);
   const [fileBack, setFileBack] = useState(null);
+  const [photo, setPhoto] = useState(null)
   const [id_card_number, setIdCardNumber] = useState('')
   const [loader, setLoader] = useState(false)
   const [userDetails, setUserDetails] = useState()
@@ -43,7 +44,7 @@ const IdVerification = ({baseUrl}) => {
   }
 
   useEffect(() =>{
-  getUserDetails()
+    getUserDetails()
   },[])
 
   async function verifyId() {
@@ -56,6 +57,7 @@ const IdVerification = ({baseUrl}) => {
       formData.append('id_card_number', id_card_number)
       formData.append('id_card_image_front_view', fileFront)
       formData.append('id_card_image_back_view', fileBack)
+      formData.append('photo', photo)
       setLoader(true)
       const res = await fetch(`${baseUrl}/seller/dashboard/upload-id`,{
         method:'PUT',
@@ -209,7 +211,10 @@ const IdVerification = ({baseUrl}) => {
                       <input
                         type="file"
                         id="custom-input-back"
-                        onChange={e => setFileBack(e.target.files[0])}
+                        onChange={e => {
+                          setFileBack(e.target.files[0])
+                          console.log(e.target.files[0]);
+                        }}
                         hidden
                       />
                       <label
@@ -225,6 +230,31 @@ const IdVerification = ({baseUrl}) => {
                     </div>
                 </div>
               }
+
+                <div className='w-full'>
+                  <p className='mb-[5px]'>Upload Photo</p>
+                    <div className="flex flex-row items-center rounded-[6px]" style={{ border: "1px solid #DCDCDC" }}>
+                      <input
+                        type="file"
+                        id="custom-input-photo"
+                        onChange={e => {
+                          setPhoto(e.target.files[0])
+                          console.log(e.target.files[0]);
+                        }}
+                        hidden
+                      />
+                      <label
+                        htmlFor="custom-input-photo"
+                        className="block mr-4 py-2 px-4
+                        border-0 text-sm bg-gray-200
+                        text-[#B6B6B6] hover:bg-gray-300 cursor-pointer"
+                        style={{ borderRadius: "6px 0 0 6px" }}
+                      >
+                        Photo
+                      </label>
+                      <label className="text-[12px] text-slate-500">{photo ? photo.name : "No file chosen"}</label>
+                    </div>
+                </div>
 
             </div>
           </div>
