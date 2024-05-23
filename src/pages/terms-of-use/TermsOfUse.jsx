@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const TermsOfUse = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    },[])
+
   return (
     <div>
         <div className='mt-5 mx-[2rem] lg:mx-[4rem]'>

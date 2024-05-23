@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const About = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    },[])
+
   return (
     <div className='mt-5 mx-[2rem] lg:mx-[4rem]'>
         <p className='font-[600] text-[24px] text-primary-color mt-9 mb-2'>About Come Take</p>
