@@ -38,6 +38,10 @@ import ServicePurchase from "./pages/service-purchase/ServicePurchase"
 import VtuService from "./pages/vtu-service/VtuService"
 import MyWallet from "./pages/my-wallet/MyWallet"
 import UpdateUserSocailName from "./components/update-user-social-name/UpdateUserSocailName"
+import About from "./pages/about/About"
+import PrivacyPolicy from "./pages/privacy-policy/PrivacyPolicy"
+import ReturnPolicy from "./pages/return-policy/ReturnPolicy"
+import TermsOfUse from "./pages/terms-of-use/TermsOfUse"
 
 export default function App() {
   const [loginModal, setLoginModal] = useState(false)
@@ -99,6 +103,10 @@ export default function App() {
           <Route path="/vtu-service/:service" element={<VtuService baseUrl={baseUrl}/>} />
           <Route path="/my-wallet" element={<MyWallet baseUrl={baseUrl}/>} />
           <Route path="/:service/:network" element={<ServicePurchase baseUrl={baseUrl}/>} />
+          <Route path="/about-us" element={<About />}/>
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-use" element={<TermsOfUse />} />
+          <Route path="/return-policy" element={<ReturnPolicy />} />
         </Routes>
         <Footer />
         {loginModal && !registerModal &&

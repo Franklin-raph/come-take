@@ -8,19 +8,19 @@ const Footer = () => {
   const aboutUsLinks = [
     {
       label:"About Come Take",
-      url:"#"
+      url:"/about-us"
     },
     {
       label:"Privacy Policy",
-      url:"#"
+      url:"/privacy-policy"
     },
     {
       label:"Terms of use",
-      url:"#"
+      url:"/terms-of-use"
     },
     {
       label:"Return Policy",
-      url:"#"
+      url:"/return-policy"
     },
     // {
     //   label:"Affiliate and partners",
@@ -129,12 +129,10 @@ const Footer = () => {
       <div className='flex items-start justify-between md:flex-row flex-col gap-[2rem] md:gap-[5rem] mt-[2rem] mb-[3rem] lg:px-12 px-8'>
         <div className='w-full'>
           <Link to="/" className='mb-5 block'>
-            Logo.
+            <img src="./logo.jpg" alt=""className='w-[50px]' />
           </Link>
           <p className='text-[14px] md:text-[16px]'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum cum repellat 
-            aspernatur vitae beatae impedit neque nesciunt provident, quam itaque aliquid optio 
-            pariatur quos dolorum sequi excepturi ut necessitatibus! Dolore.
+          Cometake is a technology company that is built around a marketplace, logistics service and payment service. The logistics service enables the delivery of packages through a network of local partners while the payment services facilitate the payments of online transactions within Cometake’s ecosystem.
           </p>
           {/* <h1 className='font-bold text-[17px] text-primary-color mt-9 mb-4'>Accepted Payments</h1>
           <img src={footerImage} alt="" /> */}

@@ -100,9 +100,11 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
 
   return (
     <div>
-        <nav className='flex items-center justify-between py-5 px-8 lg:px-12 bg-primary-color text-white text-[15px] fixed top-0 w-full self-start z-50'>
+        <nav className='flex items-center justify-between py-3 px-8 lg:px-12 bg-primary-color text-white text-[15px] fixed top-0 w-full self-start z-50'>
             <div className='flex items-center justify-start gap-8 w-full'>
-                <Link to="/" className='block'>Logo</Link>
+                <Link to="/" className='block'>
+                    <img src="./logo.jpg" alt=""className='w-[50px]' />
+                </Link>
                 {/* <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[70%] search-bar'>
                     <input type="text" placeholder='Find Products' className='w-full pr-5 outline-none text-primary-color'/>
                     <button className='rounded-full py-2 px-6 bg-secondary-color'>Search</button>
@@ -201,7 +203,8 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
             <div className='fixed z-[999] w-full h-full' style={{ background:"rgba(0, 0, 0, 0.7)" }} onClick={() => setMobileNav(false)}>
                 <ul className='bg-white md:w-[50%] w-[70%] px-5 py-[20px] h-full flex flex-col gap-[.8rem]'>
                     <li className='flex items-center justify-between mb-6'>
-                        <p>Logo</p>
+                        {/* <p>Logo</p> */}
+                        <img src="./logo.jpg" alt=""className='w-[50px]' />
                         <MdClose color='#797979' fontSize={"25px"} cursor={"pointer"} onClick={() => setMobileNav(false)}/>
                     </li>
                     <li className='text-[15px] mb-3 hover:bg-gray-300 px-3 py-2'>
@@ -252,7 +255,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                         </Link>
                     </li>
                     <li className='text-[15px] px-3 py-2 hover:bg-gray-300'>
-                        <Link to="#" onClick={() => setMobileNav(false)}  className='flex items-center gap-3 text-[#333333]'>
+                        <Link to="/about-us" onClick={() => setMobileNav(false)}  className='flex items-center gap-3 text-[#333333]'>
                             <PiWarningCircleLight fontSize={"22px"} color='#797979' style={{ transform:"rotate(180deg)" }}/>
                             <p>About Us</p>
                         </Link>
