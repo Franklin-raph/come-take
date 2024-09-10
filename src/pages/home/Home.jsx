@@ -27,6 +27,10 @@ const Home = ({baseUrl, setLoginModal}) => {
   const user = JSON.parse(localStorage.getItem('user'))
 
   useEffect(() => {
+
+    document.title="Home"
+// themeMeta.setAttribute("content", "#ffffff")
+
     window.scrollTo(0, 0)
     if(user){
       getAllProducts()
