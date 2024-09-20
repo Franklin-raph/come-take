@@ -42,6 +42,7 @@ import About from "./pages/about/About"
 import PrivacyPolicy from "./pages/privacy-policy/PrivacyPolicy"
 import ReturnPolicy from "./pages/return-policy/ReturnPolicy"
 import TermsOfUse from "./pages/terms-of-use/TermsOfUse"
+import HelpCenter from "./pages/help-center/HelpCenter"
 // import PriavateRoutes from "./utils/PriavateRoutes"
 
 export default function App() {
@@ -107,6 +108,7 @@ export default function App() {
           <Route path="/vtu-services" element={<VtuServices baseUrl={baseUrl}/>} />
           <Route path="/vtu-service/:service" element={<VtuService baseUrl={baseUrl}/>} />
           <Route path="/my-wallet" element={<MyWallet baseUrl={baseUrl}/>} />
+          <Route path="/help-center" element={<HelpCenter baseUrl={baseUrl}/>} />
           <Route path="/:service/:network" element={<ServicePurchase baseUrl={baseUrl}/>} />
 
         </Routes>

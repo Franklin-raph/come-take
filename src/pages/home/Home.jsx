@@ -28,7 +28,7 @@ const Home = ({baseUrl, setLoginModal}) => {
 
   useEffect(() => {
 
-    document.title="Home"
+    document.title="ComeHome"
 // themeMeta.setAttribute("content", "#ffffff")
 
     window.scrollTo(0, 0)
