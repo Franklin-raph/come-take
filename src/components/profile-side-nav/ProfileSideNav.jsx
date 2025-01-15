@@ -35,7 +35,7 @@ const ProfileSideNav = () => {
       ]
 
     async function getUserDetails(){
-        const res = await fetch(`https://api.yamltech.com/complete-registration`,{
+        const res = await fetch(`https://cometakebe.onrender.com/complete-registration`,{
           headers:{
             Authorization:`Bearer ${user?.data[0]?.access}`
           }
@@ -51,7 +51,7 @@ const ProfileSideNav = () => {
     },[])
 
     async function getVtuServices(){
-        const res = await fetch(`https://api.yamltech.com/vtu/get-services`,{
+        const res = await fetch(`https://cometakebe.onrender.com/vtu/get-services`,{
           headers: {
             Authorization: `Bearer ${user.data[0].access}`
           },

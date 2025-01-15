@@ -14,7 +14,7 @@ const VtuService = ({baseUrl}) => {
     const [vtuServices, setVtuServices] = useState([])
 
     async function getVtuServices(){
-      const res = await fetch(`https://api.yamltech.com/vtu/get-services`,{
+      const res = await fetch(`https://cometakebe.onrender.com/vtu/get-services`,{
         headers: {
           Authorization: `Bearer ${user.data[0].access}`
         },

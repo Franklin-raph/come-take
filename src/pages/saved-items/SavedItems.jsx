@@ -66,7 +66,7 @@ const SavedItems = () => {
 
     async function getMySavedProducts(){
       setLoader(true)
-      const res = await fetch(`https://api.yamltech.com/seller/dashboard/save-item`,{
+      const res = await fetch(`https://cometakebe.onrender.com/seller/dashboard/save-item`,{
         headers:{
               Authorization:`Bearer ${user?.data[0]?.access}`
           }
@@ -89,7 +89,7 @@ const SavedItems = () => {
         product:productId,
         user:user.data[1].id
     }));
-    const res = await fetch(`https://api.yamltech.com/seller/dashboard/un-save-item/${productId}`,{
+    const res = await fetch(`https://cometakebe.onrender.com/seller/dashboard/un-save-item/${productId}`,{
         method:"DELETE",
         headers:{
             Authorization:`Bearer ${user?.data[0]?.access}`

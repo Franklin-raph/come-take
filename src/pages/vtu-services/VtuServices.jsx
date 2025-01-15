@@ -13,7 +13,7 @@ const VtuServices = () => {
   const user = JSON.parse(localStorage.getItem('user'))
 
   async function getVtuServices(){
-    const res = await fetch(`https://api.yamltech.com/vtu/get-services`,{
+    const res = await fetch(`https://cometakebe.onrender.com/vtu/get-services`,{
       headers: {
         Authorization: `Bearer ${user.data[0].access}`
       },
