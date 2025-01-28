@@ -15,11 +15,46 @@ const ShopSetUp = ({baseUrl}) => {
   const [store_state, setStoreState] = useState('')
   const [store_address_postal_code, setStoreAddressPostalCode] = useState('')
 
-  const [allStates, setAllStates] = useState()
+  const [allStates, setAllStates] = useState([
+    {name:'Abia', state_code:'ab'},
+    {name:'Adamawa', state_code:'ad'},
+    {name:'Akwa Ibom', state_code:'ak'},
+    {name:'Anambra', state_code:'an'},
+    {name:'Bauchi', state_code:'ba'},
+    {name:'Bayelsa', state_code:'by'},
+    {name:'Benue', state_code:'be'},
+    {name:'Borno', state_code:'bo'},
+    {name:'Cross River', state_code:'cr'},
+    {name:'Delta', state_code:'de'},
+    {name:'Ebonyi', state_code:'eb'},
+    {name:'Edo', state_code:'ed'},
+    {name:'Ekiti', state_code:'ek'},
+    {name:'Enugu', state_code:'en'},
+    {name:'Gombe', state_code:'go'},
+    {name:'Imo', state_code:'im'},
+    {name:'Jigawa', state_code:'ji'},
+    {name:'Kaduna', state_code:'kd'},
+    {name:'Kano', state_code:'kn'},
+    {name:'Katsina', state_code:'kt'},
+    {name:'Kebbi', state_code:'kb'},
+    {name:'Kogi', state_code:'kg'},
+    {name:'Kwara', state_code:'kw'},
+    {name:'Lagos', state_code:'la'},
+    {name:'Nasarawa', state_code:'na'},
+    {name:'Niger', state_code:'ni'},
+    {name:'Ogun', state_code:'og'},
+    {name:'Ondo', state_code:'on'},
+    {name:'Osun', state_code:'os'},
+    {name:'Oyo', state_code:'oy'},
+    {name:'Plateau', state_code:'pl'},
+    {name:'Rivers', state_code:'ri'},
+    {name:'Sokoto', state_code:'so'},
+    {name:'Taraba', state_code:'ta'},
+    {name:'Yobe', state_code:'yo'},
+    {name:'Zamfara', state_code:'za'},
+    {name:'FCT', state_code:'fc'}
+  ])
   const [showStates, setShowStates] = useState(false)
-
-  const [allCities, setAllCities] = useState()
-  const [showCities, setShowCities] = useState(false)
 
   const [msg, setMsg] = useState(false)
   const [alertType, setAlertType] = useState('')
@@ -71,22 +106,8 @@ const ShopSetUp = ({baseUrl}) => {
 }
 
   useEffect(() => {
-    getStates()
     getMyShop()
   },[])
-
-  async function getStates(){
-    const res = await fetch('https://nigeria-states-towns-lga.onrender.com/api/states')
-    const data = await res.json()
-    setAllStates(data)
-  }
-
-  async function getCities(city){
-    const res = await fetch(`https://nigeria-states-towns-lga.onrender.com/api/${city}/towns`)
-    const data = await res.json()
-    setAllCities(data);
-    console.log(city);
-  }
 
   return (
     <div className="w-[100%] lg:w-[845px] flex items-center justify-center mx-auto mt-[5rem] py-[30px]" style={{boxShadow:"0 11px 40px -17px #00000024"}}>
@@ -132,10 +153,10 @@ const ShopSetUp = ({baseUrl}) => {
               {/* <div className='w-full'>
                 <p className='mb-[5px]'>City</p>
                 <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                  <p className='text-[#B6B6B6]'>Anambra</p>
+                <p className='text-[#B6B6B6]'>Anambra</p>
                   <GoChevronDown className="cursor-pointer"/>
-                </div>
-              </div> */}
+                  </div>
+                  </div> */}
               <div className='w-full relative'>
                 <p className='mb-[5px]'>State</p>
                 <div onClick={e => setShowStates(!showStates)} className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
@@ -148,7 +169,7 @@ const ShopSetUp = ({baseUrl}) => {
                     {
                       allStates && allStates.map(state => (
                         <p className="cursor-pointer my-1" onClick={e => {
-                          getCities(state.state_code)
+                          // getCities(state.state_code)
                           setStoreState(state.name)
                           setShowStates(false)
                         }}>{state.name}</p>
@@ -160,11 +181,12 @@ const ShopSetUp = ({baseUrl}) => {
 
               <div className='w-full relative'>
                 <p className='mb-[5px]'>City</p>
-                <div onClick={e => setShowCities(!showCities)} className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}>
-                  <p className='text-[#000]'>{store_city ? store_city : 'Awka'}</p>
-                  <GoChevronDown className="cursor-pointer"/>
-                </div>
-                {
+                {/* <div className='flex items-center justify-between p-2 rounded-[6px]' style={{border:"1px solid #DCDCDC"}}> */}
+                  <input type="text" onChange={e => setStoreCity(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-full p-2 rounded-[6px]' placeholder='Awka' />
+                  {/* <p className='text-[#000]'>{store_city ? store_city : 'Awka'}</p> */}
+                  {/* <GoChevronDown className="cursor-pointer"/> */}
+                {/* </div> */}
+                {/* {
                   showCities &&
                   <div className="h-[400px] bg-white w-full overflow-y-scroll p-2 rounded-[6px] mt-3 absolute" style={{border:"1px solid #DCDCDC"}}>
                     {
@@ -176,7 +198,7 @@ const ShopSetUp = ({baseUrl}) => {
                       ))
                     }
                   </div>
-                }
+                } */}
               </div>
             </div>
           </div>

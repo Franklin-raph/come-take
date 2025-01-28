@@ -43,6 +43,10 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
             Authorization:`Bearer ${user?.data[0]?.access}`
           }
         })
+        if(res.status === 401){
+            localStorage.clear()
+            // location.href = "/"
+        }
         const data = await res.json()
         setUserDetails(data.data)
         // console.log(res, data);
