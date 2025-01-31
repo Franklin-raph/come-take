@@ -116,10 +116,10 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
             </div>
             <div className="mobile-nav flex items-center gap-5">
                 {/* <IoIosSearch cursor={"pointer"}/> */}
-                {
+                {/* {
                     user &&
                     <IoNotificationsOutline cursor={"pointer"} fontWeight={"bold"} onClick={() => navigate('/messages')}/>
-                }
+                } */}
                 <FaRegCircleUser cursor={"pointer"} onClick={() => {
                     if(!user){
                         setLoginModal(true)
@@ -145,13 +145,13 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                                 <IoTriangleSharp color='white' fontSize={"20px"}/>
                             </div>
                             <p className='text-[#333333] text-[14px] text-center mt-2 pb-1' style={{ borderBottom:"1px solid #DCDCDC" }}>Hi, {userDetails && userDetails.first_name} {userDetails && userDetails.last_name}</p>
-                            <li onClick={() => navigate('/my-profile')} className='mt-4 px-[15px]'>
+                            <li onClick={() => navigate('/my-profile')} className='mt-4 px-[15px] cursor-pointer'>
                                 <div className='cursor-pointer flex items-center gap-3 justify-center text-center'>
                                     <FaRegCircleUser fontSize={"20px"} color='#434343'/>
                                     <p className='text-[#434343] text-[14px]'>My Account</p>
                                 </div>
                             </li>
-                            <li onClick={() => navigate('/saved-items')} className='my-3 px-[15px]'>
+                            <li onClick={() => navigate('/saved-items')} className='my-3 px-[15px] cursor-pointer'>
                                 <div className='cursor-pointer flex items-center gap-3'>
                                     <CiHeart color='#FF3030' fontSize={"20px"}/>
                                     <p className='text-[#434343] text-[14px]'>Saved Item</p>
@@ -189,12 +189,12 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                         <p>(0)</p>
                     </div>
                 </li>
-                {
+                {/* {
                     user &&
                     <li>
                         <CiBellOn fontSize={"20px"} onClick={() => navigate('/messages')}/>
                     </li>
-                }
+                } */}
                 <li className='bg-secondary-color px-3 py-1 rounded-full getApp'>
                     <HiOutlineDevicePhoneMobile />
                     <Link to="/get-app">Get App</Link>
@@ -348,17 +348,17 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                             <CiHeart className='text-[21px] text-[#FF0505]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>Saved Items</p>
                         </div>
-                        <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
+                        {/* <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
                             setMobileAccountDropDown(!mobileAccountDropDown)
                             navigate('/my-wallet')
                         }}>
                             <CiBellOn className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>My Wallet</p>
-                        </div>
-                        <div className='flex items-center gap-3 cursor-pointer'>
+                        </div> */}
+                        {/* <div className='flex items-center gap-3 cursor-pointer'>
                             <BsClock className='text-[#292D32] text-[18px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>Pending Reviews</p>
-                        </div>
+                        </div> */}
                         <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
                             checkSellersSub()
                             setMobileAccountDropDown(!mobileAccountDropDown)
@@ -382,10 +382,10 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                             <BiSolidPhoneCall className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>Contact Us</p>
                         </div>
-                        <div className='flex items-center gap-3 cursor-pointer'>
+                        {/* <div className='flex items-center gap-3 cursor-pointer'>
                             <LuUserX2 className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>Delete Account</p>
-                        </div>
+                        </div> */}
                         <div className='inline-flex items-center gap-3 cursor-pointer' onClick={() => {
                             localStorage.clear()
                             location.href = "/"

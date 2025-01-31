@@ -5,6 +5,7 @@ import { IoCheckmarkCircle } from "react-icons/io5";
 import Btnloader from '../../../components/loader/Btnloader';
 import AwaitingVerification from '../../../components/awaitingVerifircation/AwaitingVerification';
 import RejectSellerVerification from '../../../components/rejectSellerVerification/RejectSellerVerification';
+import { useNavigate } from 'react-router-dom';
 
 const IdVerification = ({baseUrl}) => {
   const idTypeArray = ["drivers_licence", "national_id_card", "international_passport", "voters_card"];
@@ -16,6 +17,7 @@ const IdVerification = ({baseUrl}) => {
   const [id_card_number, setIdCardNumber] = useState('')
   const [loader, setLoader] = useState(false)
   const [userDetails, setUserDetails] = useState()
+  const [awaitVerification, setAwaitVerification] = useState(false)
 
   const [fileFrontUploadSuccess, setFileFrontUploadSuccess] = useState(null)
   const [fileBackUploadSuccess, setFileBackUploadSuccess] = useState(null)
@@ -26,6 +28,7 @@ const IdVerification = ({baseUrl}) => {
   const [msg, setMsg] = useState(false)
   const [alertType, setAlertType] = useState('')
   const user = JSON.parse(localStorage.getItem('user'))
+  const navigate = useNavigate()
 
   async function getUserDetails(){
     const res = await fetch(`${baseUrl}/complete-registration`,{
@@ -36,6 +39,9 @@ const IdVerification = ({baseUrl}) => {
     const data = await res.json()
     setUserDetails(data.data)
     if(res.ok){
+      if(data.data.is_seller === true){
+        navigate('/shop-set-up')
+      }
       if(data.data.kyc_status === 'rejected'){
         setRejectVerification(true)
       }
@@ -67,16 +73,18 @@ const IdVerification = ({baseUrl}) => {
         }
       })
       const data = await res.json()
+      console.log(res, data);
       if(res) setLoader(false)
       if(!res.ok){
-        setMsg(data.message)
+        setMsg("An error occured")
+        // setMsg(data.message)
         setAlertType('error')
       }
       if(res.ok){
         setMsg(data.message)
         setAlertType('success')
+        setAwaitVerification(true)
       }
-      console.log(res, data);
 
       console.log(id_card_number, selectedIdType, fileBack, fileFront);
 
@@ -284,6 +292,9 @@ const IdVerification = ({baseUrl}) => {
         }
         {
           userDetails && userDetails.kyc_status === 'pending' ? <AwaitingVerification /> : ""
+        }
+        {
+          awaitVerification && <AwaitingVerification />
         }
         {
           userDetails && rejectVerification ? <RejectSellerVerification setRejectVerification={setRejectVerification} /> : ""

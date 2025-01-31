@@ -116,7 +116,7 @@ const TrendingProducts = ({allProducts, baseUrl}) => {
 
   return (
     <Slider {...settings}>
-        {allProducts && allProducts.map(product => (
+        {allProducts && allProducts?.map(product => (
             <ProductCard product={product} baseUrl={baseUrl}/>
         ))}
     </Slider>

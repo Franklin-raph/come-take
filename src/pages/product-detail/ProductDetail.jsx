@@ -134,7 +134,7 @@ const ProductDetail = ({baseUrl}) => {
 
     const [file1NewlyUploaded, setFile1NewlyUploaded] = useState()
     async function handleFile1Upload(e) {
-        console.log(product_image[0].id);
+        console.log(product_image[0]);
     if (e.target.files && e.target.files.length > 0) {
       // Update file state with the selected file
         const selectedFile = e.target.files[0];

@@ -83,7 +83,7 @@ const CategoryNavQuery = ({baseUrl}) => {
       const [showFilter, setShowFilter] = useState(false)
       const navigate = useNavigate()
   
-      const [allProducts, setAllProducts] = useState([])
+      const [allProducts, setAllProducts] = useState()
       const [loader, setLoader] = useState(false)
   
       async function getAllProducts(){
@@ -269,6 +269,9 @@ const CategoryNavQuery = ({baseUrl}) => {
                     </div>
                     <CategoryProductPageCard allProducts={allProducts} searchText={searchText}/>
                     {
+                      allProducts?.length === 0 && <p className='text-center'>No Products Found</p>
+                    }
+                    {
                       loader && 
                       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
                         {
@@ -291,6 +294,9 @@ const CategoryNavQuery = ({baseUrl}) => {
             </div>
           </div>
           <CategoriesProductPageDown allProducts={allProducts}/>
+          {
+            allProducts?.length === 0 && <p className='text-center'>No Products Found</p>
+          }
           {
               loader && 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">

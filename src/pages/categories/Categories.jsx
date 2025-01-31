@@ -82,7 +82,7 @@ const Categories = ({baseUrl}) => {
     const [showFilter, setShowFilter] = useState(false)
     const navigate = useNavigate()
 
-    const [allProducts, setAllProducts] = useState([])
+    const [allProducts, setAllProducts] = useState()
     const [loader, setLoader] = useState(false)
     const [filterLoader, setFilterLoader] = useState(false)
 
@@ -271,6 +271,9 @@ const Categories = ({baseUrl}) => {
                     </div>
                     <CategoryProductPageCard allProducts={allProducts} searchText={searchText}/>
                     {
+                      allProducts?.length === 0 && <p className='text-center'>No Products Found</p>
+                    }
+                    {
                       loader && 
                       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
                         {
@@ -293,6 +296,9 @@ const Categories = ({baseUrl}) => {
             </div>
           </div>
           <CategoriesProductPageDown allProducts={allProducts}/>
+          {
+            allProducts?.length === 0 && <p className='text-center'>No Products Found</p>
+          }
           {
               loader && 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">

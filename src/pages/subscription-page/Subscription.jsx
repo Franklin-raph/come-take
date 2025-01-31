@@ -4,6 +4,7 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import PaystackPop from "@paystack/inline-js"
 import LoaderImage from '../../assets/loader.gif'
 import Alert from "../../components/alert/Alert";
+import { useNavigate } from "react-router-dom";
 
 const Subscription = ({baseUrl}) => {
 
@@ -14,6 +15,7 @@ const Subscription = ({baseUrl}) => {
   const [msg, setMsg] = useState(false)
   const [alertType, setAlertType] = useState('')
   const [confirmSubModal, setConfirmSubModal] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     getSubscriptionPlans()
@@ -102,6 +104,7 @@ const Subscription = ({baseUrl}) => {
       setAlertType('success')
       setConfirmSubModal(true)
       localStorage.setItem('my-sub', true)
+      navigate('/shop-set-up')
       // getUserDetails()
     }
     if(!res.ok){

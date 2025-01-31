@@ -44,10 +44,10 @@ const Home = ({baseUrl, setLoginModal}) => {
 const navigate = useNavigate()
 
 
-const [allProducts, setAllProducts] = useState([])
+const [allProducts, setAllProducts] = useState()
 const [newlyListedProducts, setNewlyListedProducts] = useState([])
-const [brandNewProducts, setBrandNewProducts] = useState([])
-const [fairlyUsedProducts, setFairlyUsedProducts] = useState([])
+const [brandNewProducts, setBrandNewProducts] = useState()
+const [fairlyUsedProducts, setFairlyUsedProducts] = useState()
 const [allCategoryArray, setAllCategoryArray] = useState([])
 const [loader, setLoader] = useState(false)
 
@@ -173,6 +173,9 @@ const [seachString, setSeachString] = useState('')
               </div>
             }
             <TrendingProducts allProducts={allProducts} baseUrl={baseUrl}/>
+            {
+              allProducts?.length === 0 && <p className='text-center'>No Fairly Used Products</p>
+            }
           </div>
 
           <div className="lady-part my-6">
@@ -194,6 +197,9 @@ const [seachString, setSeachString] = useState('')
                   </div>
                 </div>
               <BrandNewProducts brandNewProducts={brandNewProducts}/>
+              {
+                brandNewProducts?.length === 0 && <p className='text-center'>No Brand New Products</p>
+              }
               {
                 loader && 
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
@@ -219,6 +225,9 @@ const [seachString, setSeachString] = useState('')
               </div>
               <BrandNewProducts brandNewProducts={brandNewProducts}/>
               {
+                brandNewProducts?.length === 0 && <p className='text-center'>No Brand New Products</p>
+              }
+              {
                 loader && 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
                   {
@@ -243,6 +252,9 @@ const [seachString, setSeachString] = useState('')
                 </div>
                 <FairlyUsedProducts fairlyUsedProducts={fairlyUsedProducts}/>
                 {
+                  fairlyUsedProducts?.length === 0 && <p className='text-center'>No Fairly Used Products</p>
+                }
+                {
                   loader && 
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
                     {
@@ -266,6 +278,9 @@ const [seachString, setSeachString] = useState('')
                 </div>
               </div>
               <FairlyUsedProducts fairlyUsedProducts={fairlyUsedProducts}/>
+              {
+                fairlyUsedProducts?.length === 0 && <p className='text-center'>No Fairly Used Products</p>
+              }
               {
                 loader && 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">

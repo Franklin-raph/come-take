@@ -30,6 +30,8 @@ const ServicePurchase = ({baseUrl}) => {
     const [customerName, setCustomerName] = useState('')
     const [address, setAddress] = useState('')
     const [verifyMeterLoader, setVerifyMeterLoader] = useState(false)
+    const [dataVtuServiceLoader, setDataVtuServiceLoader] = useState(false)
+    const [tvVtuServiceLoader, setTvVtuServiceLoader] = useState(false)
     
 
     const networks = [
@@ -67,12 +69,13 @@ const ServicePurchase = ({baseUrl}) => {
       },[])
 
       async function getVtuDataServices(){
-        
+        setDataVtuServiceLoader(true)
         const res = await fetch(`${baseUrl}/vtu/services/data/${network}`,{
           headers: {
             Authorization: `Bearer ${user.data[0].access}`
           },
         })
+        if(res) setDataVtuServiceLoader(false)
         const data = await res.json()
         
         console.log(data.data.content.varations);
@@ -80,12 +83,14 @@ const ServicePurchase = ({baseUrl}) => {
       }
 
       async function getVtuTVServices(){
+        setTvVtuServiceLoader(true)
         console.log('called');
         const res = await fetch(`${baseUrl}/vtu/services/tv-sub/${network}`,{
           headers: {
             Authorization: `Bearer ${user.data[0].access}`
           },
         })
+        if(res) setTvVtuServiceLoader(false)
         const data = await res.json()
         console.log(data, data.data.content.varations);
         setTvPlans(data.data.content.varations)
@@ -273,7 +278,7 @@ const ServicePurchase = ({baseUrl}) => {
                 {/* {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> } */}
                 <div className='gap-[0rem] px-[20px] md:px-10 pb-[3rem] pt-[2.5rem] flex-[2] mb-8 w-full' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                     <div>
-                        <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Cometake VTU123</h1>
+                        <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>Cometake VTU</h1>
                     </div>
                     <div className='flex item-center justify-between'>
                       <div className='w-[75%] flex items-center gap-[1.5rem]'>
@@ -313,6 +318,9 @@ const ServicePurchase = ({baseUrl}) => {
                     }
 
                     {/* DATA SUB FOR DESKTOP SCREEN BEGINS */}
+                    {
+                      dataVtuServiceLoader && <img src="./loader.gif" className='w-[50px] h-[50px] mx-auto' alt="" />
+                    }
                     <div className='hidden md:block'>
                       {
                         dataPlans &&
@@ -369,6 +377,9 @@ const ServicePurchase = ({baseUrl}) => {
                     </div>
                     {/* DATA SUB FOR MOBILE SCREEN ENDS */}
 
+                    {
+                      tvVtuServiceLoader && <img src="./loader.gif" className='w-[50px] h-[50px] mx-auto' alt="" />
+                    }
                     {/* TV SUB FOR DESKTOP SCREEN BEGINS */}
                     <div className='hidden md:block'>
                       {

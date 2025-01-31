@@ -28,7 +28,7 @@ const BottomNav = () => {
         })
         const data = await res.json()
         setUserDetails(data.data)
-        // console.log(res, data);
+        console.log(res, data);
       }
 
       async function getCatgories(){
@@ -104,13 +104,17 @@ const BottomNav = () => {
             <li onClick={() => checkSellersSub()}>
                 List Product
             </li>
-            {
-                userDetails?.updated_store ?
-                ""
-                :
-                <li onClick={() => checkIsSellerVerified()}>
-                    Sell Products
-                </li>
+            {userDetails?.subscription_plan !== null &&
+                <>
+                    {
+                        userDetails?.updated_store === true ?
+                        ""
+                        :
+                        <li onClick={() => checkIsSellerVerified()}>
+                            Sell Products
+                        </li>
+                    }
+                </>
             }
             {/* <li>
                 <Link to="#">Trending Products</Link>
