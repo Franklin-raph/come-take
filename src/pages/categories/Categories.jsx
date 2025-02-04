@@ -108,23 +108,40 @@ const Categories = ({baseUrl}) => {
     console.log("Line 52 ===>", data.data);
   }
 
-  const [condition, setCondition] = useState('')
-  const [minPrice, setMinPrice] = useState(0)
-  const [maxPrice, setMaxPrice] = useState(0)
-  const [searchText, setSearchText] = useState('')
-
-  async function filterProducts(){
-    setFilterLoader(true)
-    setLoader(true)
-    const res = await fetch(`${baseUrl}/products?price_below=${minPrice}&price_above=${maxPrice}&condition=${condition}`)
-    const data = await res.json()
-    if(res) {
-      setShowFilter(false)
-      setLoader(false)
-      setFilterLoader(false)
+  const [condition, setCondition] = useState('');
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+  const [searchText, setSearchText] = useState('');
+  
+  async function filterProducts() {
+    setLoader(true);
+  
+    // Build query parameters dynamically
+    const queryParams = new URLSearchParams();
+  
+    if (minPrice) queryParams.append('price_below', minPrice);
+    if (maxPrice) queryParams.append('price_above', maxPrice);
+    if (condition) queryParams.append('condition', condition);
+    if (searchText) queryParams.append('search', searchText);
+  
+    const queryString = queryParams.toString();
+    const url = `${baseUrl}/products${queryString ? `?${queryString}` : ''}`;
+  
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+  
+      if (res.ok) {
+        setShowFilter(false);
+        setAllProducts(data.data);
+      } else {
+        console.error("Error fetching products:", data);
+      }
+    } catch (error) {
+      console.error("Network or fetch error:", error);
+    } finally {
+      setLoader(false);
     }
-    setAllProducts(data.data)
-    console.log(res, data);
   }
     
 

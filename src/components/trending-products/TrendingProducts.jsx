@@ -13,7 +13,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 
 
-const TrendingProducts = ({allProducts, baseUrl}) => {
+const TrendingProducts = ({allProducts, baseUrl, getMySavedProducts, getAllProductsAfterSaveOrUnsave, msg, setMsg, alertType, setAlertType}) => {
 
     const SampleNextArrow = (props) => {
         const { onClick } = props;
@@ -117,7 +117,7 @@ const TrendingProducts = ({allProducts, baseUrl}) => {
   return (
     <Slider {...settings}>
         {allProducts && allProducts?.map(product => (
-            <ProductCard product={product} baseUrl={baseUrl}/>
+            <ProductCard msg={msg} getMySavedProducts={getMySavedProducts} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} product={product} baseUrl={baseUrl}/>
         ))}
     </Slider>
   )

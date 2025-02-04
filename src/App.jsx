@@ -59,6 +59,7 @@ export default function App() {
   const user = JSON.parse(localStorage.getItem('user'))
   const [userDetails, setUserDetails] = useState()
   const [userSocialLoginModal, setUserSocialLoginModal] = useState(false)
+  const [savedItemsCount, setSavedItemsCount] = useState()
 
   async function getUserDetails(){
     const res = await fetch(`${baseUrl}/complete-registration`,{
@@ -71,14 +72,33 @@ export default function App() {
     console.log(res, data);
   }
 
+  async function getMySavedProducts(){
+    console.log("Called ................");
+    
+    const res = await fetch(`https://cometakebe.onrender.com/seller/dashboard/save-item`,{
+      headers:{
+            Authorization:`Bearer ${user?.data[0]?.access}`
+        }
+    })
+    const data = await res.json()
+    // console.log(res, data);
+    console.log(data.data)
+    setSavedItemsCount(data.data.length)
+    localStorage.setItem('savedItemsCount', data.data.length)
+  }
+
+  useEffect(() => {
+    getMySavedProducts()
+  },[])
+
 
   return (
     <>
       <HashRouter>
       {/* <AuthenticatedNavbar /> */}
-       <UnAuthenticatedNavabar setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} baseUrl={baseUrl}/>
+       <UnAuthenticatedNavabar savedItemsCount={savedItemsCount} setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} baseUrl={baseUrl}/>
         <Routes>
-          <Route path="/" element={<Home baseUrl={baseUrl} setLoginModal={setLoginModal}/>}/>
+          <Route path="/" element={<Home getMySavedProducts={getMySavedProducts} baseUrl={baseUrl} setLoginModal={setLoginModal}/>}/>
           <Route path="/signup" element={<Register baseUrl={baseUrl}/>}/>
           <Route path="/product-details/:id" element={<ProductDescription baseUrl={baseUrl}/>}/>
           <Route path="/shoping-cart" element={<ShoppingCart />}/>
@@ -87,7 +107,7 @@ export default function App() {
           <Route path="/order-item" element={<OrederdItem />}/>
           <Route path="/messages" element={<MessageInbox baseUrl={baseUrl}/>}/>
           <Route path="/message-content" element={<MessageContent />}/>
-          <Route path="/saved-items" element={<SavedItems />}/>
+          <Route path="/saved-items" element={<SavedItems getMySavedProducts={getMySavedProducts} />}/>
           <Route path="/shop-set-up" element={<ShopSetUp baseUrl={baseUrl} />} />
           <Route path="/subscription-plan" element={<Subscription baseUrl={baseUrl}/>} />
           <Route path="/list-product" element={<ListProduct baseUrl={baseUrl}/>} />

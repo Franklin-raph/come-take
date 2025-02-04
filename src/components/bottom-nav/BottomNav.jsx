@@ -104,15 +104,19 @@ const BottomNav = () => {
             <li onClick={() => checkSellersSub()}>
                 List Product
             </li>
-            {userDetails?.subscription_plan !== null &&
+            {userDetails &&
                 <>
-                    {
-                        userDetails?.updated_store === true ?
-                        ""
-                        :
-                        <li onClick={() => checkIsSellerVerified()}>
-                            Sell Products
-                        </li>
+                    {userDetails?.subscription_plan !== null &&
+                        <>
+                            {
+                                userDetails?.updated_store === true ?
+                                ""
+                                :
+                                <li onClick={() => checkIsSellerVerified()}>
+                                    Sell Products
+                                </li>
+                            }
+                        </>
                     }
                 </>
             }

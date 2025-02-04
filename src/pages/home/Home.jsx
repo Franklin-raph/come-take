@@ -22,7 +22,7 @@ import img2 from '../../assets/landingPageBgImg.png'
 import { useNavigate } from 'react-router-dom';
 import SkeletonLoader from '../../components/skeleton-loader/SkeletonLoader';
 
-const Home = ({baseUrl, setLoginModal}) => {
+const Home = ({baseUrl, setLoginModal, getMySavedProducts}) => {
 
   const user = JSON.parse(localStorage.getItem('user'))
 
@@ -50,6 +50,8 @@ const [brandNewProducts, setBrandNewProducts] = useState()
 const [fairlyUsedProducts, setFairlyUsedProducts] = useState()
 const [allCategoryArray, setAllCategoryArray] = useState([])
 const [loader, setLoader] = useState(false)
+const [msg, setMsg] = useState(false)
+const [alertType, setAlertType] = useState('')
 
 async function getAllProducts(){
     setLoader(true)
@@ -61,12 +63,23 @@ async function getAllProducts(){
     const data = await res.json()
     if(res) setLoader(false)
     setAllProducts(data.data)
-    setBrandNewProducts(data.data.filter(product => product.condition === 'new'))
+    setBrandNewProducts(data.data.filter(product => product.condition === 'brand_new'))
     setFairlyUsedProducts(data.data.filter(product => product.condition === 'fairly_used'))
     console.log("Line 52 ===>", data.data);
 }
 
-console.log(fairlyUsedProducts);
+async function getAllProductsAfterSaveOrUnsave(){
+    const res = await fetch(`${baseUrl}/products`,{
+      headers:{
+          Authorization:`Bearer ${user.data[0].access}`,
+      },
+  })
+    const data = await res.json()
+    setAllProducts(data.data)
+    setBrandNewProducts(data.data.filter(product => product.condition === 'brand_new'))
+    setFairlyUsedProducts(data.data.filter(product => product.condition === 'fairly_used'))
+    console.log("Line 52 ===>", data.data);
+}
 
 async function getAllUnauthenticatedProducts(){
   setLoader(true)
@@ -172,7 +185,7 @@ const [seachString, setSeachString] = useState('')
                 }
               </div>
             }
-            <TrendingProducts allProducts={allProducts} baseUrl={baseUrl}/>
+            <TrendingProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} allProducts={allProducts} baseUrl={baseUrl}/>
             {
               allProducts?.length === 0 && <p className='text-center'>No Fairly Used Products</p>
             }
@@ -196,7 +209,7 @@ const [seachString, setSeachString] = useState('')
                         <GoArrowRight />
                   </div>
                 </div>
-              <BrandNewProducts brandNewProducts={brandNewProducts}/>
+              <BrandNewProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} brandNewProducts={brandNewProducts}/>
               {
                 brandNewProducts?.length === 0 && <p className='text-center'>No Brand New Products</p>
               }
@@ -223,7 +236,7 @@ const [seachString, setSeachString] = useState('')
                     <GoArrowRight />
                 </div>
               </div>
-              <BrandNewProducts brandNewProducts={brandNewProducts}/>
+              <BrandNewProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} brandNewProducts={brandNewProducts}/>
               {
                 brandNewProducts?.length === 0 && <p className='text-center'>No Brand New Products</p>
               }
@@ -250,7 +263,7 @@ const [seachString, setSeachString] = useState('')
                       <GoArrowRight />
                     </div>
                 </div>
-                <FairlyUsedProducts fairlyUsedProducts={fairlyUsedProducts}/>
+                <FairlyUsedProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} fairlyUsedProducts={fairlyUsedProducts}/>
                 {
                   fairlyUsedProducts?.length === 0 && <p className='text-center'>No Fairly Used Products</p>
                 }
@@ -277,7 +290,7 @@ const [seachString, setSeachString] = useState('')
                     <GoArrowRight />
                 </div>
               </div>
-              <FairlyUsedProducts fairlyUsedProducts={fairlyUsedProducts}/>
+              <FairlyUsedProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} fairlyUsedProducts={fairlyUsedProducts}/>
               {
                 fairlyUsedProducts?.length === 0 && <p className='text-center'>No Fairly Used Products</p>
               }

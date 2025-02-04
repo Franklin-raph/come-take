@@ -25,7 +25,7 @@ import { GrVirtualStorage } from "react-icons/gr";
 import Alert from '../alert/Alert';
 
 
-const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) => {
+const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl, savedItemsCount }) => {
 
     const [desktopAccountDropDown, setDesktopAccountDropDown] = useState(false)
     const [mobileAccountDropDown, setMobileAccountDropDown] = useState(false)
@@ -49,7 +49,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
         }
         const data = await res.json()
         setUserDetails(data.data)
-        // console.log(res, data);
+        console.log(data);
       }
     
       useEffect(() =>{
@@ -182,13 +182,18 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                     <Link to="/help">Help</Link>
                     <IoChevronDown fontSize={"20px"} />
                 </li> */}
-                <li onClick={() => navigate('/saved-items')}>
-                    <div className='cursor-pointer flex'>
-                        <p>Saved</p>
-                        <CiHeart color='#FF3030' fontSize={"20px"}/>
-                        <p>(0)</p>
-                    </div>
-                </li>
+                {
+                    user &&
+                    <li onClick={() => navigate('/saved-items')}>
+                        <div className='cursor-pointer flex'>
+                            <p>Saved</p>
+                            <CiHeart color='#FF3030' fontSize={"20px"}/>
+                            {
+                                savedItemsCount && <p>({savedItemsCount})</p>
+                            }
+                        </div>
+                    </li>
+                }
                 {/* {
                     user &&
                     <li>
@@ -197,7 +202,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl }) =>
                 } */}
                 <li className='bg-secondary-color px-3 py-1 rounded-full getApp'>
                     <HiOutlineDevicePhoneMobile />
-                    <Link to="/get-app">Get App</Link>
+                    <Link to="/get-app">Get App..</Link>
                 </li>
             </div>
         </nav>

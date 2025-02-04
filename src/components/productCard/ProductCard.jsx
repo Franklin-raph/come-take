@@ -6,11 +6,9 @@ import { CiBookmark } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import Alert from "../alert/Alert";
 
-const ProductCard = ({ product, baseUrl }) => {
+const ProductCard = ({ product, baseUrl, getMySavedProducts, getAllProductsAfterSaveOrUnsave, msg, setMsg, alertType, setAlertType  }) => {
 
     const user = JSON.parse(localStorage.getItem('user'))
-    const [msg, setMsg] = useState(false)
-    const [alertType, setAlertType] = useState('')
     const [userDetails, setUserDetails] = useState()
     const navigate = useNavigate()
 
@@ -47,29 +45,8 @@ const ProductCard = ({ product, baseUrl }) => {
         })
         const data = await res.json()
         if(res.ok){
-            setMsg(data.message)
-            setAlertType('success')
-        }
-        if(!res.ok){
-            setMsg(data.message)
-            setAlertType('error')
-        }
-        // console.log(res, data);
-        console.log(res, data)
-    }
-
-    async function unSaveProduct(productId){
-        console.log(JSON.stringify({
-            product:productId,
-            user:user.data[1].id
-        }));
-        const res = await fetch(`https://cometakebe.onrender.com/seller/dashboard/save-item/${productId}`,{
-            method:"DELETE",
-            headers:{
-                Authorization:`Bearer ${user?.data[0]?.access}`
-            }
-        })
-        if(res.ok){
+            getAllProductsAfterSaveOrUnsave()
+            getMySavedProducts()
             setMsg(data.message)
             setAlertType('success')
         }
@@ -83,20 +60,26 @@ const ProductCard = ({ product, baseUrl }) => {
 
   return (
     <div>
+        {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
         <div className="product-card">
             {
                 user && 
-                <>
-                {
-                    product.current_user_saved_product === true ?
-                        <div className="badge bg-secondary-color text-white" onClick={() => {
-                            setAlertType('warning')
-                            setMsg('To delete an item, pls visit the saved items page')
-                        }} ><CiBookmark /></div>
-                        :
-                        <div className="badge" onClick={() => saveProduct(product.id)} ><CiBookmark /></div>
-                }
-                </>
+                    <>
+                        {
+                            product.current_user_saved_product === true ?
+                                <div className="badge bg-secondary-color text-white" 
+                                    onClick={() => {
+                                        // setMsg('To delete an item, pls visit the saved items page')
+                                        // setAlertType('error')
+                                    }} >
+                                    <CiBookmark />
+                                </div>
+                                    :
+                                <div className="badge" onClick={() => saveProduct(product.id)} >
+                                    <CiBookmark />
+                                </div>
+                        }
+                    </>
             }
             <div className="" onClick={() => navigate(`/product-details/${product.id}`)}>
                 <div className="product-tumb">
@@ -121,7 +104,7 @@ const ProductCard = ({ product, baseUrl }) => {
                     </div>
                 </div>
             </div>
-            {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
+            
         </div>
     </div>
   )

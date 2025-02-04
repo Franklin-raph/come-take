@@ -33,16 +33,16 @@ const ProductDescription = ({baseUrl}) => {
         window.scrollTo(0, 0)
         if(user){
             console.log('user');
-            getAllProducts()
+            getMyProducts()
           }else{
             console.log('no user');
             getAllUnauthenticatedProducts()
           }
     },[id])
 
-    async function getAllProducts(){
+    async function getMyProducts(){
         setLoader(true)
-        const res = await fetch(`${baseUrl}/products`,{
+        const res = await fetch(`${baseUrl}/seller/dashboard/my-products`,{
           headers:{
               Authorization:`Bearer ${user.data[0].access}`,
           },
@@ -198,9 +198,19 @@ const ProductDescription = ({baseUrl}) => {
                                     </p>
                                     <div className='flex items-center justify-between mt-3'>
                                         <p className='text-[#898989]'>Brand: {product.brand_name}</p>
-                                        {
-                                            user && <FaRegBookmark cursor='pointer' color='#6C6C6C' onClick={saveProduct}/>
-                                        }
+                                        {/* {
+                                            user && 
+                                            <>
+                                                {
+                                                    product?.current_user_saved_product === true ?
+                                                    <div className="badge bg-secondary-color text-white">
+                                                        <FaRegBookmark />
+                                                    </div>
+                                                    :
+                                                    <FaRegBookmark cursor='pointer' color='#6C6C6C' onClick={saveProduct}/>
+                                                }
+                                            </>
+                                        } */}
                                     </div>
                                     <div className='flex items-center justify-start gap-1 mt-2'>
                                         <GoClock color='#6C6C6C' />
@@ -248,13 +258,13 @@ const ProductDescription = ({baseUrl}) => {
                                         </div>
                                     </div>
 
-                                    <div className='mt-4'>
+                                    {/* <div className='mt-4'>
                                         <h1 className='font-[500] text-[18px] lg:text-[20px] mb-3 text-primary-color'>Store Address</h1>
                                         <div className='flex items-center gap-1'>
                                             <CiLocationOn color='background: #1D1D1FCC' fontSize={"25px"} />
                                             <p className='text-[12px]'>No 55 Blessed Avenue Uper Iweka Road Onitsha</p>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className='lg:flex w-[280px] flex-col px-4 h-full py-[2rem] border hidden'>
                                     <p className='text-[20px] text-[#003C2F] font-[700] mb-4'>Tips</p>
@@ -285,7 +295,12 @@ const ProductDescription = ({baseUrl}) => {
         <div className="lg:px-12 py-8">
             <div className='p-5' style={{boxShadow:"0px 11px 40px -17px rgba(0, 0, 0, 0.14)"}}>
                 <div className="flex items-center justify-between mb-[20px]">
-                    <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">More Items From Seller</h1>
+                    {
+                        user ?
+                        <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">More Items From Seller</h1>
+                        :
+                        <h1 className="font-[600] text-[18px] lg:text-[24px] text-primary-color">More Items</h1>
+                    }
                     <div onClick={() => navigate('/categories')} className="flex items-center gap-2 py-1 px-2 rounded-full cursor-pointer text-[12px]" style={{ border:"1px solid gray" }}>
                         <p>See all</p>
                         <GoArrowRight />

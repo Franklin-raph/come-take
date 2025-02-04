@@ -12,7 +12,7 @@ import { CiBookmark, CiLocationOn } from 'react-icons/ci';
 import { RiVerifiedBadgeFill } from 'react-icons/ri';
 import Alert from '../../components/alert/Alert';
 
-const SavedItems = () => {
+const SavedItems = ({ getMySavedProducts }) => {
 
     const [savedItems, setSavedItems] = useState()
     const user = JSON.parse(localStorage.getItem('user'))
@@ -21,67 +21,31 @@ const SavedItems = () => {
     const [msg, setMsg] = useState(false)
     const [alertType, setAlertType] = useState('')
 
-    const savedItemsArray = [
-        {
-          img:laptopImage,
-          productName:`Macbook Pro 13"`,
-          price:"2m",
-          location:"Imo State",
-          rating:5,
-          reviews:"35 Reviews"
-        },
-        {
-          img:bagImage,
-          productName:`Hand Bag`,
-          price:"2m",
-          location:"Imo State",
-          rating:5,
-          reviews:"35 Reviews"
-        },
-        {
-          img:shoeImage,
-          productName:`Nike Sneakers`,
-          price:"2m",
-          location:"Imo State",
-          rating:5,
-          reviews:"35 Reviews"
-        },
-        {
-          img:phoneImage,
-          productName:`Iphone 13"`,
-          price:"2m",
-          location:"Imo State",
-          rating:5,
-          reviews:"35 Reviews"
-        }
-      ]
-
-      
     const navigate = useNavigate()
 
     useEffect(() => {
       window.scrollTo(0, 0)
-      getMySavedProducts()
+      getAllMySavedProducts()
     },[])
 
-    async function getMySavedProducts(){
-      setLoader(true)
-      const res = await fetch(`https://cometakebe.onrender.com/seller/dashboard/save-item`,{
-        headers:{
-              Authorization:`Bearer ${user?.data[0]?.access}`
-          }
-      })
-      const data = await res.json()
-      if(res) setLoader(false)
-      if(res.ok){
-        setSavedItems(data.data)
-      }
-      if(!res.ok){
-          setMsg(data.message)
-          setAlertType('error')
-      }
-      // console.log(res, data);
-      console.log(res,data)
+  async function getAllMySavedProducts(){
+    setLoader(true)
+    const res = await fetch(`https://cometakebe.onrender.com/seller/dashboard/save-item`,{
+      headers:{
+            Authorization:`Bearer ${user?.data[0]?.access}`
+        }
+    })
+    const data = await res.json()
+    if(res) setLoader(false)
+    if(res.ok){
+      setSavedItems(data.data)
+    }
+    if(!res.ok){
+        setMsg(data.message)
+        setAlertType('error')
+    }
+    // console.log(res, data);
+    console.log(res,data)
   }
 
   async function unSaveProduct(productId){
@@ -99,6 +63,7 @@ const SavedItems = () => {
         setMsg("Product has been unsaved")
         setAlertType('success')
         getMySavedProducts()
+        getAllProductsAfterSaveOrUnsave()
     }
     if(!res.ok){
         setMsg("An error occured")
@@ -106,7 +71,25 @@ const SavedItems = () => {
     }
     // console.log(res, data);
     console.log(res)
-}
+  }
+
+  async function getAllProductsAfterSaveOrUnsave(){
+    const res = await fetch(`https://cometakebe.onrender.com/seller/dashboard/save-item`,{
+      headers:{
+          Authorization:`Bearer ${user.data[0].access}`,
+      },
+  })
+    const data = await res.json()
+    if(res.ok){
+      setSavedItems(data.data)
+    }
+    if(!res.ok){
+        setMsg(data.message)
+        setAlertType('error')
+    }
+    // console.log(res, data);
+    console.log(res,data)
+  }
 
   return (
     <div>
