@@ -243,7 +243,7 @@ const ProductDescription = ({baseUrl}) => {
                                             <p className='mb-5'>{product.seller.first_name} {product.seller?.last_name}</p>
                                             <div className='flex items-center gap-2 mb-5'>
                                                 <CiLocationOn fontSize={"20px"} className='text-primary-color'/>
-                                                <p className='text-secondary-color text-[10px]'>Anambra{product.seller?.state} State</p>
+                                                <p className='text-secondary-color text-[10px]'>{product.store_info?.store_state} State, {product.store_info?.store_city}</p>
                                             </div>
                                         </div>
                                         <div>
@@ -258,13 +258,13 @@ const ProductDescription = ({baseUrl}) => {
                                         </div>
                                     </div>
 
-                                    {/* <div className='mt-4'>
+                                    <div className='mt-4'>
                                         <h1 className='font-[500] text-[18px] lg:text-[20px] mb-3 text-primary-color'>Store Address</h1>
                                         <div className='flex items-center gap-1'>
                                             <CiLocationOn color='background: #1D1D1FCC' fontSize={"25px"} />
-                                            <p className='text-[12px]'>No 55 Blessed Avenue Uper Iweka Road Onitsha</p>
+                                            <p className='text-[12px]'>{product.store_info?.store_address_1}</p>
                                         </div>
-                                    </div> */}
+                                    </div>
                                 </div>
                                 <div className='lg:flex w-[280px] flex-col px-4 h-full py-[2rem] border hidden'>
                                     <p className='text-[20px] text-[#003C2F] font-[700] mb-4'>Tips</p>

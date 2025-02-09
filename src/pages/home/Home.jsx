@@ -187,7 +187,7 @@ const [seachString, setSeachString] = useState('')
             }
             <TrendingProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} allProducts={allProducts} baseUrl={baseUrl}/>
             {
-              allProducts?.length === 0 && <p className='text-center'>No Fairly Used Products</p>
+              allProducts?.length == 0 && <p className='text-center'>No Newly Listed Products</p>
             }
           </div>
 

@@ -353,17 +353,27 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl, save
                             <CiHeart className='text-[21px] text-[#FF0505]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>Saved Items</p>
                         </div>
-                        {/* <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
+                        <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
                             setMobileAccountDropDown(!mobileAccountDropDown)
                             navigate('/my-wallet')
                         }}>
                             <CiBellOn className='text-[#292D32] text-[20px] font-[700]'/>
                             <p className='text-[16px] text-[#6C6C6C]'>My Wallet</p>
-                        </div> */}
-                        {/* <div className='flex items-center gap-3 cursor-pointer'>
+                        </div>
+                        <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
+                            setMobileAccountDropDown(!mobileAccountDropDown)
+                            navigate('/password-reset')
+                        }}>
                             <BsClock className='text-[#292D32] text-[18px] font-[700]'/>
-                            <p className='text-[16px] text-[#6C6C6C]'>Pending Reviews</p>
-                        </div> */}
+                            <p className='text-[16px] text-[#6C6C6C]'>Security Settings</p>
+                        </div>
+                        <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
+                            setMobileAccountDropDown(!mobileAccountDropDown)
+                            navigate('/update-shop')
+                        }}>
+                            <BsClock className='text-[#292D32] text-[18px] font-[700]'/>
+                            <p className='text-[16px] text-[#6C6C6C]'>Update Shop</p>
+                        </div>
                         <div className='flex items-center gap-3 cursor-pointer' onClick={() => {
                             checkSellersSub()
                             setMobileAccountDropDown(!mobileAccountDropDown)
