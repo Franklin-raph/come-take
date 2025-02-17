@@ -156,7 +156,7 @@ const ServicePurchase = ({baseUrl}) => {
             Authorization:`Bearer ${user?.data[0]?.access}`
           },
           body:JSON.stringify({
-            service_id:"etisalat-data",
+            service_id:network,
             phone,
             variation_code:plan.variation_code
           })
@@ -168,11 +168,11 @@ const ServicePurchase = ({baseUrl}) => {
           setAlertType('success')
         }
         if(!res.ok){
-          setMsg(data.data.content.error)
+          setMsg(data?.data?.response_description)
           setAlertType('error')
         }
+        console.log(data?.data?.response_description);
         console.log(res, data);
-        console.log(plan);
       }
 
       async function purchaseTvSub(plan){

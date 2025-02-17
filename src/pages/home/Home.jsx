@@ -28,9 +28,8 @@ const Home = ({baseUrl, setLoginModal, getMySavedProducts}) => {
 
   useEffect(() => {
 
-    document.title="ComeHome"
-// themeMeta.setAttribute("content", "#ffffff")
-
+    document.title="Come Home"
+    
     window.scrollTo(0, 0)
     if(user){
       getAllProducts()

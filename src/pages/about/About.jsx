@@ -23,7 +23,7 @@ const About = () => {
                 Nigeria.
             </p>
             <p>
-                Cometake Marketplace was founded in <span className='font-[600] underline italic'>May, 17 202_</span> in Lagos, Nigeria by Mr.
+                Cometake Marketplace was founded in <span className='font-[600] underline italic'>17 May, 2020</span> in Lagos, Nigeria by Mr.
                 Francis, who is the company's CEO. Cometake started a project known as
                 cometakedata plus providing data, airtime, Electric Bill, DStv etc. we are now
                 versatile in Digital Marketing system.

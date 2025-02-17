@@ -51,13 +51,15 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
   }
 
   function googleResponseMessage(response){
+    console.log("Google response ============ ", response);
+    
     if(response.credential){
       handleGoogleSignIn(response.credential)
     }
   }
 
   async function handleGoogleSignIn(jwt){
-    // console.log(jwt);
+    console.log(jwt);
     const res = await fetch('https://cometakebe.onrender.com/social-login',{
       method:"POST",
       headers:{
@@ -79,7 +81,7 @@ const Login = ({ setLoginModal, setRegisterModal, baseUrl, setForgotPasswordModa
     if(data.data[0].completed === true){
       localStorage.setItem('user', JSON.stringify(data))
       localStorage.setItem('my-sub', JSON.stringify(data.data[1].subscription_plan))
-      window.location.href = '/'
+      // window.location.href = '/'
     }
   }
 

@@ -139,7 +139,7 @@ const BottomNav = () => {
             categoryNav &&
             <>
                 <div className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => setCategoryNav(false)}></div>
-                <div className='fixed left-0 bg-white px-12 py-5 w-[35%] top-[0] z-[100] rounded-[4px] h-[100vh]'>
+                <div className='fixed left-0 bg-white px-12 py-5 w-[35%] top-[0] z-[100] rounded-[4px] h-[100vh] overflow-y-scroll'>
                     <p className='text-black font-bold text-[20px] mb-2'>Categories</p>
                     {
                         allCategoryArray && allCategoryArray.map(item => (
