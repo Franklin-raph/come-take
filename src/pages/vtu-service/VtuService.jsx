@@ -36,6 +36,7 @@ const VtuService = ({baseUrl}) => {
       },
     })
     const data = await res.json()
+    console.log(data);
     if(res) setServiceLoader(false)
     if(service === 'airtime'){
       // setVtuService(data.data[1].content.slice(0,2));
@@ -43,13 +44,12 @@ const VtuService = ({baseUrl}) => {
       return
     }
     if(service === 'data'){
-      setVtuService(data.data[1].content.filter(service => service.serviceID !== 'smile-direct' && service.serviceID !== 'spectranet'))
+      setVtuService(data.data[1].content.filter(service => service.serviceID !== 'smile-direct' && service.serviceID !== 'spectranet' && service.serviceID !== 'glo-sme-data'))
       return
     }else{
       setVtuService(data.data[1].content)
       return
     }
-    console.log(data);
   }
 
   useEffect(() => {

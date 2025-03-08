@@ -32,6 +32,7 @@ const ServicePurchase = ({baseUrl}) => {
     const [verifyMeterLoader, setVerifyMeterLoader] = useState(false)
     const [dataVtuServiceLoader, setDataVtuServiceLoader] = useState(false)
     const [tvVtuServiceLoader, setTvVtuServiceLoader] = useState(false)
+    const [isMetetNumberValid, setIsMetetNumberValid] = useState(false)
     
 
     const networks = [
@@ -78,7 +79,7 @@ const ServicePurchase = ({baseUrl}) => {
         if(res) setDataVtuServiceLoader(false)
         const data = await res.json()
         
-        console.log(data.data.content.varations);
+        console.log("Data Services ========== ", data.data.content.varations);
         setDataPlans(data.data.content.varations)
       }
 
@@ -176,7 +177,7 @@ const ServicePurchase = ({baseUrl}) => {
       }
 
       async function purchaseTvSub(plan){
-        if(!quantity || !subscription_type || !phone || !amount || !billersCode){
+        if(!subscription_type || !phone || !billersCode){
           setMsg("Please fill in all fields")
           setAlertType('error')
           return
@@ -196,10 +197,16 @@ const ServicePurchase = ({baseUrl}) => {
         if(res.ok){
           setMsg("Successfully purchased tv subscription")
           setAlertType('success')
+          setPhone('')
+          setSubscription_type('')
+          setQuantity('')
+          setBillersCode('')
+          setAmount('')
         }
         if(!res.ok){
-          setMsg(data.data.content.error)
+          setMsg(data?.message)
           setAlertType('error')
+          setLoader(false)
         }
         console.log(JSON.stringify({phone, amount, subscription_type, quantity, billersCode, variation_code:plan.variation_code}));
         console.log(plan);
@@ -229,6 +236,7 @@ const ServicePurchase = ({baseUrl}) => {
           if(res.ok){
             setMsg("Valid Meter Number")
             setAlertType('success')
+            setIsMetetNumberValid(true)
             setMeterNumber(billersCode)
             setCustomerName(data.data.content.Customer_Name)
             setAddress(data.data.content.Address)
@@ -260,9 +268,17 @@ const ServicePurchase = ({baseUrl}) => {
         if(res.ok){
           setMsg(data.data.token)
           setAlertType('success')
+          setBillersCode('')
+          setAddress('')
+          setCustomerName('')
+          setPhone('')
+          setAmount('')
+          setSubscription_type('')
+          setMeterNumber('')
+          setIsMetetNumberValid(false)
         }
         if(!res.ok){
-          setMsg(data.data.content.error)
+          setMsg(data?.message)
           setAlertType('error')
         }
         console.log(res, data);
@@ -459,7 +475,7 @@ const ServicePurchase = ({baseUrl}) => {
                                     </div>
                                   }
                                 </div>
-                          <input type="text" onChange={e => setBillersCode(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-[100%] mt-8 p-2 rounded-[6px] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' placeholder='Meter Number' />
+                          <input type="text" value={billersCode} onChange={e => setBillersCode(e.target.value)} style={{border:"1px solid #DCDCDC"}} className='w-[100%] mt-8 p-2 rounded-[6px] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' placeholder='Meter Number' />
                           {
                               verifyMeterLoader ?
                                   <button className="bg-[#EDEDED] text-primary-color py-[12px] mt-7 w-full sm:w-[201px] rounded-[6px] tracking-wide
@@ -472,7 +488,7 @@ const ServicePurchase = ({baseUrl}) => {
                           }
                           
                           {
-                            address &&
+                            isMetetNumberValid &&
                             <>
                               <p className='my-5 text-left self-start'> <span className='text-gray-400'>Address:</span> {address}</p>
                               <div className="flex items-center jsutify-between w-full flex-col gap-5 md:flex-row md:gap-9">
