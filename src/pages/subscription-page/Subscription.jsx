@@ -70,7 +70,7 @@ const Subscription = ({baseUrl}) => {
     console.log(id, amount, duration);
     const payStack = new PaystackPop()
     payStack.newTransaction({
-      key:"pk_test_12420d20e0b354e9670266456195a13f3a03ec68",
+      key:"pk_live_0a5d478fd5f2e560f30bf5e4f64f2e17b9343628",
       amount:amount * 100,
       email:userDetails.email,
       onSuccess(transaction){
