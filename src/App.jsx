@@ -56,6 +56,7 @@ export default function App() {
   const [otp, setOTP] = useState('')
   const baseUrl = "https://cometakebe.onrender.com"
   // const baseUrl = "https://api.yamltech.com"
+  // https://cometakebe-4t5h.onrender.com/
   const user = JSON.parse(localStorage.getItem('user'))
   const [userDetails, setUserDetails] = useState()
   const [userSocialLoginModal, setUserSocialLoginModal] = useState(false)

@@ -276,6 +276,16 @@ const ServicePurchase = ({baseUrl}) => {
           setSubscription_type('')
           setMeterNumber('')
           setIsMetetNumberValid(false)
+          const response = await fetch(`${baseUrl}/send-electricity-token`,{
+            method:"POST",
+            headers:{
+              'Content-Type':'application/json',
+              Authorization:`Bearer ${user?.data[0]?.access}`
+            },
+            body: JSON.stringify({token:"1233"})
+          })
+          console.log(response);
+          
         }
         if(!res.ok){
           setMsg(data?.message)
