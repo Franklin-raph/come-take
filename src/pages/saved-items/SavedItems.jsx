@@ -30,7 +30,7 @@ const SavedItems = ({ getMySavedProducts }) => {
 
   async function getAllMySavedProducts(){
     setLoader(true)
-    const res = await fetch(`https://cometakebe.onrender.com/seller/dashboard/save-item`,{
+    const res = await fetch(`https://cometakebe-4t5h.onrender.com/seller/dashboard/save-item`,{
       headers:{
             Authorization:`Bearer ${user?.data[0]?.access}`
         }
@@ -53,7 +53,7 @@ const SavedItems = ({ getMySavedProducts }) => {
         product:productId,
         user:user.data[1].id
     }));
-    const res = await fetch(`https://cometakebe.onrender.com/seller/dashboard/un-save-item/${productId}`,{
+    const res = await fetch(`https://cometakebe-4t5h.onrender.com/seller/dashboard/un-save-item/${productId}`,{
         method:"DELETE",
         headers:{
             Authorization:`Bearer ${user?.data[0]?.access}`
@@ -74,7 +74,7 @@ const SavedItems = ({ getMySavedProducts }) => {
   }
 
   async function getAllProductsAfterSaveOrUnsave(){
-    const res = await fetch(`https://cometakebe.onrender.com/seller/dashboard/save-item`,{
+    const res = await fetch(`https://cometakebe-4t5h.onrender.com/seller/dashboard/save-item`,{
       headers:{
           Authorization:`Bearer ${user.data[0].access}`,
       },

@@ -54,7 +54,7 @@ export default function App() {
   const [resetPasswordModal, setResetPasswordModal] = useState(false)
   const [emailForOTP, setEmailForOTP] = useState('')
   const [otp, setOTP] = useState('')
-  const baseUrl = "https://cometakebe.onrender.com"
+  const baseUrl = "https://cometakebe-4t5h.onrender.com"
   // const baseUrl = "https://api.yamltech.com"
   // https://cometakebe-4t5h.onrender.com/
   const user = JSON.parse(localStorage.getItem('user'))
@@ -76,7 +76,7 @@ export default function App() {
   async function getMySavedProducts(){
     console.log("Called ................");
     
-    const res = await fetch(`https://cometakebe.onrender.com/seller/dashboard/save-item`,{
+    const res = await fetch(`https://cometakebe-4t5h.onrender.com/seller/dashboard/save-item`,{
       headers:{
             Authorization:`Bearer ${user?.data[0]?.access}`
         }

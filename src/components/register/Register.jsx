@@ -132,7 +132,7 @@ const Register = ({ setLoginModal, setRegisterModal, baseUrl, setUserSocialLogin
   
     async function handleGoogleSignIn(jwt){
       // console.log(jwt);
-      const res = await fetch('https://cometakebe.onrender.com/social-login',{
+      const res = await fetch('https://cometakebe-4t5h.onrender.com/social-login',{
         method:"POST",
         headers:{
           "Content-Type":"application/json"

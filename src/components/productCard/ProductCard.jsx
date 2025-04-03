@@ -32,7 +32,7 @@ const ProductCard = ({ product, baseUrl, getMySavedProducts, getAllProductsAfter
             product:productId,
             user:user.data[1].id
         }));
-        const res = await fetch(`https://cometakebe.onrender.com/seller/dashboard/save-item`,{
+        const res = await fetch(`https://cometakebe-4t5h.onrender.com/seller/dashboard/save-item`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",

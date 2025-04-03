@@ -21,7 +21,7 @@ const BottomNav = () => {
     const [allCategoryArray, setAllCategoryArray] = useState([])
 
     async function getUserDetails(){
-        const res = await fetch(`https://cometakebe.onrender.com/complete-registration`,{
+        const res = await fetch(`https://cometakebe-4t5h.onrender.com/complete-registration`,{
           headers:{
             Authorization:`Bearer ${user?.data[0]?.access}`
           }
@@ -32,7 +32,7 @@ const BottomNav = () => {
       }
 
       async function getCatgories(){
-        const res = await fetch(`https://cometakebe.onrender.com/categories`,{
+        const res = await fetch(`https://cometakebe-4t5h.onrender.com/categories`,{
             headers:{
                 Authorization:`Bearer ${user.data[0].access}`,
             },

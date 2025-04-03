@@ -276,13 +276,19 @@ const ServicePurchase = ({baseUrl}) => {
           setSubscription_type('')
           setMeterNumber('')
           setIsMetetNumberValid(false)
-          const response = await fetch(`${baseUrl}/send-electricity-token`,{
+          let tokenToBeSent = '';
+          if(data.data.token){
+            tokenToBeSent = data.data.token
+          }else{
+            tokenToBeSent = data.data.purchased_code
+          }
+          const response = await fetch(`${baseUrl}/send-electricty-token`,{
             method:"POST",
             headers:{
               'Content-Type':'application/json',
               Authorization:`Bearer ${user?.data[0]?.access}`
             },
-            body: JSON.stringify({token:"1233"})
+            body: JSON.stringify({token:tokenToBeSent})
           })
           console.log(response);
           
