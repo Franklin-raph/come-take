@@ -130,7 +130,7 @@ const Subscription = ({baseUrl}) => {
           availableSubs && availableSubs.map(sub => (
             <div className={ sub.title === 'basic' ? `py-5 px-[36px] rounded-[10px] w-[265px] border-2 border-solid border-[#96BF47]` : `py-5 px-[36px] rounded-[10px] w-[265px] border border-solid border-[#96BF47]` } style={{ boxShadow:"0 11px 40px -17px #00000024" }}>
               <p className='text-[#1C1C1C] font-[700] text-[22px] mb-3 capitalize'>{sub.title}</p>
-              <p className='text-[#1C1C1C] font-[700] text-[16px] py-4' style={{ borderTop:"1px solid #DCDCDC", borderBottom:"1px solid #DCDCDC" }}>#{sub.price}</p>
+              <p className='text-[#1C1C1C] font-[700] text-[16px] py-4' style={{ borderTop:"1px solid #DCDCDC", borderBottom:"1px solid #DCDCDC" }}>₦{sub.price.toLocaleString()}</p>
               <ul className='text-left grid gap-2 text-[#6C6C6C] pt-5 sub_list'>
                 {
                   sub.plan_description && sub.plan_description.map(desc => (
