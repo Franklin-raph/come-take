@@ -78,7 +78,6 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl, save
                 navigate('/list-product')
             }
         }
-
     }
 
     function checkIsSellerVerified(){

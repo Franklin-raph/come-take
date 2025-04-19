@@ -78,7 +78,7 @@ const BottomNav = () => {
         }else if(userDetails.kyc_status === 'rejected'){
             navigate('/verify-id')
         }else{
-            if(JSON.parse(localStorage.getItem('my-sub')) === null){
+            if(JSON.parse(localStorage.getItem('my-sub')) === "null"){
                 setMsg("You don't have an active subscription plan at the moment, please subscribe in order to continue with this operation")
                 navigate('/subscription-plan')
             }else if(userDetails.updated_store === false){

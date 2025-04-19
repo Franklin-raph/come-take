@@ -4,6 +4,7 @@ import userProfilePic  from '../../assets/profilePic.png'
 import { useEffect, useState } from 'react';
 import Btnloader from '../../components/loader/Btnloader';
 import Alert from '../../components/alert/Alert';
+import { useNavigate } from 'react-router-dom';
 
 const MyProfile = ({baseUrl}) => {
     const [userDetails, setUserDetails] = useState()
@@ -11,13 +12,14 @@ const MyProfile = ({baseUrl}) => {
     const [first_name, setFirstName] = useState('')
     const [last_name, setLastName] = useState('')
     const [phone, setPhone] = useState('')
-    const [middleName, setMiddleName] = useState('')
+    const [subscription_plan, setSubscriptionPlan] = useState('')
     const [msg, setMsg] = useState(false)
     const [alertType, setAlertType] = useState('')
     const [loader1, setLoader1] = useState(false)
     const [loader2, setLoader2] = useState(false)
     const [loader3, setLoader3] = useState(false)
     const user = JSON.parse(localStorage.getItem('user'))
+    const navigate = useNavigate()
 
     async function getUserDetails(){
         const res = await fetch(`${baseUrl}/complete-registration`,{
@@ -31,6 +33,7 @@ const MyProfile = ({baseUrl}) => {
         setLastName(data.data.last_name)
         setEmail(data.data.email)
         setPhone(data.data.phone)
+        setSubscriptionPlan(data.data.subscription_plan)
         console.log(res, data);
       }
     
@@ -192,6 +195,15 @@ const MyProfile = ({baseUrl}) => {
                               :
                                 <button onClick={updatePhone} className='bg-primary-color w-full py-[16px] px-[32px] text-[#fff] rounded-[4px] mt-10'>Update</button>
                         }
+                    </div>
+
+                    <div className='mt-[60px]'>
+                        <h1 className='text-[#003C2F] text-[24px] font-bold mb-5 pb-3' style={{borderBottom:"1px solid #E6ECEA"}}>My Current Subscription Plan</h1>
+                        <div>
+                            <label className='text-[16px] block mb-[3px] text-[#101010]'>Subscription Plan</label>
+                            <p className='w-full outline-none px-4 py-3 rounded-[6px] text-[#1A1A1A]' style={{border:"1px solid #CCCCCC"}}>{subscription_plan ? subscription_plan : 'Nill' }</p>
+                        </div>
+                        <button onClick={() => navigate('/subscription-plan')} className='bg-primary-color w-full py-[16px] px-[32px] text-[#fff] rounded-[4px] mt-10'>Update</button>
                     </div>
 
                     {/* <div className='mt-[60px]'>
