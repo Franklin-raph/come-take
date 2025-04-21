@@ -144,7 +144,6 @@ const Subscription = ({baseUrl}) => {
                 : 
                 <button className='bg-secondary-color text-white mt-5 w-[140px] rounded-[10px] h-[49px]' onClick={() => subscribe(sub.title, sub.id, sub.price)}>Make Payment</button>
               }
-              
             </div>
           ))
         }

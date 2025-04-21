@@ -25,7 +25,7 @@ import { GrVirtualStorage } from "react-icons/gr";
 import Alert from '../alert/Alert';
 
 
-const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl, savedItemsCount }) => {
+const UnAuthenticatedNavabar = ({ appModal, setAppModal, setLoginModal, setRegisterModal, baseUrl, savedItemsCount }) => {
 
     const [desktopAccountDropDown, setDesktopAccountDropDown] = useState(false)
     const [mobileAccountDropDown, setMobileAccountDropDown] = useState(false)
@@ -201,7 +201,7 @@ const UnAuthenticatedNavabar = ({ setLoginModal, setRegisterModal, baseUrl, save
                 } */}
                 <li className='bg-secondary-color px-3 py-1 rounded-full getApp'>
                     <HiOutlineDevicePhoneMobile />
-                    <Link to="/get-app">Get App..</Link>
+                    <Link onClick={() => {setAppModal(!appModal)}}>Get App..</Link>
                 </li>
             </div>
         </nav>

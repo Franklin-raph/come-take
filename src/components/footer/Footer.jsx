@@ -21,103 +21,26 @@ const Footer = () => {
     {
       label:"Return Policy",
       url:"/return-policy"
-    },
-    // {
-    //   label:"Affiliate and partners",
-    //   url:"#"
-    // }
-  ]
-
-  const categoriesLinks = [
-    {
-      label:"Fashion",
-      url:"#"
-    },
-    {
-      label:"Education",
-      url:"#"
-    },
-    {
-      label:"Books",
-      url:"#"
-    },
-    {
-      label:"Fitness",
-      url:"#"
-    },
-    {
-      label:"Furniture",
-      url:"#"
-    },
-    {
-      label:"Electronics",
-      url:"#"
-    },
-    {
-      label:"Computing",
-      url:"#"
-    },
-    {
-      label:"Phones",
-      url:"#"
-    },
-    {
-      label:"Beauty",
-      url:"#"
-    },
-    {
-      label:"Footwares",
-      url:"#"
     }
   ]
+
 
   const serviceLinks = [
     {
       label:"Airtime Recharge",
-      url:"#"
+      url:"/vtu-services"
     },
     {
       label:"Data Subscription",
-      url:"#"
+      url:"/vtu-services"
     },
     {
       label:"Cable Subscription",
-      url:"#"
+      url:"/vtu-services"
     },
     {
       label:"Electricity Bill Payments",
-      url:"#"
-    },
-    // {
-    //   label:"Account Sign Up",
-    //   url:"#"
-    // },
-    {
-      label:"Others",
-      url:"#"
-    }
-  ]
-
-  const helpLinks = [
-    {
-      label:"Cometake Help",
-      url:"#"
-    },
-    {
-      label:"Returns",
-      url:"#"
-    },
-    {
-      label:"Contact Us",
-      url:"#"
-    },
-    {
-      label:"Track Order",
-      url:"#"
-    },
-    {
-      label:"Security Fraud",
-      url:"#"
+      url:"/vtu-services"
     }
   ]
 

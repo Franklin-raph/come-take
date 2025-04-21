@@ -1,14 +1,11 @@
 import "./App.css"
-import AuthenticatedNavbar from "./components/navbar/AuthenticatedNavbar"
 import { HashRouter, Routes, Route, Link } from "react-router-dom"
 import Home from "./pages/home/Home"
 import Login from "./components/login/Login"
 import { useEffect, useState } from "react"
 import UnAuthenticatedNavabar from "./components/navbar/UnAuthenticatedNavabar"
-import { IoCloseOutline, IoMailOutline } from "react-icons/io5";
+import { IoCloseOutline } from "react-icons/io5";
 import Footer from "./components/footer/Footer"
-import { GoShieldCheck } from "react-icons/go"
-import { FcGoogle } from "react-icons/fc"
 import Register from "./components/register/Register"
 import Categories from "./pages/categories/Categories"
 import ProductDescription from "./pages/product-description/ProductDescription"
@@ -92,14 +89,16 @@ export default function App() {
     getMySavedProducts()
   },[])
 
+  const [appModal, setAppModal] = useState(false)
+
 
   return (
     <>
       <HashRouter>
       {/* <AuthenticatedNavbar /> */}
-       <UnAuthenticatedNavabar savedItemsCount={savedItemsCount} setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} baseUrl={baseUrl}/>
+       <UnAuthenticatedNavabar setAppModal={setAppModal} appModal={appModal} savedItemsCount={savedItemsCount} setLoginModal={setLoginModal} setRegisterModal={setRegisterModal} baseUrl={baseUrl}/>
         <Routes>
-          <Route path="/" element={<Home getMySavedProducts={getMySavedProducts} baseUrl={baseUrl} setLoginModal={setLoginModal}/>}/>
+          <Route path="/" element={<Home appModal={appModal} getMySavedProducts={getMySavedProducts} baseUrl={baseUrl} setLoginModal={setLoginModal}/>}/>
           <Route path="/signup" element={<Register baseUrl={baseUrl}/>}/>
           <Route path="/product-details/:id" element={<ProductDescription baseUrl={baseUrl}/>}/>
           <Route path="/shoping-cart" element={<ShoppingCart />}/>
@@ -158,6 +157,31 @@ export default function App() {
         }
         {
           userSocialLoginModal && <UpdateUserSocailName baseUrl={baseUrl} setUserSocialLoginModal={setUserSocialLoginModal}/>
+        }
+
+        {
+          appModal && 
+          <div>
+              <div onClick={() => setAppModal(false)} className="h-full w-full fixed top-0 left-0 z-[99]" style={{ background:"rgba(14, 14, 14, 0.58)" }} ></div>
+              <div className="bg-white w-[500px] flex items-center justify-center fixed top-[50%] left-[50%] py-[50px] px-[2rem] z-[100] login-modal" style={{ transform: "translate(-50%, -50%)" }}>
+                <div className="absolute top-[-15px] right-[-15px] text-[20px] cursor-pointer bg-white p-2 rounded-full border" >
+                  <IoCloseOutline onClick={() => setAppModal(false)} />
+                </div>
+                  <div className='w-full px-[1.7rem] lg:px-[3rem]'>
+                      <div>
+                          <p className='text-primary-color text-[28px] text-center'>Download Cometake</p>
+                          <div className='text-[#989898] text-center mt-[1rem] flex items-center justify-center gap-5'>
+                            <Link to="https://play.google.com/store/apps/details?id=com.doziechuks.cometake&pli=1" target="_blank" rel="noopener noreferrer">
+                              <img src="./google-play.svg" alt="" className="w-[100px]"/>
+                            </Link>
+                            <Link to="https://play.google.com/store/apps/details?id=com.doziechuks.cometake&pli=1" target="_blank" rel="noopener noreferrer">
+                              <img src="./apple-store.svg" alt="" className="w-[100px]"/>
+                            </Link>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
         }
       </HashRouter>
     </>
