@@ -197,6 +197,7 @@ const IdVerification = ({baseUrl}) => {
                           id="custom-input-front"
                           onChange={e => setFileFront(e.target.files[0])}
                           hidden
+                          accept="image/*"
                         />
                         <label
                           htmlFor="custom-input-front"
@@ -224,6 +225,7 @@ const IdVerification = ({baseUrl}) => {
                           console.log(e.target.files[0]);
                         }}
                         hidden
+                        accept="image/*"
                       />
                       <label
                         htmlFor="custom-input-back"
@@ -250,6 +252,7 @@ const IdVerification = ({baseUrl}) => {
                           console.log(e.target.files[0]);
                         }}
                         hidden
+                        accept="image/*"
                       />
                       <label
                         htmlFor="custom-input-photo"
