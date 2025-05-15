@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GoChevronDown } from 'react-icons/go';
 import Alert from '../../../components/alert/Alert';
-import { IoCheckmarkCircle } from "react-icons/io5";
 import Btnloader from '../../../components/loader/Btnloader';
 import AwaitingVerification from '../../../components/awaitingVerifircation/AwaitingVerification';
 import RejectSellerVerification from '../../../components/rejectSellerVerification/RejectSellerVerification';
@@ -18,10 +17,6 @@ const IdVerification = ({baseUrl}) => {
   const [loader, setLoader] = useState(false)
   const [userDetails, setUserDetails] = useState()
   const [awaitVerification, setAwaitVerification] = useState(false)
-
-  const [fileFrontUploadSuccess, setFileFrontUploadSuccess] = useState(null)
-  const [fileBackUploadSuccess, setFileBackUploadSuccess] = useState(null)
-  const [fileUploadLoader, setFileUploadLoader] = useState(false)
 
   const [rejectVerification, setRejectVerification] = useState(false)
 
@@ -62,8 +57,17 @@ const IdVerification = ({baseUrl}) => {
       formData.append('id_card_type', selectedIdType)
       formData.append('id_card_number', id_card_number)
       formData.append('id_card_image_front_view', fileFront)
-      formData.append('id_card_image_back_view', fileBack)
-      formData.append('photo', photo)
+      
+      // Only append back view if it's not null
+      if(fileBack) {
+        formData.append('id_card_image_back_view', fileBack)
+      }
+      
+      // Append photo if it exists
+      if(photo) {
+        formData.append('photo', photo)
+      }
+      
       setLoader(true)
       const res = await fetch(`${baseUrl}/seller/dashboard/upload-id`,{
         method:'PUT',
@@ -92,65 +96,6 @@ const IdVerification = ({baseUrl}) => {
       console.log('Front', fileFront);
     }
   }
-
-  // async function handleFileUploadFront(e) {
-  //   if (e.target.files && e.target.files.length > 0) {
-  //     // Update fileFront state with the selected file
-  //     setFileFront(e.target.files[0]);
-  //   }
-  //   const formData = new FormData()
-  //   formData.append('media_type', 'photo')
-  //   formData.append('media', e.target.files[0])
-  //   setFileUploadLoader(true)
-  //   const res = await fetch(`${baseUrl}/media`,{
-  //     method:"POST",
-  //     headers:{
-  //       Authorization:`Bearer ${user.data[0].access}`,
-  //     },
-  //     body: formData
-  //   })
-  //   const data = await res.json()
-  //   if(res) setFileUploadLoader(false)
-  //   if(res.ok){
-  //     setFileFrontUploadSuccess(true)
-  //     setMsg('File successfully uploaded')
-  //     setAlertType('success')
-  //   }
-  //   if(!res.ok){
-  //     setMsg('File upload was not successfull, please try again')
-  //     setAlertType('error')
-  //   }
-  // }
-
-  // async function handleFileUploadBack(e) {
-  //   if (e.target.files && e.target.files.length > 0) {
-  //     // Update fileBack state with the selected file
-  //     setFileBack(e.target.files[0]);
-  //   }
-  //   const formData = new FormData()
-  //   formData.append('media_type', 'photo')
-  //   formData.append('media', e.target.files[0])
-  //   setFileUploadLoader(true)
-  //   const res = await fetch(`${baseUrl}/media`,{
-  //     method:"POST",
-  //     headers:{
-  //       Authorization:`Bearer ${user.data[0].access}`,
-  //     },
-  //     body: formData
-  //   })
-  //   const data = await res.json()
-  //   console.log(data);
-  //   if(res) setFileUploadLoader(false)
-  //   if(res.ok){
-  //     setFileBackUploadSuccess(true)
-  //     setMsg('File successfully uploaded')
-  //     setAlertType('success')
-  //   }
-  //   if(!res.ok){
-  //     setMsg('File upload was not successfull, please try again')
-  //     setAlertType('error')
-  //   }
-  // }
 
   return (
     <div className="w-[90%] lg:w-[845px] flex items-center justify-center mx-auto mt-[5rem] py-[50px]" style={{ boxShadow: "0 11px 40px -17px #00000024" }}>
@@ -283,25 +228,14 @@ const IdVerification = ({baseUrl}) => {
       </div>
       {msg && <Alert setMsg={setMsg} msg={msg} alertType={alertType} /> }
       {
-            fileUploadLoader &&
-            <div className="fixed h-full w-full top-0 left-0 z-[99] flex items-center justify-center" style={{ background:"rgba(18, 18, 18, 0.8)" }}>
-                <div className="bg-white md:w-[450px] w-[300px] rounded-[18px]">
-                    <div className="flex items-center justify-between mt-[1rem] px-[2rem] mb-[2rem] flex-col">
-                        <img src='./loader.gif' className='h-10 w-10 mt-3 mb-5'/>
-                        <p className='text-gray-500 text-[15px] mb-2 text-center'>File Upload in progress, please do not refresh the page</p>
-                    </div>
-                </div>
-            </div>
-        }
-        {
-          userDetails && userDetails.kyc_status === 'pending' ? <AwaitingVerification /> : ""
-        }
-        {
-          awaitVerification && <AwaitingVerification />
-        }
-        {
-          userDetails && rejectVerification ? <RejectSellerVerification setRejectVerification={setRejectVerification} /> : ""
-        }
+        userDetails && userDetails.kyc_status === 'pending' ? <AwaitingVerification /> : ""
+      }
+      {
+        awaitVerification && <AwaitingVerification />
+      }
+      {
+        userDetails && rejectVerification ? <RejectSellerVerification setRejectVerification={setRejectVerification} /> : ""
+      }
         
     </div>
   )
