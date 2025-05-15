@@ -48,53 +48,81 @@ const IdVerification = ({baseUrl}) => {
     getUserDetails()
   },[])
 
+  // Helper function to check file size (5MB limit)
+  const checkFileSize = (file) => {
+    const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
+    return file && file.size <= maxSizeInBytes;
+  }
+  
   async function verifyId() {
+    // Check if required fields are present
     if(!fileFront || !selectedIdType || !id_card_number){
       setMsg('Please make sure to fill in all fields and ensure to upload a valid Id')
       setAlertType('error')
-    }else{
-      const formData = new FormData()
-      formData.append('id_card_type', selectedIdType)
-      formData.append('id_card_number', id_card_number)
-      formData.append('id_card_image_front_view', fileFront)
-      
-      // Only append back view if it's not null
-      if(fileBack) {
-        formData.append('id_card_image_back_view', fileBack)
-      }
-      
-      // Append photo if it exists
-      if(photo) {
-        formData.append('photo', photo)
-      }
-      
-      setLoader(true)
-      const res = await fetch(`${baseUrl}/seller/dashboard/upload-id`,{
-        method:'PUT',
-        body: formData,
-        headers: {
-          Authorization:`Bearer ${user.data[0].access}`,
-        }
-      })
-      const data = await res.json()
-      console.log(res, data);
-      if(res) setLoader(false)
-      if(!res.ok){
-        setMsg("An error occured")
-        // setMsg(data.message)
-        setAlertType('error')
-      }
-      if(res.ok){
-        setMsg(data.message)
-        setAlertType('success')
-        setAwaitVerification(true)
-      }
-
-      console.log(id_card_number, selectedIdType, fileBack, fileFront);
-
-      console.log('Back', fileBack);
-      console.log('Front', fileFront);
+      return;
     }
+    
+    // Check file sizes
+    if (!checkFileSize(fileFront)) {
+      setMsg('Front ID image must be less than 5MB')
+      setAlertType('error')
+      return;
+    }
+    
+    if (fileBack && !checkFileSize(fileBack)) {
+      setMsg('Back ID image must be less than 5MB')
+      setAlertType('error')
+      return;
+    }
+    
+    if (photo && !checkFileSize(photo)) {
+      setMsg('Photo must be less than 5MB')
+      setAlertType('error')
+      return;
+    }
+  
+    // All validation passed, proceed with form submission
+    const formData = new FormData()
+    formData.append('id_card_type', selectedIdType)
+    formData.append('id_card_number', id_card_number)
+    formData.append('id_card_image_front_view', fileFront)
+    
+    // Only append back view if it's not null
+    if(fileBack) {
+      formData.append('id_card_image_back_view', fileBack)
+    }
+    
+    // Append photo if it exists
+    if(photo) {
+      formData.append('photo', photo)
+    }
+    
+    setLoader(true)
+    const res = await fetch(`${baseUrl}/seller/dashboard/upload-id`,{
+      method:'PUT',
+      body: formData,
+      headers: {
+        Authorization:`Bearer ${user.data[0].access}`,
+      }
+    })
+    const data = await res.json()
+    console.log(res, data);
+    if(res) setLoader(false)
+    if(!res.ok){
+      setMsg("An error occured")
+      // setMsg(data.message)
+      setAlertType('error')
+    }
+    if(res.ok){
+      setMsg(data.message)
+      setAlertType('success')
+      setAwaitVerification(true)
+    }
+
+    console.log(id_card_number, selectedIdType, fileBack, fileFront);
+
+    console.log('Back', fileBack);
+    console.log('Front', fileFront);
   }
 
   return (
