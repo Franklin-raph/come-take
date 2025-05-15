@@ -55,6 +55,27 @@ const Subscription = ({baseUrl}) => {
     setUserDetails(data.data)
     console.log(res, data);
   }
+  
+  // New function to check seller status and navigate accordingly
+  async function checkSellerStatusAndNavigate() {
+    try {
+      const res = await fetch(`${baseUrl}/complete-registration`,{
+        headers:{
+          Authorization:`Bearer ${user.data[0].access}`
+        }
+      })
+      const data = await res.json()
+      
+      if (data.data && data.data.is_seller === true) {
+        navigate('/list-product')
+      } else {
+        navigate('/shop-set-up')
+      }
+    } catch (error) {
+      console.error("Error checking seller status:", error)
+      navigate('/shop-set-up') // Default navigation in case of error
+    }
+  }
 
   function subscribe(subTitle, id, price) {
     console.log(subTitle, id, price);
@@ -77,9 +98,6 @@ const Subscription = ({baseUrl}) => {
       onSuccess(transaction){
         console.log(transaction)
         subscribeUser(id, amount, duration)
-        // setFundAccountModal(false)
-        // setVerifyPaymentModal(true)
-        // handleVerifyAccountFund(transaction.reference, (+amount/750).toFixed(2))
       },
       oncancel(){
         console.log("Failed Transaction")
@@ -105,8 +123,9 @@ const Subscription = ({baseUrl}) => {
       setAlertType('success')
       setConfirmSubModal(true)
       localStorage.setItem('my-sub', true)
-      navigate('/shop-set-up')
-      // getUserDetails()
+      
+      // Get updated user details and navigate based on is_seller status
+      checkSellerStatusAndNavigate()
     }
     if(!res.ok){
       setMsg(data.message)
@@ -147,20 +166,6 @@ const Subscription = ({baseUrl}) => {
             </div>
           ))
         }
-                {/* <button className='bg-secondary-color text-white mt-5 w-[140px] rounded-[10px] h-[49px]' onClick={() => setOpenSubscriptionModal(true)}>Make Payment</button> */}
-
-        {/* <div className='py-5 px-[36px] rounded-[10px] w-[265px]' style={{ border:"1px solid #96BF47", boxShadow:"0 11px 40px -17px #00000024" }}>
-          <p className='text-[#1C1C1C] font-[700] text-[22px] mb-3'>Premium Plan</p>
-          <p className='text-[#1C1C1C] font-[700] text-[16px] py-4' style={{ borderTop:"1px solid #DCDCDC", borderBottom:"1px solid #DCDCDC" }}>N10,000/Per Month</p>
-          <ul className='text-left grid gap-2 text-[#6C6C6C] pt-5 sub_list'>
-            <li>Unlimited Listing of Products</li>
-            <li>10 Days of Onsite Ad</li>
-          </ul>
-          <button className='bg-secondary-color text-white mt-5 w-[140px] rounded-[10px] h-[49px]'onClick={() => {
-                setPaymentModal(true)
-                setOpenSubscriptionModal(false)
-                }}>Make Payment</button>
-        </div> */}
 
       </div>
 
@@ -222,31 +227,6 @@ const Subscription = ({baseUrl}) => {
           </div>
         </div>
       }
-
-      {/* {
-        confirmSubModal &&
-        <div>
-            <div className="h-full w-full fixed top-0 left-0 z-[999]" style={{ background:"rgba(14, 14, 14, 0.58)" }} onClick={() => {
-              getUserDetails()
-              setConfirmSubModal(false)
-            }}></div>
-            <div className="bg-white w-[450px] flex items-center justify-center h-[580px] fixed top-[50%] left-[50%] py-[35px] px-[2rem] rounded-[20px] z-[100] login-modal" style={{ transform: "translate(-50%, -50%)" }}>
-                <div className="">
-                    <p className='text-center text-[#3b4054]'>Account Verified Proceed to login</p>
-                    <div className="mt-7">
-                        <button className="bg-secondary-color text-white px-4 py-3 w-full rounded-sm tracking-wide
-                        font-display focus:outline-none focus:shadow-outline hover:bg-primary-color hover:text-[#EDEDED]
-                        shadow-sm transition-all" onClick={() => {
-                            // setLoginModal(true)
-                        }}>
-                            Continue to Login
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-      } */}
-      
 
     </div>
   )
