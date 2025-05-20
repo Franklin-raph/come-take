@@ -434,6 +434,19 @@ const [name, setName] = useState('')
 const [category, setCategory] = useState('')
 
   async function uploadProduct(){
+    if(!category || !name || !in_stock || !brand_name || !color || !description || !condition || !warranty_duration || !warranty_address || !warranty_duration_type || !weight || !price){
+        setMsg('Please fill all the fields')
+        setAlertType('warning')
+        return
+    }else if(!product_image.length){
+        setMsg('Please upload product images')
+        setAlertType('warning')
+        return
+    }else if(!coverPhotoId){
+        setMsg('Please upload cover photo')
+        setAlertType('warning')
+        return
+    }
     console.log("Cover photo ID while uploading product ====> ", coverPhotoId);
     setLoader(true)
     const res = await fetch(`${baseUrl}/products`, {
@@ -451,6 +464,8 @@ const [category, setCategory] = useState('')
         setAlertType('success')
     }
     if(!res.ok){
+        console.log(res);
+        
         setMsg(data.message)
         setAlertType('error')
     }
@@ -672,7 +687,7 @@ const [category, setCategory] = useState('')
             </div>
             <div className="w-full">
                 <p>Weight</p>
-                <input onChange={e => setWeight(e.target.value)} type="text" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="10Kg" style={{ border:"1.5px solid #CCCCCC" }}/>
+                <input onChange={e => setWeight(e.target.value)} type="number" className="mt-2 outline-none px-4 py-3 w-full rounded-[6px] placeholder:text-[#B6B6B6]" placeholder="10Kg" style={{ border:"1.5px solid #CCCCCC" }}/>
             </div>
         </div>
         <div className="flex items-center gap-5 mt-5 flex-col sm:flex-row">
