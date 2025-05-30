@@ -113,7 +113,7 @@ async function getCatgories(){
     },
     {
       img:ElectronicsImage,
-      text:"Elecronics"
+      text:"Electronics"
     },
     {
       img:PhonesImage,
