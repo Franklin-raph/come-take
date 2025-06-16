@@ -21,6 +21,7 @@ import img2 from '../../assets/landingPageBgImg.png'
 
 import { useNavigate } from 'react-router-dom';
 import SkeletonLoader from '../../components/skeleton-loader/SkeletonLoader';
+import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
 const Home = ({baseUrl, setLoginModal, getMySavedProducts}) => {
 
@@ -33,6 +34,8 @@ const Home = ({baseUrl, setLoginModal, getMySavedProducts}) => {
     window.scrollTo(0, 0)
     if(user){
       getAllProducts()
+      getBrandNewProducts()
+      getFairlyUsedProducts()
     }else{
       getAllUnauthenticatedProducts()
     }
@@ -61,10 +64,102 @@ async function getAllProducts(){
   })
     const data = await res.json()
     if(res) setLoader(false)
-    setAllProducts(data.data)
-    setBrandNewProducts(data.data.filter(product => product.condition === 'brand_new'))
-    setFairlyUsedProducts(data.data.filter(product => product.condition === 'fairly_used'))
-    console.log("Line 52 ===>", data.data);
+    setAllProducts(data)
+    console.log("Line 52 ===>", data);
+}
+
+async function prevAllProducts(url){
+    const res = await fetch(url,{
+      headers:{
+          Authorization:`Bearer ${user.data[0].access}`,
+      },
+  })
+    const data = await res.json()
+    if(res) setLoader(false)
+    setAllProducts(data)
+}
+
+async function nextAllProducts(url){
+  console.log(url);
+  
+    const res = await fetch(url,{
+      headers:{
+          Authorization:`Bearer ${user.data[0].access}`,
+      },
+  })
+    const data = await res.json()
+    if(res) setLoader(false)
+    setAllProducts(data)
+}
+
+async function getBrandNewProducts(){
+    setLoader(true)
+    const res = await fetch(`${baseUrl}/products?condition=brand_new`,{
+      headers:{
+          Authorization:`Bearer ${user.data[0].access}`,
+      },
+  })
+    const data = await res.json()
+    if(res) setLoader(false)
+    setBrandNewProducts(data)
+}
+
+async function prevBrandNewProducts(url){
+    const res = await fetch(url,{
+      headers:{
+          Authorization:`Bearer ${user.data[0].access}`,
+      },
+  })
+    const data = await res.json()
+    if(res) setLoader(false)
+    setBrandNewProducts(data)
+}
+
+async function nextBrandNewProducts(url){
+    const res = await fetch(url,{
+      headers:{
+          Authorization:`Bearer ${user.data[0].access}`,
+      },
+  })
+    const data = await res.json()
+    if(res) setLoader(false)
+    setBrandNewProducts(data)
+}
+
+async function getFairlyUsedProducts(){
+    setLoader(true)
+    const res = await fetch(`${baseUrl}/products?condition=fairly_used`,{
+      headers:{
+          Authorization:`Bearer ${user.data[0].access}`,
+      },
+  })
+    const data = await res.json()
+    console.log("Fairly used product", data);
+    
+    if(res) setLoader(false)
+    setFairlyUsedProducts(data)
+}
+
+async function prevFairlyUsedProducts(url){
+    const res = await fetch(url,{
+      headers:{
+          Authorization:`Bearer ${user.data[0].access}`,
+      },
+  })
+    const data = await res.json()
+    if(res) setLoader(false)
+    setFairlyUsedProducts(data)
+}
+
+async function nextFairlyUsedProducts(url){
+    const res = await fetch(url,{
+      headers:{
+          Authorization:`Bearer ${user.data[0].access}`,
+      },
+  })
+    const data = await res.json()
+    if(res) setLoader(false)
+    setFairlyUsedProducts(data)
 }
 
 async function getAllProductsAfterSaveOrUnsave(){
@@ -185,6 +280,21 @@ const [seachString, setSeachString] = useState('')
               </div>
             }
             <TrendingProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} allProducts={allProducts} baseUrl={baseUrl}/>
+              <div className='flex items-center gap-3 justify-center mt-5 text-gray-700'>
+                {
+                  allProducts?.previous !== null &&
+                  <div className='p-1 cursor-pointer border rounded-full text-[25px]' onClick={() => prevAllProducts(allProducts.previous)}>
+                    <BiChevronLeft />
+                  </div>
+                }
+                <p className='text-[15px]'>Page {allProducts?.current_page} 0f {allProducts?.total_pages}</p>
+                {
+                  allProducts?.next !== null &&
+                  <div className='p-1 cursor-pointer border rounded-full text-[25px]' onClick={() => nextAllProducts(allProducts.next)}>
+                    <BiChevronRight />
+                  </div>
+                }
+              </div>
             {
               allProducts?.length == 0 && <p className='text-center'>No Newly Listed Products</p>
             }
@@ -209,6 +319,21 @@ const [seachString, setSeachString] = useState('')
                   </div>
                 </div>
               <BrandNewProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} brandNewProducts={brandNewProducts}/>
+              <div className='flex items-center gap-3 justify-center mt-5 text-gray-700'>
+                {
+                  brandNewProducts?.previous !== null &&
+                  <div className='p-1 cursor-pointer border rounded-full text-[25px]' onClick={() => prevBrandNewProducts(brandNewProducts.previous)}>
+                    <BiChevronLeft />
+                  </div>
+                }
+                <p className='text-[15px]'>Page {brandNewProducts?.current_page} 0f {brandNewProducts?.current_page}</p>
+                {
+                  brandNewProducts?.next !== null &&
+                  <div className='p-1 cursor-pointer border rounded-full text-[25px]' onClick={() => nextBrandNewProducts(brandNewProducts.next)}>
+                    <BiChevronRight />
+                  </div>
+                }
+              </div>
               {
                 brandNewProducts?.length === 0 && <p className='text-center'>No Brand New Products</p>
               }
@@ -225,7 +350,7 @@ const [seachString, setSeachString] = useState('')
             </div>
           </div>
 
-          {/* MOBILE DESIGN FOR BRANDED NEW*/}
+          {/* DESKTOP DESIGN FOR BRANDED NEW*/}
           <div className="block lg:hidden">
             <div className="lg:px-12 px-6 lg:py-8 py-6">
               <div className="flex items-center justify-between mb-[20px]">
@@ -236,6 +361,21 @@ const [seachString, setSeachString] = useState('')
                 </div>
               </div>
               <BrandNewProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} brandNewProducts={brandNewProducts}/>
+              <div className='flex items-center gap-3 justify-center mt-5 text-gray-700'>
+                {
+                  brandNewProducts?.previous !== null &&
+                  <div className='p-1 cursor-pointer border rounded-full text-[25px]' onClick={() => prevBrandNewProducts(brandNewProducts.previous)}>
+                    <BiChevronLeft />
+                  </div>
+                }
+                <p className='text-[15px]'>Page {brandNewProducts?.current_page} 0f {brandNewProducts?.total_pages}</p>
+                {
+                  brandNewProducts?.next !== null &&
+                  <div className='p-1 cursor-pointer border rounded-full text-[25px]' onClick={() => nextBrandNewProducts(brandNewProducts.next)}>
+                    <BiChevronRight />
+                  </div>
+                }
+              </div>
               {
                 brandNewProducts?.length === 0 && <p className='text-center'>No Brand New Products</p>
               }
@@ -263,6 +403,21 @@ const [seachString, setSeachString] = useState('')
                     </div>
                 </div>
                 <FairlyUsedProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} fairlyUsedProducts={fairlyUsedProducts}/>
+                <div className='flex items-center gap-3 justify-center mt-5 text-gray-700'>
+                  {
+                    fairlyUsedProducts?.previous !== null &&
+                    <div className='p-1 cursor-pointer border rounded-full text-[25px]' onClick={() => prevFairlyUsedProducts(fairlyUsedProducts.previous)}>
+                      <BiChevronLeft />
+                    </div>
+                  }
+                  <p className='text-[15px]'>Page {fairlyUsedProducts?.current_page} 0f {fairlyUsedProducts?.total_pages}</p>
+                  {
+                    fairlyUsedProducts?.next !== null &&
+                    <div className='p-1 cursor-pointer border rounded-full text-[25px]' onClick={() => nextFairlyUsedProducts(fairlyUsedProducts.next)}>
+                      <BiChevronRight />
+                    </div>
+                  }
+                </div>
                 {
                   fairlyUsedProducts?.length === 0 && <p className='text-center'>No Fairly Used Products</p>
                 }
@@ -290,6 +445,21 @@ const [seachString, setSeachString] = useState('')
                 </div>
               </div>
               <FairlyUsedProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} fairlyUsedProducts={fairlyUsedProducts}/>
+              <div className='flex items-center gap-3 justify-center mt-5 text-gray-700'>
+                {
+                  fairlyUsedProducts?.previous !== null &&
+                  <div className='p-1 cursor-pointer border rounded-full text-[25px]' onClick={() => prevFairlyUsedProducts(fairlyUsedProducts.previous)}>
+                    <BiChevronLeft />
+                  </div>
+                }
+                <p className='text-[15px]'>Page {fairlyUsedProducts?.current_page} 0f {fairlyUsedProducts?.total_pages}</p>
+                {
+                  fairlyUsedProducts?.next !== null &&
+                  <div className='p-1 cursor-pointer border rounded-full text-[25px]' onClick={() => nextFairlyUsedProducts(fairlyUsedProducts.next)}>
+                    <BiChevronRight />
+                  </div>
+                }
+              </div>
               {
                 fairlyUsedProducts?.length === 0 && <p className='text-center'>No Fairly Used Products</p>
               }

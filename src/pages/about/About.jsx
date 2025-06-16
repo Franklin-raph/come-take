@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-const About = () => {
+const About = ({setRegisterModal}) => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -8,35 +8,92 @@ const About = () => {
 
   return (
     <div className='mt-5 mx-[2rem] lg:mx-[4rem]'>
-        <p className='font-[600] text-[24px] text-primary-color mt-9 mb-2'>About Come Take</p>
-        <div className='flex flex-col gap-5'>
-            <p>
-                Cometake is a technology company that is built around a marketplace, logistics
-                service and payment service. The logistics service enables the delivery of packages
-                through a network of local partners while the payment services facilitate the
-                payments of online transactions within Cometake’s ecosystem.
-            </p>
-            <p>
-                The Company offers platform for buying and selling of used and new products such
-                as Computers, Cars, motor vehicle, electronics, clothes, accessories, and other
-                related products. Cometake.ng Online Marketplace Nigeria serves customers in
-                Nigeria.
-            </p>
-            <p>
-                Cometake Marketplace was founded in <span className='font-[600] underline italic'>17 May, 2020</span> in Lagos, Nigeria by Mr.
-                Francis, who is the company's CEO. Cometake started a project known as
-                cometakedata plus providing data, airtime, Electric Bill, DStv etc. we are now
-                versatile in Digital Marketing system.
-            </p>
-            <p>
-                Cometake has been a game-changer for us. Despite years of hard work, we struggled
-                to expand internationally, but after selling on cometakedata plus, flourishing more,
-                with thousands of customers in Nigeria and Abroad. For small businesses, cometake
-                creates opportunities to compete with bigger, more established brands and once
-                people were able to buy our data, airtime they kept coming back for more. We’re
-                incredibly grateful for the opportunities we’ve been able to unlock through selling
-                on cometake.
-            </p>
+        <p className='font-[600] text-[24px] text-primary-color mt-9 mb-2'>ComeTake: The world of luxury & comfort</p>
+        <p>Connecting you to products, payments and possibilities.</p>
+        <div>
+            <p className='font-[600] text-[24px] text-primary-color mt-9 mb-2'>Who We Are</p>
+            <div className='flex flex-col gap-5'>
+                <p>
+                    ComeTake is a Nigerian technology company built around three powerful services: an online
+                    marketplace, a reliable logistics network, and an easy payment system. We connect buyers and
+                    sellers across Nigeria, making it easy to shop, sell, deliver, and pay — all in one place.
+                </p>
+                <p>
+                    Whether you're looking for quality electronics, stylish fashion, trusted vehicles, or everyday
+                    essentials, ComeTake offers a shopping experience every shopper loves.
+                </p>
+            </div>
+        </div>
+        <div>
+            <p className='font-[600] text-[24px] text-primary-color mt-9 mb-2'>Our  Story</p>
+            <div className='flex flex-col gap-5'>
+                <p>
+                    After seeing the challenges people face to get the right product and sellers struggling to sell
+                    their products to people who actually know the value, the CEO decided to make a change
+                </p>
+                <p>
+                    He wanted to build a world where people are not inconvenienced and yet, get what suits their
+                    lifestyle.
+                </p>
+                <p>
+                    That was how ComeTake came in, founded on May, 17 2020 despite all the challenges.
+                    ComeTake is not just a marketplace, it is a platform where individuals can display real products
+                    and others can buy what they like.
+                </p>
+                <p>
+                    As our community grew, so did our offerings. We launched ComeTakeData Plus, expanding into
+                    digital services like airtime, data, electricity bill payments, and cable subscriptions. What started
+                    as a marketplace quickly became a complete lifestyle platform
+                </p>
+                <p>
+                    Today, ComeTake proudly serves thousands of customers across Nigeria and abroad, helping
+                    individuals and small businesses thrive in the digital economy
+                </p>
+            </div>
+        </div>
+        <div>
+            <p className='font-[600] text-[24px] text-primary-color mt-9 mb-2'>Why We Matter</p>
+            <div className='flex flex-col gap-5'>
+                <p>
+                    At ComeTake, we believe that access creates opportunity.
+                </p>
+                <p>
+                    <span className='font-[600]'>For customers:</span> We offer a trusted space to find quality products from real people and get
+                    exactly what you ordered for. You are guided and supported throughout your buying journey to
+                    ensure you get the most out of your spending without having to leave your home.
+                </p>
+                <p>
+                    <span className='font-[600]'>For small businesses and individual sellers:</span> ComeTake does the marketing while you
+                    make the sales. We help you display your products to serious buyers where you handle your
+                    business your own way. We provide the tools and visibility to reach more buyers, grow faster,
+                    and compete with bigger brands
+                </p>
+            </div>
+        </div>
+        <div>
+            <p className='font-[600] text-[24px] text-primary-color mt-9 mb-2'>Our Mission</p>
+            <div className='flex flex-col gap-5'>
+                <p>
+                    To become Africa's leading digital marketplace where real people meet real products and every
+                    transaction brings you closer to a better life.
+                </p>
+                <p>
+                    We are building a future where shopping, payments, and essential services are accessible to
+                    everyone, everywhere with just a few clicks.
+                </p>
+            </div>
+        </div>
+        <div>
+            <p className='font-[600] text-[24px] text-primary-color mt-9 mb-2'>Join the ComeTake Community</p>
+            <div className='flex flex-col gap-5'>
+                <p>
+                    Ready to experience a world of luxury and comfort?
+                </p>
+                <p>
+                    Start shopping today or list your products and grow your business with us.
+                </p>
+            </div>
+            <button onClick={() => setRegisterModal(true)} className='py-3 px-6 bg-primary-color mt-2 rounded-[6px] text-white'>JOIN US NOW</button>
         </div>
     </div>
   )

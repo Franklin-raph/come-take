@@ -113,7 +113,7 @@ export default function App() {
           <Route path="/list-product" element={<ListProduct baseUrl={baseUrl}/>} />
           <Route path="/product-detail/:id" element={<ProductDetail baseUrl={baseUrl}/>} />
 
-          <Route path="/about-us" element={<About />}/>
+          <Route path="/about-us" element={<About setRegisterModal={setRegisterModal}/>}/>
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-use" element={<TermsOfUse />} />
           <Route path="/return-policy" element={<ReturnPolicy />} />

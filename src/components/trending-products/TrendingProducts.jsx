@@ -116,7 +116,7 @@ const TrendingProducts = ({allProducts, baseUrl, getMySavedProducts, getAllProdu
 
   return (
     <Slider {...settings}>
-        {allProducts && allProducts?.map(product => (
+        {allProducts && allProducts?.data?.map(product => (
             <ProductCard msg={msg} getMySavedProducts={getMySavedProducts} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} product={product} baseUrl={baseUrl}/>
         ))}
     </Slider>
