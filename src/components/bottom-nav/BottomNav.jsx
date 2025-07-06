@@ -43,7 +43,9 @@ const BottomNav = () => {
       }
 
     useEffect(() => {
-        getUserDetails()
+        if(user){
+            getUserDetails()
+        }
         getCatgories()
     },[])
 

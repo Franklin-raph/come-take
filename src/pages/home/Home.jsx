@@ -38,8 +38,9 @@ const Home = ({baseUrl, setLoginModal, getMySavedProducts}) => {
       getFairlyUsedProducts()
     }else{
       getAllUnauthenticatedProducts()
+      getAllUnAuthBrandNewProducts()
+      getAllUnAuthFaairlyUsedProducts()
     }
-
     getCatgories()
 },[])
 
@@ -65,15 +66,11 @@ async function getAllProducts(){
     const data = await res.json()
     if(res) setLoader(false)
     setAllProducts(data)
-    console.log("Line 52 ===>", data);
+    // console.log("Line 52 ===>", data);
 }
 
 async function prevAllProducts(url){
-    const res = await fetch(url,{
-      headers:{
-          Authorization:`Bearer ${user.data[0].access}`,
-      },
-  })
+    const res = await fetch(url)
     const data = await res.json()
     if(res) setLoader(false)
     setAllProducts(data)
@@ -82,11 +79,7 @@ async function prevAllProducts(url){
 async function nextAllProducts(url){
   console.log(url);
   
-    const res = await fetch(url,{
-      headers:{
-          Authorization:`Bearer ${user.data[0].access}`,
-      },
-  })
+    const res = await fetch(url)
     const data = await res.json()
     if(res) setLoader(false)
     setAllProducts(data)
@@ -95,20 +88,22 @@ async function nextAllProducts(url){
 async function getBrandNewProducts(){
     setLoader(true)
     const res = await fetch(`${baseUrl}/products?condition=brand_new`,{
-      headers:{
-          Authorization:`Bearer ${user.data[0].access}`,
-      },
+      // headers:{
+      //     Authorization:`Bearer ${user.data[0].access}`,
+      // },
   })
     const data = await res.json()
+    console.log("Brand new product", data);
+    
     if(res) setLoader(false)
     setBrandNewProducts(data)
 }
 
 async function prevBrandNewProducts(url){
     const res = await fetch(url,{
-      headers:{
-          Authorization:`Bearer ${user.data[0].access}`,
-      },
+      // headers:{
+      //     Authorization:`Bearer ${user.data[0].access}`,
+      // },
   })
     const data = await res.json()
     if(res) setLoader(false)
@@ -117,9 +112,9 @@ async function prevBrandNewProducts(url){
 
 async function nextBrandNewProducts(url){
     const res = await fetch(url,{
-      headers:{
-          Authorization:`Bearer ${user.data[0].access}`,
-      },
+      // headers:{
+      //     Authorization:`Bearer ${user.data[0].access}`,
+      // },
   })
     const data = await res.json()
     if(res) setLoader(false)
@@ -129,9 +124,9 @@ async function nextBrandNewProducts(url){
 async function getFairlyUsedProducts(){
     setLoader(true)
     const res = await fetch(`${baseUrl}/products?condition=fairly_used`,{
-      headers:{
-          Authorization:`Bearer ${user.data[0].access}`,
-      },
+      // headers:{
+      //     Authorization:`Bearer ${user.data[0].access}`,
+      // },
   })
     const data = await res.json()
     console.log("Fairly used product", data);
@@ -142,9 +137,9 @@ async function getFairlyUsedProducts(){
 
 async function prevFairlyUsedProducts(url){
     const res = await fetch(url,{
-      headers:{
-          Authorization:`Bearer ${user.data[0].access}`,
-      },
+      // headers:{
+      //     Authorization:`Bearer ${user.data[0].access}`,
+      // },
   })
     const data = await res.json()
     if(res) setLoader(false)
@@ -153,9 +148,9 @@ async function prevFairlyUsedProducts(url){
 
 async function nextFairlyUsedProducts(url){
     const res = await fetch(url,{
-      headers:{
-          Authorization:`Bearer ${user.data[0].access}`,
-      },
+      // headers:{
+      //     Authorization:`Bearer ${user.data[0].access}`,
+      // },
   })
     const data = await res.json()
     if(res) setLoader(false)
@@ -179,11 +174,26 @@ async function getAllUnauthenticatedProducts(){
   setLoader(true)
   const res = await fetch(`${baseUrl}/products`)
   const data = await res.json()
+  console.log(data);
+  
   if(res) setLoader(false)
-  setAllProducts(data.data)
-  setBrandNewProducts(data.data.filter(product => product.condition === 'new'))
-  setFairlyUsedProducts(data.data.filter(product => product.condition === 'fairly_used'))
-  console.log("Line 52 ===>", data.data);
+  setAllProducts(data)
+}
+
+async function getAllUnAuthBrandNewProducts(){
+    setLoader(true)
+    const res = await fetch(`${baseUrl}/products?condition=brand_new`)
+    const data = await res.json()
+    if(res) setLoader(false)
+    setBrandNewProducts(data)
+}
+
+async function getAllUnAuthFaairlyUsedProducts(){
+    setLoader(true)
+    const res = await fetch(`${baseUrl}/products?condition=fairly_used`)
+    const data = await res.json()
+    if(res) setLoader(false)
+    setFairlyUsedProducts(data)
 }
 
 async function getCatgories(){
@@ -280,6 +290,9 @@ const [seachString, setSeachString] = useState('')
               </div>
             }
             <TrendingProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} allProducts={allProducts} baseUrl={baseUrl}/>
+            {
+              allProducts?.length == 0 && <p className='text-center'>No Newly Listed Products</p>
+            }
               <div className='flex items-center gap-3 justify-center mt-5 text-gray-700'>
                 {
                   allProducts?.previous !== null &&
@@ -295,9 +308,6 @@ const [seachString, setSeachString] = useState('')
                   </div>
                 }
               </div>
-            {
-              allProducts?.length == 0 && <p className='text-center'>No Newly Listed Products</p>
-            }
           </div>
 
           <div className="lady-part my-6">
@@ -319,6 +329,9 @@ const [seachString, setSeachString] = useState('')
                   </div>
                 </div>
               <BrandNewProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} brandNewProducts={brandNewProducts}/>
+              {
+                brandNewProducts?.length === 0 && <p className='text-center'>No Brand New Products</p>
+              }
               <div className='flex items-center gap-3 justify-center mt-5 text-gray-700'>
                 {
                   brandNewProducts?.previous !== null &&
@@ -334,9 +347,6 @@ const [seachString, setSeachString] = useState('')
                   </div>
                 }
               </div>
-              {
-                brandNewProducts?.length === 0 && <p className='text-center'>No Brand New Products</p>
-              }
               {
                 loader && 
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
@@ -361,6 +371,9 @@ const [seachString, setSeachString] = useState('')
                 </div>
               </div>
               <BrandNewProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} brandNewProducts={brandNewProducts}/>
+              {
+                brandNewProducts?.length === 0 && <p className='text-center'>No Brand New Products</p>
+              }
               <div className='flex items-center gap-3 justify-center mt-5 text-gray-700'>
                 {
                   brandNewProducts?.previous !== null &&
@@ -376,9 +389,6 @@ const [seachString, setSeachString] = useState('')
                   </div>
                 }
               </div>
-              {
-                brandNewProducts?.length === 0 && <p className='text-center'>No Brand New Products</p>
-              }
               {
                 loader && 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
@@ -403,6 +413,9 @@ const [seachString, setSeachString] = useState('')
                     </div>
                 </div>
                 <FairlyUsedProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} fairlyUsedProducts={fairlyUsedProducts}/>
+                {
+                  fairlyUsedProducts?.length === 0 && <p className='text-center'>No Fairly Used Products</p>
+                }
                 <div className='flex items-center gap-3 justify-center mt-5 text-gray-700'>
                   {
                     fairlyUsedProducts?.previous !== null &&
@@ -418,9 +431,6 @@ const [seachString, setSeachString] = useState('')
                     </div>
                   }
                 </div>
-                {
-                  fairlyUsedProducts?.length === 0 && <p className='text-center'>No Fairly Used Products</p>
-                }
                 {
                   loader && 
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">
@@ -445,6 +455,9 @@ const [seachString, setSeachString] = useState('')
                 </div>
               </div>
               <FairlyUsedProducts getMySavedProducts={getMySavedProducts} msg={msg} setMsg={setMsg} alertType={alertType} setAlertType={setAlertType} getAllProductsAfterSaveOrUnsave={getAllProductsAfterSaveOrUnsave} fairlyUsedProducts={fairlyUsedProducts}/>
+              {
+                fairlyUsedProducts?.length === 0 && <p className='text-center'>No Fairly Used Products</p>
+              }
               <div className='flex items-center gap-3 justify-center mt-5 text-gray-700'>
                 {
                   fairlyUsedProducts?.previous !== null &&
@@ -460,9 +473,6 @@ const [seachString, setSeachString] = useState('')
                   </div>
                 }
               </div>
-              {
-                fairlyUsedProducts?.length === 0 && <p className='text-center'>No Fairly Used Products</p>
-              }
               {
                 loader && 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-5 gap-3">

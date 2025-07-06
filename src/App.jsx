@@ -80,9 +80,9 @@ export default function App() {
     })
     const data = await res.json()
     // console.log(res, data);
-    console.log(data.data)
-    setSavedItemsCount(data.data.length)
-    localStorage.setItem('savedItemsCount', data.data.length)
+    console.log(data?.data)
+    setSavedItemsCount(data?.data?.length)
+    localStorage.setItem('savedItemsCount', data?.data?.length)
   }
 
   useEffect(() => {
