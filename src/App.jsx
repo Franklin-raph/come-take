@@ -174,7 +174,7 @@ export default function App() {
                             <Link to="https://play.google.com/store/apps/details?id=com.doziechuks.cometake&pli=1" target="_blank" rel="noopener noreferrer">
                               <img src="./google-play.svg" alt="" className="w-[100px]"/>
                             </Link>
-                            <Link to="https://play.google.com/store/apps/details?id=com.doziechuks.cometake&pli=1" target="_blank" rel="noopener noreferrer">
+                            <Link to="https://apps.apple.com/ng/app/come-take/id6739727588" target="_blank" rel="noopener noreferrer">
                               <img src="./apple-store.svg" alt="" className="w-[100px]"/>
                             </Link>
                           </div>
