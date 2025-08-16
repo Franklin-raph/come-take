@@ -17,7 +17,7 @@ import FairlyUsedProducts from "../../components/fairly-used-products/FairlyUsed
 import BrandNewProducts from "../../components/brand-new-products/BrandNewProducts";
 import { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
-import img2 from '../../assets/landingPageBgImg.png'
+import img2 from '../../assets/Frame376.webp'
 
 import { useNavigate } from 'react-router-dom';
 import SkeletonLoader from '../../components/skeleton-loader/SkeletonLoader';
@@ -241,7 +241,7 @@ const [seachString, setSeachString] = useState('')
     <div>
         <div id='home'>
           <div className='image-overlay'></div>
-          <img src={img2} alt=""/>
+          <img src={img2} loading="eager" rel="preload" fetchpriority="high" alt=""/>
           <div className="w-full absolute left-[50%] right-[50%] top-[50%] z-[10] translate-x-[-50%] translate-y-[-50%] text-center">
             <h1 className='text-white mb-5 text-[16px] sm:text-[25px] md:text-[40px] w-[55%] mx-auto'>Buy & Sell on Nigeria’s No1 Market Place</h1>
             <div className='flex items-center justify-between outline-none border py-[3px] pr-[3px] pl-[15px] rounded-full bg-white text-[14px] w-[85%] md:w-[70%] mx-auto'>
